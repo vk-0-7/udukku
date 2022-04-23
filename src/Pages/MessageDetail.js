@@ -160,7 +160,11 @@ const MessageDetail = ({ match, socket, history }) => {
 
   const handleAccept = () => {
     console.log("hello");
-    updateChatroomById(chatroomId, "accepted").then((res) => {
+    const reqBody = {
+      id: chatroomId,
+      status: "accepted"
+    }
+    updateChatroomById(reqBody).then((res) => {
       console.log(res);
       getChatroomsById(chatroomId).then((res) => {
         console.log(res);
@@ -168,15 +172,41 @@ const MessageDetail = ({ match, socket, history }) => {
     }).catch((err) => { console.log(err) });
   }
 
-  const handleSubmit = () =>{
-    if(proposal === "" || delievery === "" || cost === "")
-    {
+  const handleSubmit = () => {
+    if (proposal === "" || delievery === "" || cost === "") {
       toast.warning("please fill all the fields");
-    }else{
-      updateChatroomById(chatroomId,"accepted",deliverables,documentation,delievery,proposal,cost).then((res)=>{
+    } else {
+      const reqBody = {
+        id: chatroomId,
+        status: "accepted",
+        deliverables,
+        documentation,
+        jobAccepted: delievery,
+        proposalDetails: proposal,
+        cost: parseInt(cost)
+      }
+      updateChatroomById(reqBody).then((res) => {
         console.log(res);
-      }).catch((err)=>{console.log(err)});
+      }).catch((err) => { console.log(err) });
     }
+  }
+
+  const handleDeliverables = (e) => {
+    const file = e.target.files[0];
+    const formData = new FormData();
+    formData.append("file", file);
+    const fileName = e.target.files[0].name;
+    axios.post("https://udukku.herokuapp.com/api/upload_attachment", formData)
+      .then((res) => {
+        const url = res.data.url;
+        console.log(url);
+        setFile(oldArr => [...oldArr, fileName]);
+        setDeliverables(oldArr => [...oldArr, url]);
+        toast.success("your document has has been uploaded");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
   return (
     <div>
@@ -305,23 +335,43 @@ const MessageDetail = ({ match, socket, history }) => {
                       ?
                       ""
                       :
-                      <>
-                        <button
-                          className="btn-hover w40"
-                          style={chatroom.deliveryDate === "" ? {marginRight: "15px",opacity:'0.6'} : { marginRight: "15px" }}
-                          onClick={handlePayment}
-                          disabled={chatroom.deliveryDate === ""}
-                        >
-                          Initiate job
-                        </button>
-                        <button
-                          className="btn-hover w40"
-                          style={{ marginRight: "15px" }}
-                          onClick={() => handleDeny(job._id)}
-                        >
-                          Reject job
-                        </button>
-                      </>
+                      chatroom.paymentStatus === true
+                        ?
+                        <>
+                          <button
+                            className="btn-hover w40"
+                            style={chatroom.paymentStatus ? { marginRight: "15px", opacity: '0.6' } : { marginRight: "15px" }}
+                            onClick={handlePayment}
+                            disabled={chatroom.paymentStatus}
+                          >
+                            Initiate job
+                          </button>
+                          <button
+                            className="btn-hover w40"
+                            style={{ marginRight: "15px" }}
+                            onClick={() => handleDeny(job._id)}
+                          >
+                            Reject job
+                          </button>
+                        </>
+                        :
+                        <>
+                          <button
+                            className="btn-hover w40"
+                            style={chatroom.deliverables.length === 0 ? { marginRight: "15px", opacity: '0.6' } : { marginRight: "15px" }}
+                            onClick={handlePayment}
+                            disabled={chatroom.deliverables.length === 0}
+                          >
+                            Initiate job
+                          </button>
+                          <button
+                            className="btn-hover w40"
+                            style={{ marginRight: "15px" }}
+                            onClick={() => handleDeny(job._id)}
+                          >
+                            Reject job
+                          </button>
+                        </>
                   :
                   response !== undefined && (response.status === "completed" || response.status === "explored")
                     ?
@@ -332,14 +382,18 @@ const MessageDetail = ({ match, socket, history }) => {
                       <>
                         <button
                           className="btn-hover w40"
-                          style={{ marginRight: "15px" }}
+                          style={response !== undefined && response.status !== "exploring" ?
+                            { marginRight: "15px", opacity: "0.6", backgroundColor: '#ff6575' }
+                            : { marginRight: "15px", backgroundColor: '#ff6575' }}
+                          disabled={response !== undefined && response.status !== "exploring"}
                           onClick={handleAccept}
                         >
                           Accept Job
                         </button>
+
                         <button
                           className="btn-hover w40"
-                          style={{ marginRight: "15px", backgroundColor: 'red' }}
+                          style={{ marginRight: "15px", backgroundColor: '#ff726f',borderColor:'#ff726f' }}
                           onClick={() => handleDeny(job._id)}
                         >
                           Deny Job
@@ -358,38 +412,64 @@ const MessageDetail = ({ match, socket, history }) => {
                               </div>
                               <div class="modal-body">
                                 <label className="mt-3">Proposal Details</label>
-                                <input className="form-control" onChange={(e) => setProposal(e.target.value)}/>
+                                <input className="form-control" onChange={(e) => setProposal(e.target.value)} />
                                 <label className="mt-3" >Delivery Date</label>
-                                <input className="form-control" type="date" onChange={(e) => setDelievery(e.target.value)}/>
+                                <input className="form-control" type="date" onChange={(e) => setDelievery(e.target.value)} />
                                 <label className="mt-3">Documentation (optional)</label>
                                 <input className="form-control" />
                                 <label className="mt-3">Deliverables</label>
                                 <label for="deliever" className="btn btn-outline-primary w-100">Choose files</label>
-                                <input className="form-control" style={{display:'none'}} type="file" name="deliever" id="deliever"/>
+                                <input className="form-control" style={{ display: 'none' }} type="file" name="deliever" id="deliever" onChange={handleDeliverables} />
                                 <label className="mt-3">Final proposal cost</label>
-                                <input className="form-control" onChange={(e) => setCost(e.target.value)}/>
+                                <input className="form-control" onChange={(e) => setCost(e.target.value)} />
                               </div>
                               <div class="modal-footer">
-                                <button type="button" class="btn btn-primary" onClick={handleSubmit}>Save changes</button>
+                                <button type="button" class="btn btn-primary" onClick={handleSubmit}>Submit</button>
                               </div>
                             </div>
                           </div>
                         </div>
-                        <button
-                          className="btn-hover w40"
-                          style={{ marginRight: "15px" }}
-                          data-toggle="modal" 
-                          data-target="#exampleModal1"
-                        >
-                          Send Deliverables
-                        </button>
-                        <button
-                          className="btn-hover w40"
-                          style={{ marginRight: "15px", backgroundColor: 'red' }}
-                          onClick={() => handleDeny(job._id)}
-                        >
-                          Deny Job
-                        </button>
+                        {
+                          chatroom.paymentStatus === true
+                            ?
+                            <>
+                              <button
+                                className="btn-hover w40"
+                                style={{ marginRight: "15px" }}
+                                data-toggle="modal"
+                                data-target="#exampleModal1"
+                              >
+                                Send Deliverables
+                              </button>
+                              <button
+                                className="btn-hover w40"
+                                style={{ marginRight: "15px", backgroundColor: 'red' }}
+                                onClick={() => handleDeny(job._id)}
+                              >
+                                Deny Job
+                              </button>
+                            </>
+                            :
+                            <>
+                              <button
+                                className="btn-hover w40"
+                                style={{ marginRight: "15px" }}
+                                data-toggle="modal"
+                                data-target="#exampleModal1"
+                              >
+                                Add Deliverables
+                              </button>
+                              <button
+                                className="btn-hover w40"
+                                style={{ marginRight: "15px", backgroundColor: 'red' }}
+                                onClick={() => handleDeny(job._id)}
+                              >
+                                Deny Job
+                              </button>
+                            </>
+
+                        }
+
                       </>
                   :
                   ""}
@@ -614,12 +694,14 @@ const MessageDetail = ({ match, socket, history }) => {
                 <div>
                   <hr />
                   <h5>Proposal Details</h5>
-                  <hr />
-                  <span>Full Song produced</span>
-                  <br />
-                  <span>Mix &amp; master</span>
-                  <br />
-                  <span>Services: Source file, with mix</span>
+                  {chatroom !== undefined
+                    ?
+                    <>
+                      <hr />
+                      <span>{chatroom.proposalDetails}</span>
+                    </>
+                    :
+                    ""}
                   <br />
                 </div>
               </div>
@@ -627,33 +709,46 @@ const MessageDetail = ({ match, socket, history }) => {
             <div className="card mt-3"
               style={{ flexDirection: "column", borderRadius: "15px" }}>
               <div className="card-body">
-                <span>
-                  Delivery date
-                  <span style={{ float: "right" }}>{ }</span>
-                </span>
-                <hr />
-                <p>
-                  <b>Deliverables</b>
-                </p>
-                <span>Mp3</span>
-                <br />
-                <span>Mp3</span>
-                <br />
-                <span>Mp3</span>
+                {chatroom !== undefined ?
+                  <span>
+                    Delivery date
+                    <span style={{ float: "right" }}>{chatroom.deliveryDate}</span>
+                  </span>
+                  :
+                  ""}
+                {chatroom !== undefined 
+                  ?
+                  <>
+                    <hr />
+                    <p>
+                      <b>Deliverables</b>
+                    </p>
+                    <span>Mp3</span>
+                    <br />
+                    <span>Mp3</span>
+                    <br />
+                    <span>Mp3</span>
+                  </>
+                  :
+                  ""}
                 <br />
               </div>
             </div>
+            {chatroom !== undefined
+            ?
             <div
-              className="card mt-4"
-              style={{ flexDirection: "column", borderRadius: "15px" }}
-            >
-              <div className="card-header" style={{ backgroundColor: "#fff" }}>
-                <p>
-                  <b>Documentation</b>
-                </p>
-              </div>
-              <div className="card-body">Lorem ipsum</div>
+            className="card mt-4"
+            style={{ flexDirection: "column", borderRadius: "15px" }}
+          >
+            <div className="card-header" style={{ backgroundColor: "#fff" }}>
+              <p>
+                <b>Documentation</b>
+              </p>
             </div>
+            <div className="card-body">Lorem ipsum</div>
+          </div>
+          :
+          ""}
           </div>
         </div>
       </div>

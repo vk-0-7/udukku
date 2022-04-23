@@ -84,6 +84,7 @@ export const getChatroomsById = async (id) => {
     return await axios.get(`https://udukku.herokuapp.com/chatroom/get-chatroom-by-id/${id}`);
 }
 
-export const updateChatroomById = async (id,jobAccepted,deliverables,documentation,deliveryDate,proposalDetails,cost) => {
-    return await axios.patch(`https://udukku.herokuapp.com/chatroom/update-chatroom-by-id`,{id,jobAccepted,deliverables,documentation,deliveryDate,proposalDetails,cost:parseInt(cost)});
+export const updateChatroomById = async (reqBody) => {
+    console.log(reqBody);
+    return await axios.patch(`https://udukku.herokuapp.com/chatroom/update-chatroom-by-id`,{...reqBody});
 }

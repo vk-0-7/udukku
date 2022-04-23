@@ -60,7 +60,7 @@ const WhyUdukku = () => {
           <img
             src={card}
             alt="singer"
-            className="why-udukku-banner"
+            className="why-udukku-banner mHide"
           />
         </div>
       </div>

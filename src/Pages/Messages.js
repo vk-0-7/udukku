@@ -78,11 +78,11 @@ const Messages = () => {
           console.log(res);
           setMyResponses(res.data);
           res.data.map((r) => {
-            getJobById(r.jobId).then((res) => {
-              if (res.data != null) {
-                setJobs(oldArr => [...oldArr, res.data]);
-              }
-            }).catch(err => console.log(err));
+              getJobById(r.jobId).then((res) => {
+                if (res.data != null) {
+                  setJobs(oldArr => [...oldArr, res.data]);
+                }
+              }).catch(err => console.log(err));
           })
         })
         .catch((err) => {
@@ -115,6 +115,7 @@ const Messages = () => {
       setLoading(false);
     });
   }
+
   return (
     <>
       <Header />

@@ -219,7 +219,7 @@ const Login = ({ history }) => {
                     ></em>
                   )}
                 />
-                <FacebookLogin
+                {/* <FacebookLogin
                   appId="887211411966726"
                   autoLoad={false}
                   fields="name,email,picture"
@@ -235,7 +235,7 @@ const Login = ({ history }) => {
                       }}
                     ></i>
                   )}
-                />
+                /> */}
               </div>
             </div>
             <div className="or">Or</div>

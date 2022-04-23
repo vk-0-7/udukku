@@ -21,15 +21,15 @@ const Footer = () => {
                 A one-of-its-kind destination for musicians to harness
                 <br />their love of music and connect with each other.
               </p>
+              <p className="text-light" style={{ textAlign: "left" }}>
+                M-23 Income Tax Colony, Tonk Road, Durgapura, Jaipur - 302018
+              </p>
               <p style={{ textAlign: "left" }}>
                 <Link className="text-light" to="/contact-us">
                   Contact Us
                 </Link>
               </p>
               <p style={{ textAlign: "left" }}><a className="text-light"  href="mailto:info@udukku.com">info@udukku.com</a></p>
-              <p className="text-light" style={{ textAlign: "left" }}>
-                M-23 Income Tax Colony, Tonk Road, Durgapura, Jaipur - 302018
-              </p>
               <p>
                 {/* © 2021 Copyright Developed By: <a href="https://cftlabs.org/" className="link" target="_blank"> CFT Labs</a> */}
                 <span style={{ float: "left", marginRight: "20px" }}>

@@ -1,19 +1,26 @@
 import { Checkbox, Radio } from "antd";
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import Footer from "../Components/Footer/Footer";
 import Header from "../Components/Navigation/Header";
-import { getChatroomsById } from "../Functions/job";
+import { getChatroomsById, updateChatroomById } from "../Functions/job";
+import { getOrderId, saveOrder } from "../Functions/orders";
 
-const Payment = ({match}) => {
+const Payment = ({ match,history }) => {
   const [chatroom, setChatroom] = useState();
-  useEffect(()=>{
-    getChatroomsById(match.params.id).then((res)=>{
+  const [terms, setTerms] = useState(false);
+  const { user } = useSelector((state) => ({ ...state }));
+
+
+  useEffect(() => {
+    getChatroomsById(match.params.id).then((res) => {
       console.log(res);
-    }).catch((err)=>{
+      setChatroom(res.data[0]);
+    }).catch((err) => {
       console.log(err);
     });
-  },[]);
+  }, []);
 
   // Razorpay
   const componentDidMount = () => {
@@ -25,43 +32,68 @@ const Payment = ({match}) => {
   componentDidMount();
 
   const openPayModal = () => {
-    const amt = 100;
+    if (terms) {
+      const amt = 100;
       var amount = amt;
       var options = {
-        "key": "YOUR_KEY_ID", // Enter the Key ID generated from the Dashboard
-        "amount": "50000", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+        key: "rzp_live_5olF9jC5a7vicu", // Enter the Key ID generated from the Dashboard
+        amount: "100", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
         "currency": "INR",
-        "name": "Acme Corp",
-        "description": "Test Transaction",
-        "image": "https://example.com/your_logo",
-        "order_id": "order_9A33XWu170gUtm", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
-        "handler": function (response){
-            alert(response.razorpay_payment_id);
-            alert(response.razorpay_order_id);
-            alert(response.razorpay_signature)
+        name: "Acme Corp",
+        description: "Test Transaction",
+        order_id: "", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+        singnature : "",
+        payment_id : "",
+        handler: function (response) {
+          var values = {
+            razorpay_signature: response.razorpay_signature,
+            razorpay_order_id: response.razorpay_order_id,
+            razorpay_payment_id: response.razorpay_payment_id,
+          };
+          options.singnature = response.razorpay_signature;
+          options.payment_id = response.razorpay_payment_id;
+          saveOrder(user.userId,match.params.id,options).then((res)=>{
+            console.log(res);
+            history.push("/user/messages");
+          }).catch((err)=>{
+            console.log(err);
+          });
+
+          const reqBody = {
+            id:match.params.id,
+            paymentStatus : true,
+          }
+          updateChatroomById(reqBody).then((res)=>{
+            console.log(res);
+          }).catch((err)=>{
+            console.log(err);
+          });
         },
-        "prefill": {
-            "name": "Gaurav Kumar",
-            "email": "gaurav.kumar@example.com",
-            "contact": "9999999999"
+        prefill: {
+          name: "lil Acme",
+          email: "",
+          contact: "",
         },
-        "notes": {
-            "address": "Razorpay Corporate Office"
-        },
-        "theme": {
-            "color": "#3399cc"
-        }
-    };
-    var rzp1 = new window.Razorpay(options);
-    rzp1.on('payment.failed', function (response){
-            alert(response.error.code);
-            alert(response.error.description);
-            alert(response.error.source);
-            alert(response.error.step);
-            alert(response.error.reason);
-            alert(response.error.metadata.order_id);
-            alert(response.error.metadata.payment_id);
-    });
+      };
+
+      getOrderId(user.userId, match.params.id, amount, "INR", "Test", 1).then((res) => {
+        console.log(res);
+        options.order_id = res.id;
+        var rzp1 = new window.Razorpay(options);
+        rzp1.on('payment.failed', function (response) {
+          alert(response.error.code);
+          alert(response.error.description);
+          alert(response.error.source);
+          alert(response.error.step);
+          alert(response.error.reason);
+          alert(response.error.metadata.order_id);
+          alert(response.error.metadata.payment_id);
+        });
+        rzp1.open();
+      }).catch((err) => { console.log(err) });
+    } else {
+      toast.warn("please agree to terms and conditions");
+    }
   };
 
   return (
@@ -150,7 +182,7 @@ const Payment = ({match}) => {
               <div className="col-md-2">
                 <p>
                   <b>
-                    <i className="fa fa-rupee-sign"></i>100
+                    <i className="fa fa-rupee-sign"></i>{chatroom !== undefined ? chatroom.cost : ""}
                   </b>
                 </p>
               </div>
@@ -183,7 +215,7 @@ const Payment = ({match}) => {
               <div className="col-md-2">
                 <h5>
                   <b>
-                    <i className="fa fa-rupee-sign"></i>100
+                    <i className="fa fa-rupee-sign"></i>{chatroom !== undefined ? chatroom.cost : ""}
                   </b>
                 </h5>
               </div>
@@ -198,12 +230,12 @@ const Payment = ({match}) => {
           <br />
           <Radio className="payment-method">PayPal</Radio>
           <br /> */}
-          <Checkbox className="mt-5" style={{fontSize:'1.25rem'}}>
+          <Checkbox className="mt-5" style={{ fontSize: '1.25rem' }} onChange={() => setTerms(!terms)}>
             <b>I agreed the terms and conditions</b>
           </Checkbox>
           <br />
-          <button className="mt-5 btn-hover" style={{fontSize:'18px'}} onClick={openPayModal}>
-            Pay <i className="fa fa-rupee-sign" style={{fontSize:'14px'}}></i><span className="ml-3">100</span>
+          <button className="mt-5 btn-hover" style={{ fontSize: '18px' }} onClick={openPayModal}>
+            Pay <i className="fa fa-rupee-sign" style={{ fontSize: '14px' }}></i><span className="ml-3">{chatroom !== undefined ? chatroom.cost : ""}</span>
           </button>
         </div>
       </div>

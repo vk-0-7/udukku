@@ -114,7 +114,7 @@ const Explore = ({ history }) => {
                             ))}
                         </Swiper>
                     </div>
-                    <h4 className="mt-5"><b>{CategoryData[3].category}</b></h4>
+                    <h4 className="mt-5"><b>INSTRUMENTLIST</b></h4>
                     <div className='d-flex justify-content-center'>
                         <Swiper
                             slidesPerView={windowWidth > 800 && windowWidth < 900 ? 2 : windowWidth < 800 ? 1 : 4}

@@ -425,7 +425,7 @@ const handleGenreChange = (e) => {
           </div>
         </div>
         <div className="row">
-          {user.length !== 0 ? (
+          {user !== undefined && user.length !== 0 ? (
             user.map((item, index) => (
               <>
                 <div className="col-md-3 mt-5 mHide" key={index}>

@@ -155,69 +155,6 @@ const Jobs = ({ history }) => {
         >
           Give Review
         </button> */}
-
-        <div
-          className="modal fade"
-          id="reviewModal"
-          tabindex="-1"
-          role="dialog"
-          aria-labelledby="exampleModalLabel"
-          aria-hidden="true"
-        >
-          <div className="modal-dialog" role="document">
-            <div className="modal-content">
-              <div className="modal-header">
-                <h4 className="modal-title" id="exampleModalLabel">
-                  Review Form
-                </h4>
-                <button
-                  type="button"
-                  className="close"
-                  data-dismiss="modal"
-                  aria-label="Close"
-                >
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div className="modal-body">
-                <label>
-                  <b>Rating</b>
-                </label>
-                <br />
-                <StarRatings
-                  rating={rating}
-                  starDimension="20px"
-                  starRatedColor="red"
-                  changeRating={(newRating) => setRating(newRating)}
-                  numberOfStars={5}
-                  isSelectable={true}
-                  name="rating"
-                />
-                <br />
-                <label>
-                  <b>Please enter your awesome words:-</b>
-                </label>
-                <textarea
-                  className="form-control"
-                  style={{ resize: "none" }}
-                  rows="5"
-                />
-              </div>
-              <div className="modal-footer">
-                {/* <button
-                  type="button"
-                  className="btn btn-secondary"
-                  data-dismiss="modal"
-                >
-                  Close
-                </button> */}
-                <button type="button" className="btn btn-primary">
-                  Send Review
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
         <h3 className="text-center mt-5">Find your next projects</h3>
         <div className="row mt-5">
           <div className="col-md-3">

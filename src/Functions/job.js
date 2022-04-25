@@ -88,3 +88,7 @@ export const updateChatroomById = async (reqBody) => {
     console.log(reqBody);
     return await axios.patch(`https://udukku.herokuapp.com/chatroom/update-chatroom-by-id`,{...reqBody});
 }
+
+export const deleteAttachment = async(public_id,resource_type) =>{
+    return await axios.post("https://udukku.herokuapp.com/api/delete-attachment",{public_id,resource_type});
+}

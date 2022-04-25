@@ -197,11 +197,7 @@ const Footer = () => {
         </div>
         <div className="d-flex justify-content-center">
           <p>
-            <i
-              className="fa fa-copyright"
-              aria-hidden="true"
-              style={{ color: "#fff", fontSize: "15px" }}
-            ></i>
+          <span style={{color:'#fff',fontSize:'18px',verticalAlign:"middle"}}>&copy;</span>
             <span
               style={{ color: "#fff", fontSize: "15px", paddingRight: "10px", paddingLeft: '10px', borderRight: '1px solid #fff' }}
             >

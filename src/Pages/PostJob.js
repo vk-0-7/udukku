@@ -238,7 +238,7 @@ const PostJob = ({ history }) => {
                 </div>
                 <div className="col-md-1 col-1">
                   <i
-                    className="fas fa-plus"
+                    className="fa fa-check"
                     onClick={() => handleAddGenere(genere, subGenere)}
                     style={{
                       border: "1px solid",
@@ -246,7 +246,7 @@ const PostJob = ({ history }) => {
                       borderRadius: "20px",
                       color: "#fff",
                       verticalAlign: "sub",
-                      background: "#0070F3",
+                      background: "#78bb07",
                     }}
                   ></i>
                 </div>
@@ -335,7 +335,7 @@ const PostJob = ({ history }) => {
                 </div>
                 <div className="col-md-1 col-1">
                   <i
-                    className="fas fa-plus"
+                    className="fa fa-check"
                     onClick={() => handleAddService(service, subService)}
                     style={{
                       border: "1px solid",
@@ -343,7 +343,7 @@ const PostJob = ({ history }) => {
                       borderRadius: "20px",
                       color: "#fff",
                       verticalAlign: "sub",
-                      background: "#0070F3",
+                      background: "#78bb07",
                     }}
                   ></i>
                 </div>

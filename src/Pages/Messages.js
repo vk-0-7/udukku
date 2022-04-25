@@ -78,11 +78,11 @@ const Messages = () => {
           console.log(res);
           setMyResponses(res.data);
           res.data.map((r) => {
-              getJobById(r.jobId).then((res) => {
-                if (res.data != null) {
-                  setJobs(oldArr => [...oldArr, res.data]);
-                }
-              }).catch(err => console.log(err));
+            getJobById(r.jobId).then((res) => {
+              if (res.data != null) {
+                setJobs(oldArr => [...oldArr, res.data]);
+              }
+            }).catch(err => console.log(err));
           })
         })
         .catch((err) => {
@@ -116,6 +116,15 @@ const Messages = () => {
     });
   }
 
+  const handleDownload = (fileName,url) => {
+    // var element = document.createElement('a');
+    // element.setAttribute('href', 'data:text/plain;charset=utf-8, ' + encodeURIComponent(url));
+    // element.setAttribute('download', fileName);
+    // document.body.appendChild(element);
+    // element.click();
+    window.open(url);
+    //document.body.removeChild(element);
+  }
   return (
     <>
       <Header />
@@ -310,7 +319,7 @@ const Messages = () => {
                                       <tr key={index} style={{ borderBottom: '1px solid #ccc', lineHeight: '3.5rem' }}>
                                         <td>{a.attachmentName}</td>
                                         <td>{new Date(a.createdAt).toLocaleDateString()}</td>
-                                        <td><i className="fa fa-download"></i></td>
+                                        <td><i className="fa fa-download" onClick={() => handleDownload(a.attachmentName,a.attachmentUrl)}></i></td>
                                       </tr>
                                     ))}</tbody></table>}
                             </div>
@@ -526,7 +535,7 @@ const Messages = () => {
                                       <tr key={index} style={{ borderBottom: '1px solid #ccc', lineHeight: '3.5rem' }}>
                                         <td>{a.attachmentName}</td>
                                         <td>{new Date(a.createdAt).toLocaleDateString()}</td>
-                                        <td><i className="fa fa-download"></i></td>
+                                        <td><i className="fa fa-download" onClick={() => handleDownload(a.attachmentName,a.attachmentUrl)}></i></td>
                                       </tr>
                                     ))}</tbody></table>}
                             </div>
@@ -742,7 +751,7 @@ const Messages = () => {
                                       <tr key={index} style={{ borderBottom: '1px solid #ccc', lineHeight: '3.5rem' }}>
                                         <td>{a.attachmentName}</td>
                                         <td>{new Date(a.createdAt).toLocaleDateString()}</td>
-                                        <td><i className="fa fa-download"></i></td>
+                                        <td><i className="fa fa-download" onClick={() => handleDownload(a.attachmentName,a.attachmentUrl)}></i></td>
                                       </tr>
                                     ))}</tbody></table>}
                             </div>
@@ -959,7 +968,7 @@ const Messages = () => {
                                       <tr key={index} style={{ borderBottom: '1px solid #ccc', lineHeight: '3.5rem' }}>
                                         <td>{a.attachmentName}</td>
                                         <td>{new Date(a.createdAt).toLocaleDateString()}</td>
-                                        <td><i className="fa fa-download"></i></td>
+                                        <td><i className="fa fa-download" onClick={() => handleDownload(a.attachmentName,a.attachmentUrl)}></i></td>
                                       </tr>
                                     ))}</tbody></table>}
                             </div>

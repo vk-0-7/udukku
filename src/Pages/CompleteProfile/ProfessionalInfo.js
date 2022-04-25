@@ -358,7 +358,7 @@ const ProfessionalInfo = ({ history }) => {
               </div>
               <div className="col-md-1 col-1">
                 <i
-                  className="fas fa-plus"
+                  className="fa fa-check"
                   onClick={() => handleAddGenere(genere, subGenere)}
                   style={{
                     border: "1px solid",
@@ -366,7 +366,7 @@ const ProfessionalInfo = ({ history }) => {
                     borderRadius: "20px",
                     color: "#fff",
                     verticalAlign: "sub",
-                    background: "#0070F3",
+                    background: "#78bb07",
                   }}
                 ></i>
               </div>
@@ -454,7 +454,7 @@ const ProfessionalInfo = ({ history }) => {
               </div>
               <div className="col-md-1 col-1">
                 <i
-                  className="fas fa-plus"
+                  className="fa fa-check"
                   onClick={() => handleAddService(service, subService)}
                   style={{
                     border: "1px solid",
@@ -462,7 +462,7 @@ const ProfessionalInfo = ({ history }) => {
                     borderRadius: "20px",
                     color: "#fff",
                     verticalAlign: "sub",
-                    background: "#0070F3",
+                    background: "#78bb07",
                   }}
                 ></i>
               </div>
@@ -539,7 +539,7 @@ const ProfessionalInfo = ({ history }) => {
               </div>
               <div className="col-md-1 col-1">
                 <i
-                  className="fas fa-plus"
+                  className="fa fa-check"
                   onClick={() => handleAdd(input1, input2)}
                   style={{
                     border: "1px solid",
@@ -547,7 +547,7 @@ const ProfessionalInfo = ({ history }) => {
                     borderRadius: "20px",
                     color: "#fff",
                     verticalAlign: "sub",
-                    background: "#0070F3",
+                    background: "#78bb07",
                   }}
                 ></i>
               </div>

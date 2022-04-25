@@ -16,7 +16,7 @@ const Payment = ({ match,history }) => {
   useEffect(() => {
     getChatroomsById(match.params.id).then((res) => {
       console.log(res);
-      setChatroom(res.data[0]);
+      setChatroom(res.data);
     }).catch((err) => {
       console.log(err);
     });
@@ -33,13 +33,13 @@ const Payment = ({ match,history }) => {
 
   const openPayModal = () => {
     if (terms) {
-      const amt = 100;
+      const amt = chatroom.cost;
       var amount = amt;
       var options = {
-        key: "rzp_live_5olF9jC5a7vicu", // Enter the Key ID generated from the Dashboard
-        amount: "100", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+        key: "rzp_test_Fj0KaYuYrOU0Yq",
+        amount: amt*100, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
         "currency": "INR",
-        name: "Acme Corp",
+        name: "Udukku",
         description: "Test Transaction",
         order_id: "", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
         singnature : "",
@@ -125,14 +125,14 @@ const Payment = ({ match,history }) => {
                 </h5>
               </div>
               <div className="col-md-2 col-4">
-                <h5>
+                {/* <h5>
                   <b>Quantity</b>
-                </h5>
+                </h5> */}
               </div>
               <div className="col-md-2 col-4">
-                <h5>
+                {/* <h5>
                   <b>Duration</b>
-                </h5>
+                </h5> */}
               </div>
               <div className="col-md-2">
                 <h5>
@@ -145,6 +145,11 @@ const Payment = ({ match,history }) => {
             <div className="row">
               <div className="col-md-6">
                 <p style={{ paddingLeft: "10%" }}>
+                  <b>
+                    {chatroom !== undefined ? chatroom.proposalDetails : ""}
+                  </b>
+                </p>
+                {/* <p style={{ paddingLeft: "10%" }}>
                   <b>I Need a song produced and writer</b>
                 </p>
                 <p style={{ paddingLeft: "10%" }}>
@@ -167,17 +172,17 @@ const Payment = ({ match,history }) => {
                     style={{ color: "lightgreen" }}
                   ></i>
                   <b> Services: Source file, with mix</b>
-                </p>
+                </p> */}
               </div>
               <div className="col-md-2">
-                <p>
+                {/* <p>
                   <b>1</b>
-                </p>
+                </p> */}
               </div>
               <div className="col-md-2">
-                <p>
+                {/* <p>
                   <b>1 days</b>
-                </p>
+                </p> */}
               </div>
               <div className="col-md-2">
                 <p>

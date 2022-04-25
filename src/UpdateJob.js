@@ -96,8 +96,9 @@ const UpdateJob = ({ history, match }) => {
         ) {
             toast.warning("Please fill all the fields");
         } else {
-            updateJobById(id,title,services,deadline,genereList,refrel,Budget,mp3).then((res)=>{
+            updateJobById(id,title,services,deadline,genereList,description,refrel,Budget,mp3).then((res)=>{
                 toast.success("job has been updated");
+                history.push("/jobs");
             }).catch((err)=>{
                 console.log(err);
             })

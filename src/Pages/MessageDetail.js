@@ -4,10 +4,16 @@ import Header from "../Components/Navigation/Header";
 import card from "../Images/card-3.jpg";
 import { withRouter } from "react-router-dom/cjs/react-router-dom.min";
 import { getAllMessages, getUserInfoById } from "../Functions/user";
-import { getJobById, getJobResponseByJob, getChatroomsById, updateReponse, updateChatroomById } from "../Functions/job";
+import { getJobById, getJobResponseByJob, getChatroomsById, updateReponse, updateChatroomById, deleteAttachment } from "../Functions/job";
 import { useSelector } from "react-redux";
 import { toast } from 'react-toastify';
 import axios from 'axios';
+import ReactAudioPlayer from "react-audio-player";
+import { Avatar, Badge } from "antd";
+import StarRatings from "react-star-ratings";
+import { updateReview } from "../Functions/chatroom";
+
+
 const MessageDetail = ({ match, socket, history }) => {
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState("");
@@ -24,10 +30,17 @@ const MessageDetail = ({ match, socket, history }) => {
   const [documentation, setDocumentation] = useState("");
   const [deliverables, setDeliverables] = useState([]);
   const [cost, setCost] = useState("");
+  const [rating, setRating] = useState(5);
+  const [review, setReview] = useState("");
+
+
   // const [jobPostedById,setJobPostedById] = useState("");
   // const [JobPostedByUser,setJobPostedByUser] = useState();
   const chatroomId = id[0];
   const { user } = useSelector((state) => ({ ...state }));
+
+
+
   useEffect(() => {
     if (socket !== undefined) {
       socket.emit("joinRoom", {
@@ -54,12 +67,13 @@ const MessageDetail = ({ match, socket, history }) => {
     }
     getChatroomsById(chatroomId).then((res) => {
       console.log(res);
-      setChatroom(res.data[0]);
-      getJobResponseByJob(id[1], res.data[0].userId[1]).then((res) => {
+      setChatroom(res.data);
+      console.log(res.data.userId[1]);
+      getJobResponseByJob(id[1], res.data.userId[1]).then((res) => {
         console.log(res);
         setResponse(res.data[0]);
       }).catch((err) => { console.log(err) });
-    });
+    }).catch((err) => { console.log(err) });
     getJobById(id[1])
       .then((res) => {
         setJob(res.data);
@@ -81,7 +95,7 @@ const MessageDetail = ({ match, socket, history }) => {
   // }
   const sendMessage = () => {
     if (socket) {
-      if (message === "") {
+      if (message === "" && attachments.length === "") {
         toast.warning("can not send empty message");
       } else if (attachments.length === "") {
         socket.emit("chatroomMessage", {
@@ -162,7 +176,7 @@ const MessageDetail = ({ match, socket, history }) => {
     console.log("hello");
     const reqBody = {
       id: chatroomId,
-      status: "accepted"
+      jobAccepted: "accepted"
     }
     updateChatroomById(reqBody).then((res) => {
       console.log(res);
@@ -189,6 +203,7 @@ const MessageDetail = ({ match, socket, history }) => {
         console.log(res);
       }).catch((err) => { console.log(err) });
     }
+    window.$("#exampleModal1").modal("hide");
   }
 
   const handleDeliverables = (e) => {
@@ -198,15 +213,69 @@ const MessageDetail = ({ match, socket, history }) => {
     const fileName = e.target.files[0].name;
     axios.post("https://udukku.herokuapp.com/api/upload_attachment", formData)
       .then((res) => {
-        const url = res.data.url;
-        console.log(url);
         setFile(oldArr => [...oldArr, fileName]);
-        setDeliverables(oldArr => [...oldArr, url]);
+        setDeliverables(oldArr => [...oldArr, res.data]);
         toast.success("your document has has been uploaded");
       })
       .catch((err) => {
         console.log(err);
       });
+  }
+
+  const handleRemove = (id, index) => {
+    let resourceType = "";
+    if (deliverables[index].secure_url.search("png") || deliverables[index].secure_url.includes("jpg") || deliverables[index].secure_url.includes("jpeg")) {
+      resourceType = "image";
+    } else if (deliverables[index].secure_url.includes("mp3") || deliverables[index].secure_url.includes("mp4") || deliverables[index].secure_url.includes("aac") || deliverables[index].secure_url.includes("wav")) {
+      resourceType = "video";
+    } else {
+      resourceType = "raw";
+    }
+    console.log(resourceType);
+    console.log(deliverables);
+    const filter = deliverables.filter((item) => { return item.public_id != id });
+    deleteAttachment(id, resourceType).then((res) => {
+      console.log(res);
+    }).catch((err) => console.log(err));
+    setDeliverables(filter);
+  }
+
+  const handleSendDeliverables = () => {
+    setDeliverables(chatroom.deliverables);
+  }
+
+  const handleSubmitDeliverables = () => {
+    if (deliverables.length === 0) {
+      toast.warning("please attach atleast one attachment");
+    } else {
+      const reqBody = {
+        id: chatroomId,
+        deliverables,
+        deliverablesStatus: true,
+      }
+      updateChatroomById(reqBody).then((res) => {
+        console.log(res);
+        window.$("#exampleModal2").modal("hide");
+      }).catch((err) => {
+        console.log(err)
+        window.$("#exampleModal2").modal("hide");
+      });
+    }
+  }
+  const handleSendReview = () =>{
+    const id = user.isMusician === "Musician" ? chatroom.userId[0] : chatroom.userId[1];
+    const reqBody = {
+      rating, 
+      postedBy:user,
+      description:review
+    }
+    updateReview(id,reqBody).then((res)=>{
+      console.log(res);
+      window.$("#reviewModal").modal("hide");
+      history.push('/user/messages');
+    }).catch((err)=>{console.log(err);
+      window.$("#reviewModal").modal("hide");
+    });
   }
   return (
     <div>
@@ -280,6 +349,69 @@ const MessageDetail = ({ match, socket, history }) => {
                   : ""}
               </div>
               <p>Deadline: {job.deadLine}</p>
+              <div
+                          className="modal fade"
+                          id="reviewModal"
+                          tabindex="-1"
+                          role="dialog"
+                          aria-labelledby="exampleModalLabel"
+                          aria-hidden="true"
+                        >
+                          <div className="modal-dialog" role="document">
+                            <div className="modal-content">
+                              <div className="modal-header">
+                                <h4 className="modal-title" id="exampleModalLabel">
+                                  Review Form
+                                </h4>
+                                <button
+                                  type="button"
+                                  className="close"
+                                  data-dismiss="modal"
+                                  aria-label="Close"
+                                >
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div className="modal-body">
+                                <label>
+                                  <b>Rating</b>
+                                </label>
+                                <br />
+                                <StarRatings
+                                  rating={rating}
+                                  starDimension="20px"
+                                  starRatedColor="red"
+                                  changeRating={(newRating) => setRating(newRating)}
+                                  numberOfStars={5}
+                                  isSelectable={true}
+                                  name="rating"
+                                />
+                                <br />
+                                <label>
+                                  <b>Please enter your awesome words:-</b>
+                                </label>
+                                <textarea
+                                  className="form-control"
+                                  style={{ resize: "none" }}
+                                  rows="5"
+                                  onChange={(e)=>{setReview(e.target.value)}}
+                                />
+                              </div>
+                              <div className="modal-footer">
+                                {/* <button
+                  type="button"
+                  className="btn btn-secondary"
+                  data-dismiss="modal"
+                >
+                  Close
+                </button> */}
+                                <button type="button" className="btn btn-primary" onClick={handleSendReview}>
+                                  Send Review
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
               <div className="row">
                 <div className="col-md-9 b-solid">
                   <p className="card-text">
@@ -289,11 +421,15 @@ const MessageDetail = ({ match, socket, history }) => {
                 <div className="col-md-3">
                   <div className="dHIde mt-3">
                     <p style={{ fontSize: "14px" }}>
-                      <b style={{ color: "#0070f3" }}>Funded</b>
+                      <b style={{ color: "#0070f3" }}>{chatroom != undefined && chatroom.cost !== undefined ? "Funded" : "Quote"}</b>
                       <i className="fas fa-rupee-sign ml-3"></i>
-                      {job.budget[0] === job.budget[1]
-                        ? job.budget[1]
-                        : ` ${job.budget[0]}- ${job.budget[1]}`}
+                      {chatroom != undefined && chatroom.cost !== undefined ?
+                        chatroom.cost
+                        :
+                        job.budget[0] === job.budget[1]
+                          ? job.budget[1]
+                          : ` ${job.budget[0]}- ${job.budget[1]}`
+                      }
                     </p>
                   </div>
                   <div className="mHide">
@@ -333,58 +469,95 @@ const MessageDetail = ({ match, socket, history }) => {
                     :
                     response !== undefined && (response.status === "completed" || response.status === "explored")
                       ?
-                      ""
+                      <>
+                        {/* <button className="btn-hover w40"
+                          style={{ marginRight: "15px" }}
+                          data-toggle="modal"
+                          data-target="#reviewModal"
+                        >
+                          Add Review
+                        </button>
+                        <button className="btn-hover w10">
+                          Help
+                        </button> */}
+                      </>
                       :
-                      chatroom.paymentStatus === true
-                        ?
-                        <>
-                          <button
-                            className="btn-hover w40"
-                            style={chatroom.paymentStatus ? { marginRight: "15px", opacity: '0.6' } : { marginRight: "15px" }}
-                            onClick={handlePayment}
-                            disabled={chatroom.paymentStatus}
-                          >
-                            Initiate job
-                          </button>
-                          <button
-                            className="btn-hover w40"
-                            style={{ marginRight: "15px" }}
-                            onClick={() => handleDeny(job._id)}
-                          >
-                            Reject job
-                          </button>
-                        </>
+                      chatroom !== undefined ?
+                        chatroom.paymentStatus === true && chatroom.deliverablesStatus === true
+                          ?
+                          <>
+                            <button className="btn-hover w40"
+                              style={{ marginRight: "15px" }}
+                              onClick={() => {
+                                updateReponse(id, "completed").then((res) => {
+                                  console.log(res);
+                                  toast.success("Job has been completed");
+                                  history.push("/user/messages");
+                                }).catch((err) => {
+                                  console.log(err);
+                                });
+                              }}>
+                              Mark job as complete
+                            </button>
+                            <button
+                              className="btn-hover w40"
+                              style={{ marginRight: "15px" }}
+                              onClick={() => handleDeny(job._id)}
+                            >
+                              Reject job
+                            </button>
+                          </>
+                          :
+                          <>
+                            <button
+                              className="btn-hover w40"
+                              style={chatroom !== undefined && chatroom.paymentStatus ? { marginRight: "15px", opacity: '0.6' } : { marginRight: "15px" }}
+                              onClick={handlePayment}
+                              disabled={chatroom !== undefined && chatroom.paymentStatus}
+                            >
+                              Initiate job
+                            </button>
+                            <button
+                              className="btn-hover w40"
+                              style={{ marginRight: "15px" }}
+                              onClick={() => handleDeny(job._id)}
+                            >
+                              Reject job
+                            </button>
+                          </>
                         :
-                        <>
-                          <button
-                            className="btn-hover w40"
-                            style={chatroom.deliverables.length === 0 ? { marginRight: "15px", opacity: '0.6' } : { marginRight: "15px" }}
-                            onClick={handlePayment}
-                            disabled={chatroom.deliverables.length === 0}
-                          >
-                            Initiate job
-                          </button>
-                          <button
-                            className="btn-hover w40"
-                            style={{ marginRight: "15px" }}
-                            onClick={() => handleDeny(job._id)}
-                          >
-                            Reject job
-                          </button>
-                        </>
+                        ""
+                  // :
+                  // <>
+                  //   <button
+                  //     className="btn-hover w40"
+                  //     style={chatroom.deliverables.length === 0 ? { marginRight: "15px", opacity: '0.6' } : { marginRight: "15px" }}
+                  //     onClick={handlePayment}
+                  //     disabled={chatroom.deliverables.length === 0}
+                  //   >
+                  //     Initiate job
+                  //   </button>
+                  //   <button
+                  //     className="btn-hover w40"
+                  //     style={{ marginRight: "15px" }}
+                  //     onClick={() => handleDeny(job._id)}
+                  //   >
+                  //     Reject job
+                  //   </button>
+                  // </>
                   :
                   response !== undefined && (response.status === "completed" || response.status === "explored")
                     ?
                     ""
                     :
-                    chatroom.jobAccepted !== "accepted"
+                    chatroom !== undefined && chatroom.jobAccepted !== "accepted"
                       ?
                       <>
                         <button
                           className="btn-hover w40"
                           style={response !== undefined && response.status !== "exploring" ?
-                            { marginRight: "15px", opacity: "0.6", backgroundColor: '#ff6575' }
-                            : { marginRight: "15px", backgroundColor: '#ff6575' }}
+                            { marginRight: "15px", opacity: "0.6", }
+                            : { marginRight: "15px" }}
                           disabled={response !== undefined && response.status !== "exploring"}
                           onClick={handleAccept}
                         >
@@ -393,7 +566,7 @@ const MessageDetail = ({ match, socket, history }) => {
 
                         <button
                           className="btn-hover w40"
-                          style={{ marginRight: "15px", backgroundColor: '#ff726f',borderColor:'#ff726f' }}
+                          style={{ marginRight: "15px", backgroundColor: '#ff726f', borderColor: '#ff726f' }}
                           onClick={() => handleDeny(job._id)}
                         >
                           Deny Job
@@ -401,6 +574,7 @@ const MessageDetail = ({ match, socket, history }) => {
                       </>
                       :
                       <>
+                        {/* Add deliverables */}
                         <div class="modal" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                           <div class="modal-dialog" role="document">
                             <div class="modal-content">
@@ -415,8 +589,8 @@ const MessageDetail = ({ match, socket, history }) => {
                                 <input className="form-control" onChange={(e) => setProposal(e.target.value)} />
                                 <label className="mt-3" >Delivery Date</label>
                                 <input className="form-control" type="date" onChange={(e) => setDelievery(e.target.value)} />
-                                <label className="mt-3">Documentation (optional)</label>
-                                <input className="form-control" />
+                                <label className="mt-3" >Documentation (optional)</label>
+                                <input className="form-control" onChange={(e) => setDocumentation(e.target.value)} />
                                 <label className="mt-3">Deliverables</label>
                                 <label for="deliever" className="btn btn-outline-primary w-100">Choose files</label>
                                 <input className="form-control" style={{ display: 'none' }} type="file" name="deliever" id="deliever" onChange={handleDeliverables} />
@@ -429,15 +603,58 @@ const MessageDetail = ({ match, socket, history }) => {
                             </div>
                           </div>
                         </div>
+                        {/* Send deliverables */}
+                        <div class="modal" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title">Proposal Details</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                                <label className="mt-3">Deliverables</label>
+                                <br />
+                                <br />
+                                {chatroom !== undefined
+                                  ?
+                                  deliverables.map((attach, index) => (
+                                    attach.secure_url.search("png") !== -1 || attach.secure_url.search("jpg") !== -1 || attach.secure_url.search("jpeg") !== -1
+                                      ?
+                                      <Badge key={index} count="x" style={{ cursor: 'pointer' }} onClick={() => handleRemove(attach.public_id, index)}>
+                                        <Avatar shape="square" className="mb-3" src={attach.secure_url} size={60} style={{ marginLeft: '1rem' }} />
+                                      </Badge>
+                                      :
+                                      attach.secure_url.search("mp3") !== -1 || attach.secure_url.search("mp4") !== -1 || attach.secure_url.search("wav") !== -1
+                                        || attach.secure_url.search("aac") !== -1
+                                        ?
+                                        <ReactAudioPlayer key={index} src={attach.secure_url} />
+                                        :
+                                        <p>{attach.secure_url}</p>
+                                  ))
+                                  :
+                                  "Nothing"
+                                }
+                                <label for="deliever" className="btn btn-outline-primary w-100">Choose files</label>
+                                <input multiple className="form-control" style={{ display: 'none' }} type="file" name="deliever" id="deliever" onChange={handleDeliverables} />
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-primary" onClick={handleSubmitDeliverables}>Submit</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                         {
-                          chatroom.paymentStatus === true
+                          chatroom !== undefined && chatroom.paymentStatus === true
                             ?
                             <>
                               <button
                                 className="btn-hover w40"
                                 style={{ marginRight: "15px" }}
                                 data-toggle="modal"
-                                data-target="#exampleModal1"
+                                data-target="#exampleModal2"
+                                onClick={handleSendDeliverables}
                               >
                                 Send Deliverables
                               </button>
@@ -475,7 +692,19 @@ const MessageDetail = ({ match, socket, history }) => {
                   ""}
                 {response !== undefined && (response.status === "completed" || response.status === "explored")
                   ?
-                  ""
+                  <>
+                    <button className="btn-hover w40"
+                      style={{ marginRight: "15px" }}
+                      data-toggle="modal"
+                      data-target="#reviewModal"
+                      onClick={() =>{console.log("Hello")}}
+                    >
+                      Add Review
+                    </button>
+                    <button className="btn-hover w10">
+                      Help
+                    </button>
+                  </>
                   :
                   <>
                     <button className="btn-hover w10">
@@ -716,39 +945,35 @@ const MessageDetail = ({ match, socket, history }) => {
                   </span>
                   :
                   ""}
-                {chatroom !== undefined 
+                {chatroom !== undefined
                   ?
                   <>
                     <hr />
                     <p>
                       <b>Deliverables</b>
                     </p>
-                    <span>Mp3</span>
-                    <br />
-                    <span>Mp3</span>
-                    <br />
-                    <span>Mp3</span>
+
                   </>
                   :
                   ""}
                 <br />
               </div>
             </div>
-            {chatroom !== undefined
-            ?
-            <div
-            className="card mt-4"
-            style={{ flexDirection: "column", borderRadius: "15px" }}
-          >
-            <div className="card-header" style={{ backgroundColor: "#fff" }}>
-              <p>
-                <b>Documentation</b>
-              </p>
-            </div>
-            <div className="card-body">Lorem ipsum</div>
-          </div>
-          :
-          ""}
+            {chatroom !== undefined && chatroom.documentation !== ""
+              ?
+              <div
+                className="card mt-4"
+                style={{ flexDirection: "column", borderRadius: "15px" }}
+              >
+                <div className="card-header" style={{ backgroundColor: "#fff" }}>
+                  <p>
+                    <b>Documentation</b>
+                  </p>
+                </div>
+                <div className="card-body">Lorem ipsum</div>
+              </div>
+              :
+              ""}
           </div>
         </div>
       </div>

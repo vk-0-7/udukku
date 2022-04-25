@@ -27,6 +27,7 @@ const ClientJobs = ({ history }) => {
         deleteJobById(id).then((res) => {
             console.log(res);
             toast.success("Job has been deleted");
+            document.location.reload(true);            
         }).catch((err) => {
             console.log(err);
         });

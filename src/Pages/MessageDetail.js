@@ -262,21 +262,32 @@ const MessageDetail = ({ match, socket, history }) => {
       });
     }
   }
-  const handleSendReview = () =>{
+  const handleSendReview = () => {
     const id = user.isMusician === "Musician" ? chatroom.userId[0] : chatroom.userId[1];
     const reqBody = {
-      rating, 
-      postedBy:user,
-      description:review
+      rating,
+      postedBy: user,
+      description: review
     }
-    updateReview(id,reqBody).then((res)=>{
+    updateReview(id, reqBody).then((res) => {
       console.log(res);
       window.$("#reviewModal").modal("hide");
       history.push('/user/messages');
-    }).catch((err)=>{console.log(err);
+    }).catch((err) => {
+      console.log(err);
       window.$("#reviewModal").modal("hide");
     });
   }
+  const handleDownload = (fileName,url) => {
+    // var element = document.createElement('a');
+    // element.setAttribute('href', 'data:text/plain;charset=utf-8, ' + encodeURIComponent(url));
+    // element.setAttribute('download', fileName);
+    // document.body.appendChild(element);
+    // element.click();
+    window.open(url);
+    //document.body.removeChild(element);
+  }
+
   return (
     <div>
       <Header />
@@ -350,68 +361,68 @@ const MessageDetail = ({ match, socket, history }) => {
               </div>
               <p>Deadline: {job.deadLine}</p>
               <div
-                          className="modal fade"
-                          id="reviewModal"
-                          tabindex="-1"
-                          role="dialog"
-                          aria-labelledby="exampleModalLabel"
-                          aria-hidden="true"
-                        >
-                          <div className="modal-dialog" role="document">
-                            <div className="modal-content">
-                              <div className="modal-header">
-                                <h4 className="modal-title" id="exampleModalLabel">
-                                  Review Form
-                                </h4>
-                                <button
-                                  type="button"
-                                  className="close"
-                                  data-dismiss="modal"
-                                  aria-label="Close"
-                                >
-                                  <span aria-hidden="true">&times;</span>
-                                </button>
-                              </div>
-                              <div className="modal-body">
-                                <label>
-                                  <b>Rating</b>
-                                </label>
-                                <br />
-                                <StarRatings
-                                  rating={rating}
-                                  starDimension="20px"
-                                  starRatedColor="red"
-                                  changeRating={(newRating) => setRating(newRating)}
-                                  numberOfStars={5}
-                                  isSelectable={true}
-                                  name="rating"
-                                />
-                                <br />
-                                <label>
-                                  <b>Please enter your awesome words:-</b>
-                                </label>
-                                <textarea
-                                  className="form-control"
-                                  style={{ resize: "none" }}
-                                  rows="5"
-                                  onChange={(e)=>{setReview(e.target.value)}}
-                                />
-                              </div>
-                              <div className="modal-footer">
-                                {/* <button
+                className="modal fade"
+                id="reviewModal"
+                tabindex="-1"
+                role="dialog"
+                aria-labelledby="exampleModalLabel"
+                aria-hidden="true"
+              >
+                <div className="modal-dialog" role="document">
+                  <div className="modal-content">
+                    <div className="modal-header">
+                      <h4 className="modal-title" id="exampleModalLabel">
+                        Review Form
+                      </h4>
+                      <button
+                        type="button"
+                        className="close"
+                        data-dismiss="modal"
+                        aria-label="Close"
+                      >
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div className="modal-body">
+                      <label>
+                        <b>Rating</b>
+                      </label>
+                      <br />
+                      <StarRatings
+                        rating={rating}
+                        starDimension="20px"
+                        starRatedColor="red"
+                        changeRating={(newRating) => setRating(newRating)}
+                        numberOfStars={5}
+                        isSelectable={true}
+                        name="rating"
+                      />
+                      <br />
+                      <label>
+                        <b>Please enter your awesome words:-</b>
+                      </label>
+                      <textarea
+                        className="form-control"
+                        style={{ resize: "none" }}
+                        rows="5"
+                        onChange={(e) => { setReview(e.target.value) }}
+                      />
+                    </div>
+                    <div className="modal-footer">
+                      {/* <button
                   type="button"
                   className="btn btn-secondary"
                   data-dismiss="modal"
                 >
                   Close
                 </button> */}
-                                <button type="button" className="btn btn-primary" onClick={handleSendReview}>
-                                  Send Review
-                                </button>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
+                      <button type="button" className="btn btn-primary" onClick={handleSendReview}>
+                        Send Review
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
               <div className="row">
                 <div className="col-md-9 b-solid">
                   <p className="card-text">
@@ -622,7 +633,7 @@ const MessageDetail = ({ match, socket, history }) => {
                                   deliverables.map((attach, index) => (
                                     attach.secure_url.search("png") !== -1 || attach.secure_url.search("jpg") !== -1 || attach.secure_url.search("jpeg") !== -1
                                       ?
-                                      <Badge key={index} count="x" style={{ cursor: 'pointer' }} onClick={() => handleRemove(attach.public_id, index)}>
+                                      <Badge key={index} style={{ cursor: 'pointer' }} onClick={() => handleRemove(attach.public_id, index)}>
                                         <Avatar shape="square" className="mb-3" src={attach.secure_url} size={60} style={{ marginLeft: '1rem' }} />
                                       </Badge>
                                       :
@@ -697,7 +708,7 @@ const MessageDetail = ({ match, socket, history }) => {
                       style={{ marginRight: "15px" }}
                       data-toggle="modal"
                       data-target="#reviewModal"
-                      onClick={() =>{console.log("Hello")}}
+                      onClick={() => { console.log("Hello") }}
                     >
                       Add Review
                     </button>
@@ -945,15 +956,42 @@ const MessageDetail = ({ match, socket, history }) => {
                   </span>
                   :
                   ""}
+                  <br/>
+                  <br/>
                 {chatroom !== undefined
                   ?
+                  chatroom.deliverables.length !== 0 
+                  ?
                   <>
-                    <hr />
-                    <p>
-                      <b>Deliverables</b>
-                    </p>
-
+                  <span>
+                    Deliverables
+                    </span>
+                    <br/>
+                  {chatroom.deliverables.map((d,index)=>(
+                    d.secure_url.indexOf("png") !== -1 || d.secure_url.indexOf("jpg") !== -1 || d.secure_url.indexOf("jpeg") !== -1
+                    ?
+                    <>
+                    <img src={d.secure_url} key={index} alt="Deliverables" style={{width:'60px',height:'60px'}} contextMenu={(e) => e.preventDefault()}/>
+                    {chatroom.paymentStatus === true ? 
+                    <i className="fa fa-download" style={{float:'right'}} onClick={() => handleDownload("",d.secure_url)}></i>
+                    : ""}
+                    <br/>
+                    </>
+                    :
+                    d.secure_url.indexOf("mp3") !== -1
+                    ?
+                    <>
+                    <ReactAudioPlayer key={index} src={d.secure_url} />
+                    {chatroom.paymentStatus === true ? 
+                    <i className="fa fa-download" style={{float:'right'}} onClick={() => handleDownload("",d.secure_url)}></i>
+                    : ""}
+                    </>
+                    :
+                    ""
+                   ))}
                   </>
+                  :
+                  ""
                   :
                   ""}
                 <br />

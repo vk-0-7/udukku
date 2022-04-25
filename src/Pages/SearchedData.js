@@ -438,7 +438,7 @@ const handleGenreChange = (e) => {
                     />
                     <div className="card-body">
                       <Link
-                        to={`/user/preview-profile/${item._id}`}
+                        to={`/user/service-provider/${item._id}`}
                         className="card-title"
                         style={{ color: "#0070f3", fontSize: "20px" }}
                       >

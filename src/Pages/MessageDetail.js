@@ -3,7 +3,7 @@ import Footer from "../Components/Footer/Footer";
 import Header from "../Components/Navigation/Header";
 import card from "../Images/card-3.jpg";
 import { withRouter } from "react-router-dom/cjs/react-router-dom.min";
-import { getAllMessages, getUserInfoById } from "../Functions/user";
+import { createProfileURL, getAllMessages, getUserInfoById, updateProfile, updateSPProfile } from "../Functions/user";
 import { getJobById, getJobResponseByJob, getChatroomsById, updateReponse, updateChatroomById, deleteAttachment } from "../Functions/job";
 import { useSelector } from "react-redux";
 import { toast } from 'react-toastify';
@@ -11,7 +11,7 @@ import axios from 'axios';
 import ReactAudioPlayer from "react-audio-player";
 import { Avatar, Badge } from "antd";
 import StarRatings from "react-star-ratings";
-import { updateReview } from "../Functions/chatroom";
+import { getPaymentChatroomById, updateReview } from "../Functions/chatroom";
 
 
 const MessageDetail = ({ match, socket, history }) => {
@@ -32,6 +32,8 @@ const MessageDetail = ({ match, socket, history }) => {
   const [cost, setCost] = useState("");
   const [rating, setRating] = useState(5);
   const [review, setReview] = useState("");
+  const [payment, setPayment] = useState([]);
+  const [sp,setSP] = useState();
 
 
   // const [jobPostedById,setJobPostedById] = useState("");
@@ -47,6 +49,7 @@ const MessageDetail = ({ match, socket, history }) => {
         chatroomId,
       });
       socket.on("newMessage", (message) => {
+        console.log(message);
         setMessages([...messages, message]);
       });
     }
@@ -66,13 +69,20 @@ const MessageDetail = ({ match, socket, history }) => {
       }).catch((err) => console.log(err));
     }
     getChatroomsById(chatroomId).then((res) => {
-      console.log(res);
+      console.log(res.data);
       setChatroom(res.data);
       console.log(res.data.userId[1]);
+      // Get response of the sp
       getJobResponseByJob(id[1], res.data.userId[1]).then((res) => {
         console.log(res);
         setResponse(res.data[0]);
       }).catch((err) => { console.log(err) });
+
+      // Get Sp 
+      getUserInfoById(res.data.userId[1]).then((res)=>{
+        console.log(res);
+        setSP(res.data);
+      }).catch((err)=>{console.log(err)});
     }).catch((err) => { console.log(err) });
     getJobById(id[1])
       .then((res) => {
@@ -86,6 +96,10 @@ const MessageDetail = ({ match, socket, history }) => {
         setMessages(res.data.messages);
       })
       .catch((err) => console.log(err));
+    getPaymentChatroomById(chatroomId).then((res) => {
+      console.log(res.data[0].paymentIntent[0]);
+      setPayment(res.data[0].paymentIntent[0]);
+    }).catch(err => console.log(err));
   }, []);
 
   // const getJobPostedBy = () =>{
@@ -195,7 +209,8 @@ const MessageDetail = ({ match, socket, history }) => {
         status: "accepted",
         deliverables,
         documentation,
-        jobAccepted: delievery,
+        jobAccepted: "accepted",
+        deliveryDate: delievery,
         proposalDetails: proposal,
         cost: parseInt(cost)
       }
@@ -278,7 +293,7 @@ const MessageDetail = ({ match, socket, history }) => {
       window.$("#reviewModal").modal("hide");
     });
   }
-  const handleDownload = (fileName,url) => {
+  const handleDownload = (fileName, url) => {
     // var element = document.createElement('a');
     // element.setAttribute('href', 'data:text/plain;charset=utf-8, ' + encodeURIComponent(url));
     // element.setAttribute('download', fileName);
@@ -432,26 +447,26 @@ const MessageDetail = ({ match, socket, history }) => {
                 <div className="col-md-3">
                   <div className="dHIde mt-3">
                     <p style={{ fontSize: "14px" }}>
-                      <b style={{ color: "#0070f3" }}>{chatroom != undefined && chatroom.cost !== undefined ? "Funded" : "Quote"}</b>
+                      <b style={{ color: "#0070f3" }}>{chatroom != undefined && chatroom.cost !== undefined ? "Funded" : "Quoted Price"}</b>
                       <i className="fas fa-rupee-sign ml-3"></i>
                       {chatroom != undefined && chatroom.cost !== undefined ?
                         chatroom.cost
                         :
-                        job.budget[0] === job.budget[1]
-                          ? job.budget[1]
-                          : ` ${job.budget[0]}- ${job.budget[1]}`
+                        response !== undefined ? response.quotation : ""
                       }
                     </p>
                   </div>
                   <div className="mHide">
                     <h4 style={{ color: "#0070f3" }}>
-                      <b>Funded</b>
+                      <b>{chatroom != undefined && chatroom.cost !== undefined ? "Funded" : "Quoted Price"}</b>
                     </h4>
                     <h4>
                       <i className="fa fa-rupee-sign"></i>
-                      {job.budget[0] === job.budget[1]
-                        ? job.budget[1]
-                        : ` ${job.budget[0]}- ${job.budget[1]}`}
+                      {chatroom != undefined && chatroom.cost !== undefined ?
+                        chatroom.cost
+                        :
+                        response !== undefined ? response.quotation : ""
+                      }
                     </h4>
                   </div>
                 </div>
@@ -507,6 +522,13 @@ const MessageDetail = ({ match, socket, history }) => {
                                 }).catch((err) => {
                                   console.log(err);
                                 });
+
+                                if (chatroom !== undefined) {
+                                  debugger
+                                  updateSPProfile(sp._id,sp.jobsCompleted + 1, sp.totalEarn + chatroom.cost, 0).then((res) => {
+                                    console.log(res);
+                                  }).catch((err) => { console.log(err) });
+                                }
                               }}>
                               Mark job as complete
                             </button>
@@ -522,9 +544,9 @@ const MessageDetail = ({ match, socket, history }) => {
                           <>
                             <button
                               className="btn-hover w40"
-                              style={chatroom !== undefined && chatroom.paymentStatus ? { marginRight: "15px", opacity: '0.6' } : { marginRight: "15px" }}
+                              style={chatroom !== undefined && chatroom.paymentStatus && chatroom.paymentStatus !== undefined ? { marginRight: "15px", opacity: '0.6' } : { marginRight: "15px" }}
                               onClick={handlePayment}
-                              disabled={chatroom !== undefined && chatroom.paymentStatus}
+                              disabled={chatroom !== undefined && chatroom.paymentStatus !== undefined && chatroom.paymentStatus}
                             >
                               Initiate job
                             </button>
@@ -577,7 +599,7 @@ const MessageDetail = ({ match, socket, history }) => {
 
                         <button
                           className="btn-hover w40"
-                          style={{ marginRight: "15px", backgroundColor: '#ff726f', borderColor: '#ff726f' }}
+                          style={{ marginRight: "15px", backgroundColor: '#ff726f', borderColor: '#ff726f', border: 'none' }}
                           onClick={() => handleDeny(job._id)}
                         >
                           Deny Job
@@ -671,8 +693,9 @@ const MessageDetail = ({ match, socket, history }) => {
                               </button>
                               <button
                                 className="btn-hover w40"
-                                style={{ marginRight: "15px", backgroundColor: 'red' }}
+                                style={chatroom.paymentStatus ? { marginRight: "15px", backgroundColor: '#ff726f', border: 'none', opacity: '0.6' } : { marginRight: "15px", backgroundColor: '#ff726f', border: 'none' }}
                                 onClick={() => handleDeny(job._id)}
+                                disabled={chatroom.paymentStatus}
                               >
                                 Deny Job
                               </button>
@@ -681,15 +704,16 @@ const MessageDetail = ({ match, socket, history }) => {
                             <>
                               <button
                                 className="btn-hover w40"
-                                style={{ marginRight: "15px" }}
+                                style={chatroom !== undefined && chatroom.deliveryDate !== "" && chatroom.deliveryDate !== undefined ? { marginRight: "15px", opacity: '0.6' } : { marginRight: "15px" }}
                                 data-toggle="modal"
                                 data-target="#exampleModal1"
+                                disabled={chatroom !== undefined && chatroom.deliveryDate !== undefined && chatroom.deliveryDate}
                               >
                                 Add Deliverables
                               </button>
                               <button
                                 className="btn-hover w40"
-                                style={{ marginRight: "15px", backgroundColor: 'red' }}
+                                style={{ marginRight: "15px", backgroundColor: 'ff726f', border: 'none' }}
                                 onClick={() => handleDeny(job._id)}
                               >
                                 Deny Job
@@ -956,48 +980,48 @@ const MessageDetail = ({ match, socket, history }) => {
                   </span>
                   :
                   ""}
-                  <br/>
-                  <br/>
                 {chatroom !== undefined
                   ?
-                  chatroom.deliverables.length !== 0 
-                  ?
-                  <>
-                  <span>
-                    Deliverables
-                    </span>
-                    <br/>
-                  {chatroom.deliverables.map((d,index)=>(
-                    d.secure_url.indexOf("png") !== -1 || d.secure_url.indexOf("jpg") !== -1 || d.secure_url.indexOf("jpeg") !== -1
+                  chatroom.deliverables.length !== 0
                     ?
                     <>
-                    <img src={d.secure_url} key={index} alt="Deliverables" style={{width:'60px',height:'60px'}} contextMenu={(e) => e.preventDefault()}/>
-                    {chatroom.paymentStatus === true ? 
-                    <i className="fa fa-download" style={{float:'right'}} onClick={() => handleDownload("",d.secure_url)}></i>
-                    : ""}
-                    <br/>
-                    </>
-                    :
-                    d.secure_url.indexOf("mp3") !== -1
-                    ?
-                    <>
-                    <ReactAudioPlayer key={index} src={d.secure_url} />
-                    {chatroom.paymentStatus === true ? 
-                    <i className="fa fa-download" style={{float:'right'}} onClick={() => handleDownload("",d.secure_url)}></i>
-                    : ""}
+                      <br />
+                      <br />
+                      <span>
+                        Deliverables
+                      </span>
+                      <br />
+                      {chatroom.deliverables.map((d, index) => (
+                        d.secure_url.indexOf("png") !== -1 || d.secure_url.indexOf("jpg") !== -1 || d.secure_url.indexOf("jpeg") !== -1
+                          ?
+                          <>
+                            <img src={d.secure_url} key={index} alt="Deliverables" style={{ width: '60px', height: '60px' }} contextMenu={(e) => e.preventDefault()} />
+                            {chatroom.paymentStatus === true ?
+                              <i className="fa fa-download" style={{ float: 'right' }} onClick={() => handleDownload("", d.secure_url)}></i>
+                              : ""}
+                            <br />
+                          </>
+                          :
+                          d.secure_url.indexOf("mp3") !== -1
+                            ?
+                            <>
+                              <ReactAudioPlayer key={index} src={d.secure_url} />
+                              {chatroom.paymentStatus === true ?
+                                <i className="fa fa-download" style={{ float: 'right' }} onClick={() => handleDownload("", d.secure_url)}></i>
+                                : ""}
+                            </>
+                            :
+                            ""
+                      ))}
                     </>
                     :
                     ""
-                   ))}
-                  </>
-                  :
-                  ""
                   :
                   ""}
                 <br />
               </div>
             </div>
-            {chatroom !== undefined && chatroom.documentation !== ""
+            {chatroom !== undefined && chatroom.documentation !== undefined && chatroom.documentation !== ""
               ?
               <div
                 className="card mt-4"

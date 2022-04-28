@@ -68,6 +68,7 @@ const App = () => {
               token: auth,
               isMusician: res.data.isMusician,
               isProfileCompleted: res.data.isProfileCompleted,
+              qr:res.data.profileUrl,
             },
           });
         })

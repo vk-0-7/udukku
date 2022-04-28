@@ -22,7 +22,7 @@ const CompleteProfile = ({ history }) => {
   const dispatch = useDispatch();
   useEffect(() => {
     loadAllStates();
-    if(localStorage.getItem("personalInfo") != null){
+    if(localStorage.getItem("personalInfo") != null && localStorage.getItem("personalInfo") != 'null'){
       const personal =JSON.parse(localStorage.getItem("personalInfo"));
       setName(personal.name);
       setAvatar(personal.avatar);

@@ -141,9 +141,6 @@ const ServiceProviderProfile = ({ history,match }) => {
             <button className="btn-hover m-2" style={{ width: '96%' }}>
               CONTACT
             </button>
-            <button className="btn-hover m-2" style={{ width: '96%' }}>
-              Edit Profile
-            </button>
             <div className="row profile-row mt-3">
               <div className="col-md-6 mb-3 d-flex justify-content-center">
                 <div

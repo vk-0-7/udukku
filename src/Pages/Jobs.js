@@ -158,17 +158,17 @@ const Jobs = ({ history }) => {
         <h3 className="text-center mt-5">Find your next projects</h3>
         <div className="row mt-5">
           <div className="col-md-3">
-            <h4 onClick={handleSubmit} className="mHide">Filter by</h4>
+            <h3 onClick={handleSubmit} className="mHide">Filter by</h3>
             <div class="accordion dHIde" id="accordionExample2">
               <i data-toggle="collapse" data-target="#collapseBig" aria-expanded="false" aria-controls="collapseBig" className="fa fa-filter dHIde" style={{ float: 'right' }}></i>
               <div id="collapseBig" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample2">
 
                 <div class="accordion dHIde" id="accordionExample">
-                  <h4 class="mb-0">
+                  <h5 class="mb-0">
                     <span className="filter d-block" type="button" data-toggle="collapse" data-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
-                      All Category
+                      Category
                     </span>
-                  </h4>
+                  </h5>
                   <div id="collapse2" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
                     <div className="card-body">
                       <Radio.Group onChange={onCategoryChange} value={category}>
@@ -190,11 +190,11 @@ const Jobs = ({ history }) => {
                       </Radio.Group>
                     </div>
                   </div>
-                  <h4 class="mb-0">
+                  <h5 class="mb-0">
                     <span className="filter d-block" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                       Budget
                     </span>
-                  </h4>
+                  </h5>
                   <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
                     <div class="card-body">
                       <div className="row">
@@ -231,11 +231,11 @@ const Jobs = ({ history }) => {
                       </div>
                     </div>
                   </div>
-                  <h4 class="mb-0">
+                  <h5 class="mb-0">
                     <span className="filter d-block" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
                       Deadline
                     </span>
-                  </h4>
+                  </h5>
                   <div id="collapseFour" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
                     <div class="card-body">
                       <Radio.Group onChange={onDeadlineChange} value={deadline}>
@@ -255,11 +255,11 @@ const Jobs = ({ history }) => {
                       </Radio.Group>
                     </div>
                   </div>
-                  <h4 class="mb-0">
+                  <h5 class="mb-0">
                     <span className="filter d-block" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
                       Genre
                     </span>
-                  </h4>
+                  </h5>
                   <div id="collapseFive" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
                     <div class="card-body">
                       <Radio.Group onChange={onGenereChange} value={genere}>
@@ -276,11 +276,11 @@ const Jobs = ({ history }) => {
             </div>
             {/* Desktop Filters */}
             <div class="accordion mHide" id="accordionExample1">
-              <h4 class="mb-0">
+              <h5 class="mb-0">
                 <span className="filter d-block" data-toggle="collapse" data-target="#category" aria-expanded="false" aria-controls="category">
                   Category
                 </span>
-              </h4>
+              </h5>
               <div id="category" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample1">
                 <div class="card-body">
                   <Radio.Group onChange={onCategoryChange} value={category}>
@@ -302,11 +302,11 @@ const Jobs = ({ history }) => {
                   </Radio.Group>
                 </div>
               </div>
-              <h4 class="mb-0">
+              <h5 class="mb-0">
                 <span className="filter d-block" data-toggle="collapse" data-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
                   Budget
                 </span>
-              </h4>
+              </h5>
               <div id="collapse3" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample1">
                 <div class="card-body">
                   <div className="row">
@@ -343,11 +343,11 @@ const Jobs = ({ history }) => {
                   </div>
                 </div>
               </div>
-              <h4 class="mb-0">
+              <h5 class="mb-0">
                 <span className="filter d-block" type="button" data-toggle="collapse" data-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
                   Deadline
                 </span>
-              </h4>
+              </h5>
               <div id="collapse4" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample1">
                 <div class="card-body">
                   <Radio.Group onChange={onDeadlineChange} value={deadline}>
@@ -367,11 +367,11 @@ const Jobs = ({ history }) => {
                   </Radio.Group>
                 </div>
               </div>
-              <h4 class="mb-0">
+              <h5 class="mb-0">
                 <span className="filter d-block" type="button" data-toggle="collapse" data-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
                   Genre
                 </span>
-              </h4>
+              </h5>
               <div id="collapse5" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample1">
                 <div class="card-body">
                   <Radio.Group onChange={onGenereChange} value={genere}>

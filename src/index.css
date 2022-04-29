@@ -427,7 +427,6 @@ a.nav-link {
 }
 
 .filter {
-  font-weight: 700;
   color: #000;
   cursor: pointer;
 }
@@ -606,8 +605,8 @@ button:focus {
 }
 
 .msg-pic {
-  width: 55%;
-  height: 90px;
+  width: 70%;
+  height: 70px;
   border-radius: 50%;
 }
 
@@ -686,8 +685,16 @@ button:focus {
   font-family: 'Poppins', sans-serif;
   border-radius: 5px;
 }
+
+.horizontal-rule{
+  margin-left: -1rem;
+    margin-right: -1rem;
+}
 /* Mobile View */
 @media (max-width: 991px) {
+  .w-m-100{
+    width: 100%;
+  }
   .carousel-padding {
     width: auto;
   }

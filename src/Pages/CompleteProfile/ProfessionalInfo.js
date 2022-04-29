@@ -142,6 +142,9 @@ const ProfessionalInfo = ({ history }) => {
               token: user.token,
               isMusician: user.isMusician,
               isProfileCompleted: true,
+              jobsCompleted:user.jobsCompleted,
+              totalEarn:user.totalEarn,
+              repeatedBuyer:user.repeatedBuyer
             },
           });
           localStorage.setItem(

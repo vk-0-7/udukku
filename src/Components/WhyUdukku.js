@@ -1,5 +1,5 @@
 import React from "react";
-import card from "../Images/Ellie.jpg";
+import card from "../Images/whyudukku.webp";
 import check from "../Images/check-png.png";
 const WhyUdukku = () => {
   return (

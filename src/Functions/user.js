@@ -114,3 +114,11 @@ export const filterServiceProvider = async(filter) =>{
 export const getServiceProviderBySubService = async(subService) =>{
     return await axios.post("https://udukku.herokuapp.com/jobs/sp-with-sub-service",{subService});
 }
+
+export const createProfileURL = async(userId) =>{
+    return await axios.patch("https://udukku.herokuapp.com/user/genrate-profile-link",{userId});
+}
+
+export const updateSPProfile = async(id,jobsCompleted,totalEarn,repeatedBuyer) =>{
+    return await axios.patch(`https://udukku.herokuapp.com/user/update-user-by-id/${id}`,{jobsCompleted,totalEarn,repeatedBuyer});
+}

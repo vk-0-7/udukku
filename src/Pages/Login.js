@@ -10,6 +10,7 @@ import Footer from "../Components/Footer/Footer";
 import $ from 'jquery';
 
 import {
+  createProfileURL,
   facebookSignIn,
   googleSignIn,
   signIn,
@@ -33,6 +34,9 @@ const Login = ({ history }) => {
     signIn(email, pwd)
       .then((res) => {
         console.log(res);
+        createProfileURL(res.data.user._id).then((res)=>{
+          console.log(res);
+        }).catch(eer => console.log(eer));
         dispatch({
           type: "LOGGED_IN_USER",
           payload: {
@@ -42,6 +46,9 @@ const Login = ({ history }) => {
             token: res.data.refresh_token,
             isMusician: res.data.user.isMusician,
             isProfileCompleted: res.data.user.isProfileCompleted,
+            jobsCompleted:res.data.user.jobsCompleted,
+            totalEarn:res.data.user.totalEarn,
+            repeatedBuyer:res.data.user.repeatedBuyer
           },
         });
         if (res.data.user.isMusician === "") {
@@ -78,6 +85,9 @@ const Login = ({ history }) => {
     googleSignIn(data.tokenId)
       .then((res) => {
         console.log(res);
+        createProfileURL(res.data.user._id).then((res)=>{
+          console.log(res);
+        }).catch(eer => console.log(eer));
         dispatch({
           type: "LOGGED_IN_USER",
           payload: {
@@ -87,6 +97,9 @@ const Login = ({ history }) => {
             token: res.data.refresh_token,
             isMusician: res.data.user.isMusician,
             isProfileCompleted: res.data.user.isProfileCompleted,
+            jobsCompleted:res.data.user.jobsCompleted,
+            totalEarn:res.data.user.totalEarn,
+            repeatedBuyer:res.data.user.repeatedBuyer
           },
         });
         setLoading(false);
@@ -121,6 +134,9 @@ const Login = ({ history }) => {
     facebookSignIn(res.accessToken, res.userID)
       .then((response) => {
         console.log(response);
+        createProfileURL(res.data.user._id).then((res)=>{
+          console.log(res);
+        }).catch(eer => console.log(eer));
         dispatch({
           type: "LOGGED_IN_USER",
           payload: {
@@ -128,8 +144,11 @@ const Login = ({ history }) => {
             name: response.name,
             email: response.email,
             token: response.refresh_token,
-            isMusician: res.data.user.isMusician,
-            isProfileCompleted: res.data.user.isProfileCompleted,
+            isMusician: response.data.user.isMusician,
+            isProfileCompleted: response.data.user.isProfileCompleted,
+            jobsCompleted:response.data.user.jobsCompleted,
+            totalEarn:response.data.user.totalEarn,
+            repeatedBuyer:response.data.user.repeatedBuyer
           },
         });
         setLoading(false);
@@ -277,7 +296,7 @@ const Login = ({ history }) => {
               class="fa fa-eye" id="togglePassword" style={{ visibility: pwd.length !== 0 ? "visible" : "hidden",marginLeft:'-30px',cursor:'pointer' }}></i>
             </p>
             <div className="form-group d-flex mt-2">
-              <div className="custom-control custom-checkbox">
+              {/* <div className="custom-control custom-checkbox">
                 <input
                   type="checkbox"
                   className="custom-control-input"
@@ -290,7 +309,7 @@ const Login = ({ history }) => {
                 >
                   Remember me
                 </label>
-              </div>
+              </div> */}
               <p style={{ marginLeft: "auto" }}>
                 <Link to="/user/forgot-password">Forgot password?</Link>
               </p>

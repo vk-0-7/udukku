@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import Footer from "../../Components/Footer/Footer";
-import Header from "../../Components/Navigation/Header";
-import { getUserInfoById } from "../../Functions/user";
-import card from "../../Images/card-3.jpg";
+import Footer from "../Components/Footer/Footer";
+import Header from "../Components/Navigation/Header";
+import { getUserInfoById } from "../Functions/user";
+import card from "../Images/card-3.jpg";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Link } from "react-router-dom";
-import song from "../../Images/song.jpg";
+import song from "../Images/song.jpg";
 import ReactAudioPlayer from 'react-audio-player';
 import $ from 'jquery';
 
 
-const PreviewProfile = ({ history,match }) => {
+const ServiceProviderProfile = ({ history,match }) => {
   const [userData, setUserData] = useState();
   const [windowWidth, setWindowWidth] = useState(1400);
   const { user } = useSelector((state) => ({ ...state }));
@@ -113,10 +113,6 @@ const PreviewProfile = ({ history,match }) => {
               ) : (
                 ""
               )}
-              {/* <hr style={{ width: "100%" }} /> */}
-              <button className="btn-hover" onClick={() =>{history.push(`/user/update-profile/${user.userId}`)}} style={{ float: "right", marginRight: '40px' }}>
-                Edit Profile
-              </button>
               <button className="btn-hover" style={{ float: "right", marginRight: '40px' }}>
                 CONTACT
               </button>
@@ -142,19 +138,8 @@ const PreviewProfile = ({ history,match }) => {
             >
               {userData.city}, India
             </h6>
-            {/* {userData.workSample !== "" ? (
-              <div className="d-flex justify-content-center">
-                <ReactAudioPlayer src={userData.workSample} controls />
-              </div>
-            ) : (
-              ""
-            )} */}
-            {/* <hr style={{ width: "100%" }} /> */}
             <button className="btn-hover m-2" style={{ width: '96%' }}>
               CONTACT
-            </button>
-            <button className="btn-hover m-2" style={{ width: '96%' }}>
-              Edit Profile
             </button>
             <div className="row profile-row mt-3">
               <div className="col-md-6 mb-3 d-flex justify-content-center">
@@ -389,4 +374,4 @@ const PreviewProfile = ({ history,match }) => {
   );
 };
 
-export default PreviewProfile;
+export default ServiceProviderProfile;

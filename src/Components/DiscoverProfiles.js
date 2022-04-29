@@ -2,6 +2,8 @@ import React from "react";
 import card1 from "../Images/this.jpg";
 import card2 from "../Images/dj.webp";
 import card3 from "../Images/vocalist.webp";
+import card4 from "../Images/composer.webp";
+import card5 from "../Images/songwriter.webp";
 import { Link } from "react-router-dom";
 import singers from "../Images/a1.png";
 import producers from "../Images/a2.png";
@@ -38,7 +40,7 @@ const DiscoverProfiles = () => {
               marginTop: '20px',
               fontSize: '20px'
             }}
-            to="/jobs"
+            className="w-m-100"
             onClick={() => {
               history.push("/explore");
             }}
@@ -73,7 +75,7 @@ const DiscoverProfiles = () => {
                 </Link>
               </div>
               <img
-                src={card2}
+                src={card3}
                 alt="Avatar"
                 className="image"
                 style={{ borderRadius: "15px" }}
@@ -127,10 +129,10 @@ const DiscoverProfiles = () => {
                 </Link>
               </div>
               <img
-                src={card1}
+                src={card4}
                 alt="Avatar"
                 className="image"
-                style={{ borderRadius: "15px" }}
+                style={{ borderRadius: "15px",objectFit:'cover' }}
               />
               <div className="overlay">
                 <div
@@ -181,7 +183,7 @@ const DiscoverProfiles = () => {
                 </Link>
               </div>
               <img
-                src={card3}
+                src={card2}
                 alt="Avatar"
                 className="image"
                 style={{ borderRadius: "15px" }}
@@ -235,7 +237,7 @@ const DiscoverProfiles = () => {
                 </Link>
               </div>
               <img
-                src={card1}
+                src={card5}
                 alt="Avatar"
                 className="image"
                 style={{ borderRadius: "15px" }}

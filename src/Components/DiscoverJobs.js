@@ -51,7 +51,7 @@ const DiscoverJobs = () => {
               borderRadius: "5px",
               marginTop: '20px'
             }}
-            to="/jobs"
+            className="w-m-100"
             onClick={() => {
               history.push("/jobs");
             }}
@@ -84,7 +84,7 @@ const DiscoverJobs = () => {
                     jobs.map((job, index) => (
                       index <= 2 ?
                         <div className="col-md-4 carousel-padding" key={index}>
-                          <div style={{ height: '520px' }}>
+                          <div style={{ height: '540px' }}>
                             <div style={{ padding: "10px 15px" }}>
                               <div className="row">
                                 <div className="col-md-4" key={index}>
@@ -202,7 +202,7 @@ const DiscoverJobs = () => {
                                 }
                                 style={{
                                   position: 'absolute',
-                                  bottom: "43px"
+                                  bottom: "55px"
                                 }}
                               >
                                 Respond
@@ -256,7 +256,7 @@ const DiscoverJobs = () => {
                   {jobs.map((job, index) => (
                     <div className={index === 0 ? 'carousel-item active' : 'carousel-item'} key={index}>
                       <div className="col-md-4 carousel-padding">
-                          <div style={{ height: '520px' }}>
+                          <div style={{ height: '540px' }}>
                             <div style={{ padding: "10px 15px" }}>
                               <div className="row">
                                 <div className="col-md-4" key={index}>
@@ -374,7 +374,7 @@ const DiscoverJobs = () => {
                                 }
                                 style={{
                                   position: 'absolute',
-                                  bottom: "43px"
+                                  bottom: "55px"
                                 }}
                               >
                                 Respond

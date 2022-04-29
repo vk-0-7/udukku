@@ -3,7 +3,7 @@ import Footer from "../Components/Footer/Footer";
 import Header from "../Components/Navigation/Header";
 import card from "../Images/card-3.jpg";
 import { withRouter } from "react-router-dom/cjs/react-router-dom.min";
-import { getAllMessages, getUserInfoById } from "../Functions/user";
+import { createProfileURL, getAllMessages, getUserInfoById, updateProfile, updateSPProfile } from "../Functions/user";
 import { getJobById, getJobResponseByJob, getChatroomsById, updateReponse, updateChatroomById, deleteAttachment } from "../Functions/job";
 import { useSelector } from "react-redux";
 import { toast } from 'react-toastify';
@@ -11,8 +11,8 @@ import axios from 'axios';
 import ReactAudioPlayer from "react-audio-player";
 import { Avatar, Badge } from "antd";
 import StarRatings from "react-star-ratings";
-import { updateReview } from "../Functions/chatroom";
-
+import { getPaymentChatroomById, updateReview } from "../Functions/chatroom";
+import funding from "../Images/funding.png";
 
 const MessageDetail = ({ match, socket, history }) => {
   const [messages, setMessages] = useState([]);
@@ -32,6 +32,8 @@ const MessageDetail = ({ match, socket, history }) => {
   const [cost, setCost] = useState("");
   const [rating, setRating] = useState(5);
   const [review, setReview] = useState("");
+  const [payment, setPayment] = useState([]);
+  const [sp, setSP] = useState();
 
 
   // const [jobPostedById,setJobPostedById] = useState("");
@@ -47,6 +49,7 @@ const MessageDetail = ({ match, socket, history }) => {
         chatroomId,
       });
       socket.on("newMessage", (message) => {
+        console.log(message);
         setMessages([...messages, message]);
       });
     }
@@ -66,12 +69,19 @@ const MessageDetail = ({ match, socket, history }) => {
       }).catch((err) => console.log(err));
     }
     getChatroomsById(chatroomId).then((res) => {
-      console.log(res);
+      console.log(res.data);
       setChatroom(res.data);
       console.log(res.data.userId[1]);
+      // Get response of the sp
       getJobResponseByJob(id[1], res.data.userId[1]).then((res) => {
         console.log(res);
         setResponse(res.data[0]);
+      }).catch((err) => { console.log(err) });
+
+      // Get Sp 
+      getUserInfoById(res.data.userId[1]).then((res) => {
+        console.log(res);
+        setSP(res.data);
       }).catch((err) => { console.log(err) });
     }).catch((err) => { console.log(err) });
     getJobById(id[1])
@@ -86,6 +96,10 @@ const MessageDetail = ({ match, socket, history }) => {
         setMessages(res.data.messages);
       })
       .catch((err) => console.log(err));
+    getPaymentChatroomById(chatroomId).then((res) => {
+      console.log(res.data[0].paymentIntent[0]);
+      setPayment(res.data[0].paymentIntent[0]);
+    }).catch(err => console.log(err));
   }, []);
 
   // const getJobPostedBy = () =>{
@@ -195,7 +209,8 @@ const MessageDetail = ({ match, socket, history }) => {
         status: "accepted",
         deliverables,
         documentation,
-        jobAccepted: delievery,
+        jobAccepted: "accepted",
+        deliveryDate: delievery,
         proposalDetails: proposal,
         cost: parseInt(cost)
       }
@@ -262,21 +277,32 @@ const MessageDetail = ({ match, socket, history }) => {
       });
     }
   }
-  const handleSendReview = () =>{
+  const handleSendReview = () => {
     const id = user.isMusician === "Musician" ? chatroom.userId[0] : chatroom.userId[1];
     const reqBody = {
-      rating, 
-      postedBy:user,
-      description:review
+      rating,
+      postedBy: user,
+      description: review
     }
-    updateReview(id,reqBody).then((res)=>{
+    updateReview(id, reqBody).then((res) => {
       console.log(res);
       window.$("#reviewModal").modal("hide");
       history.push('/user/messages');
-    }).catch((err)=>{console.log(err);
+    }).catch((err) => {
+      console.log(err);
       window.$("#reviewModal").modal("hide");
     });
   }
+  const handleDownload = (fileName, url) => {
+    // var element = document.createElement('a');
+    // element.setAttribute('href', 'data:text/plain;charset=utf-8, ' + encodeURIComponent(url));
+    // element.setAttribute('download', fileName);
+    // document.body.appendChild(element);
+    // element.click();
+    window.open(url);
+    //document.body.removeChild(element);
+  }
+
   return (
     <div>
       <Header />
@@ -350,68 +376,68 @@ const MessageDetail = ({ match, socket, history }) => {
               </div>
               <p>Deadline: {job.deadLine}</p>
               <div
-                          className="modal fade"
-                          id="reviewModal"
-                          tabindex="-1"
-                          role="dialog"
-                          aria-labelledby="exampleModalLabel"
-                          aria-hidden="true"
-                        >
-                          <div className="modal-dialog" role="document">
-                            <div className="modal-content">
-                              <div className="modal-header">
-                                <h4 className="modal-title" id="exampleModalLabel">
-                                  Review Form
-                                </h4>
-                                <button
-                                  type="button"
-                                  className="close"
-                                  data-dismiss="modal"
-                                  aria-label="Close"
-                                >
-                                  <span aria-hidden="true">&times;</span>
-                                </button>
-                              </div>
-                              <div className="modal-body">
-                                <label>
-                                  <b>Rating</b>
-                                </label>
-                                <br />
-                                <StarRatings
-                                  rating={rating}
-                                  starDimension="20px"
-                                  starRatedColor="red"
-                                  changeRating={(newRating) => setRating(newRating)}
-                                  numberOfStars={5}
-                                  isSelectable={true}
-                                  name="rating"
-                                />
-                                <br />
-                                <label>
-                                  <b>Please enter your awesome words:-</b>
-                                </label>
-                                <textarea
-                                  className="form-control"
-                                  style={{ resize: "none" }}
-                                  rows="5"
-                                  onChange={(e)=>{setReview(e.target.value)}}
-                                />
-                              </div>
-                              <div className="modal-footer">
-                                {/* <button
+                className="modal fade"
+                id="reviewModal"
+                tabindex="-1"
+                role="dialog"
+                aria-labelledby="exampleModalLabel"
+                aria-hidden="true"
+              >
+                <div className="modal-dialog" role="document">
+                  <div className="modal-content">
+                    <div className="modal-header">
+                      <h4 className="modal-title" id="exampleModalLabel">
+                        Review Form
+                      </h4>
+                      <button
+                        type="button"
+                        className="close"
+                        data-dismiss="modal"
+                        aria-label="Close"
+                      >
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div className="modal-body">
+                      <label>
+                        <b>Rating</b>
+                      </label>
+                      <br />
+                      <StarRatings
+                        rating={rating}
+                        starDimension="20px"
+                        starRatedColor="red"
+                        changeRating={(newRating) => setRating(newRating)}
+                        numberOfStars={5}
+                        isSelectable={true}
+                        name="rating"
+                      />
+                      <br />
+                      <label>
+                        <b>Please enter your awesome words:-</b>
+                      </label>
+                      <textarea
+                        className="form-control"
+                        style={{ resize: "none" }}
+                        rows="5"
+                        onChange={(e) => { setReview(e.target.value) }}
+                      />
+                    </div>
+                    <div className="modal-footer">
+                      {/* <button
                   type="button"
                   className="btn btn-secondary"
                   data-dismiss="modal"
                 >
                   Close
                 </button> */}
-                                <button type="button" className="btn btn-primary" onClick={handleSendReview}>
-                                  Send Review
-                                </button>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
+                      <button type="button" className="btn btn-primary" onClick={handleSendReview}>
+                        Send Review
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
               <div className="row">
                 <div className="col-md-9 b-solid">
                   <p className="card-text">
@@ -421,26 +447,26 @@ const MessageDetail = ({ match, socket, history }) => {
                 <div className="col-md-3">
                   <div className="dHIde mt-3">
                     <p style={{ fontSize: "14px" }}>
-                      <b style={{ color: "#0070f3" }}>{chatroom != undefined && chatroom.cost !== undefined ? "Funded" : "Quote"}</b>
+                      <b style={{ color: "#0070f3" }}>{chatroom != undefined && chatroom.cost !== undefined ? "Funded" : "Quoted Price"}</b>
                       <i className="fas fa-rupee-sign ml-3"></i>
                       {chatroom != undefined && chatroom.cost !== undefined ?
                         chatroom.cost
                         :
-                        job.budget[0] === job.budget[1]
-                          ? job.budget[1]
-                          : ` ${job.budget[0]}- ${job.budget[1]}`
+                        response !== undefined ? response.quotation : ""
                       }
                     </p>
                   </div>
                   <div className="mHide">
                     <h4 style={{ color: "#0070f3" }}>
-                      <b>Funded</b>
+                      <b>{chatroom != undefined && chatroom.cost !== undefined ? "Funded" : "Quoted Price"}</b>
                     </h4>
                     <h4>
                       <i className="fa fa-rupee-sign"></i>
-                      {job.budget[0] === job.budget[1]
-                        ? job.budget[1]
-                        : ` ${job.budget[0]}- ${job.budget[1]}`}
+                      {chatroom != undefined && chatroom.cost !== undefined ?
+                        chatroom.cost
+                        :
+                        response !== undefined ? response.quotation : ""
+                      }
                     </h4>
                   </div>
                 </div>
@@ -496,6 +522,13 @@ const MessageDetail = ({ match, socket, history }) => {
                                 }).catch((err) => {
                                   console.log(err);
                                 });
+
+                                if (chatroom !== undefined) {
+                                  debugger
+                                  updateSPProfile(sp._id, sp.jobsCompleted + 1, sp.totalEarn + chatroom.cost, 0).then((res) => {
+                                    console.log(res);
+                                  }).catch((err) => { console.log(err) });
+                                }
                               }}>
                               Mark job as complete
                             </button>
@@ -511,9 +544,9 @@ const MessageDetail = ({ match, socket, history }) => {
                           <>
                             <button
                               className="btn-hover w40"
-                              style={chatroom !== undefined && chatroom.paymentStatus ? { marginRight: "15px", opacity: '0.6' } : { marginRight: "15px" }}
+                              style={chatroom !== undefined && chatroom.paymentStatus && chatroom.paymentStatus !== undefined ? { marginRight: "15px", opacity: '0.6' } : { marginRight: "15px" }}
                               onClick={handlePayment}
-                              disabled={chatroom !== undefined && chatroom.paymentStatus}
+                              disabled={chatroom !== undefined && chatroom.paymentStatus !== undefined && chatroom.paymentStatus}
                             >
                               Initiate job
                             </button>
@@ -566,7 +599,7 @@ const MessageDetail = ({ match, socket, history }) => {
 
                         <button
                           className="btn-hover w40"
-                          style={{ marginRight: "15px", backgroundColor: '#ff726f', borderColor: '#ff726f' }}
+                          style={{ marginRight: "15px", backgroundColor: '#ff726f', borderColor: '#ff726f', border: 'none' }}
                           onClick={() => handleDeny(job._id)}
                         >
                           Deny Job
@@ -622,7 +655,7 @@ const MessageDetail = ({ match, socket, history }) => {
                                   deliverables.map((attach, index) => (
                                     attach.secure_url.search("png") !== -1 || attach.secure_url.search("jpg") !== -1 || attach.secure_url.search("jpeg") !== -1
                                       ?
-                                      <Badge key={index} count="x" style={{ cursor: 'pointer' }} onClick={() => handleRemove(attach.public_id, index)}>
+                                      <Badge key={index} style={{ cursor: 'pointer' }} onClick={() => handleRemove(attach.public_id, index)}>
                                         <Avatar shape="square" className="mb-3" src={attach.secure_url} size={60} style={{ marginLeft: '1rem' }} />
                                       </Badge>
                                       :
@@ -660,8 +693,9 @@ const MessageDetail = ({ match, socket, history }) => {
                               </button>
                               <button
                                 className="btn-hover w40"
-                                style={{ marginRight: "15px", backgroundColor: 'red' }}
+                                style={chatroom.paymentStatus ? { marginRight: "15px", backgroundColor: '#ff726f', border: 'none', opacity: '0.6' } : { marginRight: "15px", backgroundColor: '#ff726f', border: 'none' }}
                                 onClick={() => handleDeny(job._id)}
+                                disabled={chatroom.paymentStatus}
                               >
                                 Deny Job
                               </button>
@@ -670,15 +704,16 @@ const MessageDetail = ({ match, socket, history }) => {
                             <>
                               <button
                                 className="btn-hover w40"
-                                style={{ marginRight: "15px" }}
+                                style={chatroom !== undefined && chatroom.deliveryDate !== "" && chatroom.deliveryDate !== undefined ? { marginRight: "15px", opacity: '0.6' } : { marginRight: "15px" }}
                                 data-toggle="modal"
                                 data-target="#exampleModal1"
+                                disabled={chatroom !== undefined && chatroom.deliveryDate !== undefined && chatroom.deliveryDate}
                               >
                                 Add Deliverables
                               </button>
                               <button
                                 className="btn-hover w40"
-                                style={{ marginRight: "15px", backgroundColor: 'red' }}
+                                style={{ marginRight: "15px", backgroundColor: 'ff726f', border: 'none' }}
                                 onClick={() => handleDeny(job._id)}
                               >
                                 Deny Job
@@ -697,17 +732,17 @@ const MessageDetail = ({ match, socket, history }) => {
                       style={{ marginRight: "15px" }}
                       data-toggle="modal"
                       data-target="#reviewModal"
-                      onClick={() =>{console.log("Hello")}}
+                      onClick={() => { console.log("Hello") }}
                     >
                       Add Review
                     </button>
-                    <button className="btn-hover w10">
+                    <button className="btn-hover w10" style={{ padding: '5px 25px' }}>
                       Help
                     </button>
                   </>
                   :
                   <>
-                    <button className="btn-hover w10">
+                    <button className="btn-hover w10" style={{ padding: '5px 25px' }}>
                       Help
                     </button>
                   </>
@@ -720,9 +755,9 @@ const MessageDetail = ({ match, socket, history }) => {
           ""
         )}
         <div className="row mt-5">
-          <div className="col-md-9 mb-3">
-            <div className="card">
-              <div style={{ width: "20%" }}>
+          <div className="col-md-8 mb-3">
+            <div className="card" style={{ borderRadius: '10px', borderColor: '#000' }}>
+              <div style={{ width: "15%" }}>
                 <div className="d-flex justify-content-center">
                   <img
                     src={currentUser != null ? currentUser.avatar : card}
@@ -736,23 +771,19 @@ const MessageDetail = ({ match, socket, history }) => {
                   <textarea
                     className="form-control"
                     rows="5"
-                    style={{ resize: "none" }}
+                    style={{ resize: "none", borderRadius: '10px', backgroundColor: "rgba(245,245,245,0.8)" }}
                     onChange={(e) => setMessage(e.target.value)}
                     value={message}
+                    placeholder={user !== null && user.isMusician !== "Musician" ? `Send ${sp.name} a message` : `Send a message`}
                   />
-                </div>
-
-                <div
-                  style={{ backgroundColor: "#fff", border: "none" }}
-                  className="card-footer"
-                >
                   <label
                     className="send-attachment"
                     for="fileUploader"
                   >
-                    Add Attachment
+                    Attach Files
                   </label>
                   <input type="file" id="fileUploader" name="fileUploader" onChange={sendAttachment} style={{ display: 'none' }} />
+                  <label style={{ paddingTop: '20px', color: '#aaa', marginLeft: '30px' }}>File Size maximum 2GB</label>
                   <button
                     className="btn-hover"
                     style={{ float: "right", marginBottom: "10px" }}
@@ -791,22 +822,25 @@ const MessageDetail = ({ match, socket, history }) => {
                     ""
                 }
               </div>
+
             </div>
 
-            <div className="card mt-3" style={{ flexDirection: "column" }}>
-              {/* <div className="card-header" style={{ backgroundColor: "#fff" }}>
-                <div className="text-center">
-                  <div className="d-flex justify-content-center">
-                    <img
-                      src={funding}
-                      alt="Funding"
-                      style={{ width: "70px" }}
-                    />
+            <div className="card mt-3" style={{ flexDirection: "column",borderRadius:'25px',borderColor:'#000' }}>
+              {chatroom !== undefined && chatroom.paymentStatus ?
+                <div className="card-header" style={{ backgroundColor: "#fff",borderRadius:'25px 25px 0px 0px' }}>
+                  <div className="text-center">
+                    <div className="d-flex justify-content-center">
+                      <img
+                        src={funding}
+                        alt="Funding"
+                        style={{ width: "70px" }}
+                      />
+                    </div>
+                    <h5>Client funded the job</h5>
                   </div>
-                  <h5>You funded the job</h5>
-                  <p>Lorem ipsum </p>
                 </div>
-              </div> */}
+                :
+                ""}
               {/* <div className="card-body">
                 <div className="d-flex justify-content-center">
                   <img
@@ -841,7 +875,7 @@ const MessageDetail = ({ match, socket, history }) => {
                   <div
                     className="card-footer"
                     key={index}
-                    style={{ backgroundColor: "#fff" }}
+                    style={messages.length === 1 ? { backgroundColor: "#fff",borderRadius:'25px' }:index === messages.length-1 ? { backgroundColor: "#fff",borderRadius:'0px 0px 25px 25px' }:{ backgroundColor: "#fff"} }
                   >
                     <div style={{ display: "flex" }}>
                       <img
@@ -854,12 +888,12 @@ const MessageDetail = ({ match, socket, history }) => {
                         <p style={{ fontSize: "18px", fontWeight: "bold" }}>
                           {message.name}
                         </p>
-                        <p style={{ fontSize: "16px" }}>{message.message}</p>
-                        <span
+                        <p style={{ fontSize: "16px",marginBottom:'0px' }}>{message.message}</p>
+                        <label
                           style={{ marginLeft: "auto", fontSize: "12px" }}
                         >
-                          <b>{new Date(message.createdAt).toDateString()}</b>
-                        </span>
+                          <b>{`${new Date(message.createdAt).toLocaleDateString('en-GB', { timeZone: 'UTC' })} ${new Date(message.createdAt).toLocaleTimeString('en-GB', {hour: '2-digit', minute:'2-digit'})}`}</b>
+                        </label>
                       </div>
                     </div>
                   </div>
@@ -895,10 +929,11 @@ const MessageDetail = ({ match, socket, history }) => {
               </div> */}
             </div>
           </div>
+          <div className="col-md-1"></div>
           <div className="col-md-3">
             <div
               className="card"
-              style={{ flexDirection: "column", borderRadius: "15px" }}
+              style={{ flexDirection: "column", borderRadius: "15px", borderColor: '#000' }}
             >
               <div style={{ width: "100%", display: "flex" }}>
                 <div className="d-flex justify-content-center">
@@ -921,12 +956,12 @@ const MessageDetail = ({ match, socket, history }) => {
               </div>
               <div className="card-body">
                 <div>
-                  <hr />
+                  <hr className="horizontal-rule" />
                   <h5>Proposal Details</h5>
                   {chatroom !== undefined
                     ?
                     <>
-                      <hr />
+                      <hr className="horizontal-rule" />
                       <span>{chatroom.proposalDetails}</span>
                     </>
                     :
@@ -936,41 +971,70 @@ const MessageDetail = ({ match, socket, history }) => {
               </div>
             </div>
             <div className="card mt-3"
-              style={{ flexDirection: "column", borderRadius: "15px" }}>
+              style={{ flexDirection: "column", borderRadius: "15px", borderColor: '#000' }}>
               <div className="card-body">
                 {chatroom !== undefined ?
-                  <span>
-                    Delivery date
-                    <span style={{ float: "right" }}>{chatroom.deliveryDate}</span>
-                  </span>
+                  <>
+                    <span>
+                      Delivery date
+                      <span style={{ float: "right" }}>{chatroom.deliveryDate}</span>
+                    </span>
+                    <hr className="horizontal-rule" />
+                  </>
                   :
                   ""}
                 {chatroom !== undefined
                   ?
-                  <>
-                    <hr />
-                    <p>
-                      <b>Deliverables</b>
-                    </p>
-
-                  </>
+                  chatroom.deliverables.length !== 0
+                    ?
+                    <>
+                      <span>
+                        Deliverables
+                      </span>
+                      <br />
+                      <br />
+                      {chatroom.deliverables.map((d, index) => (
+                        d.secure_url.indexOf("png") !== -1 || d.secure_url.indexOf("jpg") !== -1 || d.secure_url.indexOf("jpeg") !== -1
+                          ?
+                          <>
+                            <img src={d.secure_url} key={index} alt="Deliverables" style={{ width: '60px', height: '60px' }} contextMenu={(e) => e.preventDefault()} />
+                            {chatroom.paymentStatus === true ?
+                              <i className="fa fa-download" style={{ float: 'right' }} onClick={() => handleDownload("", d.secure_url)}></i>
+                              : ""}
+                            <br />
+                          </>
+                          :
+                          d.secure_url.indexOf("mp3") !== -1
+                            ?
+                            <>
+                              <ReactAudioPlayer key={index} src={d.secure_url} />
+                              {chatroom.paymentStatus === true ?
+                                <i className="fa fa-download" style={{ float: 'right' }} onClick={() => handleDownload("", d.secure_url)}></i>
+                                : ""}
+                            </>
+                            :
+                            ""
+                      ))}
+                    </>
+                    :
+                    ""
                   :
                   ""}
                 <br />
               </div>
             </div>
-            {chatroom !== undefined && chatroom.documentation !== ""
+            {chatroom !== undefined && chatroom.documentation !== undefined && chatroom.documentation !== ""
               ?
               <div
                 className="card mt-4"
-                style={{ flexDirection: "column", borderRadius: "15px" }}
+                style={{ flexDirection: "column", borderRadius: "15px", borderColor: '#000' }}
               >
-                <div className="card-header" style={{ backgroundColor: "#fff" }}>
+                <div className="card-header" style={{ backgroundColor: "#fff", borderTopLeftRadius: '15px', borderTopRightRadius: '15px' }}>
                   <p>
                     <b>Documentation</b>
                   </p>
                 </div>
-                <div className="card-body">Lorem ipsum</div>
+                <div className="card-body">{chatroom.documentation}</div>
               </div>
               :
               ""}

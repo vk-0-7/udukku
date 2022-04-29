@@ -87,6 +87,17 @@ const About = () => {
                 <h2>Create A Free Account and Get Started Today!</h2>
                 <p>Udukku is the easiest way to find collaborators, get your talents out there, and get closer to your musical dreams.</p>
                 <p>Whether you&apos;re a vocalist, producer, or industry professional, we invite you to join us on our mission to enable musicians to make a career out of their talents. Sign up for a free account today and get started on your musical journey!</p>
+                <div className="d-flex justify-content-left mt-5">
+                    <p>
+                        <span style={{ fontSize: '18px', verticalAlign: "middle" }}>&copy;</span>
+                        <span
+                            style={{ fontSize: "15px", paddingRight: "10px", paddingLeft: '10px', borderRight: '1px solid #fff' }}
+                        >
+                            udukku 2020
+                        </span>
+                        <span style={{ fontSize: '15px' }}>  Developed by <a href="https://bit.ly/3C8Mxxn" style={{ color: '#000', textDecoration: 'underline' }} target="_blank">CFT Labs </a></span>
+                    </p>
+                </div>
             </div>
             <Footer />
         </>

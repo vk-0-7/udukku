@@ -19,9 +19,9 @@ const RespondToJob = ({ match,history }) => {
 
 
   const handleSubmit = () => {
-    console.log(title, description, parseInt(quotation) + 100);
+    console.log(title, description, parseInt(quotation));
 
-    respondToJob(id[0], title, description, parseInt(quotation) + 100, user.token)
+    respondToJob(id[0], title, description, parseInt(quotation), user.token)
       .then((res) => {
 
         axios.post("https://udukku.herokuapp.com/chatroom", { userId: [id[1], user.userId] });

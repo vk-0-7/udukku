@@ -42,6 +42,7 @@ const Footer = () => {
                         borderRadius: "35px",
                         background: "#696969",
                         margin: "12px",
+                        marginLeft:'0px'
                       }}
                     ></i>
                   </a>
@@ -194,17 +195,6 @@ const Footer = () => {
               </p>
             </div> */}
           </div>
-        </div>
-        <div className="d-flex justify-content-center">
-          <p>
-          <span style={{color:'#fff',fontSize:'18px',verticalAlign:"middle"}}>&copy;</span>
-            <span
-              style={{ color: "#fff", fontSize: "15px", paddingRight: "10px", paddingLeft: '10px', borderRight: '1px solid #fff' }}
-            >
-              udukku 2020
-            </span>
-            <span style={{ color: '#fff', fontSize: '15px' }}>  Developed by <a href="https://bit.ly/3C8Mxxn" style={{ color: '#fff', textDecoration: 'underline' }} target="_blank">CFT Labs </a></span>
-          </p>
         </div>
         {/* <div className="footer-copyright  py-3 text-center">
           <p>

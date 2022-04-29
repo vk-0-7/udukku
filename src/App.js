@@ -47,6 +47,7 @@ import ClientJobs from "./Pages/ClientJobs";
 import UpdateJob from "./UpdateJob";
 import UpdatePersonalInfo from "./Pages/UpdateProfile/UpdatePersonalInfo";
 import UpdateProfessionalInfo from "./Pages/UpdateProfile/UpdateProfessionalInfo";
+import ServiceProviderProfile from "./Pages/ServiceProviderProfile";
 
 const App = () => {
   const { user } = useSelector((state) => ({ ...state }));
@@ -67,6 +68,7 @@ const App = () => {
               token: auth,
               isMusician: res.data.isMusician,
               isProfileCompleted: res.data.isProfileCompleted,
+              qr:res.data.profileUrl,
             },
           });
         })
@@ -144,6 +146,11 @@ const App = () => {
           exact
           path="/user/preview-profile/:id"
           component={PreviewProfile}
+        />
+        <Route
+          exact
+          path="/user/service-provider/:id"
+          component={ServiceProviderProfile}
         />
         <Route 
         exact

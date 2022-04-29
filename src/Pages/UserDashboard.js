@@ -15,11 +15,11 @@ const UserDashboard = () => {
   useEffect(() => {
     if (user != null) {
       getUserInfoById(user.userId).then((res) => {
-        console.log(res);
+        console.log(res.data.profileUrl);
         setCurrentUser(res.data);
       });
     }
-  }, []);
+  }, [user]);
   return (
     <>
       <Header />
@@ -33,10 +33,13 @@ const UserDashboard = () => {
             {/* <p style={{ marginLeft: 'auto' }}>Service Provider <Switch defaultChecked onChange={onChange} /> Client</p> */}
           </div>
         </div>
-        {/* <div className="row mt-5">
+        {currentUser.jobsCompleted > 0
+        ?
+        <>
+        <div className="row mt-5">
           <div className="col-md-4 col-4">
             <h1 className="text-center fs-16">
-              10{" "}
+            {currentUser !== null ? currentUser.jobsCompleted: ""}
               <span
                 style={{
                   marginTop: "-25px",
@@ -52,7 +55,7 @@ const UserDashboard = () => {
           </div>
           <div className="col-md-4 col-4">
             <h1 className="text-center fs-16">
-              2{" "}
+            {currentUser !== null ? currentUser.repeatedBuyer: ""}
               <span
                 style={{
                   marginTop: "-25px",
@@ -69,7 +72,7 @@ const UserDashboard = () => {
           <div className="col-md-4 col-4">
             <h1 className="text-center fs-16">
               <i className="fa fa-rupee-sign"></i>
-              100
+              {currentUser !== null ? currentUser.totalEarn: ""}
               <span
                 style={{
                   marginTop: "-25px",
@@ -82,7 +85,7 @@ const UserDashboard = () => {
             <h4 className="text-center fs-14">Total Earn</h4>
           </div>
         </div>
-        <div className="card" style={{ flexDirection: "row" }}>
+        {/* <div className="card" style={{ flexDirection: "row" }}>
           <div
           className="w50"
             style={{ padding: "20px", borderRight: "1px solid" }}
@@ -122,8 +125,11 @@ const UserDashboard = () => {
               and visual mockups.
             </p>
           </div>
-        </div> */}
+        </div>  */}
+        </>
+        :
         <h4 className="text-center">No jobs completed as of yet</h4>
+              }
         <div className="card mt-5 flex-dir-column">
           <div className="w20" style={{ padding: "25px" }}>
             <div className="d-flex justify-content-center">
@@ -135,9 +141,9 @@ const UserDashboard = () => {
             <h4 className="text-center">
               {user != null ? user.name : "Izana"}
             </h4>
-            <div className="d-flex justify-content-center">
+            {/* <div className="d-flex justify-content-center">
               <button className="btn-hover">udukku</button>
-            </div>
+            </div> */}
           </div>
           <div className="card-body text-center">
             <h4 style={{ color: "#0070f3" }}>Hire me on udukku</h4>
@@ -147,7 +153,8 @@ const UserDashboard = () => {
           </div>
           <div className="w20" style={{padding: "25px" }}>
             <div className="d-flex justify-content-center">
-              <img src={code} style={{ height: "150px", width: "170px" }} />
+              {/* <img src={code} style={{ height: "150px", width: "170px" }} /> */}
+              <img src={currentUser != null ? `${user.qr}` : code} />
             </div>
             <p
               style={{ color: "#0070f3", borderBottom: "1px solid #0070f3" }}

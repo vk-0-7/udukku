@@ -755,7 +755,7 @@ const MessageDetail = ({ match, socket, history }) => {
           ""
         )}
         <div className="row mt-5">
-          <div className="col-md-8 mb-3">
+          <div className="col-md-7 mb-3">
             <div className="card" style={{ borderRadius: '10px', borderColor: '#000' }}>
               <div style={{ width: "15%" }}>
                 <div className="d-flex justify-content-center">
@@ -774,16 +774,22 @@ const MessageDetail = ({ match, socket, history }) => {
                     style={{ resize: "none", borderRadius: '10px', backgroundColor: "rgba(245,245,245,0.8)" }}
                     onChange={(e) => setMessage(e.target.value)}
                     value={message}
-                    placeholder={user !== null && user.isMusician !== "Musician" ? `Send ${sp.name} a message` : `Send a message`}
+                    placeholder={user !== null && user.isMusician !== "Musician" && sp !== undefined ? `Send ${sp.name} a message` : `Send a message`}
                   />
                   <label
-                    className="send-attachment"
+                    className="send-attachment mHide"
                     for="fileUploader"
                   >
                     Attach Files
                   </label>
                   <input type="file" id="fileUploader" name="fileUploader" onChange={sendAttachment} style={{ display: 'none' }} />
-                  <label style={{ paddingTop: '20px', color: '#aaa', marginLeft: '30px' }}>File Size maximum 2GB</label>
+                  <label style={{ paddingTop: '20px', color: '#aaa', marginLeft: '30px' }} className="mHide1">File Size maximum 2GB</label>
+                  <label for="fileUploader" style={{marginTop:'20px'}}>
+                    <i className="fa fa-paperclip dHIde1"></i>
+                  </label>
+                  <label for="fileUploader" className="dHIde1 ml-3" style={{marginTop:'20px'}}>
+                    <i className="fa fa-info"></i>
+                  </label>
                   <button
                     className="btn-hover"
                     style={{ float: "right", marginBottom: "10px" }}
@@ -825,9 +831,9 @@ const MessageDetail = ({ match, socket, history }) => {
 
             </div>
 
-            <div className="card mt-3" style={{ flexDirection: "column",borderRadius:'25px',borderColor:'#000' }}>
+            <div className="card mt-3" style={{ flexDirection: "column", borderRadius: '25px', borderColor: '#000' }}>
               {chatroom !== undefined && chatroom.paymentStatus ?
-                <div className="card-header" style={{ backgroundColor: "#fff",borderRadius:'25px 25px 0px 0px' }}>
+                <div className="card-header" style={{ backgroundColor: "#fff", borderRadius: '25px 25px 0px 0px' }}>
                   <div className="text-center">
                     <div className="d-flex justify-content-center">
                       <img
@@ -875,24 +881,24 @@ const MessageDetail = ({ match, socket, history }) => {
                   <div
                     className="card-footer"
                     key={index}
-                    style={messages.length === 1 ? { backgroundColor: "#fff",borderRadius:'25px' }:index === messages.length-1 ? { backgroundColor: "#fff",borderRadius:'0px 0px 25px 25px' }:{ backgroundColor: "#fff"} }
+                    style={messages.length === 1 ? { backgroundColor: "#fff", borderRadius: '25px' } : index === messages.length - 1 ? { backgroundColor: "#fff", borderRadius: '0px 0px 25px 25px' } : { backgroundColor: "#fff" }}
                   >
                     <div style={{ display: "flex" }}>
                       <img
                         src={message.avatar}
-                        className="card-img-top mt-3 ml-3 msg-sender-pic"
+                        className="card-img-top  ml-3 msg-sender-pic"
                         alt={message.name}
                       />
 
-                      <div style={{ marginLeft: "40px" }}>
-                        <p style={{ fontSize: "18px", fontWeight: "bold" }}>
+                      <div style={{ marginLeft: "40px", width: '-webkit-fill-available' }}>
+                        <p style={{ fontSize: "18px", marginBottom: '0px', fontWeight: "bold" }}>
                           {message.name}
                         </p>
-                        <p style={{ fontSize: "16px",marginBottom:'0px' }}>{message.message}</p>
+                        <p style={{ fontSize: "16px", marginBottom: '0px' }}>{message.message}</p>
                         <label
-                          style={{ marginLeft: "auto", fontSize: "12px" }}
+                          style={{ float: "right", fontSize: "12px" }}
                         >
-                          <b>{`${new Date(message.createdAt).toLocaleDateString('en-GB', { timeZone: 'UTC' })} ${new Date(message.createdAt).toLocaleTimeString('en-GB', {hour: '2-digit', minute:'2-digit'})}`}</b>
+                          <b>{`${new Date(message.createdAt).toLocaleDateString('en-GB', { timeZone: 'UTC' })} ${new Date(message.createdAt).toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' })}`}</b>
                         </label>
                       </div>
                     </div>
@@ -930,34 +936,40 @@ const MessageDetail = ({ match, socket, history }) => {
             </div>
           </div>
           <div className="col-md-1"></div>
-          <div className="col-md-3">
+          <div className="col-md-4">
             <div
               className="card"
-              style={{ flexDirection: "column", borderRadius: "15px", borderColor: '#000' }}
+              style={{ flexDirection: "column", borderRadius: "10px", borderColor: '#000' }}
             >
               <div style={{ width: "100%", display: "flex" }}>
                 <div className="d-flex justify-content-center">
                   <img
-                    src={currentUser != null ? currentUser.avatar : card}
+                    src={sp != undefined ? sp.avatar : card}
                     className="card-img-top mt-3 ml-3 proposed-profile-pic"
                     alt=""
                   />
                 </div>
-                <div className="mts-5">
+                <div className="mts-5 ml-5">
                   <h5>
-                    <b>{currentUser != null ? currentUser.name : ""}</b>
+                    <b>{sp != undefined ? sp.name : ""}</b>
+                    <br />
+                    <span style={{ fontSize: '14px' }}>{sp != undefined ? sp.tag : ""}</span>
                   </h5>
-                  <i className="fa fa-star"></i>
-                  <i className="fa fa-star"></i>
-                  <i className="fa fa-star"></i>
-                  <i className="fa fa-star"></i>
-                  <i className="fa fa-star"></i>(3)
+                  {sp != undefined && sp.rating != undefined
+                    ?
+                    <><i className="fa fa-star"></i>
+                      <i className="fa fa-star"></i>
+                      <i className="fa fa-star"></i>
+                      <i className="fa fa-star"></i>
+                      <i className="fa fa-star"></i>(3)</>
+                    :
+                    <p>No Ratings</p>}
                 </div>
               </div>
               <div className="card-body">
                 <div>
                   <hr className="horizontal-rule" />
-                  <h5>Proposal Details</h5>
+                  <h5><b>Proposal Details</b></h5>
                   {chatroom !== undefined
                     ?
                     <>
@@ -971,13 +983,13 @@ const MessageDetail = ({ match, socket, history }) => {
               </div>
             </div>
             <div className="card mt-3"
-              style={{ flexDirection: "column", borderRadius: "15px", borderColor: '#000' }}>
+              style={{ flexDirection: "column", borderRadius: "10px", borderColor: '#000' }}>
               <div className="card-body">
                 {chatroom !== undefined ?
                   <>
-                    <span>
+                    <span style={{ fontSize: '1.25rem', fontFamily: 'Popins', fontWeight: '500' }}>
                       Delivery date
-                      <span style={{ float: "right" }}>{chatroom.deliveryDate}</span>
+                      <span style={{ float: "right", fontWeight: '700', fontSize: '1rem' }}>{chatroom.deliveryDate}</span>
                     </span>
                     <hr className="horizontal-rule" />
                   </>
@@ -988,11 +1000,10 @@ const MessageDetail = ({ match, socket, history }) => {
                   chatroom.deliverables.length !== 0
                     ?
                     <>
-                      <span>
+                      <span style={{ fontSize: '1.25rem', fontFamily: 'Popins', fontWeight: '500' }}>
                         Deliverables
                       </span>
-                      <br />
-                      <br />
+                      <hr className="horizontal-rule" />
                       {chatroom.deliverables.map((d, index) => (
                         d.secure_url.indexOf("png") !== -1 || d.secure_url.indexOf("jpg") !== -1 || d.secure_url.indexOf("jpeg") !== -1
                           ?
@@ -1027,12 +1038,12 @@ const MessageDetail = ({ match, socket, history }) => {
               ?
               <div
                 className="card mt-4"
-                style={{ flexDirection: "column", borderRadius: "15px", borderColor: '#000' }}
+                style={{ flexDirection: "column", borderRadius: "10px", borderColor: '#000' }}
               >
                 <div className="card-header" style={{ backgroundColor: "#fff", borderTopLeftRadius: '15px', borderTopRightRadius: '15px' }}>
-                  <p>
-                    <b>Documentation</b>
-                  </p>
+                  <span style={{ fontSize: '1.25rem', fontFamily: 'Popins', fontWeight: '500' }}>
+                    Documentation
+                  </span>
                 </div>
                 <div className="card-body">{chatroom.documentation}</div>
               </div>

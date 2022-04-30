@@ -169,15 +169,7 @@ const ClientJobs = ({ history }) => {
                                             </span>
                                             <span
                                                 onClick={() => history.push(`/update-job/${job._id}`)}
-                                                className="float-right mr-30"
-                                                style={{
-                                                    float: "right",
-                                                    cursor: "pointer",
-                                                    backgroundColor: "#0070f3",
-                                                    color: "#fff",
-                                                    padding: "2px 15px",
-                                                    borderRadius: "4px",
-                                                }}
+                                                className="float-right mr-30 update-job"
                                             >
                                                 Update Job
                                             </span>

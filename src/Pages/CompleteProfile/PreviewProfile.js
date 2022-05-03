@@ -11,7 +11,7 @@ import ReactAudioPlayer from 'react-audio-player';
 import $ from 'jquery';
 
 
-const PreviewProfile = ({ history,match }) => {
+const PreviewProfile = ({ history, match }) => {
   const [userData, setUserData] = useState();
   const [windowWidth, setWindowWidth] = useState(1400);
   const { user } = useSelector((state) => ({ ...state }));
@@ -101,7 +101,8 @@ const PreviewProfile = ({ history,match }) => {
                   {userData.tag !== undefined ? userData.tag : ""}
                 </h5>
                 <h6
-                  style={{ backgroundColor: "transparent", textAlign: "end" }}
+                  style={{ backgroundColor: "#fff",borderRadius:'5px', textAlign: "end", }}
+                  className="py-1"
                 >
                   {userData.city}, India
                 </h6>
@@ -114,12 +115,12 @@ const PreviewProfile = ({ history,match }) => {
                 ""
               )}
               {/* <hr style={{ width: "100%" }} /> */}
-              <button className="btn-hover" onClick={() =>{history.push(`/user/update-profile/${user.userId}`)}} style={{ float: "right", marginRight: '40px' }}>
+              <button className="btn-hover" onClick={() => { history.push(`/user/update-profile/${user.userId}`) }} style={{ float: "right", marginRight: '40px' }}>
                 Edit Profile
               </button>
-              <button className="btn-hover" style={{ float: "right", marginRight: '40px' }}>
+              {/* <button className="btn-hover" style={{ float: "right", marginRight: '40px' }}>
                 CONTACT
-              </button>
+              </button> */}
             </div>
           </div>
           <div className="dHIde">
@@ -133,12 +134,12 @@ const PreviewProfile = ({ history,match }) => {
                 />
               </div>
             </div>
-            <h1 style={{ backgroundColor: "#fff", position: 'absolute', top: '10%', left: '18%', marginBottom: "0.2rem", padding: '8px', borderRadius: '5px' }}>
+            <h1 style={{ backgroundColor: "#fff", position: 'absolute', top: '43%', left: '18%', marginBottom: "0.2rem", padding: '8px', borderRadius: '5px' }}>
               <b>{userData.name}</b>
             </h1>
-            <h5 style={{ backgroundColor: "#fff", position: 'absolute', top: '16%', left: '18%', marginBottom: "0.2rem", padding: '8px', borderRadius: '5px', color: "#ff7565" }}>{userData.tag !== undefined ? userData.tag : ""}</h5>
+            <h5 style={{ backgroundColor: "#fff", position: 'absolute', top: '49%', left: '18%', marginBottom: "0.2rem", padding: '8px', borderRadius: '5px', color: "#ff7565" }}>{userData.tag !== undefined ? userData.tag : ""}</h5>
             <h6
-              style={{ backgroundColor: "#fff", textAlign: "end", marginRight: '10px', top: '21%', left: '54%', position: 'absolute', marginBottom: "0.2rem", padding: '4px', borderRadius: '5px' }}
+              style={{ backgroundColor: "#fff", textAlign: "end", marginRight: '10px', top: '49%', left: '41%', position: 'absolute', marginBottom: "0.2rem", padding: '10px', borderRadius: '5px' }}
             >
               {userData.city}, India
             </h6>
@@ -150,9 +151,9 @@ const PreviewProfile = ({ history,match }) => {
               ""
             )} */}
             {/* <hr style={{ width: "100%" }} /> */}
-            <button className="btn-hover m-2" style={{ width: '96%' }}>
+            {/* <button className="btn-hover m-2" style={{ width: '96%' }}>
               CONTACT
-            </button>
+            </button> */}
             <button className="btn-hover m-2" style={{ width: '96%' }}>
               Edit Profile
             </button>

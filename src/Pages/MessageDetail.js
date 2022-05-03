@@ -34,6 +34,7 @@ const MessageDetail = ({ match, socket, history }) => {
   const [review, setReview] = useState("");
   const [payment, setPayment] = useState([]);
   const [sp, setSP] = useState();
+  const [cattachments, setCAttachments] = useState([]);
 
 
   // const [jobPostedById,setJobPostedById] = useState("");
@@ -100,6 +101,14 @@ const MessageDetail = ({ match, socket, history }) => {
       console.log(res.data[0].paymentIntent[0]);
       setPayment(res.data[0].paymentIntent[0]);
     }).catch(err => console.log(err));
+
+    // GetChatroom Attachments
+    axios.post("https://udukku.herokuapp.com/chatroom/get-attachments-by-id", { chatroomId }).then((res) => {
+      console.log(res);
+      setCAttachments(res.data);
+    }).catch((err) => {
+      console.log(err);
+    });
   }, []);
 
   // const getJobPostedBy = () =>{
@@ -448,7 +457,7 @@ const MessageDetail = ({ match, socket, history }) => {
                   <div className="dHIde mt-3">
                     <p style={{ fontSize: "14px" }}>
                       <b style={{ color: "#0070f3" }}>{chatroom != undefined && chatroom.cost !== undefined ? "Funded" : "Quoted Price"}</b>
-                      <i className="fas fa-rupee-sign ml-3"></i>
+                      <i className="fas fa-rupee-sign ml-3" style={{ marginRight: '5px' }}></i>
                       {chatroom != undefined && chatroom.cost !== undefined ?
                         chatroom.cost
                         :
@@ -461,7 +470,7 @@ const MessageDetail = ({ match, socket, history }) => {
                       <b>{chatroom != undefined && chatroom.cost !== undefined ? "Funded" : "Quoted Price"}</b>
                     </h4>
                     <h4>
-                      <i className="fa fa-rupee-sign"></i>
+                      <i className="fa fa-rupee-sign" style={{ marginRight: '5px' }}></i>
                       {chatroom != undefined && chatroom.cost !== undefined ?
                         chatroom.cost
                         :
@@ -784,11 +793,8 @@ const MessageDetail = ({ match, socket, history }) => {
                   </label>
                   <input type="file" id="fileUploader" name="fileUploader" onChange={sendAttachment} style={{ display: 'none' }} />
                   <label style={{ paddingTop: '20px', color: '#aaa', marginLeft: '30px' }} className="mHide1">File Size maximum 2GB</label>
-                  <label for="fileUploader" style={{marginTop:'20px'}}>
-                    <i className="fa fa-paperclip dHIde1"></i>
-                  </label>
-                  <label for="fileUploader" className="dHIde1 ml-3" style={{marginTop:'20px'}}>
-                    <i className="fa fa-info"></i>
+                  <label for="fileUploader" style={{ marginTop: '20px' }}>
+                    <i className="fa fa-paperclip dHIde1" style={{marginLeft:'-50px'}}>Attach</i> 
                   </label>
                   <button
                     className="btn-hover"
@@ -801,14 +807,14 @@ const MessageDetail = ({ match, socket, history }) => {
                 {
                   attachments.length > 0
                     ?
-                    <div className="container mt-7">
+                    <div className="container mt-3">
                       {attachments.map((a, index) => (
                         <>
                           <div className="row">
-                            <div className="col-md-6">
+                            <div className="col-md-6 col-9">
                               <p>{file[index]}</p>
                             </div>
-                            <div className="col-md-6">
+                            <div className="col-md-6 col-3">
                               <i
                                 className="far fa-times-circle"
                                 onClick={() => handleClick(a)}
@@ -881,7 +887,7 @@ const MessageDetail = ({ match, socket, history }) => {
                   <div
                     className="card-footer"
                     key={index}
-                    style={messages.length === 1 ? { backgroundColor: "#fff", borderRadius: '25px' } : index === messages.length - 1 ? { backgroundColor: "#fff", borderRadius: '0px 0px 25px 25px' } : { backgroundColor: "#fff" }}
+                    style={messages.length === 1 ? { backgroundColor: "#fff", borderRadius: '25px' } : index === messages.length - 1 ? { backgroundColor: "#fff", borderRadius: '0px 0px 25px 25px' } : index === 0 ? { backgroundColor: "#fff", borderRadius: '25px' } : { backgroundColor: "#fff" }}
                   >
                     <div style={{ display: "flex" }}>
                       <img
@@ -1049,6 +1055,25 @@ const MessageDetail = ({ match, socket, history }) => {
               </div>
               :
               ""}
+
+            {cattachments.length !== 0
+              ?
+              <div
+                className="card mt-4"
+                style={{ flexDirection: "column", borderRadius: "10px", borderColor: '#000' }}
+              >
+                <div className="card-header" style={{ backgroundColor: "#fff", borderTopLeftRadius: '15px', borderTopRightRadius: '15px' }}>
+                  <span style={{ fontSize: '1.25rem', fontFamily: 'Popins', fontWeight: '500' }}>
+                    Attachments
+                  </span>
+                </div>
+                <div className="card-body">{cattachments.map((a, index) => (
+                  <p key={index}>{a.attachmentName} <i className="fa fa-download" onClick={() => window.open(a.attachmentUrl,"121")} style={{float:'right',cursor:'pointer'}}></i></p>
+                ))}</div>
+              </div>
+              :
+              ""
+            }
           </div>
         </div>
       </div>

@@ -128,7 +128,14 @@ const CompleteYourProfile = ({ history }) => {
           </div>
           <div className="col-md-6">
             {avatar != "" ? (
-              <img src={avatar} alt="Profile" />
+              <div class="profile-pic">
+              <label class="-label" for="file">
+                <span class="glyphicon glyphicon-camera"></span>
+                <span>Change Image</span>
+              </label>
+              <input id="file" type="file" onChange={changeAvatar} />
+              <img src={avatar} id="output" width="200" />
+            </div>
             ) : (
               <label className="upload">
                 <input

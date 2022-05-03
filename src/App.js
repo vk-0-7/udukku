@@ -48,6 +48,7 @@ import UpdateJob from "./UpdateJob";
 import UpdatePersonalInfo from "./Pages/UpdateProfile/UpdatePersonalInfo";
 import UpdateProfessionalInfo from "./Pages/UpdateProfile/UpdateProfessionalInfo";
 import ServiceProviderProfile from "./Pages/ServiceProviderProfile";
+import UpdateYourProfile from "./Pages/UpdateProfile/UpdateYourProfile";
 
 const App = () => {
   const { user } = useSelector((state) => ({ ...state }));
@@ -151,6 +152,11 @@ const App = () => {
           exact
           path="/user/service-provider/:id"
           component={ServiceProviderProfile}
+        />
+        <Route 
+        exact
+        path="/user/edit-your-profile/:id"
+        component={UpdateYourProfile}
         />
         <Route 
         exact

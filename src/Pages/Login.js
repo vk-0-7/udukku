@@ -34,7 +34,7 @@ const Login = ({ history }) => {
     signIn(email, pwd)
       .then((res) => {
         console.log(res);
-        createProfileURL(res.data.user._id).then((res)=>{
+        createProfileURL(res.data.user._id).then((res) => {
           console.log(res);
         }).catch(eer => console.log(eer));
         dispatch({
@@ -46,9 +46,9 @@ const Login = ({ history }) => {
             token: res.data.refresh_token,
             isMusician: res.data.user.isMusician,
             isProfileCompleted: res.data.user.isProfileCompleted,
-            jobsCompleted:res.data.user.jobsCompleted,
-            totalEarn:res.data.user.totalEarn,
-            repeatedBuyer:res.data.user.repeatedBuyer
+            jobsCompleted: res.data.user.jobsCompleted,
+            totalEarn: res.data.user.totalEarn,
+            repeatedBuyer: res.data.user.repeatedBuyer
           },
         });
         if (res.data.user.isMusician === "") {
@@ -85,7 +85,7 @@ const Login = ({ history }) => {
     googleSignIn(data.tokenId)
       .then((res) => {
         console.log(res);
-        createProfileURL(res.data.user._id).then((res)=>{
+        createProfileURL(res.data.user._id).then((res) => {
           console.log(res);
         }).catch(eer => console.log(eer));
         dispatch({
@@ -97,9 +97,9 @@ const Login = ({ history }) => {
             token: res.data.refresh_token,
             isMusician: res.data.user.isMusician,
             isProfileCompleted: res.data.user.isProfileCompleted,
-            jobsCompleted:res.data.user.jobsCompleted,
-            totalEarn:res.data.user.totalEarn,
-            repeatedBuyer:res.data.user.repeatedBuyer
+            jobsCompleted: res.data.user.jobsCompleted,
+            totalEarn: res.data.user.totalEarn,
+            repeatedBuyer: res.data.user.repeatedBuyer
           },
         });
         setLoading(false);
@@ -134,7 +134,7 @@ const Login = ({ history }) => {
     facebookSignIn(res.accessToken, res.userID)
       .then((response) => {
         console.log(response);
-        createProfileURL(res.data.user._id).then((res)=>{
+        createProfileURL(res.data.user._id).then((res) => {
           console.log(res);
         }).catch(eer => console.log(eer));
         dispatch({
@@ -146,9 +146,9 @@ const Login = ({ history }) => {
             token: response.refresh_token,
             isMusician: response.data.user.isMusician,
             isProfileCompleted: response.data.user.isProfileCompleted,
-            jobsCompleted:response.data.user.jobsCompleted,
-            totalEarn:response.data.user.totalEarn,
-            repeatedBuyer:response.data.user.repeatedBuyer
+            jobsCompleted: response.data.user.jobsCompleted,
+            totalEarn: response.data.user.totalEarn,
+            repeatedBuyer: response.data.user.repeatedBuyer
           },
         });
         setLoading(false);
@@ -216,29 +216,37 @@ const Login = ({ history }) => {
             <p className="text-center">
               Join India's First Music Marketplace
             </p>
-            <div className="d-flex justify-content-center">
-              <div>
-                <GoogleLogin
-                  clientId="268210576018-mlvmmnn1ll18rjatc0k2r5ldgvsmkjjr.apps.googleusercontent.com"
-                  buttonText=""
-                  autoLoad={false}
-                  onSuccess={handleGoogleSignUp}
-                  onFailure={handleGoogleSignUp}
-                  cookiePolicy={"single_host_origin"}
-                  render={(renderProps) => (
+            <GoogleLogin
+              clientId="268210576018-mlvmmnn1ll18rjatc0k2r5ldgvsmkjjr.apps.googleusercontent.com"
+              buttonText=""
+              autoLoad={false}
+              onSuccess={handleGoogleSignUp}
+              onFailure={handleGoogleSignUp}
+              cookiePolicy={"single_host_origin"}
+              render={(renderProps) => (
+                <button
+                  onClick={renderProps.onClick}
+                  style={{
+                    backgroundColor: "#DB4437",
+                    fontSize: "20px",
+                    cursor: "pointer",
+                    marginRight: "10px",
+                    border: 'none',
+                    borderRadius: '5px',
+                    paddingBottom: '5px'
+                  }}
+                  className="w-100"
+                >
+                  <span style={{ color: '#fff' }}>Sign in with
                     <em
-                      onClick={renderProps.onClick}
-                      style={{
-                        color: "#DB4437",
-                        fontSize: "20px",
-                        cursor: "pointer",
-                        marginRight: "10px",
-                      }}
-                      className="fab fa-google"
+                      style={{ verticalAlign: 'baseline' }}
+                      className="fab fa-google ml-3"
                     ></em>
-                  )}
-                />
-                {/* <FacebookLogin
+                  </span>
+                </button>
+              )}
+            />
+            {/* <FacebookLogin
                   appId="887211411966726"
                   autoLoad={false}
                   fields="name,email,picture"
@@ -255,8 +263,6 @@ const Login = ({ history }) => {
                     ></i>
                   )}
                 /> */}
-              </div>
-            </div>
             <div className="or">Or</div>
             <div className="form-group">
               <label>Email address</label>
@@ -285,15 +291,19 @@ const Login = ({ history }) => {
             </div> */}
             <p>
               <label for="password">Password:</label>
-              <br/>
+              <br />
               <input type="password"
                 id="accpwd"
                 className="custom-input"
                 onChange={(e) => setPwd(e.target.value)}
                 placeholder="Password" />
-              <i 
-              onClick={handleChange}
-              class="fa fa-eye" id="togglePassword" style={{ visibility: pwd.length !== 0 ? "visible" : "hidden",marginLeft:'-30px',cursor:'pointer' }}></i>
+              <i
+                onClick={handleChange}
+                class="fa fa-eye" id="togglePassword" style={{
+                  visibility: pwd.length !== 0 ? "visible" : "hidden",
+                  marginLeft: '-30px', cursor: 'pointer'
+                }}>
+              </i>
             </p>
             <div className="form-group d-flex mt-2">
               {/* <div className="custom-control custom-checkbox">

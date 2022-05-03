@@ -276,9 +276,9 @@ const handleGenreChange = (e) => {
                     <Link
                       to={`/user/service-provider/${item._id}`}
                       className="card-title"
-                      style={{ color: "#0070f3", fontSize: "20px" }}
+                      style={{ color: "#0070f3", fontSize: "18px" }}
                     >
-                      Top Liner | Songwriter
+                      {item.tag}
                     </Link>
                     <br />
                     <p>

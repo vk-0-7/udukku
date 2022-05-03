@@ -129,12 +129,12 @@ const ServiceProviderProfile = ({ history,match }) => {
                 />
               </div>
             </div>
-            <h1 style={{ backgroundColor: "#fff", position: 'absolute', top: '10%', left: '18%', marginBottom: "0.2rem", padding: '8px', borderRadius: '5px' }}>
+            <h1 style={{ backgroundColor: "#fff", position: 'absolute', top: '43%', left: '18%', marginBottom: "0.2rem", padding: '8px', borderRadius: '5px' }}>
               <b>{userData.name}</b>
             </h1>
-            <h5 style={{ backgroundColor: "#fff", position: 'absolute', top: '16%', left: '18%', marginBottom: "0.2rem", padding: '8px', borderRadius: '5px', color: "#ff7565" }}>{userData.tag !== undefined ? userData.tag : ""}</h5>
+            <h5 style={{ backgroundColor: "#fff", position: 'absolute', top: '49%', left: '18%', marginBottom: "0.2rem", padding: '8px', borderRadius: '5px', color: "#ff7565" }}>{userData.tag !== undefined ? userData.tag : ""}</h5>
             <h6
-              style={{ backgroundColor: "#fff", textAlign: "end", marginRight: '10px', top: '21%', left: '54%', position: 'absolute', marginBottom: "0.2rem", padding: '4px', borderRadius: '5px' }}
+              style={{ backgroundColor: "#fff", textAlign: "end", marginRight: '10px', top: '49%', left: '41%', position: 'absolute', marginBottom: "0.2rem", padding: '10px', borderRadius: '5px' }}
             >
               {userData.city}, India
             </h6>

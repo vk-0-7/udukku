@@ -682,6 +682,10 @@ button:focus {
   margin-top: 4rem;
 }
 
+.mt-10{
+  margin-top: 6rem;
+}
+
 .send-attachment{
   float: left;
   margin-bottom: 10px;
@@ -711,7 +715,7 @@ button:focus {
 }
 /* Mobile View */
 @media (max-width: 991px) {
-
+  
   .update-job{
     float: left;
   }

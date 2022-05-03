@@ -510,7 +510,7 @@ const handleGenreChange = (e) => {
                       <div className="col-8 profile-card-width" style={{ paddingRight: '0px' }}>
                         <div className="card-header" style={{ backgroundColor: '#fff', border: 'none' }}>
                           <Link
-                            to={`/user/preview-profile/${item._id}`}
+                            to={`/user/service-provider/${item._id}`}
                             className="card-title"
                             style={{ color: "#0070f3", fontSize: "15px" }}
                           >

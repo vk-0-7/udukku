@@ -29,7 +29,7 @@ const Footer = () => {
                   Contact Us
                 </Link>
               </p>
-              <p style={{ textAlign: "left" }}><a className="text-light"  href="mailto:info@udukku.com">info@udukku.com</a></p>
+              <p style={{ textAlign: "left" }}><a className="text-light" href="mailto:info@udukku.com">info@udukku.com</a></p>
               <p>
                 {/* © 2021 Copyright Developed By: <a href="https://cftlabs.org/" className="link" target="_blank"> CFT Labs</a> */}
                 <span style={{ float: "left", marginRight: "20px" }}>
@@ -42,6 +42,7 @@ const Footer = () => {
                         borderRadius: "35px",
                         background: "#696969",
                         margin: "12px",
+                        marginLeft:'0px'
                       }}
                     ></i>
                   </a>
@@ -106,6 +107,14 @@ const Footer = () => {
                   </Link>
                 </li>
               </ul>
+              <p className="mt-10" style={{textAlign:'left'}}>
+                <span style={{ color: '#fff', fontSize: '18px', verticalAlign: "middle" }}>&copy;</span>
+                <span
+                  style={{ color: "#fff", fontSize: "15px", paddingRight: "10px",}}
+                >
+                  udukku 2020
+                </span>
+              </p>
             </div>
             <div className="col-md-2 mb-md-0 mb-3">
               <h5 className="text-uppercase text-light text-left">Genre</h5>
@@ -156,6 +165,14 @@ const Footer = () => {
                   </Link>
                 </li>
               </ul>
+              <p style={{textAlign:'center'}} className="dHIde mt-5">
+                <span style={{ color: '#fff', fontSize: '18px', verticalAlign: "middle" }}>&copy;</span>
+                <span
+                  style={{ color: "#fff", fontSize: "15px", paddingRight: "10px",}}
+                >
+                  udukku 2020
+                </span>
+              </p>
             </div>
             {/* <div className="col-md-3 mb-md-0 mb-3">
               <p>
@@ -194,17 +211,6 @@ const Footer = () => {
               </p>
             </div> */}
           </div>
-        </div>
-        <div className="d-flex justify-content-center">
-          <p>
-          <span style={{color:'#fff',fontSize:'18px',verticalAlign:"middle"}}>&copy;</span>
-            <span
-              style={{ color: "#fff", fontSize: "15px", paddingRight: "10px", paddingLeft: '10px', borderRight: '1px solid #fff' }}
-            >
-              udukku 2020
-            </span>
-            <span style={{ color: '#fff', fontSize: '15px' }}>  Developed by <a href="https://bit.ly/3C8Mxxn" style={{ color: '#fff', textDecoration: 'underline' }} target="_blank">CFT Labs </a></span>
-          </p>
         </div>
         {/* <div className="footer-copyright  py-3 text-center">
           <p>

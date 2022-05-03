@@ -57,7 +57,9 @@ const Messages = () => {
   }, [user]);
 
   const getResponses = () => {
+    debugger
     if (user != null) {
+      setLoading(true);
       getallreponses(user.token)
         .then((res) => {
           setResponses(res.data.sendJobs);
@@ -68,6 +70,7 @@ const Messages = () => {
           })
         })
         .catch((err) => console.log(err));
+      setLoading(false);
     }
   };
 
@@ -137,7 +140,7 @@ const Messages = () => {
           <TabPane tab="Active" key="1">
             {responses !== undefined && responses.length != 0
               ? responses.map((response, index) => (
-                response.status === "active"
+                response.status === "active" && jobs.length != 0 && jobs[index] !== undefined 
                   ?
                   <div
                     key={index}
@@ -145,9 +148,9 @@ const Messages = () => {
                     style={{ borderRadius: "12px" }}
                   >
                     <div style={{ width: "15%" }}>
-                      <div className="d-flewax justify-content-center">
+                      <div className="d-flex justify-content-center">
                         <img
-                          src={jobs.length != 0 ? jobs[index].jobPostedBy.avatar : ""}
+                          src={jobs[index].jobPostedBy.avatar}
                           className="card-im-top mt-3 ml-3"
                           style={{
                             width: "50%",
@@ -158,7 +161,7 @@ const Messages = () => {
                         />
                       </div>
                       <p className="text-center">
-                        {jobs.length != 0 ? jobs[index].jobPostedBy.name : ""}
+                        {jobs.length != 0 && jobs[index] !== undefined ? jobs[index].jobPostedBy.name : ""}
                       </p>
                     </div>
                     <div className="card-body">
@@ -166,11 +169,11 @@ const Messages = () => {
                         to={`/user/message-detail/${chatrooms[index]._id}-${response.jobId}`}
                       >
                         <p className="card-title">
-                          <b>{jobs.length != 0 ? jobs[index].jobTitle : ""}</b>
+                          <b>{jobs.length != 0 && jobs[index] !== undefined ? jobs[index].jobTitle : ""}</b>
                         </p>
                       </Link>
                       <div className="d-flex">
-                        {jobs.length != 0 ? jobs[index].genres.map((g, index) => (
+                        {jobs.length != 0  && jobs[index] !== undefined ? jobs[index].genres.map((g, index) => (
                           <p
                             key={index}
                             className="tag-line text-center"
@@ -185,7 +188,7 @@ const Messages = () => {
                         ))
                           :
                           ""}
-                        {jobs.length != 0 ? jobs[index].category.map((c, index) => (
+                        {jobs.length != 0 && jobs[index] !== undefined ? jobs[index].category.map((c, index) => (
                           <p
                             key={index}
                             className="tag-line text-center"
@@ -202,10 +205,10 @@ const Messages = () => {
                           :
                           ""}
                       </div>
-                      <p>DeadLine: {jobs.length != 0 ? jobs[index].deadLine : ""}</p>
+                      <p>DeadLine: {jobs.length != 0 && jobs[index] !== undefined ? jobs[index].deadLine : ""}</p>
                       <div className="col-md-12">
                         <p className="card-text">
-                          {jobs.length != 0 ? jobs[index].description : ""}
+                          {jobs.length != 0 && jobs[index] !== undefined ? jobs[index].description : ""}
                         </p>
                       </div>
                       <span
@@ -229,7 +232,7 @@ const Messages = () => {
                   :
                   ""
               ))
-              : ""}
+              :""}
             {myResponses !== undefined && myResponses.length != 0
               ? myResponses.map((myResponse, index) => (
                 myResponse.status === "active"
@@ -361,7 +364,7 @@ const Messages = () => {
                     style={{ borderRadius: "12px" }}
                   >
                     <div style={{ width: "15%" }}>
-                      <div className="d-flewax justify-content-center">
+                      <div className="d-flex justify-content-center">
                         <img
                           src={jobs.length != 0 ? jobs[index].jobPostedBy.avatar : ""}
                           className="card-im-top mt-3 ml-3"
@@ -577,7 +580,7 @@ const Messages = () => {
                     style={{ borderRadius: "12px" }}
                   >
                     <div style={{ width: "15%" }}>
-                      <div className="d-flewax justify-content-center">
+                      <div className="d-flex justify-content-center">
                         <img
                           src={jobs.length != 0 ? jobs[index].jobPostedBy.avatar : ""}
                           className="card-im-top mt-3 ml-3"
@@ -794,7 +797,7 @@ const Messages = () => {
                     style={{ borderRadius: "12px" }}
                   >
                     <div style={{ width: "15%" }}>
-                      <div className="d-flewax justify-content-center">
+                      <div className="d-flex justify-content-center">
                         <img
                           src={jobs.length != 0 ? jobs[index].jobPostedBy.avatar : ""}
                           className="card-im-top mt-3 ml-3"

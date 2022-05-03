@@ -269,7 +269,7 @@ const DiscoverJobs = () => {
                                   />
                                 </div>
                                 <div className="col-md-8">
-                                  <p style={{ height: '40px', fontSize: '1.25rem', fontFamily: 'Poppins', fontWeight: '900', paddingTop: '20px' }}>
+                                  <p style={{ height: 'fit-content',margin:'0px', fontSize: '1.25rem', fontFamily: 'Poppins', fontWeight: '900', paddingTop: '20px' }}>
                                     {job.jobTitle.length > 50 ? `${job.jobTitle}...` : `${job.jobTitle}`}
                                   </p>
                                 </div>
@@ -283,7 +283,7 @@ const DiscoverJobs = () => {
                               }}
                             >
                               {job.category.map((c, index) =>
-                                index <= 1 ? (
+                                index < 1 ? (
                                   <>
                                     <p
                                       key={index}
@@ -303,7 +303,7 @@ const DiscoverJobs = () => {
                                 )
                               )}
                               {job.genres.map((c, index) =>
-                                index <= 1 ? (
+                                index < 1 ? (
                                   <>
                                     <p
                                       className="tag-line text-center"

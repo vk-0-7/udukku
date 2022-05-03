@@ -21,7 +21,6 @@ const ServiceProviderProfile = ({ history,match }) => {
   }, []);
 
   const loadUserData = () => {
-    if (user !== null) {
       getUserInfoById(match.params.id)
         .then((res) => {
           console.log(res.data);
@@ -30,7 +29,6 @@ const ServiceProviderProfile = ({ history,match }) => {
         .catch((err) => {
           console.log(err);
         });
-    }
   };
   function getwidth() {
     const width = document.body.clientWidth;
@@ -41,7 +39,30 @@ const ServiceProviderProfile = ({ history,match }) => {
   return (
     <>
       <Header />
-
+      <div class="modal fade" id="exampleModal10" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Send Message</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <label>Select a job</label>
+                    <select className="form-control">
+                      <option>choose a job</option>
+                    </select>
+                    <label>Message</label>
+                    <textarea className="form-control" style={{resize:'none'}} row="8" placeholder="Hi, I liked your profile and want to work with you"/>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    {/* <button type="button" class="btn btn-primary">Save changes</button> */}
+                  </div>
+                </div>
+              </div>
+            </div>
       {userData !== undefined ? (
         <>
           <div className="row profile-row m-flex">
@@ -101,7 +122,7 @@ const ServiceProviderProfile = ({ history,match }) => {
                   {userData.tag !== undefined ? userData.tag : ""}
                 </h5>
                 <h6
-                  style={{ backgroundColor: "transparent", textAlign: "end" }}
+                  style={{ backgroundColor: "#fff", textAlign: "end", padding: '5px', borderRadius: '5px' }}
                 >
                   {userData.city}, India
                 </h6>
@@ -113,7 +134,7 @@ const ServiceProviderProfile = ({ history,match }) => {
               ) : (
                 ""
               )}
-              <button className="btn-hover" style={{ float: "right", marginRight: '40px' }}>
+              <button className="btn-hover" data-toggle="modal" data-target="#exampleModal10" style={{ float: "right", marginRight: '40px' }}>
                 CONTACT
               </button>
             </div>
@@ -129,16 +150,16 @@ const ServiceProviderProfile = ({ history,match }) => {
                 />
               </div>
             </div>
-            <h1 style={{ backgroundColor: "#fff", position: 'absolute', top: '10%', left: '18%', marginBottom: "0.2rem", padding: '8px', borderRadius: '5px' }}>
+            <h1 style={{ backgroundColor: "#fff", position: 'absolute', top: '43%', left: '18%', marginBottom: "0.2rem", padding: '8px', borderRadius: '5px' }}>
               <b>{userData.name}</b>
             </h1>
-            <h5 style={{ backgroundColor: "#fff", position: 'absolute', top: '16%', left: '18%', marginBottom: "0.2rem", padding: '8px', borderRadius: '5px', color: "#ff7565" }}>{userData.tag !== undefined ? userData.tag : ""}</h5>
+            <h5 style={{ backgroundColor: "#fff", position: 'absolute', top: '49%', left: '18%', marginBottom: "0.2rem", padding: '8px', borderRadius: '5px', color: "#ff7565" }}>{userData.tag !== undefined ? userData.tag : ""}</h5>
             <h6
-              style={{ backgroundColor: "#fff", textAlign: "end", marginRight: '10px', top: '21%', left: '54%', position: 'absolute', marginBottom: "0.2rem", padding: '4px', borderRadius: '5px' }}
+              style={{ backgroundColor: "#fff", textAlign: "end", marginRight: '10px', top: '49%', left: '41%', position: 'absolute', marginBottom: "0.2rem", padding: '10px', borderRadius: '5px' }}
             >
               {userData.city}, India
             </h6>
-            <button className="btn-hover m-2" style={{ width: '96%' }}>
+            <button className="btn-hover m-2" style={{ width: '96%' }} data-toggle="modal" data-target="#exampleModal10">
               CONTACT
             </button>
             <div className="row profile-row mt-3">

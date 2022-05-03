@@ -14,7 +14,7 @@ import { LoadingOutlined } from "@ant-design/icons";
 import RegistrationNav from "../../Components/Navigation/RegistrationNav";
 import ReactAudioPlayer from "react-audio-player";
 
-const UpdateProfessionalInfo = ({ history,match }) => {
+const UpdateProfessionalInfo = ({ history, match }) => {
   const [input1, setInput1] = useState("Laptop");
   const [input2, setInput2] = useState("");
   const [service, setService] = useState("VOCALISTS");
@@ -30,7 +30,7 @@ const UpdateProfessionalInfo = ({ history,match }) => {
     "Singer Female",
   ]);
 
-  
+
   const [genere, setGenere] = useState(GenereData[0].genere);
   const [subGenere, setSubGenere] = useState(GenereData[0].subGenere[0]);
   const [role, setRole] = useState("");
@@ -40,17 +40,17 @@ const UpdateProfessionalInfo = ({ history,match }) => {
   const [check, setCheck] = useState(false);
   const [startingPrice, setStartingPrice] = useState("");
   const { user } = useSelector((state) => ({ ...state }));
-  
-  useEffect(()=>{
-    getUserInfoById(match.params.id).then((res)=>{
+
+  useEffect(() => {
+    getUserInfoById(match.params.id).then((res) => {
       console.log(res);
       setGenereList(res.data.genres);
       setGearHighLights(res.data.gearHighLights);
       setServices(res.data.services);
       setWorkSample(res.data.workSample);
       setTerms(res.data.terms);
-    }).catch(err =>{ console.log(err)});
-  },[match]);
+    }).catch(err => { console.log(err) });
+  }, [match]);
 
   const handleAdd = (input1, input2) => {
     console.log(input1, input2);
@@ -370,7 +370,7 @@ const UpdateProfessionalInfo = ({ history,match }) => {
                 </select>
               </div>
               <div className="col-md-1 col-1">
-                <i
+                {/* <i
                   className="fas fa-plus"
                   onClick={() => handleAddGenere(genere, subGenere)}
                   style={{
@@ -381,7 +381,8 @@ const UpdateProfessionalInfo = ({ history,match }) => {
                     verticalAlign: "sub",
                     background: "#0070F3",
                   }}
-                ></i>
+                ></i> */}
+                <span style={{cursor:'pointer'}} className="btn-hover" onClick={() => handleAddGenere(genere, subGenere)}>Save</span>
               </div>
             </div>
           </div>
@@ -466,7 +467,7 @@ const UpdateProfessionalInfo = ({ history,match }) => {
                 </select>
               </div>
               <div className="col-md-1 col-1">
-                <i
+                {/* <i
                   className="fas fa-plus"
                   onClick={() => handleAddService(service, subService)}
                   style={{
@@ -477,7 +478,8 @@ const UpdateProfessionalInfo = ({ history,match }) => {
                     verticalAlign: "sub",
                     background: "#0070F3",
                   }}
-                ></i>
+                ></i> */}
+                <span style={{cursor:'pointer'}} className="btn-hover" onClick={() => handleAddService(service, subService)}>Save</span>
               </div>
             </div>
           </div>
@@ -551,7 +553,7 @@ const UpdateProfessionalInfo = ({ history,match }) => {
                 />
               </div>
               <div className="col-md-1 col-1">
-                <i
+                {/* <i
                   className="fas fa-plus"
                   onClick={() => handleAdd(input1, input2)}
                   style={{
@@ -562,7 +564,8 @@ const UpdateProfessionalInfo = ({ history,match }) => {
                     verticalAlign: "sub",
                     background: "#0070F3",
                   }}
-                ></i>
+                ></i> */}
+                <span style={{cursor:'pointer'}} className="btn-hover" onClick={() => handleAdd(input1, input2)}>Save</span>
               </div>
             </div>
           </div>
@@ -651,36 +654,36 @@ const UpdateProfessionalInfo = ({ history,match }) => {
           <div className="col-md-2"></div>
           <div className="col-md-6 mt-3">
             <input type="checkbox" id="checkTerms" name="vehicle1" value="Bike"
-            onClick={() => {
-              console.log(document.getElementById('checkTerms').checked);
-              setCheck(document.getElementById('checkTerms').checked);
-            }
-            }/>
-              <label for="checkTerms" style={{ marginLeft: '5px' }}>By checking this box, you are agreeing to our terms of service.</label>
-              </div>
-          </div>
-          <div className="row mt-4">
-            <div className="col-md-2">
-              <button
-                className="btn-hover"
-                onClick={() => history.push("/user/complete-profile")}
-              >
-                Previous
-              </button>
-            </div>
-            <div className="col-md-5">
-              <button
-                onClick={handleSubmit}
-                className="btn-hover"
-                style={{ float: "right" }}
-              >
-                Continue
-              </button>
-            </div>
+              onClick={() => {
+                console.log(document.getElementById('checkTerms').checked);
+                setCheck(document.getElementById('checkTerms').checked);
+              }
+              } />
+            <label for="checkTerms" style={{ marginLeft: '5px' }}>By checking this box, you are agreeing to our terms of service.</label>
           </div>
         </div>
-      </>
-      );
+        <div className="row mt-4">
+          <div className="col-md-2">
+            <button
+              className="btn-prev"
+              onClick={() => history.push("/user/complete-profile")}
+            >
+              Previous
+            </button>
+          </div>
+          <div className="col-md-5">
+            <button
+              onClick={handleSubmit}
+              className="btn-hover"
+              style={{ float: "right" }}
+            >
+              Update profile
+            </button>
+          </div>
+        </div>
+      </div>
+    </>
+  );
 };
 
-      export default UpdateProfessionalInfo;
+export default UpdateProfessionalInfo;

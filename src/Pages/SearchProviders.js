@@ -433,9 +433,9 @@ const SearchProviders = ({ match }) => {
                                             <Link
                                                 to={`/user/service-provider/${item._id}`}
                                                 className="card-title"
-                                                style={{ color: "#0070f3", fontSize: "20px" }}
+                                                style={{ color: "#0070f3", fontSize: "18px" }}
                                             >
-                                                Top Liner | Songwriter
+                                                {item.tag}
                                             </Link>
                                             <br />
                                             <p >
@@ -507,7 +507,7 @@ const SearchProviders = ({ match }) => {
                                                         className="card-title"
                                                         style={{ color: "#0070f3", fontSize: "15px" }}
                                                     >
-                                                        Top Liner | Songwriter
+                                                        {item.tag}
                                                     </Link>
                                                     <br />
                                                     <p style={{ fontSize: '11px', marginBottom: '5px' }}>

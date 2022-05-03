@@ -137,8 +137,6 @@ const SignUp = ({ history }) => {
           <p className="text-center">
             Join India’s First Music Marketplace
           </p>
-          <div className="d-flex justify-content-center">
-            <div>
               <GoogleLogin
                 clientId="268210576018-mlvmmnn1ll18rjatc0k2r5ldgvsmkjjr.apps.googleusercontent.com"
                 buttonText=""
@@ -146,16 +144,26 @@ const SignUp = ({ history }) => {
                 onFailure={handleGoogleSignUp}
                 cookiePolicy={"single_host_origin"}
                 render={(renderProps) => (
-                  <em
-                    onClick={renderProps.onClick}
-                    style={{
-                      color: "#DB4437",
-                      fontSize: "20px",
-                      cursor: "pointer",
-                      marginRight: "10px",
-                    }}
-                    className="fab fa-google"
-                  ></em>
+                  <button
+                  onClick={renderProps.onClick}
+                  style={{
+                    backgroundColor: "#DB4437",
+                    fontSize: "20px",
+                    cursor: "pointer",
+                    marginRight: "10px",
+                    border:'none',
+                    borderRadius:'5px',
+                    paddingBottom:'5px'
+                  }}
+                  className="w-100"
+                >
+                  <span style={{color:'#fff'}}>Sign in with
+                    <em
+                    style={{verticalAlign:'baseline'}}
+                      className="fab fa-google ml-3"
+                    ></em>
+                  </span>
+                </button>
                 )}
               />
               {/* <FacebookLogin
@@ -175,8 +183,6 @@ const SignUp = ({ history }) => {
                   ></i>
                 )}
               /> */}
-            </div>
-          </div>
           <div className="or">Or</div>
           <div className="form-group">
             <label>First name</label>

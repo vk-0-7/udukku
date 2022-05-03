@@ -6,7 +6,7 @@ import Header from "../Components/Navigation/Header";
 import { getJobById, respondToJob } from "../Functions/job";
 import axios from "axios";
 
-const RespondToJob = ({ match,history }) => {
+const RespondToJob = ({ match, history }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [quotation, setQuotation] = useState("");
@@ -52,18 +52,18 @@ const RespondToJob = ({ match,history }) => {
             </h5>
             <input
               className="form-control"
-              placeholder="Enter a job title"
+              placeholder="Studio Recorded Female Vocals for your project"
               onChange={(e) => setTitle(e.target.value)}
             />
             <br />
             <h5>
-              <b>Description</b>
+              <b>Message</b>
             </h5>
             <textarea
               style={{ resize: "none" }}
               className="form-control"
               rows="6"
-              placeholder="Mention the details about your requirement"
+              placeholder="Type your message with details on the what, how, when of the project"
               onChange={(e) => setDescription(e.target.value)}
             />
             <br />
@@ -71,7 +71,7 @@ const RespondToJob = ({ match,history }) => {
               <b>Quotation</b>
             </h5>
             <div className="row">
-              <div className="col-md-4 col-4">
+              <div className="col-md-3">
                 <span style={{ color: '#aaa', paddingBottom: '10px' }}>Your Quoted Price</span>
                 <input
                   placeholder="5000"
@@ -79,29 +79,51 @@ const RespondToJob = ({ match,history }) => {
                   onChange={(e) => setQuotation(e.target.value)}
                 />
               </div>
-              <div className="col-md-1 col-1 ptm-5" >
+              <div className="col-md-1 col-1 mHide ptm-5" >
                 +
               </div>
-              <div className="col-md-3 col-5 mb-3">
-                <span style={{ color: '#aaa' }}>Udukku Service Fee</span>
+              <div className="col-md-1 dHIde" style={{textAlign:'center'}}>
+                +
+              </div>
+              <div className="col-md-4 mb-3">
+                <span style={{ color: '#aaa' }}>Udukku Service Fee(0%)</span>
                 <input className="form-control mt-2" disabled value="0" />
               </div>
-              <div className="col-md-1 col-1 ptm-5">
-                <span style={{display:'flex'}}>
+              {/* <div className="col-md-1 mHide">
+                <span style={{ display: 'flex' }}>
                   =
                   <i
-                    style={{ marginLeft: "11px",marginTop:'7px' }}
+                    style={{ marginLeft: "11px", marginTop: '7px' }}
                     className="fas fa-rupee-sign"
                   ></i>
                 </span>
-              </div>
+              </div> */}
               <div className="col-md-3">
                 <span style={{ color: '#aaa' }}>Your Quoted Price</span>
-                <input
-                  className="form-control mt-2"
-                  placeholder="5100"
-                  value={quotation !== "" ? parseInt(quotation) : ""}
-                />
+                {/* <p>
+                  <input
+                    className="form-control mt-2"
+                    placeholder="5100"
+                    value={quotation !== "" ? parseInt(quotation) : ""}
+                  /><i
+                    class="fa fa-rupee-sign" style={{
+                      marginLeft: '-98%', marginTop: '20px', cursor: 'pointer'
+                    }}>
+                  </i>
+                </p> */}
+                <p>
+                  <input
+                    id="pic"
+                    className="custom-input plc mt-2"
+                    style={{ padding: '6px 24px' }}
+                    placeholder="5100"
+                    value={quotation !== "" ? parseInt(quotation) : ""} />
+                  <i
+                    class="fa fa-rupee-sign" style={{
+                      marginLeft: '-97%', cursor: 'pointer'
+                    }}>
+                  </i>
+                </p>
               </div>
             </div>
             <button

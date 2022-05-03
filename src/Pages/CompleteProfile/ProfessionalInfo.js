@@ -119,7 +119,7 @@ const ProfessionalInfo = ({ history }) => {
       role === "" ||
       genereList.length === 0 ||
       workSample === 0 ||
-      terms === "" 
+      terms === ""
       || startingPrice === "" ||
       check === false
     ) {
@@ -142,9 +142,9 @@ const ProfessionalInfo = ({ history }) => {
               token: user.token,
               isMusician: user.isMusician,
               isProfileCompleted: true,
-              jobsCompleted:user.jobsCompleted,
-              totalEarn:user.totalEarn,
-              repeatedBuyer:user.repeatedBuyer
+              jobsCompleted: user.jobsCompleted,
+              totalEarn: user.totalEarn,
+              repeatedBuyer: user.repeatedBuyer
             },
           });
           localStorage.setItem(
@@ -360,7 +360,7 @@ const ProfessionalInfo = ({ history }) => {
                 </select>
               </div>
               <div className="col-md-1 col-1">
-                <i
+                {/* <i
                   className="fa fa-check"
                   onClick={() => handleAddGenere(genere, subGenere)}
                   style={{
@@ -371,7 +371,8 @@ const ProfessionalInfo = ({ history }) => {
                     verticalAlign: "sub",
                     background: "#78bb07",
                   }}
-                ></i>
+                ></i> */}
+                <span onClick={() => handleAddGenere(genere, subGenere)} className="btn-hover">Save</span>
               </div>
             </div>
           </div>
@@ -456,7 +457,7 @@ const ProfessionalInfo = ({ history }) => {
                 </select>
               </div>
               <div className="col-md-1 col-1">
-                <i
+                {/* <i
                   className="fa fa-check"
                   onClick={() => handleAddService(service, subService)}
                   style={{
@@ -467,7 +468,8 @@ const ProfessionalInfo = ({ history }) => {
                     verticalAlign: "sub",
                     background: "#78bb07",
                   }}
-                ></i>
+                ></i> */}
+                <span onClick={() => handleAddGenere(genere, subGenere)} className="btn-hover">Save</span>
               </div>
             </div>
           </div>
@@ -541,7 +543,7 @@ const ProfessionalInfo = ({ history }) => {
                 />
               </div>
               <div className="col-md-1 col-1">
-                <i
+                {/* <i
                   className="fa fa-check"
                   onClick={() => handleAdd(input1, input2)}
                   style={{
@@ -552,7 +554,8 @@ const ProfessionalInfo = ({ history }) => {
                     verticalAlign: "sub",
                     background: "#78bb07",
                   }}
-                ></i>
+                ></i> */}
+                <span onClick={() => handleAdd(input1, input2)} className="btn-hover">Save</span>
               </div>
             </div>
           </div>
@@ -615,11 +618,18 @@ const ProfessionalInfo = ({ history }) => {
             </p>
           </div>
           <div className="col-md-5">
-            <input
-              className="form-control"
-              onChange={(e) => setStartingPrice(e.target.value)}
-              placeholder="100,1000,10000"
-            />
+            <p>
+              <input 
+              id="pic"
+                className="custom-input plc"
+                style={{padding:'6px 24px'}}
+                placeholder="10000,1000000" />
+              <i
+                class="fa fa-rupee-sign" style={{
+                  marginLeft: '-97%', cursor: 'pointer'
+                }}>
+              </i>
+            </p>
           </div>
         </div>
         <div className="row mt-4">
@@ -641,36 +651,36 @@ const ProfessionalInfo = ({ history }) => {
           <div className="col-md-2"></div>
           <div className="col-md-6 mt-3">
             <input type="checkbox" id="checkTerms" name="vehicle1" value="Bike"
-            onClick={() => {
-              console.log(document.getElementById('checkTerms').checked);
-              setCheck(document.getElementById('checkTerms').checked);
-            }
-            }/>
-              <label for="checkTerms" style={{ marginLeft: '5px' }}>By checking this box, you are agreeing to our terms of service.</label>
-              </div>
-          </div>
-          <div className="row mt-4">
-            <div className="col-md-2">
-              <button
-                className="btn-hover"
-                onClick={() => history.push("/user/complete-profile")}
-              >
-                Previous
-              </button>
-            </div>
-            <div className="col-md-5">
-              <button
-                onClick={handleSubmit}
-                className="btn-hover"
-                style={{ float: "right" }}
-              >
-                Continue
-              </button>
-            </div>
+              onClick={() => {
+                console.log(document.getElementById('checkTerms').checked);
+                setCheck(document.getElementById('checkTerms').checked);
+              }
+              } />
+            <label for="checkTerms" style={{ marginLeft: '5px' }}>By checking this box, you are agreeing to our terms of service.</label>
           </div>
         </div>
-      </>
-      );
+        <div className="row mt-4">
+          <div className="col-md-2">
+            <button
+              className="btn-prev"
+              onClick={() => history.push("/user/complete-profile")}
+            >
+              Previous
+            </button>
+          </div>
+          <div className="col-md-5">
+            <button
+              onClick={handleSubmit}
+              className="btn-hover"
+              style={{ float: "right" }}
+            >
+              Create Profile
+            </button>
+          </div>
+        </div>
+      </div>
+    </>
+  );
 };
 
-      export default ProfessionalInfo;
+export default ProfessionalInfo;

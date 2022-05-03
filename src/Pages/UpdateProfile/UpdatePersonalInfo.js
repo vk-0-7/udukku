@@ -5,10 +5,10 @@ import Header from "../../Components/Navigation/Header";
 import { getCity, getUserInfoById, uploadImage } from "../../Functions/user";
 import { toast } from "react-toastify";
 import { getStates } from "../../Functions/user";
-import {LoadingOutlined} from '@ant-design/icons';
+import { LoadingOutlined } from '@ant-design/icons';
 import RegistrationNav from "../../Components/Navigation/RegistrationNav";
 
-const UpdatePersonalInfo = ({ history,match }) => {
+const UpdatePersonalInfo = ({ history, match }) => {
   const [name, setName] = useState("");
   const [avatar, setAvatar] = useState("");
   const [tag, setTag] = useState("");
@@ -23,8 +23,8 @@ const UpdatePersonalInfo = ({ history,match }) => {
   const dispatch = useDispatch();
   useEffect(() => {
     loadAllStates();
-    if(localStorage.getItem("personalInfo") != null){
-      const personal =JSON.parse(localStorage.getItem("personalInfo"));
+    if (localStorage.getItem("personalInfo") != null && localStorage.getItem("personalInfo") != 'null') {
+      const personal = JSON.parse(localStorage.getItem("personalInfo"));
       setName(personal.name);
       setAvatar(personal.avatar);
       setTag(personal.tag);
@@ -32,17 +32,17 @@ const UpdatePersonalInfo = ({ history,match }) => {
       setCity(personal.city);
       setDesc(personal.description);
     }
-    getUserInfoById(match.params.id).then((res)=>{
-        console.log(res);
-        setName(res.data.name);
-        setAvatar(res.data.avatar);
-        setTag(res.data.tag);
-        setState(res.data.state);
-        handleStateChange(res.data.state);
-        setCity(res.data.city);
-        setDesc(res.data.description);
-        countChar(res.data.description);
-    }).catch((err)=>{console.log(err)});
+    getUserInfoById(match.params.id).then((res) => {
+      console.log(res);
+      setName(res.data.name);
+      setAvatar(res.data.avatar);
+      setTag(res.data.tag);
+      setState(res.data.state);
+      handleStateChange(res.data.state);
+      setCity(res.data.city);
+      setDesc(res.data.description);
+      countChar(res.data.description);
+    }).catch((err) => { console.log(err) });
   }, [user]);
   const handleSubmit = () => {
     if (
@@ -82,7 +82,7 @@ const UpdatePersonalInfo = ({ history,match }) => {
       history.push(`/user/update-profile/professional-info/${match.params.id}`);
     }
   };
-  
+
   const loadAllStates = () => {
     getStates("india")
       .then((res) => {
@@ -234,7 +234,7 @@ const UpdatePersonalInfo = ({ history,match }) => {
           </div>
           <div className="col-md-6">
             <input
-            value= {name}
+              value={name}
               className="form-control"
               placeholder="Full Name"
               onChange={(e) => setName(e.target.value)}
@@ -249,20 +249,27 @@ const UpdatePersonalInfo = ({ history,match }) => {
           </div>
           <div className="col-md-6">
             {loading ?
-            <LoadingOutlined  style={{fontSize:'22px', textAlign:'center'}}/>
-            :
-            avatar != "" ? (
-              <img src={avatar} alt="Profile" />
-            ) : (
-              <label className="upload">
-                <input
-                  type="file"
-                  style={{ display: "none" }}
-                  accept="image/*"
-                  onChange={changeAvatar}
-                />
-              </label>
-            )}
+              <LoadingOutlined style={{ fontSize: '22px', textAlign: 'center' }} />
+              :
+              avatar != "" ? (
+                <div class="profile-pic">
+                  <label class="-label" for="file">
+                    <span class="glyphicon glyphicon-camera"></span>
+                    <span>Change Image</span>
+                  </label>
+                  <input id="file" type="file" onChange={changeAvatar} />
+                  <img src={avatar} id="output" width="200" />
+                </div>
+              ) : (
+                <label className="upload">
+                  <input
+                    type="file"
+                    style={{ display: "none" }}
+                    accept="image/*"
+                    onChange={changeAvatar}
+                  />
+                </label>
+              )}
           </div>
         </div>
         <div className="row mt-4">
@@ -273,7 +280,7 @@ const UpdatePersonalInfo = ({ history,match }) => {
           </div>
           <div className="col-md-6">
             <input
-            value={tag}
+              value={tag}
               className="form-control"
               placeholder="Mention the services you offer - Singer | Music Producer | Guitar Player"
               onChange={(e) => setTag(e.target.value)}
@@ -294,8 +301,8 @@ const UpdatePersonalInfo = ({ history,match }) => {
               <option value="">State</option>
               {states.length != 0
                 ? states.map((s, i) => (
-                    <option key={i} selected={s.name === state}>{s.name}</option>
-                  ))
+                  <option key={i} selected={s.name === state}>{s.name}</option>
+                ))
                 : ""}
             </select>
           </div>
@@ -322,7 +329,7 @@ const UpdatePersonalInfo = ({ history,match }) => {
           </div>
           <div className="col-md-6">
             <textarea
-            value={description}
+              value={description}
               maxlength="499"
               className="form-control"
               style={{ resize: "none" }}

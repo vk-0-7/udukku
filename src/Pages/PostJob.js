@@ -237,7 +237,7 @@ const PostJob = ({ history }) => {
                   </select>
                 </div>
                 <div className="col-md-1 col-1">
-                  <i
+                  {/* <i
                     className="fa fa-check"
                     onClick={() => handleAddGenere(genere, subGenere)}
                     style={{
@@ -248,7 +248,8 @@ const PostJob = ({ history }) => {
                       verticalAlign: "sub",
                       background: "#78bb07",
                     }}
-                  ></i>
+                  ></i> */}
+                <span onClick={() => handleAddGenere(genere, subGenere)} className="btn-hover">Save</span>
                 </div>
               </div>
             </div>
@@ -334,7 +335,7 @@ const PostJob = ({ history }) => {
                   </select>
                 </div>
                 <div className="col-md-1 col-1">
-                  <i
+                  {/* <i
                     className="fa fa-check"
                     onClick={() => handleAddService(service, subService)}
                     style={{
@@ -345,7 +346,8 @@ const PostJob = ({ history }) => {
                       verticalAlign: "sub",
                       background: "#78bb07",
                     }}
-                  ></i>
+                  ></i> */}
+                <span onClick={() => handleAddService(service, subService)} className="btn-hover">Save</span>
                 </div>
               </div>
             </div>

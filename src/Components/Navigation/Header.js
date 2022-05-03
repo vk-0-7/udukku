@@ -272,7 +272,9 @@ const Header = () => {
                         My Profile
                       </p>
                     ) : (
-                      ""
+                      <Link to={`/user/edit-your-profile/${user.userId}`} className="dropdown-item">
+                        Edit Profile
+                      </Link>
                     )}
                     <p
                       style={{ cursor: "pointer" }}

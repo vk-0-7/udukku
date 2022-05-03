@@ -629,13 +629,15 @@ const Login = ({ history }) => {
                 /> */}
             <div className="or">Or</div>
             <div className="form-group">
+              <p>
               <label>Email address</label>
               <input
                 type="email"
                 className="form-control"
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="User ID"
+                placeholder="Enter email"
               />
+              </p>
             </div>
             {/* <div className="form-group">
               <label>Password</label>
@@ -654,7 +656,7 @@ const Login = ({ history }) => {
               ></i>
             </div> */}
             <p>
-              <label for="password">Password:</label>
+              <label for="password">Password</label>
               <br />
               <input type="password"
                 id="accpwd"

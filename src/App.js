@@ -15,7 +15,7 @@ import Favourites from './Pages/Favourites';
 import Explore from './Pages/Explore';
 import Blog from './Pages/Blog';
 import SoundBank from './Pages/SoundBank';
-import Jobs from './Pages/Jobs';
+// import Jobs from './Pages/Jobs';
 import SingleJob from './Pages/SingleJob';
 import NewPaymentRequest from './Pages/NewPaymentRequest';
 import SearchedData from './Pages/SearchedData';
@@ -48,6 +48,10 @@ import UpdateJob from './UpdateJob';
 import UpdatePersonalInfo from './Pages/UpdateProfile/UpdatePersonalInfo';
 import UpdateProfessionalInfo from './Pages/UpdateProfile/UpdateProfessionalInfo';
 import ServiceProviderProfile from './Pages/ServiceProviderProfile';
+import HomePage from './New/Pages/Homepage';
+import Jobs from './New/Pages/Jobs';
+import Talents from './New/Pages/Talents';
+import AboutUs from './New/Pages/AboutUs';
 
 const App = () => {
 	const { user } = useSelector((state) => ({ ...state }));
@@ -98,6 +102,13 @@ const App = () => {
 		<div className='App'>
 			<ToastContainer />
 			<Switch>
+				{/* *********************** NEW *************************** */}
+				<Route exact path={'/n'} component={HomePage} />
+				<Route exact path='/n/jobs' component={Jobs} />
+				<Route exact path='/n/talents' component={Talents} />
+				<Route exact path='/n/about-us' component={AboutUs} />
+				{/* *********************** End *************************** */}
+
 				<Route exact path='/' component={Home} />
 				<Route exact path='/explore' component={Explore} />
 				{/* <Route exact path="/blog" component={Blog} /> */}

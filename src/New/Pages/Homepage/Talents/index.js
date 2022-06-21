@@ -3,24 +3,40 @@ import './talents.css';
 
 const Talents = () => {
 	return (
-		<Box bg='#fff' py='50px' px='5.7vw'>
+		<Box
+			bg='#fff'
+			py='50px'
+			px={{ base: '7vw', '2xl': '13.54vw' }}
+			h='66.41vh'
+			display={'flex'}
+			flexDir='column'
+			justifyContent={'center'}
+			gap={'2vh'}
+		>
 			<Box
 				display={'flex'}
 				justifyContent='space-between'
 				alignItems={'flex-start'}
 			>
 				<Box w='50%'>
-					<Text fontSize={'34px'} fontWeight={700}>
+					<Text fontSize={'34px'} fontFamily={'Gilroy-Bold'}>
 						Talents
 					</Text>
-					<Text fontSize={'18px'}>
+					<Text fontSize={'18px'} fontFamily={'Gilroy-Medium'}>
 						A whole world of musical talent at your service - browse
 						through our list of musicians to find the one perfect
 						for your job
 					</Text>
 				</Box>
 				<Box>
-					<Button position='relative'>Sell all categories</Button>
+					<Button
+						position='relative'
+						w='241px'
+						h='72px'
+						fontFamily={'Gilroy-SemiBold'}
+					>
+						Sell all categories
+					</Button>
 				</Box>
 			</Box>
 			{/* cards section */}
@@ -28,13 +44,13 @@ const Talents = () => {
 				display={'flex'}
 				gap='20px'
 				mt='30px'
-				className='talents'
+				className='talents hide-it'
 				flexWrap={'nowrap'}
 				overflowX='scroll'
 			>
 				<Box
-					w='413px'
-					h='320px'
+					w='338px'
+					h='280px'
 					bgSize='cover'
 					borderRadius='28px'
 					flexShrink={0}
@@ -54,16 +70,16 @@ const Talents = () => {
 							bottom='30px'
 							left={'30px'}
 							color='#fff'
-							fontSize={'24px'}
-							fontWeight={700}
+							fontSize={'28px'}
+							fontFamily={'Gilroy-Bold'}
 						>
 							Vocalist
 						</Text>
 					</Box>
 				</Box>
 				<Box
-					w='413px'
-					h='320px'
+					w='338px'
+					h='280px'
 					borderRadius='28px'
 					flexShrink={0}
 					className='talents-card-2'
@@ -82,16 +98,16 @@ const Talents = () => {
 							bottom='30px'
 							left={'30px'}
 							color='#fff'
-							fontSize={'24px'}
-							fontWeight={700}
+							fontSize={'28px'}
+							fontFamily={'Gilroy-Bold'}
 						>
 							Music Producers
 						</Text>
 					</Box>
 				</Box>
 				<Box
-					w='413px'
-					h='320px'
+					w='338px'
+					h='280px'
 					borderRadius='28px'
 					flexShrink={0}
 					className='talents-card-3'
@@ -110,16 +126,16 @@ const Talents = () => {
 							bottom='30px'
 							left={'30px'}
 							color='#fff'
-							fontSize={'24px'}
-							fontWeight={700}
+							fontSize={'28px'}
+							fontFamily={'Gilroy-Bold'}
 						>
 							DJ
 						</Text>
 					</Box>
 				</Box>
 				<Box
-					w='413px'
-					h='320px'
+					w='338px'
+					h='280px'
 					borderRadius='28px'
 					flexShrink={0}
 					className='talents-card-4'
@@ -138,8 +154,8 @@ const Talents = () => {
 							bottom='30px'
 							left={'30px'}
 							color='#fff'
-							fontSize={'24px'}
-							fontWeight={700}
+							fontSize={'28px'}
+							fontFamily={'Gilroy-Bold'}
 						>
 							Song Writers & Composers
 						</Text>

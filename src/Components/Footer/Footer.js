@@ -26,6 +26,7 @@ const Footer = () => {
 							</h2>
 							<p
 								className='text-light'
+								fontFamily='Gilroy-Medium'
 								style={{ textAlign: 'left' }}
 							>
 								A one-of-its-kind destination for musicians to

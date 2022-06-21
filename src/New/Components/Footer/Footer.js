@@ -33,13 +33,17 @@ const Footer = () => {
 				gap={{ base: '20px', lg: '0' }}
 				py='30px '
 				color='#fff'
-				px='5.7vw'
+				px={{ base: '7vw', '2xl': '13.54vw' }}
 			>
 				<Box display={'flex'} flexDir='column'>
 					<Box>
 						<Image src={logo} h='35px' />
 					</Box>
-					<Text my='10px'>
+					<Text
+						my='15px'
+						fontFamily={'Gilroy-Medium'}
+						fontSize='16px'
+					>
 						A one-of-its-kind destination for musicians to harness
 						their love of music and connect with each other.
 					</Text>
@@ -51,7 +55,7 @@ const Footer = () => {
 					>
 						<Icon as={HiLocationMarker} />
 						<Box position='relative' bottom='5px'>
-							<Text>
+							<Text fontFamily={'Gilroy-Medium'} fontSize='16px'>
 								M-23 Income Tax Colony, Tonk Road, Durgapura,
 								Jaipur - 302018
 							</Text>
@@ -64,51 +68,79 @@ const Footer = () => {
 						mt='10px'
 					>
 						<Icon as={MdEmail} />
-						<Text>info@udukku.com</Text>
+						<Text fontFamily={'Gilroy-Medium'} fontSize='16px'>
+							info@udukku.com
+						</Text>
 					</Box>
 					<Box flexGrow={1}></Box>
-					<Text>©udukku 2022</Text>
+					<Text fontFamily={'Gilroy-Medium'} fontSize='16px'>
+						©udukku 2022
+					</Text>
 				</Box>
 				<Box display={'flex'} justifyContent='space-around'>
 					<Box>
-						<Text fontSize='24px' fontWeight={600}>
+						<Text fontSize='28px' fontFamily={'Gilroy-Bold'}>
 							About
 						</Text>
 						<Box
 							display={'flex'}
 							flexDir='column'
-							gap='5px'
 							mt='8px'
+							lineHeight={'40px'}
 						>
-							<Text>Vocalists</Text>
-							<Text>Music Producer & Engineers</Text>
-							<Text>Indian Instruments</Text>
-							<Text>International Instruments</Text>
-							<Text>Songwriters & Composers</Text>
-							<Text>DJs</Text>
+							<Text fontFamily={'Gilroy-Medium'} fontSize='16px'>
+								Vocalists
+							</Text>
+							<Text fontFamily={'Gilroy-Medium'} fontSize='16px'>
+								Music Producer & Engineers
+							</Text>
+							<Text fontFamily={'Gilroy-Medium'} fontSize='16px'>
+								Indian Instruments
+							</Text>
+							<Text fontFamily={'Gilroy-Medium'} fontSize='16px'>
+								International Instruments
+							</Text>
+							<Text fontFamily={'Gilroy-Medium'} fontSize='16px'>
+								Songwriters & Composers
+							</Text>
+							<Text fontFamily={'Gilroy-Medium'} fontSize='16px'>
+								DJs
+							</Text>
 						</Box>
 					</Box>
 					<Box>
-						<Text fontSize='24px' fontWeight={600}>
+						<Text fontSize='28px' fontFamily={'Gilroy-Bold'}>
 							Support
 						</Text>
 						<Box
 							display={'flex'}
 							flexDir='column'
-							gap='5px'
+							lineHeight={'40px'}
 							mt='8px'
 						>
-							<Text>FAQs</Text>
-							<Text>Privacy Policy</Text>
-							<Text>About</Text>
-							<Text>Cancellation & Refund Policy</Text>
-							<Text>Terms & Conditions</Text>
-							<Text>Contact Us</Text>
+							<Text fontFamily={'Gilroy-Medium'} fontSize='16px'>
+								FAQs
+							</Text>
+							<Text fontFamily={'Gilroy-Medium'} fontSize='16px'>
+								Privacy Policy
+							</Text>
+							<Text fontFamily={'Gilroy-Medium'} fontSize='16px'>
+								About
+							</Text>
+							<Text fontFamily={'Gilroy-Medium'} fontSize='16px'>
+								Cancellation & Refund Policy
+							</Text>
+							<Text fontFamily={'Gilroy-Medium'} fontSize='16px'>
+								Terms & Conditions
+							</Text>
+							<Text fontFamily={'Gilroy-Medium'} fontSize='16px'>
+								Contact Us
+							</Text>
 						</Box>
 					</Box>
 				</Box>
 				<Box>
-					<Text fontWeight={700} fontSize='28px' mb='10px'>
+					<Text fontSize='28px' fontFamily={'Gilroy-Bold'} mb='10px'>
 						Subscribe to hear news
 					</Text>
 					<InputGroup w={{ base: '90%', lg: '100%' }} size={'lg'}>

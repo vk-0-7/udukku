@@ -5,16 +5,29 @@ import card from '../../../../Assets/Images/icos/card-tick.png';
 
 const LookingForAMusician = () => {
 	return (
-		<Box bg='rgb(253,247,243)' pt='50px' pb='50px'>
-			<Text fontSize={'34px'} fontWeight={700} textAlign='center'>
+		<Box
+			bg='rgb(253,247,243)'
+			pt='50px'
+			pb='50px'
+			h='616px'
+			display={'flex'}
+			flexDir='column'
+			alignItems={'center'}
+			justifyContent='center'
+		>
+			<Text
+				fontSize={'2.29vw'}
+				textAlign='center'
+				fontFamily={'Gilroy-Bold'}
+			>
 				Looking For A Musician?
 			</Text>
 			<Box
 				display={'grid'}
 				gridTemplateColumns='repeat(3,1fr)'
 				justifyItems={'center'}
-				px='50px'
-				mt='30px'
+				px={{ base: '7vw', '2xl': '13.54vw' }}
+				mt='50px'
 			>
 				<Box
 					display={'flex'}
@@ -24,20 +37,24 @@ const LookingForAMusician = () => {
 					gap='10px'
 				>
 					<Box
-						w='70px'
-						h='70px'
+						w='120px'
+						h='120px'
 						border='3px solid #F6540E'
 						borderRadius={'full'}
 						display='flex'
 						justifyContent={'center'}
 						alignItems='center'
 					>
-						<Image src={clipBoard} h='40px' />
+						<Image src={clipBoard} h='48px' />
 					</Box>
-					<Text fontSize={'24px'} fontWeight={600}>
+					<Text fontSize={'28px'} fontFamily={'Gilroy-Bold'}>
 						Post a Job
 					</Text>
-					<Text textAlign={'center'}>
+					<Text
+						textAlign={'center'}
+						fontFamily={'Gilroy-Medium'}
+						fontSize='16px'
+					>
 						List your job by entering a title, detailed description,
 						and some other information about the work you need
 						completed
@@ -51,20 +68,24 @@ const LookingForAMusician = () => {
 					gap='10px'
 				>
 					<Box
-						w='70px'
-						h='70px'
+						w='120px'
+						h='120px'
 						border='3px solid #F6540E'
 						borderRadius={'full'}
 						display='flex'
 						justifyContent={'center'}
 						alignItems='center'
 					>
-						<Image src={message} h='40px' />
+						<Image src={message} h='48px' />
 					</Box>
-					<Text fontSize={'24px'} fontWeight={600}>
+					<Text fontSize={'28px'} fontFamily={'Gilroy-Bold'}>
 						Chat & Choose
 					</Text>
-					<Text textAlign={'center'}>
+					<Text
+						textAlign={'center'}
+						fontFamily={'Gilroy-Medium'}
+						fontSize='16px'
+					>
 						Browse through a listing of providers, chat with him,
 						and choose the one you would like to work with.
 					</Text>
@@ -77,20 +98,24 @@ const LookingForAMusician = () => {
 					gap='10px'
 				>
 					<Box
-						w='70px'
-						h='70px'
+						w='120px'
+						h='120px'
 						border='3px solid #F6540E'
 						borderRadius={'full'}
 						display='flex'
 						justifyContent={'center'}
 						alignItems='center'
 					>
-						<Image src={card} h='40px' />
+						<Image src={card} h='48px' />
 					</Box>
-					<Text fontSize={'24px'} fontWeight={600}>
+					<Text fontSize={'28px'} fontFamily={'Gilroy-Bold'}>
 						Pay Securely
 					</Text>
-					<Text textAlign={'center'}>
+					<Text
+						textAlign={'center'}
+						fontFamily={'Gilroy-Medium'}
+						fontSize='16px'
+					>
 						Pay securely with Udukku and release funds to the
 						musician only when the job is done and you are 100%
 						satisfied with the result

@@ -38,8 +38,8 @@ const NavBar = () => {
 				top='0'
 				h='fit-content'
 				w='100vw'
-				px='5.72vw'
-				pt={path.length > 2 ? '20px' : positon > 10 ? '20px' : '30px'}
+				px={{ base: '7vw', '2xl': '13.54vw' }}
+				pt={path.length > 2 ? '20px' : positon > 10 ? '20px' : '20px'}
 				pb={path.length > 2 ? '20px' : positon > 10 ? '20px' : '0px'}
 				display={'flex'}
 				alignItems='center'
@@ -69,14 +69,20 @@ const NavBar = () => {
 					gap='30px'
 					alignItems={'center'}
 				>
-					<Text>Explore</Text>
-					<Text>Jobs</Text>
+					<Text fontFamily={'Gilroy-SemiBold'} fontSize='16px'>
+						Explore
+					</Text>
+					<Text fontFamily={'Gilroy-SemiBold'} fontSize='16px'>
+						Jobs
+					</Text>
 					<Box h='20px' w='1px' bg='gray'></Box>
 					<Text
+						fontFamily={'Gilroy-SemiBold'}
 						cursor={'pointer'}
 						onClick={() => {
 							setSignInState(true);
 						}}
+						fontSize='16px'
 					>
 						Sign in
 					</Text>
@@ -86,10 +92,14 @@ const NavBar = () => {
 						borderRadius={'20px'}
 						px='25px'
 						py='25px'
-						_hover={{ background: 'transparent' }}
+						_hover={{ background: 'rgba(215,85,28)' }}
 						onClick={() => {
 							setSignUpState(true);
 						}}
+						fontFamily={'Gilroy-SemiBold'}
+						fontSize='16px'
+						w='261px'
+						h='72px'
 					>
 						Become a memeber
 					</Button>

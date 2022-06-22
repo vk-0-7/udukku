@@ -11,6 +11,73 @@
   src: url("./Fonts/Articulat/OTF/ArticulatCF-Regular.otf");
 } */
 
+@font-face {
+	font-family: 'Gilroy-Black';
+	src: url('./Fonts/Gilroy/Gilroy-Black.ttf') format('truetype');
+}
+@font-face {
+	font-family: 'Gilroy-Bold';
+	src: url('./Fonts/Gilroy/Gilroy-Bold.ttf') format('truetype');
+}
+@font-face {
+	font-family: 'Gilroy-ExtraBold';
+	src: url('./Fonts/Gilroy/Gilroy-ExtraBold.ttf') format('truetype');
+}
+@font-face {
+	font-family: 'Gilroy-Heavy';
+	src: url('./Fonts/Gilroy/Gilroy-Heavy.ttf') format('truetype');
+}
+@font-face {
+	font-family: 'Gilroy-Light';
+	src: url('./Fonts/Gilroy/Gilroy-Light.ttf') format('truetype');
+}
+@font-face {
+	font-family: 'Gilroy-Medium';
+	src: url('./Fonts/Gilroy/Gilroy-Medium.ttf') format('truetype');
+}
+@font-face {
+	font-family: 'Gilroy-Regular';
+	src: url('./Fonts/Gilroy/Gilroy-Regular.ttf') format('truetype');
+}
+@font-face {
+	font-family: 'Gilroy-SemiBold';
+	src: url('./Fonts/Gilroy/Gilroy-SemiBold.ttf') format('truetype');
+}
+@font-face {
+	font-family: 'Gilroy-Thin';
+	src: url('./Fonts/Gilroy/Gilroy-Thin.ttf') format('truetype');
+}
+@font-face {
+	font-family: 'Gilroy-UltraLight';
+	src: url('./Fonts/Gilroy/Gilroy-UltraLight.ttf') format('truetype');
+}
+
+/* hide scroll bar */
+
+.hide-it::-webkit-scrollbar {
+	display: none;
+}
+.hide-it {
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+}
+
+/* --------------- */
+
+/* shift icon on hover */
+.for-svg {
+	position: relative !important;
+	transition: transform 0.5s ease !important;
+	transform: translateX(0px);
+}
+.move-to-right:hover {
+	background: rgba(177, 70, 20) !important;
+}
+.move-to-right:hover svg {
+	transform: translateX(10px);
+}
+/* ------------------- */
+
 .prof-pic {
 	width: 50%;
 	height: 90px;

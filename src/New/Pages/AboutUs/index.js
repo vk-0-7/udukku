@@ -3,16 +3,30 @@ import NavBar from '../../Components/NavBar/NavBar';
 import Footer from '../../Components/Footer/Footer';
 import OurStory from './ourStory/OurStory';
 import OurPlatform from './ourPlatform/OurPlatform';
+import WhoWeWorkWith from './whoWeWorkWith/WhoWeWorkWith';
+import OurCommitment from './ourCommitment/OurCommitment';
+import OurValues from './ourValues/OurValues';
+import CreateAFreeAccount from './createAFreeAccount/CreateAFreeAccount';
 
 const AboutUs = () => {
 	return (
 		<Box pt='80px'>
 			<NavBar />
-			<Box mt='40px' mb='50px'>
-				<Text fontSize={'40px'} textAlign='center' fontWeight={900}>
+			<Box mt='100px' mb='50px'>
+				<Text
+					fontSize={'72px'}
+					textAlign='center'
+					fontFamily={'Gilroy-Bold'}
+				>
 					About Us
 				</Text>
-				<Text textAlign={'center'} w='50vw' mx='auto' fontSize={'18px'}>
+				<Text
+					textAlign={'center'}
+					w='50vw'
+					mx='auto'
+					fontSize={'20px'}
+					fontFamily='Gilroy-Medium'
+				>
 					Udukku is an online musician marketplace that provides them
 					a platform to showcase their talents and find work online.
 					We give musicians a chance to offer their services, find
@@ -23,9 +37,13 @@ const AboutUs = () => {
 				{/* our platform provides */}
 				<OurPlatform />
 				{/* Who we work with */}
+				<WhoWeWorkWith />
 				{/* Our Commitment */}
+				<OurCommitment />
 				{/* Our Values */}
+				<OurValues />
 				{/* create a free account */}
+				<CreateAFreeAccount />
 			</Box>
 			<Footer />
 		</Box>

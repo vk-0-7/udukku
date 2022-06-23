@@ -20,6 +20,7 @@ import clipboardTick from '../../../Assets/Images/icos/clipboard-tick.png';
 import coin from '../../../Assets/Images/icos/coin.png';
 
 import NavBar from '../../Components/NavBar/NavBar';
+import Footer from '../../Components/Footer/Footer';
 import Sidebar from './sidebar/Sidebar';
 import { GrClose } from 'react-icons/gr';
 
@@ -45,7 +46,7 @@ const Jobs = () => {
 						<Box bg='#f0f0f0' py='20px' position='relative'>
 							<Text
 								fontSize={'32px'}
-								fontWeight='900'
+								fontFamily='Gilroy-Bold'
 								textAlign={'center'}
 							>
 								How it works
@@ -66,7 +67,7 @@ const Jobs = () => {
 								mt='20px'
 								textAlign={'center'}
 								fontSize='28px'
-								fontWeight={600}
+								fontFamily='Gilroy-Bold'
 							>
 								Looking for a musician?
 							</Text>
@@ -94,10 +95,17 @@ const Jobs = () => {
 									>
 										<Image src={clipBoard} h='40px' />
 									</Box>
-									<Text fontSize={'24px'} fontWeight={600}>
+									<Text
+										fontSize={'28px'}
+										fontFamily='Gilroy-Bold'
+									>
 										Post a Job
 									</Text>
-									<Text textAlign={'center'}>
+									<Text
+										textAlign={'center'}
+										fontSize='16px'
+										fontFamily={'Gilroy-Medium'}
+									>
 										List your job by entering a title,
 										detailed description, and some other
 										information about the work you need
@@ -122,10 +130,17 @@ const Jobs = () => {
 									>
 										<Image src={message} h='40px' />
 									</Box>
-									<Text fontSize={'24px'} fontWeight={600}>
+									<Text
+										fontSize={'28px'}
+										fontFamily='Gilroy-Bold'
+									>
 										Chat & Choose
 									</Text>
-									<Text textAlign={'center'}>
+									<Text
+										textAlign={'center'}
+										fontSize='16px'
+										fontFamily={'Gilroy-Medium'}
+									>
 										Browse through a listing of providers,
 										chat with him, and choose the one you
 										would like to work with.
@@ -149,10 +164,17 @@ const Jobs = () => {
 									>
 										<Image src={card} h='40px' />
 									</Box>
-									<Text fontSize={'24px'} fontWeight={600}>
+									<Text
+										fontSize={'28px'}
+										fontFamily='Gilroy-Bold'
+									>
 										Pay Securely
 									</Text>
-									<Text textAlign={'center'}>
+									<Text
+										textAlign={'center'}
+										fontSize='16px'
+										fontFamily={'Gilroy-Medium'}
+									>
 										Pay securely with Udukku and release
 										funds to the musician only when the job
 										is done and you are 100% satisfied with
@@ -165,8 +187,8 @@ const Jobs = () => {
 							<Text
 								mt='20px'
 								textAlign={'center'}
-								fontSize='28px'
-								fontWeight={600}
+								fontSize='32px'
+								fontFamily='Gilroy-Bold'
 							>
 								Want to showcase your skills?
 							</Text>
@@ -194,10 +216,17 @@ const Jobs = () => {
 									>
 										<Image src={profile} h='40px' />
 									</Box>
-									<Text fontSize={'24px'} fontWeight={600}>
+									<Text
+										fontSize={'28px'}
+										fontFamily='Gilroy-Bold'
+									>
 										Create Your Profile
 									</Text>
-									<Text textAlign={'center'}>
+									<Text
+										textAlign={'center'}
+										fontSize='16px'
+										fontFamily={'Gilroy-Medium'}
+									>
 										Sign up and create an Udukku Artist
 										profile by adding your bio, description,
 										genres, service rates, gear, and
@@ -222,10 +251,17 @@ const Jobs = () => {
 									>
 										<Image src={clipboardTick} h='40px' />
 									</Box>
-									<Text fontSize={'24px'} fontWeight={600}>
+									<Text
+										fontSize={'28px'}
+										fontFamily='Gilroy-Bold'
+									>
 										Browse & Apply
 									</Text>
-									<Text textAlign={'center'}>
+									<Text
+										textAlign={'center'}
+										fontSize='16px'
+										fontFamily={'Gilroy-Medium'}
+									>
 										Apply to posted jobs by filtering your
 										category, genre and pay, and begin
 										working together with your client on
@@ -250,10 +286,17 @@ const Jobs = () => {
 									>
 										<Image src={coin} h='40px' />
 									</Box>
-									<Text fontSize={'24px'} fontWeight={600}>
+									<Text
+										fontSize={'28px'}
+										fontFamily='Gilroy-Bold'
+									>
 										Get Paid Securely
 									</Text>
-									<Text textAlign={'center'}>
+									<Text
+										textAlign={'center'}
+										fontSize='16px'
+										fontFamily={'Gilroy-Medium'}
+									>
 										Complete the assigned project and
 										receive your payment as soon as the work
 										is approved and marked complete by the
@@ -274,7 +317,11 @@ const Jobs = () => {
 					justifyContent={'space-between'}
 					alignItems='center'
 				>
-					<Text fontSize={'34px'} fontWeight={800} onClick={onOpen}>
+					<Text
+						fontSize={'44px'}
+						fontFamily={'Gilroy-Bold'}
+						onClick={onOpen}
+					>
 						Find your next projects
 					</Text>
 					<Input
@@ -284,12 +331,13 @@ const Jobs = () => {
 					/>
 				</Box>
 				<Box
-					h='90vh'
+					h='fit-content'
 					w='100vw'
 					px='5.7vw'
 					display={'flex'}
 					flexWrap={'nowrap'}
 					mt='30px'
+					pb='100px'
 				>
 					{/* filters */}
 					<Sidebar />
@@ -306,6 +354,7 @@ const Jobs = () => {
 						<JobSearchCard />
 					</Box>
 				</Box>
+				<Footer />
 			</Box>
 		</>
 	);

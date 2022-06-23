@@ -4,11 +4,15 @@ import img1 from '../../../../Assets/Images/Rectangle 78.png';
 const OurStory = () => {
 	return (
 		<Box px='5.7vw' display={'flex'} mt='90px' gap='20px'>
-			<Box w='40%'>
-				<Text fontSize={'34px'} fontWeight={900}>
+			<Box maxW='50%'>
+				<Text fontSize={'44px'} fontFamily='Gilroy-Bold'>
 					Our Story
 				</Text>
-				<Text fontSize={'16px'} textAlign={'start'}>
+				<Text
+					textAlign={'start'}
+					fontSize={'20px'}
+					fontFamily='Gilroy-Medium'
+				>
 					The story of Udukku is inseparable from that of the founder,
 					Ishita Parakh. For the longest time, Ishita had been trying
 					to find good music producers who could help her with her
@@ -17,14 +21,14 @@ const OurStory = () => {
 					but she always came up empty-handed as all the platforms
 					available were for western musicians.
 				</Text>
-				<Text fontSize={'16px'} mt='10px'>
+				<Text fontSize={'20px'} fontFamily='Gilroy-Medium' mt='10px'>
 					That's when she decided to take it upon herself to create a
 					platform that would enable India's music scene. In 2021, she
 					launched Udukku to make it easy for musicians such as
 					singers, songwriters, producers and composers to connect and
 					collaborate.
 				</Text>
-				<Text fontSize={'16px'} mt='10px'>
+				<Text fontSize={'20px'} fontFamily='Gilroy-Medium' mt='10px'>
 					Since then, the platform has been in the work to help
 					artists showcase their work, find collaborators, and get
 					their music out there. We're constantly expanding our
@@ -32,8 +36,8 @@ const OurStory = () => {
 					better.
 				</Text>
 			</Box>
-			<Box w='60%' display={'flex'} justifyContent='center'>
-				<Image src={img1} h='500px' />
+			<Box flexGrow={1} display={'flex'} justifyContent='center'>
+				<Image src={img1} h='100%' />
 			</Box>
 		</Box>
 	);

@@ -19,15 +19,21 @@ const JobSearchCard = () => {
 						<Image src={profileImg} h='60px' />
 					</Box>
 					<Box lineHeight={'19px'}>
-						<Text fontSize={'24px'}>CFT Labs</Text>
-						<Text>Rajasthan</Text>
+						<Text fontSize={'20px'} fontFamily='Gilroy-Bold'>
+							CFT Labs
+						</Text>
+						<Text fontSize={'16px'} fontFamily='Gilroy-Medium'>
+							Rajasthan
+						</Text>
 					</Box>
 				</Box>
-				<Text>4 hours ago</Text>
+				<Text fontFamily={'Gilroy-SemiBold'} fontSize='16px'>
+					4 hours ago
+				</Text>
 			</Box>
 			{/* title with badge */}
 			<Box display={'flex'} gap='10px' alignItems={'center'} mt='10px'>
-				<Text fontSize={'28px'} fontWeight={900}>
+				<Text fontSize={'28px'} fontFamily='Gilroy-Bold'>
 					Looking for an experienced Beat Maker
 				</Text>
 				<Text
@@ -36,6 +42,8 @@ const JobSearchCard = () => {
 					px='10px'
 					py='5px'
 					borderRadius={'10px'}
+					fontSize='14px'
+					fontFamily={'Gilroy-SemiBold'}
 				>
 					Live
 				</Text>
@@ -49,6 +57,8 @@ const JobSearchCard = () => {
 					py='8px'
 					borderRadius={'16px'}
 					flexShrink={0}
+					fontSize='14px'
+					fontFamily={'Gilroy-SemiBold'}
 				>
 					Female Vocalist or Singer
 				</Box>
@@ -59,6 +69,8 @@ const JobSearchCard = () => {
 					py='8px'
 					borderRadius={'16px'}
 					flexShrink={0}
+					fontSize='14px'
+					fontFamily={'Gilroy-SemiBold'}
 				>
 					Hindustani Classical
 				</Box>
@@ -69,6 +81,8 @@ const JobSearchCard = () => {
 					py='8px'
 					borderRadius={'16px'}
 					flexShrink={0}
+					fontSize='14px'
+					fontFamily={'Gilroy-SemiBold'}
 				>
 					Female Vocalist or Singer
 				</Box>
@@ -79,13 +93,15 @@ const JobSearchCard = () => {
 					py='8px'
 					borderRadius={'16px'}
 					flexShrink={0}
+					fontSize='14px'
+					fontFamily={'Gilroy-SemiBold'}
 				>
 					Hindustani Classical
 				</Box>
 			</Box>
 			{/* description */}
 			<Box mt='20px' w='80%'>
-				<Text>
+				<Text fontSize={'16px'} fontFamily='Gilroy-Medium'>
 					We are looking for a great JavaScript developer who is
 					proficient with React.js. Your primary focus will be on
 					developing user interface components and implementing them
@@ -100,6 +116,8 @@ const JobSearchCard = () => {
 					py='8px'
 					borderRadius={'16px'}
 					flexShrink={0}
+					fontSize='16px'
+					fontFamily={'Gilroy-Medium'}
 				>
 					Fixed Price
 				</Box>
@@ -109,6 +127,8 @@ const JobSearchCard = () => {
 					py='8px'
 					borderRadius={'16px'}
 					flexShrink={0}
+					fontSize='16px'
+					fontFamily={'Gilroy-Medium'}
 				>
 					1-7 days
 				</Box>
@@ -118,12 +138,14 @@ const JobSearchCard = () => {
 					py='8px'
 					borderRadius={'16px'}
 					flexShrink={0}
+					fontSize='16px'
+					fontFamily={'Gilroy-Medium'}
 				>
 					2 references
 				</Box>
 			</Box>
 			{/* price */}
-			<Text fontSize={'28px'} fontWeight='900' mt='20px'>
+			<Text fontSize={'28px'} fontFamily='Gilroy-Bold' mt='20px'>
 				$120
 			</Text>
 		</Box>

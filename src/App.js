@@ -38,7 +38,7 @@ import MessageDetail from './Pages/MessageDetail';
 import CompleteYourProfile from './Pages/CompleteProfile/CompleteYourProfile';
 import io from 'socket.io-client';
 import Search from './Pages/Search';
-import PrivacyPolicy from './Pages/PrivacyPolicy';
+// import PrivacyPolicy from './Pages/PrivacyPolicy';
 import Cancelation from './Pages/Cancelation';
 import Terms from './Pages/Terms';
 import About from './Pages/About';
@@ -52,6 +52,7 @@ import HomePage from './New/Pages/Homepage';
 import Jobs from './New/Pages/Jobs';
 import Talents from './New/Pages/Talents';
 import AboutUs from './New/Pages/AboutUs';
+import PrivacyPolicy from './New/Pages/privacyPolicy';
 
 const App = () => {
 	const { user } = useSelector((state) => ({ ...state }));
@@ -107,6 +108,11 @@ const App = () => {
 				<Route exact path='/n/jobs' component={Jobs} />
 				<Route exact path='/n/talents' component={Talents} />
 				<Route exact path='/n/about-us' component={AboutUs} />
+				<Route
+					exact
+					path='/n/privacy-policy'
+					component={PrivacyPolicy}
+				/>
 				{/* *********************** End *************************** */}
 
 				<Route exact path='/' component={Home} />

@@ -1,6 +1,6 @@
 import { Box, Image, Text, Button } from '@chakra-ui/react';
 import { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import logo from '../../../Assets/Images/Logo/image 1.png';
 import SignInModal from './SignInModal';
 import SignUpModal from './SignUpModal';
@@ -73,7 +73,7 @@ const NavBar = () => {
 						Explore
 					</Text>
 					<Text fontFamily={'Gilroy-SemiBold'} fontSize='16px'>
-						Jobs
+						<Link to='/n/jobs/'>Jobs</Link>
 					</Text>
 					<Box h='20px' w='1px' bg='gray'></Box>
 					<Text

@@ -4,7 +4,7 @@ const Sidebar = () => {
 	return (
 		<>
 			<Box w='25%' h='100%'>
-				<Text fontWeight={800} fontSize={'24px'}>
+				<Text fontFamily={'Gilroy-Bold'} fontSize={'24px'}>
 					Category
 				</Text>
 				<Box
@@ -13,6 +13,8 @@ const Sidebar = () => {
 					flexDir='column'
 					mt='10px'
 					gap='5px'
+					fontFamily={'Gilroy-SemiBold'}
+					fontSize='16px'
 				>
 					<Checkbox>Vocalists</Checkbox>
 					<Checkbox>Music Producers & Engineers</Checkbox>
@@ -21,7 +23,7 @@ const Sidebar = () => {
 					<Checkbox>Song writers & Composers</Checkbox>
 					<Checkbox>Instruments</Checkbox>
 				</Box>
-				<Text fontWeight={800} fontSize={'24px'} mt='30px'>
+				<Text fontFamily={'Gilroy-Bold'} fontSize={'24px'} mt='30px'>
 					Budget
 				</Text>
 				<Box display={'flex'} gap='10px' px='10px' mt='10px'>
@@ -39,7 +41,7 @@ const Sidebar = () => {
 						Apply
 					</Button>
 				</Box>
-				<Text fontWeight={800} fontSize={'24px'} mt='30px'>
+				<Text fontFamily={'Gilroy-Bold'} fontSize={'24px'} mt='30px'>
 					Deadline
 				</Text>
 				<Box
@@ -48,6 +50,8 @@ const Sidebar = () => {
 					flexDir='column'
 					mt='10px'
 					gap='5px'
+					fontFamily={'Gilroy-SemiBold'}
+					fontSize='16px'
 				>
 					<Checkbox>0-7 Days</Checkbox>
 					<Checkbox>8-14 Days</Checkbox>
@@ -57,7 +61,7 @@ const Sidebar = () => {
 					<Checkbox>41-60 Days</Checkbox>
 					<Checkbox>more than 60 Days</Checkbox>
 				</Box>
-				<Text fontWeight={800} fontSize={'24px'} mt='30px'>
+				<Text fontFamily={'Gilroy-Bold'} fontSize={'24px'} mt='30px'>
 					Genre
 				</Text>
 				<Box
@@ -66,6 +70,8 @@ const Sidebar = () => {
 					flexDir='column'
 					mt='10px'
 					gap='5px'
+					fontFamily={'Gilroy-SemiBold'}
+					fontSize='16px'
 				>
 					<Checkbox>National/Indian</Checkbox>
 					<Checkbox>Regional</Checkbox>

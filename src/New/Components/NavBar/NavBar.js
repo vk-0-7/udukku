@@ -1,7 +1,8 @@
 import { Box, Image, Text, Button } from '@chakra-ui/react';
 import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import logo from '../../../Assets/Images/Logo/image 1.png';
+import HowItWorks from './HowItWorks';
 import SignInModal from './SignInModal';
 import SignUpModal from './SignUpModal';
 
@@ -10,6 +11,8 @@ const NavBar = () => {
 	const [signUpState, setSignUpState] = useState(false);
 	const path = useLocation().pathname.split('/');
 	const [positon, setPosition] = useState(0);
+	const navigate = useNavigate();
+	const [howItWorksState, setHowItWorksState] = useState(false);
 
 	useEffect(() => {
 		const getit = () => {
@@ -30,23 +33,27 @@ const NavBar = () => {
 
 	return (
 		<>
-			{console.log('scroll value is : ', path)}
+			{console.log('scroll path is  : ', path)}
 			<SignInModal state={signInState} changeState={setSignInState} />
 			<SignUpModal state={signUpState} changeState={setSignUpState} />
+			<HowItWorks
+				state={howItWorksState}
+				changeState={setHowItWorksState}
+			/>
 			<Box
 				position={'fixed'}
 				top='0'
 				h='fit-content'
 				w='100vw'
 				px={{ base: '7vw', '2xl': '13.54vw' }}
-				pt={path.length > 2 ? '20px' : positon > 10 ? '20px' : '20px'}
-				pb={path.length > 2 ? '20px' : positon > 10 ? '20px' : '0px'}
+				pt={path.length >= 2 ? '20px' : positon > 10 ? '20px' : '20px'}
+				pb={path.length >= 2 ? '20px' : positon > 10 ? '20px' : '0px'}
 				display={'flex'}
 				alignItems='center'
 				justifyContent={'space-between'}
 				transition='.5s'
 				bg={
-					path.length > 2
+					path.length >= 2
 						? 'rgba(8, 32, 50,1)'
 						: positon > 10
 						? 'rgba(8, 32, 50,1)'
@@ -61,7 +68,9 @@ const NavBar = () => {
 				zIndex={1000}
 			>
 				<Box flexGrow={1}>
-					<Image src={logo} />
+					<Link to='/'>
+						<Image src={logo} />
+					</Link>
 				</Box>
 				<Box
 					display={'flex'}
@@ -72,8 +81,29 @@ const NavBar = () => {
 					<Text fontFamily={'Gilroy-SemiBold'} fontSize='16px'>
 						Explore
 					</Text>
-					<Text fontFamily={'Gilroy-SemiBold'} fontSize='16px'>
-						<Link to='/n/jobs/'>Jobs</Link>
+					<Text
+						fontFamily={'Gilroy-SemiBold'}
+						fontSize='16px'
+						color={path[1] === 'jobs' ? '#F6540E' : '#fff'}
+						_hover={{
+							color: '#F6540E',
+						}}
+						cursor='pointer'
+						onClick={() => {
+							navigate('/jobs/');
+						}}
+					>
+						Jobs
+					</Text>
+					<Text
+						fontFamily={'Gilroy-SemiBold'}
+						fontSize='16px'
+						cursor={'pointer'}
+						onClick={() => {
+							setHowItWorksState(true);
+						}}
+					>
+						How it works
 					</Text>
 					<Box h='20px' w='1px' bg='gray'></Box>
 					<Text

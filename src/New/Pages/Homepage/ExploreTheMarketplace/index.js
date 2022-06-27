@@ -1,7 +1,10 @@
 import { Box, Button, Text } from '@chakra-ui/react';
+import { useNavigate } from 'react-router-dom';
 import JobCard from '../../../Components/jobCard/JobCard';
 
 const ExploreTheMarketplace = () => {
+	const navigate = useNavigate();
+
 	return (
 		<Box
 			bg='#fff'
@@ -31,6 +34,9 @@ const ExploreTheMarketplace = () => {
 						fontSize={'16px'}
 						w='269px'
 						h='72px'
+						onClick={() => {
+							navigate('/jobs');
+						}}
 					>
 						Find your next project
 					</Button>

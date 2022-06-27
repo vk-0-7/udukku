@@ -18,8 +18,11 @@ import {
 } from 'react-icons/fa';
 import { HiLocationMarker } from 'react-icons/hi';
 import { MdEmail } from 'react-icons/md';
+import { useNavigate } from 'react-router-dom';
 
 const Footer = () => {
+	const navigate = useNavigate();
+
 	return (
 		<>
 			<Box
@@ -80,7 +83,7 @@ const Footer = () => {
 				<Box display={'flex'} justifyContent='space-around'>
 					<Box>
 						<Text fontSize='28px' fontFamily={'Gilroy-Bold'}>
-							About
+							Categories
 						</Text>
 						<Box
 							display={'flex'}
@@ -121,19 +124,54 @@ const Footer = () => {
 							<Text fontFamily={'Gilroy-Medium'} fontSize='16px'>
 								FAQs
 							</Text>
-							<Text fontFamily={'Gilroy-Medium'} fontSize='16px'>
+							<Text
+								fontFamily={'Gilroy-Medium'}
+								fontSize='16px'
+								cursor={'pointer'}
+								onClick={() => {
+									navigate('/privacy-policy');
+								}}
+							>
 								Privacy Policy
 							</Text>
-							<Text fontFamily={'Gilroy-Medium'} fontSize='16px'>
+							<Text
+								fontFamily={'Gilroy-Medium'}
+								fontSize='16px'
+								cursor={'pointer'}
+								onClick={() => {
+									navigate('/about-us');
+								}}
+							>
 								About
 							</Text>
-							<Text fontFamily={'Gilroy-Medium'} fontSize='16px'>
+							<Text
+								fontFamily={'Gilroy-Medium'}
+								fontSize='16px'
+								cursor={'pointer'}
+								onClick={() => {
+									navigate('/cancellation-and-refund');
+								}}
+							>
 								Cancellation & Refund Policy
 							</Text>
-							<Text fontFamily={'Gilroy-Medium'} fontSize='16px'>
+							<Text
+								fontFamily={'Gilroy-Medium'}
+								fontSize='16px'
+								cursor={'pointer'}
+								onClick={() => {
+									navigate('/terms-and-conditions');
+								}}
+							>
 								Terms & Conditions
 							</Text>
-							<Text fontFamily={'Gilroy-Medium'} fontSize='16px'>
+							<Text
+								fontFamily={'Gilroy-Medium'}
+								fontSize='16px'
+								cursor={'pointer'}
+								onClick={() => {
+									navigate('/contact-us');
+								}}
+							>
 								Contact Us
 							</Text>
 						</Box>

@@ -1,8 +1,12 @@
 import { Box, Text } from '@chakra-ui/react';
 import NavBar from '../../Components/NavBar/NavBar';
 import Footer from '../../Components/Footer/Footer';
+import { useEffect } from 'react';
 
 const CancellationAndRefund = () => {
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, []);
 	return (
 		<Box mt='112px'>
 			<NavBar />

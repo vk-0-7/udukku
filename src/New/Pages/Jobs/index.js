@@ -10,6 +10,7 @@ import {
 	ModalContent,
 	Icon,
 	useDisclosure,
+	Spinner,
 } from '@chakra-ui/react';
 import JobSearchCard from '../../Components/jobSearchCard/JobSearchCard';
 import clipBoard from '../../../Assets/Images/icos/clipboard-text.png';
@@ -23,291 +24,93 @@ import NavBar from '../../Components/NavBar/NavBar';
 import Footer from '../../Components/Footer/Footer';
 import Sidebar from './sidebar/Sidebar';
 import { GrClose } from 'react-icons/gr';
+import { useEffect, useState } from 'react';
+import getJobs from '../../../Api/Jobs/getJobsApi';
 
 const Jobs = () => {
-	const { isOpen, onOpen, onClose } = useDisclosure();
+	const [jobs, setJobs] = useState([]);
+	const [loading, setLoading] = useState(true);
+	const [category, setCategory] = useState([]);
+	const [budgetStart, setBudgetStart] = useState('');
+	const [budgetEnd, setBudgetEnd] = useState('');
+	const [deadline, setDeadline] = useState([]);
+	const [genre, setGenre] = useState([]);
+
+	// get jobs list
+	const getData = async () => {
+		try {
+			const res = await getJobs();
+			setLoading(false);
+			setJobs(res.data);
+		} catch (error) {
+			console.log('Get Jobs Api Error : ', error);
+		}
+	};
+
+	useEffect(() => {
+		window.scrollTo(0, 0);
+		getData();
+	}, []);
+
+	useEffect(() => {
+		console.log(genre);
+	}, [genre]);
+
+	// check if jobs contain particular category
+	const checkForCategory = (dataCat) => {
+		if (category.length === 0) {
+			return true;
+		}
+
+		for (let i = 0; i < dataCat.length; i++) {
+			if (category.indexOf(dataCat[i].service) !== -1) {
+				return true;
+			}
+		}
+		return false;
+	};
+
+	//check if jobs contain particular deadline
+	const checkForDeadline = (dataDed) => {
+		if (deadline.length === 0) {
+			return true;
+		}
+
+		if (deadline.indexOf(dataDed) !== -1) {
+			return true;
+		}
+		return false;
+	};
+
+	// check if jobs contain particular genre
+	const checkForGenre = (dataGen) => {
+		if (genre.length === 0) {
+			return true;
+		}
+
+		for (let i = 0; i < dataGen.length; i++) {
+			if (genre.indexOf(dataGen[i].genere) !== -1) {
+				return true;
+			}
+		}
+
+		return false;
+	};
+
+	const checkForBudget = (budget) => {
+		if (budgetStart === '' && budgetEnd === '') {
+			return true;
+		}
+
+		if (budgetStart <= budget && budgetEnd >= budget) {
+			return true;
+		}
+
+		return false;
+	};
 
 	return (
 		<>
-			<Modal size={'full'} isOpen={isOpen}>
-				<ModalOverlay />
-				<ModalContent bg='transparent' position={'relative'}>
-					<Box
-						position={'absolute'}
-						left='50%'
-						top='50%'
-						transform={'translateX(-50%) translateY(-50%)'}
-						w='90vw'
-						bg='#fff'
-						borderRadius={'32px'}
-						overflow='hidden'
-						pb='20px'
-					>
-						<Box bg='#f0f0f0' py='20px' position='relative'>
-							<Text
-								fontSize={'32px'}
-								fontFamily='Gilroy-Bold'
-								textAlign={'center'}
-							>
-								How it works
-							</Text>
-							<Icon
-								as={GrClose}
-								position='absolute'
-								fontSize={'24px'}
-								top='50%'
-								transform='translateY(-50%)'
-								right={'30px'}
-								cursor='pointer'
-								onClick={onClose}
-							/>
-						</Box>
-						<Box px='20px' py='20px'>
-							<Text
-								mt='20px'
-								textAlign={'center'}
-								fontSize='28px'
-								fontFamily='Gilroy-Bold'
-							>
-								Looking for a musician?
-							</Text>
-							<Box
-								display={'grid'}
-								gridTemplateColumns='repeat(3,1fr)'
-								justifyItems={'center'}
-								mt='30px'
-							>
-								<Box
-									display={'flex'}
-									flexDir='column'
-									alignItems={'center'}
-									w='80%'
-									gap='10px'
-								>
-									<Box
-										w='70px'
-										h='70px'
-										border='3px solid #F6540E'
-										borderRadius={'full'}
-										display='flex'
-										justifyContent={'center'}
-										alignItems='center'
-									>
-										<Image src={clipBoard} h='40px' />
-									</Box>
-									<Text
-										fontSize={'28px'}
-										fontFamily='Gilroy-Bold'
-									>
-										Post a Job
-									</Text>
-									<Text
-										textAlign={'center'}
-										fontSize='16px'
-										fontFamily={'Gilroy-Medium'}
-									>
-										List your job by entering a title,
-										detailed description, and some other
-										information about the work you need
-										completed
-									</Text>
-								</Box>
-								<Box
-									display={'flex'}
-									flexDir='column'
-									alignItems={'center'}
-									w='80%'
-									gap='10px'
-								>
-									<Box
-										w='70px'
-										h='70px'
-										border='3px solid #F6540E'
-										borderRadius={'full'}
-										display='flex'
-										justifyContent={'center'}
-										alignItems='center'
-									>
-										<Image src={message} h='40px' />
-									</Box>
-									<Text
-										fontSize={'28px'}
-										fontFamily='Gilroy-Bold'
-									>
-										Chat & Choose
-									</Text>
-									<Text
-										textAlign={'center'}
-										fontSize='16px'
-										fontFamily={'Gilroy-Medium'}
-									>
-										Browse through a listing of providers,
-										chat with him, and choose the one you
-										would like to work with.
-									</Text>
-								</Box>
-								<Box
-									display={'flex'}
-									flexDir='column'
-									alignItems={'center'}
-									w='80%'
-									gap='10px'
-								>
-									<Box
-										w='70px'
-										h='70px'
-										border='3px solid #F6540E'
-										borderRadius={'full'}
-										display='flex'
-										justifyContent={'center'}
-										alignItems='center'
-									>
-										<Image src={card} h='40px' />
-									</Box>
-									<Text
-										fontSize={'28px'}
-										fontFamily='Gilroy-Bold'
-									>
-										Pay Securely
-									</Text>
-									<Text
-										textAlign={'center'}
-										fontSize='16px'
-										fontFamily={'Gilroy-Medium'}
-									>
-										Pay securely with Udukku and release
-										funds to the musician only when the job
-										is done and you are 100% satisfied with
-										the result
-									</Text>
-								</Box>
-							</Box>
-						</Box>
-						<Box px='20px' py='20px'>
-							<Text
-								mt='20px'
-								textAlign={'center'}
-								fontSize='32px'
-								fontFamily='Gilroy-Bold'
-							>
-								Want to showcase your skills?
-							</Text>
-							<Box
-								display={'grid'}
-								gridTemplateColumns='repeat(3,1fr)'
-								justifyItems={'center'}
-								mt='30px'
-							>
-								<Box
-									display={'flex'}
-									flexDir='column'
-									alignItems={'center'}
-									w='80%'
-									gap='10px'
-								>
-									<Box
-										w='70px'
-										h='70px'
-										border='3px solid #F6540E'
-										borderRadius={'full'}
-										display='flex'
-										justifyContent={'center'}
-										alignItems='center'
-									>
-										<Image src={profile} h='40px' />
-									</Box>
-									<Text
-										fontSize={'28px'}
-										fontFamily='Gilroy-Bold'
-									>
-										Create Your Profile
-									</Text>
-									<Text
-										textAlign={'center'}
-										fontSize='16px'
-										fontFamily={'Gilroy-Medium'}
-									>
-										Sign up and create an Udukku Artist
-										profile by adding your bio, description,
-										genres, service rates, gear, and
-										conditions.
-									</Text>
-								</Box>
-								<Box
-									display={'flex'}
-									flexDir='column'
-									alignItems={'center'}
-									w='80%'
-									gap='10px'
-								>
-									<Box
-										w='70px'
-										h='70px'
-										border='3px solid #F6540E'
-										borderRadius={'full'}
-										display='flex'
-										justifyContent={'center'}
-										alignItems='center'
-									>
-										<Image src={clipboardTick} h='40px' />
-									</Box>
-									<Text
-										fontSize={'28px'}
-										fontFamily='Gilroy-Bold'
-									>
-										Browse & Apply
-									</Text>
-									<Text
-										textAlign={'center'}
-										fontSize='16px'
-										fontFamily={'Gilroy-Medium'}
-									>
-										Apply to posted jobs by filtering your
-										category, genre and pay, and begin
-										working together with your client on
-										mutually agreed terms
-									</Text>
-								</Box>
-								<Box
-									display={'flex'}
-									flexDir='column'
-									alignItems={'center'}
-									w='80%'
-									gap='10px'
-								>
-									<Box
-										w='70px'
-										h='70px'
-										border='3px solid #F6540E'
-										borderRadius={'full'}
-										display='flex'
-										justifyContent={'center'}
-										alignItems='center'
-									>
-										<Image src={coin} h='40px' />
-									</Box>
-									<Text
-										fontSize={'28px'}
-										fontFamily='Gilroy-Bold'
-									>
-										Get Paid Securely
-									</Text>
-									<Text
-										textAlign={'center'}
-										fontSize='16px'
-										fontFamily={'Gilroy-Medium'}
-									>
-										Complete the assigned project and
-										receive your payment as soon as the work
-										is approved and marked complete by the
-										client.
-									</Text>
-								</Box>
-							</Box>
-						</Box>
-					</Box>
-				</ModalContent>
-			</Modal>
 			<Box pt='80px'>
 				<NavBar />
 				<Box
@@ -317,11 +120,7 @@ const Jobs = () => {
 					justifyContent={'space-between'}
 					alignItems='center'
 				>
-					<Text
-						fontSize={'44px'}
-						fontFamily={'Gilroy-Bold'}
-						onClick={onOpen}
-					>
+					<Text fontSize={'44px'} fontFamily={'Gilroy-Bold'}>
 						Find your next projects
 					</Text>
 					<Input
@@ -340,8 +139,17 @@ const Jobs = () => {
 					pb='100px'
 				>
 					{/* filters */}
-					<Sidebar />
+					<Sidebar
+						setCategory={setCategory}
+						budgetStart={budgetStart}
+						budgetEnd={budgetEnd}
+						setBudgetStart={setBudgetStart}
+						setBudgetEnd={setBudgetEnd}
+						setDeadline={setDeadline}
+						setGenre={setGenre}
+					/>
 					{/* result card */}
+
 					<Box
 						w='75%'
 						h='fit-content'
@@ -350,8 +158,52 @@ const Jobs = () => {
 						flexDir='column'
 						gap='20px'
 					>
-						<JobSearchCard />
-						<JobSearchCard />
+						{loading ? (
+							<Box
+								w='100%'
+								h='300px'
+								display={'flex'}
+								justifyContent='center'
+								alignItems={'center'}
+							>
+								<Spinner />
+							</Box>
+						) : (
+							<>
+								{jobs.map((data, index) => {
+									if (
+										category.length === 0 &&
+										deadline.length === 0 &&
+										genre.length === 0 &&
+										budgetStart === '' &&
+										budgetEnd === ''
+									) {
+										return (
+											<JobSearchCard
+												key={index}
+												data={data}
+											/>
+										);
+									} else {
+										if (
+											checkForCategory(data.category) &&
+											checkForDeadline(data.deadLine) &&
+											checkForGenre(data.genres) &&
+											checkForBudget(data.budget[0])
+										) {
+											return (
+												<JobSearchCard
+													key={index}
+													data={data}
+												/>
+											);
+										} else {
+											return <></>;
+										}
+									}
+								})}
+							</>
+						)}
 					</Box>
 				</Box>
 				<Footer />

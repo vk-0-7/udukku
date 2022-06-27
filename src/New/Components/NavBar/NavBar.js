@@ -33,7 +33,6 @@ const NavBar = () => {
 
 	return (
 		<>
-			{console.log('scroll path is  : ', path)}
 			<SignInModal state={signInState} changeState={setSignInState} />
 			<SignUpModal state={signUpState} changeState={setSignUpState} />
 			<HowItWorks

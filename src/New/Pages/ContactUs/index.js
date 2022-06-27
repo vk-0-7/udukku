@@ -1,9 +1,63 @@
-import { Box, Button, Input, Text, Textarea, Icon } from '@chakra-ui/react';
+import {
+	Box,
+	Button,
+	Input,
+	Text,
+	Textarea,
+	Icon,
+	useToast,
+} from '@chakra-ui/react';
 import { FaFacebookF, FaInstagram, FaTwitter } from 'react-icons/fa';
 import NavBar from '../../Components/NavBar/NavBar';
 import Footer from '../../Components/Footer/Footer';
+import { useEffect, useState } from 'react';
+import ContactUsApi from '../../../Api/Query/ContactUsApi';
 
 const ContactUs = () => {
+	const [name, setName] = useState('');
+	const [email, setEmail] = useState('');
+	const [subject, setSubject] = useState('');
+	const [message, setMessage] = useState('');
+	const [disable, setDisable] = useState(true);
+	const [loading, setLoading] = useState(false);
+	const toast = useToast();
+
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, []);
+
+	useEffect(() => {
+		if (name === '' || email === '' || subject === '' || message === '') {
+			setDisable(true);
+		} else {
+			setDisable(false);
+		}
+	}, [name, email, subject, message]);
+
+	const handleSubmit = async () => {
+		setLoading(true);
+
+		try {
+			const res = await ContactUsApi(name, email, subject, message);
+			console.log(res);
+			setLoading(false);
+			toast({
+				title: 'Thank you!',
+				description: 'Your submission has been sent',
+				status: 'success',
+				isClosable: true,
+				duration: 3000,
+			});
+			setName('');
+			setEmail('');
+			setSubject('');
+			setMessage('');
+		} catch (error) {
+			console.log('error is : ', error);
+			setLoading(false);
+		}
+	};
+
 	return (
 		<Box mt='112px'>
 			<NavBar />
@@ -32,11 +86,16 @@ const ContactUs = () => {
 									Full Name
 								</Text>
 								<Input
+									value={name}
 									type='text'
 									borderRadius='15px'
 									fontSize={'16px'}
 									py='20px'
+									h='50px'
 									fontFamily={'Gilroy-SemiBold'}
+									onChange={(e) => {
+										setName(e.target.value);
+									}}
 								/>
 							</Box>
 							<Box>
@@ -47,11 +106,16 @@ const ContactUs = () => {
 									Email address
 								</Text>
 								<Input
+									value={email}
 									type='email'
 									borderRadius='15px'
 									fontSize={'16px'}
 									py='20px'
+									h='50px'
 									fontFamily={'Gilroy-SemiBold'}
+									onChange={(e) => {
+										setEmail(e.target.value);
+									}}
 								/>
 							</Box>
 							<Box>
@@ -62,11 +126,16 @@ const ContactUs = () => {
 									Subject
 								</Text>
 								<Input
+									value={subject}
 									type='text'
 									borderRadius='15px'
 									fontSize={'16px'}
 									py='20px'
+									h='50px'
 									fontFamily={'Gilroy-SemiBold'}
+									onChange={(e) => {
+										setSubject(e.target.value);
+									}}
 								/>
 							</Box>
 							<Box>
@@ -77,8 +146,12 @@ const ContactUs = () => {
 									Your Message
 								</Text>
 								<Textarea
+									value={message}
 									borderRadius='20px'
 									fontFamily={'Gilroy-SemiBold'}
+									onChange={(e) => {
+										setMessage(e.target.value);
+									}}
 								/>
 							</Box>
 							<Button
@@ -88,6 +161,10 @@ const ContactUs = () => {
 								color='#fff'
 								py='30px'
 								borderRadius='20px'
+								_hover={{ background: '#F6540E' }}
+								isDisabled={disable}
+								onClick={handleSubmit}
+								isLoading={loading}
 							>
 								Send message
 							</Button>

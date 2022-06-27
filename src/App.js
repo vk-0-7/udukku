@@ -61,68 +61,70 @@ const App = () => {
 	const { user } = useSelector((state) => ({ ...state }));
 	const [socket, setSocket] = useState();
 	const dispatch = useDispatch();
-	useEffect(() => {
-		var auth = localStorage.getItem('token');
-		if (user == null && auth != null) {
-			currentUser(auth)
-				.then((res) => {
-					console.log(res);
-					dispatch({
-						type: 'LOGGED_IN_USER',
-						payload: {
-							userId: res.data._id,
-							name: res.data.name,
-							email: res.data.email,
-							token: auth,
-							isMusician: res.data.isMusician,
-							isProfileCompleted: res.data.isProfileCompleted,
-							qr: res.data.profileUrl,
-						},
-					});
-				})
-				.catch((err) => console.log(err));
-		}
-	});
 
-	const setupSocket = () => {
-		if (user !== null && !socket) {
-			const newSocket = io('https://udukku.herokuapp.com', {
-				query: {
-					userId: user.userId,
-				},
-			});
+	// useEffect(() => {
+	// 	var auth = localStorage.getItem('token');
+	// 	if (user == null && auth != null) {
+	// 		currentUser(auth)
+	// 			.then((res) => {
+	// 				console.log(res);
+	// 				dispatch({
+	// 					type: 'LOGGED_IN_USER',
+	// 					payload: {
+	// 						userId: res.data._id,
+	// 						name: res.data.name,
+	// 						email: res.data.email,
+	// 						token: auth,
+	// 						isMusician: res.data.isMusician,
+	// 						isProfileCompleted: res.data.isProfileCompleted,
+	// 						qr: res.data.profileUrl,
+	// 					},
+	// 				});
+	// 			})
+	// 			.catch((err) => console.log(err));
+	// 	}
+	// });
 
-			newSocket.on('disconnect', () => {
-				setSocket(null);
-			});
-			newSocket.on('connect', () => {
-				console.log('connected');
-			});
-			setSocket(newSocket);
-		}
-	};
-	setupSocket();
+	// const setupSocket = () => {
+	// 	if (user !== null && !socket) {
+	// 		const newSocket = io('https://udukku.herokuapp.com', {
+	// 			query: {
+	// 				userId: user.userId,
+	// 			},
+	// 		});
+
+	// 		newSocket.on('disconnect', () => {
+	// 			setSocket(null);
+	// 		});
+	// 		newSocket.on('connect', () => {
+	// 			console.log('connected');
+	// 		});
+	// 		setSocket(newSocket);
+	// 	}
+	// };
+	// setupSocket();
 	return (
 		<div className='App'>
 			<ToastContainer />
-			<Routes>
-				{/* *********************** NEW *************************** */}
-				<Route path={'/'} element={<HomePage />} />
-				<Route path='/jobs' element={<Jobs />} />
-				<Route path='/talents' element={<Talents />} />
-				<Route path='/about-us' element={<AboutUs />} />
-				<Route path='/privacy-policy' element={<PrivacyPolicy />} />
-				<Route path='/contact-us' element={<ContactUs />} />
-				<Route
-					path='/cancellation-and-refund'
-					element={<CancellationAndRefund />}
-				/>
-				<Route
-					path='/terms-and-conditions'
-					element={<TermsAndConditions />}
-				/>
-				{/* *********************** End *************************** */}
-				{/* <Route exact path='/' component={Home} />
+			<div style={{ overflowY: 'hidden' }}>
+				<Routes>
+					{/* *********************** NEW *************************** */}
+					<Route path={'/'} element={<HomePage />} />
+					<Route path='/jobs' element={<Jobs />} />
+					<Route path='/talents' element={<Talents />} />
+					<Route path='/about-us' element={<AboutUs />} />
+					<Route path='/privacy-policy' element={<PrivacyPolicy />} />
+					<Route path='/contact-us' element={<ContactUs />} />
+					<Route
+						path='/cancellation-and-refund'
+						element={<CancellationAndRefund />}
+					/>
+					<Route
+						path='/terms-and-conditions'
+						element={<TermsAndConditions />}
+					/>
+					{/* *********************** End *************************** */}
+					{/* <Route exact path='/' component={Home} />
 				<Route exact path='/explore' component={Explore} />
 				<Route exact path='/jobs' component={Jobs} />
 				<Route exact path='/user/login' component={Login} />
@@ -140,14 +142,14 @@ const App = () => {
 				<Route exact path='/privacy-policy' component={PrivacyPolicy} />
 				<Route exact path='/cancelation' component={Cancelation} />
 				<Route exact path='/terms' component={Terms} /> */}
-				{/* For Recruiter */}
-				{/* <Route
+					{/* For Recruiter */}
+					{/* <Route
 					exact
 					path='/user/complete-your-profile'
 					component={CompleteYourProfile}
 				/> */}
-				{/* For Musician */}
-				{/* <Route
+					{/* For Musician */}
+					{/* <Route
 					exact
 					path='/user/complete-profile'
 					component={CompleteProfile}
@@ -214,7 +216,8 @@ const App = () => {
 				/>
 				<Route exact path='/user/payment/new/:id' component={Payment} />
 				<Route exact path='/about' component={About} /> */}
-			</Routes>
+				</Routes>
+			</div>
 		</div>
 	);
 };

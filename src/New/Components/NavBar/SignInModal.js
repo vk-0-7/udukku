@@ -118,15 +118,15 @@ const SignInModal = ({ state, changeState }) => {
 						/>
 
 						<Text
-							fontSize={'34px'}
-							fontWeight={600}
+							fontSize={'32px'}
+							fontFamily='Gilroy-Bold'
 							textAlign='center'
 						>
 							Sign In
 						</Text>
 						<Text
-							fontSize={'18px'}
-							fontWeight={300}
+							fontSize={'16px'}
+							fontFamily='Gilroy-Medium'
 							textAlign='center'
 						>
 							Join India's First Music Marketplace
@@ -142,8 +142,8 @@ const SignInModal = ({ state, changeState }) => {
 								<Box>
 									<label htmlFor='nav-login-email'>
 										<Text
-											fontSize={'18px'}
-											fontWeight={600}
+											fontSize={'16px'}
+											fontFamily='Gilroy-SemiBold'
 											_after={{
 												content: "'*'",
 												position: 'relative',
@@ -183,8 +183,8 @@ const SignInModal = ({ state, changeState }) => {
 								<Box>
 									<label htmlFor='nav-login-pass'>
 										<Text
-											fontSize={'18px'}
-											fontWeight={600}
+											fontSize={'16px'}
+											fontFamily='Gilroy-SemiBold'
 											_after={{
 												content: "'*'",
 												position: 'relative',

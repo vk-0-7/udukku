@@ -1,8 +1,13 @@
 import { Box, Text } from '@chakra-ui/react';
+import { useEffect } from 'react';
 import Footer from '../../Components/Footer/Footer';
 import NavBar from '../../Components/NavBar/NavBar';
 
 const PrivacyPolicy = () => {
+	useEffect(() => {
+		window.scrollTo(0, 0, { duration: 0 });
+	}, []);
+
 	return (
 		<Box pt='80px'>
 			<NavBar />

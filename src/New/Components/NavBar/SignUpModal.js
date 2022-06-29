@@ -19,7 +19,19 @@ import { useEffect, useState } from 'react';
 
 const SignUpModal = ({ state, changeState }) => {
 	const { isOpen, onOpen, onClose } = useDisclosure();
+	const [name, setName] = useState('');
+	const [email, setEmail] = useState('');
 	const [show, setShow] = useState(false);
+	const [password, setPassword] = useState('');
+	const [checkPasswordLength, setCheckPasswordLength] = useState(true);
+	const [checkPasswordCase, setCheckPasswordCase] = useState(true);
+	const [checkPasswordNumber, setCheckPasswordNumber] = useState(true);
+	const [disable, setDisable] = useState(true);
+	const exp = new RegExp('(?=.*[a-z])');
+	const exp2 = new RegExp('(?=.*[A-Z])');
+	const exp3 = new RegExp('(?=.*\\d)');
+	const exp4 = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
+
 	const handleClick = () => {
 		setShow(!show);
 	};
@@ -29,6 +41,49 @@ const SignUpModal = ({ state, changeState }) => {
 			onOpen();
 		}
 	}, [state]);
+
+	useEffect(() => {
+		if (password.length < 8) {
+			setCheckPasswordLength(true);
+		} else {
+			setCheckPasswordLength(false);
+		}
+
+		if (exp.test(password) && exp2.test(password)) {
+			setCheckPasswordCase(false);
+		} else {
+			setCheckPasswordCase(true);
+		}
+
+		if (exp3.test(password) || exp4.test(password)) {
+			setCheckPasswordNumber(false);
+		} else {
+			setCheckPasswordNumber(true);
+		}
+	}, [password]);
+
+	useEffect(() => {
+		if (
+			name === '' ||
+			email === '' ||
+			checkPasswordLength === true ||
+			checkPasswordCase === true ||
+			checkPasswordNumber === true
+		) {
+			setDisable(true);
+			console.log('diabledddddd');
+		} else {
+			setDisable(false);
+			console.log('activeeee');
+		}
+	}, [
+		name,
+		email,
+		password,
+		checkPasswordCase,
+		checkPasswordLength,
+		checkPasswordNumber,
+	]);
 
 	return (
 		<>
@@ -103,12 +158,15 @@ const SignUpModal = ({ state, changeState }) => {
 										</Text>
 									</label>
 									<Input
-										type='email'
+										value={name}
+										type='text'
 										id='nav-login-email'
 										h='50px'
 										borderRadius={'15px'}
-										placeholder='your-email@gmail.com'
-										onChange={(e) => {}}
+										placeholder='your name'
+										onChange={(e) => {
+											setName(e.target.value);
+										}}
 										_focus={{
 											border: ' 2px solid #F6540E',
 										}}
@@ -128,13 +186,17 @@ const SignUpModal = ({ state, changeState }) => {
 											Email address
 										</Text>
 									</label>
+
 									<Input
+										value={email}
 										type='email'
 										id='nav-login-email'
 										h='50px'
 										borderRadius={'15px'}
 										placeholder='your-email@gmail.com'
-										onChange={(e) => {}}
+										onChange={(e) => {
+											setEmail(e.target.value);
+										}}
 										_focus={{
 											border: ' 2px solid #F6540E',
 										}}
@@ -161,7 +223,9 @@ const SignUpModal = ({ state, changeState }) => {
 											placeholder='Enter password'
 											borderRadius={'15px'}
 											h='50px'
-											onChange={(e) => {}}
+											onChange={(e) => {
+												setPassword(e.target.value);
+											}}
 											_focus={{
 												border: ' 2px solid #F6540E',
 											}}
@@ -200,14 +264,38 @@ const SignUpModal = ({ state, changeState }) => {
 											Password should contain:
 										</Text>
 										<UnorderedList>
-											<ListItem>
+											<ListItem
+												color={
+													password === ''
+														? 'black'
+														: checkPasswordLength
+														? 'red'
+														: 'green'
+												}
+											>
 												contains at least 8 characters
 											</ListItem>
-											<ListItem>
+											<ListItem
+												color={
+													password === ''
+														? 'black'
+														: checkPasswordCase
+														? 'red'
+														: 'green'
+												}
+											>
 												contains both lower (a-z) and
 												upper case letters (A-Z)
 											</ListItem>
-											<ListItem>
+											<ListItem
+												color={
+													password === ''
+														? 'black'
+														: checkPasswordNumber
+														? 'red'
+														: 'green'
+												}
+											>
 												contains at least one number
 												(0-9) or a symbol
 											</ListItem>
@@ -222,6 +310,7 @@ const SignUpModal = ({ state, changeState }) => {
 										borderRadius={'10px'}
 										py='25px'
 										_hover={{ background: '#f6540e' }}
+										isDisabled={disable}
 									>
 										Sign up
 									</Button>

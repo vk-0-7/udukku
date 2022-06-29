@@ -7,8 +7,13 @@ import WhoWeWorkWith from './whoWeWorkWith/WhoWeWorkWith';
 import OurCommitment from './ourCommitment/OurCommitment';
 import OurValues from './ourValues/OurValues';
 import CreateAFreeAccount from './createAFreeAccount/CreateAFreeAccount';
+import { useEffect } from 'react';
 
 const AboutUs = () => {
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, []);
+
 	return (
 		<Box pt='80px'>
 			<NavBar />

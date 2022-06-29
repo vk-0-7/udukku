@@ -7,7 +7,7 @@ const Talents = () => {
 			bg='#fff'
 			py='50px'
 			px={{ base: '7vw', '2xl': '13.54vw' }}
-			h='66.41vh'
+			h='fit-content'
 			display={'flex'}
 			flexDir='column'
 			justifyContent={'center'}

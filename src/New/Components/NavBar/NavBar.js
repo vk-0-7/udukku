@@ -1,7 +1,9 @@
 import { Box, Image, Text, Button } from '@chakra-ui/react';
 import { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import logout from '../../../Api/Auth/logout';
 import logo from '../../../Assets/Images/Logo/image 1.png';
+import { AccessAuthContext } from '../../Context/AuthContext';
 import HowItWorks from './HowItWorks';
 import SignInModal from './SignInModal';
 import SignUpModal from './SignUpModal';
@@ -13,6 +15,7 @@ const NavBar = () => {
 	const [positon, setPosition] = useState(0);
 	const navigate = useNavigate();
 	const [howItWorksState, setHowItWorksState] = useState(false);
+	const { loginState, avatar } = AccessAuthContext();
 
 	useEffect(() => {
 		const getit = () => {
@@ -30,6 +33,16 @@ const NavBar = () => {
 
 		window.addEventListener('scroll', getit);
 	}, []);
+
+	const handleLogout = async () => {
+		try {
+			const res = logout();
+			localStorage.clear();
+			window.location.reload();
+		} catch (error) {
+			console.log('error ', error);
+		}
+	};
 
 	return (
 		<>
@@ -105,33 +118,61 @@ const NavBar = () => {
 						How it works
 					</Text>
 					<Box h='20px' w='1px' bg='gray'></Box>
-					<Text
-						fontFamily={'Gilroy-SemiBold'}
-						cursor={'pointer'}
-						onClick={() => {
-							setSignInState(true);
-						}}
-						fontSize='16px'
-					>
-						Sign in
-					</Text>
-					<Button
-						bg='transparent'
-						border='1px solid #F6540E'
-						borderRadius={'20px'}
-						px='25px'
-						py='25px'
-						_hover={{ background: 'rgba(215,85,28)' }}
-						onClick={() => {
-							setSignUpState(true);
-						}}
-						fontFamily={'Gilroy-SemiBold'}
-						fontSize='16px'
-						w='261px'
-						h='72px'
-					>
-						Become a memeber
-					</Button>
+					{loginState === true ? (
+						<Box
+							h='72px'
+							display={'flex'}
+							alignItems={'center'}
+							justifyContent='center'
+							gap={'20px'}
+						>
+							<Text
+								fontSize={'16px'}
+								fontFamily={'Gilroy-SemiBold'}
+								cursor={'pointer'}
+								onClick={handleLogout}
+							>
+								Logout
+							</Text>
+							<Box
+								bgImage={avatar}
+								bgSize='cover'
+								borderRadius={'full'}
+								h='30px'
+								w='30px'
+							></Box>
+						</Box>
+					) : (
+						<>
+							<Text
+								fontFamily={'Gilroy-SemiBold'}
+								cursor={'pointer'}
+								onClick={() => {
+									setSignInState(true);
+								}}
+								fontSize='16px'
+							>
+								Sign in
+							</Text>
+							<Button
+								bg='transparent'
+								border='1px solid #F6540E'
+								borderRadius={'20px'}
+								px='25px'
+								py='25px'
+								_hover={{ background: 'rgba(215,85,28)' }}
+								onClick={() => {
+									setSignUpState(true);
+								}}
+								fontFamily={'Gilroy-SemiBold'}
+								fontSize='16px'
+								w='261px'
+								h='72px'
+							>
+								Become a memeber
+							</Button>
+						</>
+					)}
 				</Box>
 			</Box>
 		</>

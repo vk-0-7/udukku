@@ -13,6 +13,7 @@ import {
 import { GrClose } from 'react-icons/gr';
 import { useEffect, useState } from 'react';
 import EnterNewPassword from './EnterNewPassword';
+import forgotPassword from '../../../Api/Auth/forgotPassword';
 
 const ForgotPasswordModal = ({ state, changeState }) => {
 	const { isOpen, onOpen, onClose } = useDisclosure();
@@ -40,10 +41,16 @@ const ForgotPasswordModal = ({ state, changeState }) => {
 		}
 	}, [email]);
 
-	const handleLinkSubmit = () => {
-		onClose();
-		changeState(false);
-		setNewPasswordState(true);
+	const handleLinkSubmit = async () => {
+		try {
+			const res = await forgotPassword(email);
+			console.log('forgot password response is : ', res);
+			onClose();
+			changeState(false);
+			setNewPasswordState(true);
+		} catch (error) {
+			console.log('error');
+		}
 	};
 
 	return (

@@ -16,8 +16,9 @@ import {
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 import { GrClose } from 'react-icons/gr';
 import { useEffect, useState } from 'react';
+import resetPassword from '../../../Api/Auth/resetPassword';
 
-const EnterNewPassword = ({ state, changeState }) => {
+const EnterNewPassword = ({ state, changeState, code }) => {
 	const { isOpen, onOpen, onClose } = useDisclosure();
 	const [show1, setShow1] = useState(false);
 	const [show2, setShow2] = useState(false);
@@ -49,7 +50,13 @@ const EnterNewPassword = ({ state, changeState }) => {
 		}
 	}, [password1, password2]);
 
-	const handleLinkSubmit = () => {
+	const handleLinkSubmit = async () => {
+		try {
+			const res = await resetPassword({ code, password: password1 });
+			console.log('response is : ', res);
+		} catch (error) {
+			console.log('error is : ', error.response);
+		}
 		onClose();
 		changeState(false);
 	};

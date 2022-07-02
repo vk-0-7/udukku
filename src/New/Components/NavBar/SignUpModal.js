@@ -12,10 +12,13 @@ import {
 	Text,
 	UnorderedList,
 	useDisclosure,
+	useToast,
 } from '@chakra-ui/react';
 import { GrClose } from 'react-icons/gr';
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 import { useEffect, useState } from 'react';
+import signup from '../../../Api/Auth/signup';
+import { AccessAuthContext } from '../../Context/AuthContext';
 
 const SignUpModal = ({ state, changeState }) => {
 	const { isOpen, onOpen, onClose } = useDisclosure();
@@ -27,6 +30,9 @@ const SignUpModal = ({ state, changeState }) => {
 	const [checkPasswordCase, setCheckPasswordCase] = useState(true);
 	const [checkPasswordNumber, setCheckPasswordNumber] = useState(true);
 	const [disable, setDisable] = useState(true);
+	const [loading, setLoading] = useState(false);
+	const { setLoginState, setToken, setAvatar } = AccessAuthContext();
+	const toast = useToast();
 	const exp = new RegExp('(?=.*[a-z])');
 	const exp2 = new RegExp('(?=.*[A-Z])');
 	const exp3 = new RegExp('(?=.*\\d)');
@@ -34,6 +40,29 @@ const SignUpModal = ({ state, changeState }) => {
 
 	const handleClick = () => {
 		setShow(!show);
+	};
+
+	const handleUserSignup = async () => {
+		console.log('running the signup');
+		setLoading(true);
+		try {
+			const res = await signup({ name, email, password });
+			console.log('response form the signup is ', res);
+			setLoading(false);
+			toast({
+				title: 'Success',
+				description:
+					'A verification link has been sent to your email account.',
+				position: 'top',
+				status: 'success',
+				duration: 5000,
+				isClosable: true,
+			});
+			onClose();
+		} catch (error) {
+			console.log('error is : ', error);
+			setLoading(false);
+		}
 	};
 
 	useEffect(() => {
@@ -71,10 +100,8 @@ const SignUpModal = ({ state, changeState }) => {
 			checkPasswordNumber === true
 		) {
 			setDisable(true);
-			console.log('diabledddddd');
 		} else {
 			setDisable(false);
-			console.log('activeeee');
 		}
 	}, [
 		name,
@@ -311,6 +338,8 @@ const SignUpModal = ({ state, changeState }) => {
 										py='25px'
 										_hover={{ background: '#f6540e' }}
 										isDisabled={disable}
+										onClick={handleUserSignup}
+										isLoading={loading}
 									>
 										Sign up
 									</Button>

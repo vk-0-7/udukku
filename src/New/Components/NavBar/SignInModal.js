@@ -17,10 +17,14 @@ import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 import { GrClose } from 'react-icons/gr';
 import { useEffect, useState } from 'react';
 import ForgotPasswordModal from './ForgotPasswordModal';
+import signin from '../../../Api/Auth/signin';
+import { AccessAuthContext } from '../../Context/AuthContext';
 
 const SignInModal = ({ state, changeState }) => {
 	const [show, setShow] = useState(false);
 	const { isOpen, onOpen, onClose } = useDisclosure();
+
+	const { setLoginState, setToken, setAvatar } = AccessAuthContext();
 
 	// email and password
 	const [email, setEmail] = useState('');
@@ -71,11 +75,23 @@ const SignInModal = ({ state, changeState }) => {
 	const handleLoginRequest = async () => {
 		setLoading(true);
 
-		setTimeout(() => {
+		try {
+			const res = await signin({ email, password });
+			console.log('response is : ', res);
 			setLoading(false);
-			setCheckEmail(true);
-			setCheckPassword(true);
-		}, 5000);
+			setLoginState(true);
+			setToken(res.data.refresh_token);
+			setAvatar(res.data.user.avatar);
+			onClose();
+		} catch (error) {
+			if (error.response.data.message === 'This email does not exist.') {
+				setCheckPassword(true);
+				setCheckEmail(true);
+			} else {
+				setCheckPassword(true);
+			}
+			setLoading(false);
+		}
 	};
 
 	return (

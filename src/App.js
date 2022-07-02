@@ -56,6 +56,8 @@ import PrivacyPolicy from './New/Pages/privacyPolicy';
 import ContactUs from './New/Pages/ContactUs';
 import CancellationAndRefund from './New/Pages/CancellationAndRefund';
 import TermsAndConditions from './New/Pages/TermsAndConditions';
+import ResetPassword from './New/Pages/resetPassword';
+import ActivateUser from './New/Pages/ActivateUser';
 
 const App = () => {
 	const { user } = useSelector((state) => ({ ...state }));
@@ -122,6 +124,11 @@ const App = () => {
 					<Route
 						path='/terms-and-conditions'
 						element={<TermsAndConditions />}
+					/>
+					<Route path='/user/reset/:id' element={<ResetPassword />} />
+					<Route
+						path='/user/activate/:id'
+						element={<ActivateUser />}
 					/>
 					{/* *********************** End *************************** */}
 					{/* <Route exact path='/' component={Home} />

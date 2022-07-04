@@ -32,18 +32,21 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { ChakraProvider } from '@chakra-ui/react';
+import { AuthContextProvider } from './New/Context/AuthContext';
 const store = createStore(rootReducer, composeWithDevTools());
 
 // fonts
 
 ReactDOM.render(
-	<Provider store={store}>
-		<ChakraProvider>
-			<BrowserRouter>
-				<App />
-			</BrowserRouter>
-		</ChakraProvider>
-	</Provider>,
+	<AuthContextProvider>
+		<Provider store={store}>
+			<ChakraProvider>
+				<BrowserRouter>
+					<App />
+				</BrowserRouter>
+			</ChakraProvider>
+		</Provider>
+	</AuthContextProvider>,
 	document.getElementById('root')
 );
 

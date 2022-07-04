@@ -50,3 +50,27 @@
 }
 
 /* --------------- */
+
+body,
+html {
+	overscroll-behavior: none;
+	box-sizing: border-box !important;
+}
+
+#home_hero_be_discovered_btn svg {
+	margin-right: 0.416vw;
+	width: 1.85vh;
+	height: 1.85vh;
+}
+
+#home_hero_discover_talent_btn svg {
+	margin-right: 0.416vw;
+	width: 1.85vh;
+	height: 1.85vh;
+}
+
+#navbar_become_member_btn svg {
+	margin-right: 0.56vw;
+	height: 2.22vh;
+	width: 2.22vh;
+}

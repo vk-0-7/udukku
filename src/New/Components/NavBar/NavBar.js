@@ -7,6 +7,7 @@ import { AccessAuthContext } from '../../Context/AuthContext';
 import HowItWorks from './HowItWorks';
 import SignInModal from './SignInModal';
 import SignUpModal from './SignUpModal';
+import { ReactComponent as Man } from '../../../Assets/Icons/frame.svg';
 
 const NavBar = () => {
 	const [signInState, setSignInState] = useState(false);
@@ -39,6 +40,7 @@ const NavBar = () => {
 			const res = logout();
 			localStorage.clear();
 			window.location.reload();
+			navigate('/');
 		} catch (error) {
 			console.log('error ', error);
 		}
@@ -90,12 +92,12 @@ const NavBar = () => {
 					gap='30px'
 					alignItems={'center'}
 				>
-					<Text fontFamily={'Gilroy-SemiBold'} fontSize='16px'>
+					<Text fontFamily={'Gilroy-SemiBold'} fontSize='.8333vw'>
 						Explore
 					</Text>
 					<Text
 						fontFamily={'Gilroy-SemiBold'}
-						fontSize='16px'
+						fontSize='.8333vw'
 						color={path[1] === 'jobs' ? '#F6540E' : '#fff'}
 						_hover={{
 							color: '#F6540E',
@@ -109,7 +111,7 @@ const NavBar = () => {
 					</Text>
 					<Text
 						fontFamily={'Gilroy-SemiBold'}
-						fontSize='16px'
+						fontSize='.8333vw'
 						cursor={'pointer'}
 						onClick={() => {
 							setHowItWorksState(true);
@@ -127,7 +129,7 @@ const NavBar = () => {
 							gap={'20px'}
 						>
 							<Text
-								fontSize={'16px'}
+								fontSize='.8333vw'
 								fontFamily={'Gilroy-SemiBold'}
 								cursor={'pointer'}
 								onClick={handleLogout}
@@ -150,7 +152,7 @@ const NavBar = () => {
 								onClick={() => {
 									setSignInState(true);
 								}}
-								fontSize='16px'
+								fontSize='.8333vw'
 							>
 								Sign in
 							</Text>
@@ -158,17 +160,17 @@ const NavBar = () => {
 								bg='transparent'
 								border='1px solid #F6540E'
 								borderRadius={'20px'}
-								px='25px'
-								py='25px'
 								_hover={{ background: 'rgba(215,85,28)' }}
 								onClick={() => {
 									setSignUpState(true);
 								}}
 								fontFamily={'Gilroy-SemiBold'}
-								fontSize='16px'
-								w='261px'
-								h='72px'
+								fontSize='.8333vw'
+								w='13.59vw'
+								h='6.66vh'
+								id='navbar_become_member_btn'
 							>
+								<Man />
 								Become a memeber
 							</Button>
 						</>

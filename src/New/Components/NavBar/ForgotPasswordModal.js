@@ -17,15 +17,14 @@ import forgotPassword from '../../../Api/Auth/forgotPassword';
 
 const ForgotPasswordModal = ({ state, changeState }) => {
 	const { isOpen, onOpen, onClose } = useDisclosure();
+	const [loading, setLoading] = useState(false);
+	const [emailSent, setEmailSent] = useState(false);
 
 	// email
 	const [email, setEmail] = useState('');
 
 	// link btn disabled or not
 	const [sendLink, setSendLink] = useState(true);
-
-	// enter new password state
-	const [newPasswordState, setNewPasswordState] = useState(false);
 
 	useEffect(() => {
 		if (state) {
@@ -42,23 +41,22 @@ const ForgotPasswordModal = ({ state, changeState }) => {
 	}, [email]);
 
 	const handleLinkSubmit = async () => {
+		setLoading(true);
 		try {
 			const res = await forgotPassword(email);
 			console.log('forgot password response is : ', res);
 			onClose();
 			changeState(false);
-			setNewPasswordState(true);
+			setLoading(false);
+			setEmailSent(true);
 		} catch (error) {
 			console.log('error');
+			setLoading(false);
 		}
 	};
 
 	return (
 		<>
-			<EnterNewPassword
-				state={newPasswordState}
-				changeState={setNewPasswordState}
-			/>
 			<Modal size='full' isOpen={isOpen}>
 				<ModalOverlay />
 				<ModalContent
@@ -145,18 +143,26 @@ const ForgotPasswordModal = ({ state, changeState }) => {
 									/>
 								</Box>
 								<Box mt='30px'>
-									<Button
-										w='100%'
-										bg='#F6540E'
-										color='#fff'
-										borderRadius={'10px'}
-										py='25px'
-										_hover={{ background: '#f6540e' }}
-										isDisabled={sendLink}
-										onClick={handleLinkSubmit}
-									>
-										Send link
-									</Button>
+									{emailSent ? (
+										<Text>
+											A mail has been sent to your email
+											address to reset your password.
+										</Text>
+									) : (
+										<Button
+											w='100%'
+											bg='#F6540E'
+											color='#fff'
+											borderRadius={'10px'}
+											py='25px'
+											_hover={{ background: '#f6540e' }}
+											isDisabled={sendLink}
+											onClick={handleLinkSubmit}
+											isLoading={loading}
+										>
+											Send link
+										</Button>
+									)}
 								</Box>
 							</Box>
 						</form>

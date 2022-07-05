@@ -8,38 +8,38 @@ const WhyUdukku = () => {
 			bg='rgba(8, 32, 50, .05)'
 			py='50px'
 			display={'flex'}
-			px={{ base: '7vw', '2xl': '13.54vw' }}
+			px={{ base: '7vw', lg: '13.54vw' }}
 			alignItems={'center'}
-			h='57.35vh'
+			h='55.55vh'
 		>
 			<Box w='40%'>
-				<Text fontSize={'2.91vw'} fontFamily='Gilroy-Bold'>
+				<Text fontSize={'2.291vw'} fontFamily='Gilroy-Bold'>
 					Why Udukku?
 				</Text>
-				<Box display={'flex'} flexDir='column' gap='10px' mt='20px'>
-					<Box display={'flex'} gap={'10px'}>
-						<Image src={bdg} h='20px' />
-						<Text fontFamily='Gilroy-SemiBold' fontSize={'16px'}>
+				<Box display={'flex'} flexDir='column' gap='3.70vh' mt='20px'>
+					<Box display={'flex'} gap={'10px'} alignItems='center'>
+						<Image src={bdg} h='2.48vh' w={'1.17vw'} />
+						<Text fontFamily='Gilroy-SemiBold' fontSize={'.833vw'}>
 							Protected payments with high-quality results
 						</Text>
 					</Box>
-					<Box display={'flex'} gap={'10px'}>
-						<Image src={bdg} h='20px' />
-						<Text fontFamily='Gilroy-SemiBold' fontSize={'16px'}>
+					<Box display={'flex'} gap={'10px'} alignItems='center'>
+						<Image src={bdg} h='2.48vh' w={'1.17vw'} />
+						<Text fontFamily='Gilroy-SemiBold' fontSize={'.833vw'}>
 							Countless opportunities to share your musical
 							talents
 						</Text>
 					</Box>
-					<Box display={'flex'} gap={'10px'}>
-						<Image src={bdg} h='20px' />
-						<Text fontFamily='Gilroy-SemiBold' fontSize={'16px'}>
+					<Box display={'flex'} gap={'10px'} alignItems='center'>
+						<Image src={bdg} h='2.48vh' w={'1.17vw'} />
+						<Text fontFamily='Gilroy-SemiBold' fontSize={'.833vw'}>
 							A platform inspiring the passion and potentiality of
 							music
 						</Text>
 					</Box>
 				</Box>
 			</Box>
-			<Box w='60%'>
+			<Box w='39.89vw'>
 				<Image src={imgg} />
 			</Box>
 		</Box>

@@ -19,7 +19,7 @@ const AboutUs = () => {
 			<NavBar />
 			<Box mt='100px' mb='50px'>
 				<Text
-					fontSize={'72px'}
+					fontSize={'3.75vw'}
 					textAlign='center'
 					fontFamily={'Gilroy-Bold'}
 				>
@@ -29,7 +29,7 @@ const AboutUs = () => {
 					textAlign={'center'}
 					w='50vw'
 					mx='auto'
-					fontSize={'20px'}
+					fontSize={'1.04vw'}
 					fontFamily='Gilroy-Medium'
 				>
 					Udukku is an online musician marketplace that provides them

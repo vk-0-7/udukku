@@ -61,13 +61,13 @@ const ContactUs = () => {
 	return (
 		<Box mt='112px'>
 			<NavBar />
-			<Box px={{ base: '7vw', '2xl': '13.54vw' }} py='80px'>
+			<Box px={{ base: '7vw', lg: '13.54vw' }} py='80px'>
 				<Box display={'grid'} gridTemplateColumns={'1fr 1fr'} gap='6vw'>
 					<Box>
-						<Text fontFamily={'Gilroy-Bold'} fontSize='44px'>
+						<Text fontFamily={'Gilroy-Bold'} fontSize='2.29vw'>
 							If You Have Any Questions
 						</Text>
-						<Text fontFamily={'Gilroy-Medium'} fontSize='20px'>
+						<Text fontFamily={'Gilroy-Medium'} fontSize='.833vw'>
 							If you have any queries regarding service providers
 							or jobs you are applying to, send us a message and
 							we will get back to you in less than 48 hours.
@@ -81,7 +81,7 @@ const ContactUs = () => {
 							<Box>
 								<Text
 									fontFamily={'Gilroy-SemiBold'}
-									fontSize='16px'
+									fontSize='.833vw'
 								>
 									Full Name
 								</Text>
@@ -91,7 +91,7 @@ const ContactUs = () => {
 									borderRadius='15px'
 									fontSize={'16px'}
 									py='20px'
-									h='50px'
+									h='6.48vh'
 									fontFamily={'Gilroy-SemiBold'}
 									onChange={(e) => {
 										setName(e.target.value);
@@ -101,7 +101,7 @@ const ContactUs = () => {
 							<Box>
 								<Text
 									fontFamily={'Gilroy-SemiBold'}
-									fontSize='16px'
+									fontSize='.833vw'
 								>
 									Email address
 								</Text>
@@ -111,7 +111,7 @@ const ContactUs = () => {
 									borderRadius='15px'
 									fontSize={'16px'}
 									py='20px'
-									h='50px'
+									h='6.48vh'
 									fontFamily={'Gilroy-SemiBold'}
 									onChange={(e) => {
 										setEmail(e.target.value);
@@ -121,7 +121,7 @@ const ContactUs = () => {
 							<Box>
 								<Text
 									fontFamily={'Gilroy-SemiBold'}
-									fontSize='16px'
+									fontSize='.833vw'
 								>
 									Subject
 								</Text>
@@ -131,7 +131,7 @@ const ContactUs = () => {
 									borderRadius='15px'
 									fontSize={'16px'}
 									py='20px'
-									h='50px'
+									h='6.48vh'
 									fontFamily={'Gilroy-SemiBold'}
 									onChange={(e) => {
 										setSubject(e.target.value);
@@ -141,7 +141,7 @@ const ContactUs = () => {
 							<Box>
 								<Text
 									fontFamily={'Gilroy-SemiBold'}
-									fontSize='16px'
+									fontSize='.833vw'
 								>
 									Your Message
 								</Text>
@@ -156,10 +156,10 @@ const ContactUs = () => {
 							</Box>
 							<Button
 								fontFamily={'Gilroy-SemiBold'}
-								fontSize='16px'
+								fontSize='.833vw'
 								bg='#F6540E'
 								color='#fff'
-								py='30px'
+								h='6.48vh'
 								borderRadius='20px'
 								_hover={{ background: '#F6540E' }}
 								isDisabled={disable}
@@ -171,26 +171,26 @@ const ContactUs = () => {
 						</Box>
 					</Box>
 					<Box>
-						<Text fontFamily={'Gilroy-Bold'} fontSize='32px'>
+						<Text fontFamily={'Gilroy-Bold'} fontSize='1.66vw'>
 							Address
 						</Text>
-						<Text fontFamily={'Gilroy-SemiBold'} fontSize='16px'>
+						<Text fontFamily={'Gilroy-SemiBold'} fontSize='.833vw'>
 							M-23 Income Tax Colony, Tonk Road, Durgapura, Jaipur
 							- 302018
 						</Text>
 						<Text
 							fontFamily={'Gilroy-Bold'}
-							fontSize='32px'
+							fontSize='1.66vw'
 							mt='40px'
 						>
 							Email
 						</Text>
-						<Text fontFamily={'Gilroy-SemiBold'} fontSize='16px'>
+						<Text fontFamily={'Gilroy-SemiBold'} fontSize='.833vw'>
 							info@udukku.com
 						</Text>
 						<Text
 							fontFamily={'Gilroy-Bold'}
-							fontSize='32px'
+							fontSize='1.66vw'
 							mt='40px'
 						>
 							Social media

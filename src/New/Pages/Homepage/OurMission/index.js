@@ -1,8 +1,9 @@
 import { Box, Text, Button } from '@chakra-ui/react';
+import { ReactComponent as Man } from '../../../../Assets/Icons/frame.svg';
 
 const OurMission = () => {
 	return (
-		<Box w='100vw' px={{ base: '7vw', '2xl': '13.54vw' }} py='50px'>
+		<Box w='100vw' px={{ base: '7vw', lg: '13.54vw' }} py='50px'>
 			<Box
 				bg='rgba(246, 84, 14, .05)'
 				borderRadius={'32px'}
@@ -13,15 +14,15 @@ const OurMission = () => {
 				alignItems='center'
 				py='50px'
 				gap='10px'
-				h='50.38vh'
+				h='48.88vh'
 			>
-				<Text fontSize={'3.75vw'} fontFamily='Gilroy-Bold'>
+				<Text fontSize={'3.37vw'} fontFamily='Gilroy-Bold'>
 					Our Mission
 				</Text>
 				<Text
 					textAlign={'center'}
-					w='50%'
-					fontSize={'20px'}
+					w='70%'
+					fontSize={'1.04vw'}
 					fontFamily='Gilroy-Medium'
 				>
 					To provide a marketplace platform for musicians to monetize
@@ -31,13 +32,15 @@ const OurMission = () => {
 				<Button
 					bg='rgba(246, 84, 14, 1)'
 					color='#fff'
-					h='72px'
-					w='261px'
+					h='6.66vh'
+					w='13.59vw'
 					borderRadius={'20px'}
 					mt='20px'
 					fontFamily='Gilroy-SemiBold'
-					fontSize={'16px'}
+					fontSize={'.833vw'}
+					id='our_mission_btn'
 				>
+					<Man />
 					Become a memeber
 				</Button>
 			</Box>

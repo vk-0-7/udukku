@@ -4,8 +4,8 @@ import { HiOutlineChevronRight } from 'react-icons/hi';
 const JobCard = () => {
 	return (
 		<Box
-			w='456px'
-			h='570px'
+			w='23.75vw'
+			h='52.77vh'
 			bg='#fff'
 			border='1.5px solid #f0f0f0'
 			borderRadius={'28px'}
@@ -18,7 +18,7 @@ const JobCard = () => {
 			flexDir={'column'}
 		>
 			{/* heading */}
-			<Text fontSize={'28px'} fontFamily={'Gilroy-Bold'}>
+			<Text fontSize={'1.45vw'} fontFamily={'Gilroy-Bold'}>
 				Here goes the heading
 			</Text>
 			{/* section which contain all the badges */}
@@ -31,7 +31,8 @@ const JobCard = () => {
 					borderRadius={'16px'}
 					flexShrink={0}
 					fontFamily={'Gilroy-SemiBold'}
-					fontSize={'14px'}
+					fontSize={'.729vw'}
+					h='4.07vh'
 				>
 					Female Vocalist or Singer
 				</Box>
@@ -43,7 +44,8 @@ const JobCard = () => {
 					borderRadius={'16px'}
 					flexShrink={0}
 					fontFamily={'Gilroy-SemiBold'}
-					fontSize={'14px'}
+					fontSize={'.729vw'}
+					h='4.07vh'
 				>
 					Hindustani Classical
 				</Box>
@@ -55,7 +57,8 @@ const JobCard = () => {
 					borderRadius={'16px'}
 					flexShrink={0}
 					fontFamily={'Gilroy-SemiBold'}
-					fontSize={'14px'}
+					fontSize={'.729vw'}
+					h='4.07vh'
 				>
 					Female Vocalist or Singer
 				</Box>
@@ -67,13 +70,14 @@ const JobCard = () => {
 					borderRadius={'16px'}
 					flexShrink={0}
 					fontFamily={'Gilroy-SemiBold'}
-					fontSize={'14px'}
+					fontSize={'.729vw'}
+					h='4.07vh'
 				>
 					Hindustani Classical
 				</Box>
 			</Box>
 			{/* some text */}
-			<Text mt='30px' fontSize={'16px'} fontFamily='Gilroy-Medium'>
+			<Text mt='30px' fontSize={'.833vw'} fontFamily='Gilroy-Medium'>
 				Are you a musician looking to provide your skills? Browse here
 				for your next opportunity...
 			</Text>
@@ -86,7 +90,7 @@ const JobCard = () => {
 					borderRadius={'16px'}
 					flexShrink={0}
 					fontFamily='Gilroy-Medium'
-					fontSize={'16px'}
+					fontSize={'.833vw'}
 				>
 					Fixed Price
 				</Box>
@@ -97,7 +101,7 @@ const JobCard = () => {
 					borderRadius={'16px'}
 					flexShrink={0}
 					fontFamily='Gilroy-Medium'
-					fontSize={'16px'}
+					fontSize={'.833vw'}
 				>
 					1-7 days
 				</Box>
@@ -108,13 +112,13 @@ const JobCard = () => {
 					borderRadius={'16px'}
 					flexShrink={0}
 					fontFamily='Gilroy-Medium'
-					fontSize={'16px'}
+					fontSize={'.833vw'}
 				>
 					2 references
 				</Box>
 			</Box>
 			{/* price */}
-			<Text fontSize={'28px'} mt='20px' fontFamily={'Gilroy-Bold'}>
+			<Text fontSize={'1.45vw'} mt='20px' fontFamily={'Gilroy-Bold'}>
 				$120 - $230
 			</Text>
 			{/* button */}
@@ -122,10 +126,10 @@ const JobCard = () => {
 
 			<Box display={'flex'} justifyContent='center'>
 				<Button
-					w='90%'
+					w='22.5vw'
 					bg='rgba(246, 84, 14, 1)'
 					color='#fff'
-					h='60px'
+					h='6.48vh'
 					borderRadius={'24px'}
 					display='flex'
 					alignItems={'center'}
@@ -138,9 +142,15 @@ const JobCard = () => {
 					// 	},
 					// }}
 				>
-					<Text fontFamily={'Gilroy-SemiBold'}>See Details</Text>
+					<Text fontFamily={'Gilroy-SemiBold'} fontSize='.833vw'>
+						See Details
+					</Text>
 
-					<Icon as={HiOutlineChevronRight} className='for-svg' />
+					<Icon
+						as={HiOutlineChevronRight}
+						className='for-svg'
+						h='1vh'
+					/>
 				</Button>
 			</Box>
 		</Box>

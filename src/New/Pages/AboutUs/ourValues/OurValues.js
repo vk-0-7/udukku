@@ -4,38 +4,38 @@ import img2 from '../../../../Assets/Images/cards/Rectangle 78-3.png';
 const OurValues = () => {
 	return (
 		<Box
-			px='5.7vw'
+			px={{ base: '7vw', lg: '13.54vw' }}
 			display={'flex'}
-			gap='50px'
 			bg='rgba(246,84,14,.05)'
 			mt='50px'
-			pt='50px'
-			pb='50px'
+			pt='7.40vh'
+			pb='7.40vh'
 			mb='50px'
 		>
-			<Box>
-				<Image src={img2} h='75.95vh' />
+			<Box w='33.75vw' h='73.70'>
+				<Image src={img2} h='100%' />
 			</Box>
+			<Box flexGrow={1}></Box>
 			<Box w='50%'>
-				<Text fontSize={'44px'} fontFamily='Gilroy-Bold'>
+				<Text fontSize={'2.29vw'} fontFamily='Gilroy-Bold'>
 					Our Values:
 				</Text>
 
 				<UnorderedList>
-					<ListItem fontFamily={'Gilroy-Medium'} fontSize='20px'>
+					<ListItem fontFamily={'Gilroy-Medium'} fontSize={'1.04vw'}>
 						Integrity: We are honest and transparent in dealings
 						with users, partners, and employees.
 					</ListItem>
 					<ListItem
 						fontFamily={'Gilroy-Medium'}
-						fontSize='20px'
+						fontSize={'1.04vw'}
 						mt='10px'
 					>
 						Respect: We treat everyone with respect and dignity.
 					</ListItem>
 					<ListItem
 						fontFamily={'Gilroy-Medium'}
-						fontSize='20px'
+						fontSize={'1.04vw'}
 						mt='10px'
 					>
 						Excellence: We strive for excellence in everything we
@@ -43,7 +43,7 @@ const OurValues = () => {
 					</ListItem>
 					<ListItem
 						fontFamily={'Gilroy-Medium'}
-						fontSize='20px'
+						fontSize={'1.04vw'}
 						mt='10px'
 					>
 						Passion: We are passionate about our work and committed
@@ -51,7 +51,7 @@ const OurValues = () => {
 					</ListItem>
 					<ListItem
 						fontFamily={'Gilroy-Medium'}
-						fontSize='20px'
+						fontSize={'1.04vw'}
 						mt='10px'
 					>
 						Teamwork: We believe in the power of teamwork and
@@ -59,7 +59,7 @@ const OurValues = () => {
 					</ListItem>
 					<ListItem
 						fontFamily={'Gilroy-Medium'}
-						fontSize='20px'
+						fontSize={'1.04vw'}
 						mt='10px'
 					>
 						Inclusivity: We are committed to inclusivity and
@@ -67,7 +67,7 @@ const OurValues = () => {
 					</ListItem>
 					<ListItem
 						fontFamily={'Gilroy-Medium'}
-						fontSize='20px'
+						fontSize={'1.04vw'}
 						mt='10px'
 					>
 						Empowerment: We believe in empowering musicians to
@@ -75,7 +75,7 @@ const OurValues = () => {
 					</ListItem>
 					<ListItem
 						fontFamily={'Gilroy-Medium'}
-						fontSize='20px'
+						fontSize={'1.04vw'}
 						mt='10px'
 					>
 						Discovery: We are committed to helping people discover
@@ -83,7 +83,7 @@ const OurValues = () => {
 					</ListItem>
 					<ListItem
 						fontFamily={'Gilroy-Medium'}
-						fontSize='20px'
+						fontSize={'1.04vw'}
 						mt='10px'
 					>
 						Fun: We believe in having fun and enjoying what we do!

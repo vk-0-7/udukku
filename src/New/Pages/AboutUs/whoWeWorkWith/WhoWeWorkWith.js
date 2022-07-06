@@ -5,10 +5,10 @@ import img3 from '../../../../Assets/Images/cards/Rectangle 80.png';
 
 const WhoWeWorkWith = () => {
 	return (
-		<Box px='5.7vw'>
+		<Box px={{ base: '7vw', lg: '13.54vw' }}>
 			<Text
 				fontFamily={'Gilroy-Bold'}
-				fontSize='44px'
+				fontSize='2.29vw'
 				textAlign={'center'}
 			>
 				Who We Work With
@@ -16,16 +16,16 @@ const WhoWeWorkWith = () => {
 			<Box
 				display={'grid'}
 				gridTemplateColumns='1fr 1fr 1fr'
-				gap='40px'
+				gap='.833vw'
 				mt='30px'
 			>
 				<Box>
-					<Box h='250px' w='100%'>
+					<Box h='250px' w='23.75vw'>
 						<Image src={img1} h='100%' w='100%' />
 					</Box>
 					<Text
 						fontFamily={'Gilroy-Bold'}
-						fontSize='28px'
+						fontSize='1.45vw'
 						textAlign={'center'}
 						mt='30px'
 					>
@@ -33,7 +33,7 @@ const WhoWeWorkWith = () => {
 					</Text>
 					<Text
 						fontFamily={'Gilroy-Medium'}
-						fontSize='16px'
+						fontSize='.833vw'
 						textAlign={'center'}
 					>
 						We work with various industry professionals, from
@@ -42,12 +42,12 @@ const WhoWeWorkWith = () => {
 					</Text>
 				</Box>
 				<Box>
-					<Box h='250px' w='100%'>
+					<Box h='250px' w='23.75vw'>
 						<Image src={img2} h='100%' w='100%' />
 					</Box>
 					<Text
 						fontFamily={'Gilroy-Bold'}
-						fontSize='28px'
+						fontSize='1.45vw'
 						textAlign={'center'}
 						mt='30px'
 					>
@@ -55,7 +55,7 @@ const WhoWeWorkWith = () => {
 					</Text>
 					<Text
 						fontFamily={'Gilroy-Medium'}
-						fontSize='16px'
+						fontSize='.833vw'
 						textAlign={'center'}
 					>
 						We work with various industry professionals, from
@@ -64,12 +64,12 @@ const WhoWeWorkWith = () => {
 					</Text>
 				</Box>
 				<Box>
-					<Box h='250px' w='100%'>
+					<Box h='250px' w='23.75vw'>
 						<Image src={img3} h='100%' w='100%' />
 					</Box>
 					<Text
 						fontFamily={'Gilroy-Bold'}
-						fontSize='28px'
+						fontSize='1.45vw'
 						textAlign={'center'}
 						mt='30px'
 					>
@@ -77,7 +77,7 @@ const WhoWeWorkWith = () => {
 					</Text>
 					<Text
 						fontFamily={'Gilroy-Medium'}
-						fontSize='16px'
+						fontSize='.833vw'
 						textAlign={'center'}
 					>
 						If you're a label or venue looking for new talent, we

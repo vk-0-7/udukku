@@ -36,16 +36,17 @@ const Footer = () => {
 				gap={{ base: '20px', lg: '0' }}
 				py='30px '
 				color='#fff'
-				px={{ base: '7vw', '2xl': '13.54vw' }}
+				px={{ base: '7vw', lg: '13.54vw' }}
 			>
 				<Box display={'flex'} flexDir='column'>
 					<Box>
 						<Image src={logo} h='35px' />
 					</Box>
 					<Text
-						my='15px'
+						mt='3.70vh'
+						mb='15px'
 						fontFamily={'Gilroy-Medium'}
-						fontSize='16px'
+						fontSize='.833vw'
 					>
 						A one-of-its-kind destination for musicians to harness
 						their love of music and connect with each other.
@@ -58,7 +59,10 @@ const Footer = () => {
 					>
 						<Icon as={HiLocationMarker} />
 						<Box position='relative' bottom='5px'>
-							<Text fontFamily={'Gilroy-Medium'} fontSize='16px'>
+							<Text
+								fontFamily={'Gilroy-Medium'}
+								fontSize='.833vw'
+							>
 								M-23 Income Tax Colony, Tonk Road, Durgapura,
 								Jaipur - 302018
 							</Text>
@@ -71,18 +75,18 @@ const Footer = () => {
 						mt='10px'
 					>
 						<Icon as={MdEmail} />
-						<Text fontFamily={'Gilroy-Medium'} fontSize='16px'>
+						<Text fontFamily={'Gilroy-Medium'} fontSize='.833vw'>
 							info@udukku.com
 						</Text>
 					</Box>
 					<Box flexGrow={1}></Box>
-					<Text fontFamily={'Gilroy-Medium'} fontSize='16px'>
+					<Text fontFamily={'Gilroy-Medium'} fontSize='.833vw'>
 						©udukku 2022
 					</Text>
 				</Box>
 				<Box display={'flex'} justifyContent='space-around'>
 					<Box>
-						<Text fontSize='28px' fontFamily={'Gilroy-Bold'}>
+						<Text fontSize='1.45vw' fontFamily={'Gilroy-Bold'}>
 							Categories
 						</Text>
 						<Box
@@ -91,28 +95,46 @@ const Footer = () => {
 							mt='8px'
 							lineHeight={'40px'}
 						>
-							<Text fontFamily={'Gilroy-Medium'} fontSize='16px'>
+							<Text
+								fontFamily={'Gilroy-Medium'}
+								fontSize='.833vw'
+							>
 								Vocalists
 							</Text>
-							<Text fontFamily={'Gilroy-Medium'} fontSize='16px'>
+							<Text
+								fontFamily={'Gilroy-Medium'}
+								fontSize='.833vw'
+							>
 								Music Producer & Engineers
 							</Text>
-							<Text fontFamily={'Gilroy-Medium'} fontSize='16px'>
+							<Text
+								fontFamily={'Gilroy-Medium'}
+								fontSize='.833vw'
+							>
 								Indian Instruments
 							</Text>
-							<Text fontFamily={'Gilroy-Medium'} fontSize='16px'>
+							<Text
+								fontFamily={'Gilroy-Medium'}
+								fontSize='.833vw'
+							>
 								International Instruments
 							</Text>
-							<Text fontFamily={'Gilroy-Medium'} fontSize='16px'>
+							<Text
+								fontFamily={'Gilroy-Medium'}
+								fontSize='.833vw'
+							>
 								Songwriters & Composers
 							</Text>
-							<Text fontFamily={'Gilroy-Medium'} fontSize='16px'>
+							<Text
+								fontFamily={'Gilroy-Medium'}
+								fontSize='.833vw'
+							>
 								DJs
 							</Text>
 						</Box>
 					</Box>
 					<Box>
-						<Text fontSize='28px' fontFamily={'Gilroy-Bold'}>
+						<Text fontSize='1.45vw' fontFamily={'Gilroy-Bold'}>
 							Support
 						</Text>
 						<Box
@@ -121,12 +143,15 @@ const Footer = () => {
 							lineHeight={'40px'}
 							mt='8px'
 						>
-							<Text fontFamily={'Gilroy-Medium'} fontSize='16px'>
+							<Text
+								fontFamily={'Gilroy-Medium'}
+								fontSize='.833vw'
+							>
 								FAQs
 							</Text>
 							<Text
 								fontFamily={'Gilroy-Medium'}
-								fontSize='16px'
+								fontSize='.833vw'
 								cursor={'pointer'}
 								onClick={() => {
 									navigate('/privacy-policy');
@@ -136,7 +161,7 @@ const Footer = () => {
 							</Text>
 							<Text
 								fontFamily={'Gilroy-Medium'}
-								fontSize='16px'
+								fontSize='.833vw'
 								cursor={'pointer'}
 								onClick={() => {
 									navigate('/about-us');
@@ -146,7 +171,7 @@ const Footer = () => {
 							</Text>
 							<Text
 								fontFamily={'Gilroy-Medium'}
-								fontSize='16px'
+								fontSize='.833vw'
 								cursor={'pointer'}
 								onClick={() => {
 									navigate('/cancellation-and-refund');
@@ -156,7 +181,7 @@ const Footer = () => {
 							</Text>
 							<Text
 								fontFamily={'Gilroy-Medium'}
-								fontSize='16px'
+								fontSize='.833vw'
 								cursor={'pointer'}
 								onClick={() => {
 									navigate('/terms-and-conditions');
@@ -166,7 +191,7 @@ const Footer = () => {
 							</Text>
 							<Text
 								fontFamily={'Gilroy-Medium'}
-								fontSize='16px'
+								fontSize='.833vw'
 								cursor={'pointer'}
 								onClick={() => {
 									navigate('/contact-us');
@@ -178,25 +203,32 @@ const Footer = () => {
 					</Box>
 				</Box>
 				<Box>
-					<Text fontSize='28px' fontFamily={'Gilroy-Bold'} mb='10px'>
+					<Text
+						fontSize='1.45vw'
+						fontFamily={'Gilroy-Bold'}
+						mb='10px'
+					>
 						Subscribe to hear news
 					</Text>
-					<InputGroup w={{ base: '90%', lg: '100%' }} size={'lg'}>
+					<InputGroup
+						w={{ base: '90%', lg: '21.51vw' }}
+						h='7.41vh'
+						size={'lg'}
+					>
 						<Input
 							bg='white'
+							h='100%'
 							pr='50px'
-							h='60px'
 							type='email'
 							placeholder='Email address'
 							borderRadius={'18px'}
 							color='#000'
 						/>
-						<InputRightElement width='100px' h='50px'>
+						<InputRightElement width='6.19vw' h='6.29vh'>
 							<Button
 								mt='10px'
-								h='100%'
+								h='6.29vh'
 								w='100%'
-								px={'10px'}
 								bg='rgba(246, 84, 14, 1)'
 								position={'relative'}
 								right='5px'
@@ -204,6 +236,7 @@ const Footer = () => {
 								_hover={{
 									background: '#0E87F6',
 								}}
+								fontSize='.833vw'
 							>
 								Send
 							</Button>

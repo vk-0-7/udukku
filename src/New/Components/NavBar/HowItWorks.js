@@ -35,15 +35,23 @@ const HowItWorks = ({ state, changeState }) => {
 					left='50%'
 					top='50%'
 					transform={'translateX(-50%) translateY(-50%)'}
-					w='90vw'
+					w='72.91vw'
+					h='92.40vh'
 					bg='#fff'
 					borderRadius={'32px'}
 					overflow='hidden'
 					pb='20px'
 				>
-					<Box bg='#f0f0f0' py='20px' position='relative'>
+					<Box
+						bg='#f0f0f0'
+						h='10.18vh'
+						position='relative'
+						display={'flex'}
+						justifyContent='center'
+						alignItems={'center'}
+					>
 						<Text
-							fontSize={'32px'}
+							fontSize={'1.66vw'}
 							fontFamily='Gilroy-Bold'
 							textAlign={'center'}
 						>
@@ -67,7 +75,7 @@ const HowItWorks = ({ state, changeState }) => {
 						<Text
 							mt='20px'
 							textAlign={'center'}
-							fontSize='28px'
+							fontSize={'1.66vw'}
 							fontFamily='Gilroy-Bold'
 						>
 							Looking for a musician?
@@ -86,25 +94,25 @@ const HowItWorks = ({ state, changeState }) => {
 								gap='10px'
 							>
 								<Box
-									w='70px'
-									h='70px'
+									w='5vw'
+									h='5vw'
 									border='3px solid #F6540E'
 									borderRadius={'full'}
 									display='flex'
 									justifyContent={'center'}
 									alignItems='center'
 								>
-									<Image src={clipBoard} h='40px' />
+									<Image src={clipBoard} h='2vw' />
 								</Box>
 								<Text
-									fontSize={'28px'}
+									fontSize={'1.45vw'}
 									fontFamily='Gilroy-Bold'
 								>
 									Post a Job
 								</Text>
 								<Text
 									textAlign={'center'}
-									fontSize='16px'
+									fontSize='.833vw'
 									fontFamily={'Gilroy-Medium'}
 								>
 									List your job by entering a title, detailed
@@ -120,25 +128,25 @@ const HowItWorks = ({ state, changeState }) => {
 								gap='10px'
 							>
 								<Box
-									w='70px'
-									h='70px'
+									w='5vw'
+									h='5vw'
 									border='3px solid #F6540E'
 									borderRadius={'full'}
 									display='flex'
 									justifyContent={'center'}
 									alignItems='center'
 								>
-									<Image src={message} h='40px' />
+									<Image src={message} h='2vw' />
 								</Box>
 								<Text
-									fontSize={'28px'}
+									fontSize={'1.45vw'}
 									fontFamily='Gilroy-Bold'
 								>
 									Chat & Choose
 								</Text>
 								<Text
 									textAlign={'center'}
-									fontSize='16px'
+									fontSize='.833vw'
 									fontFamily={'Gilroy-Medium'}
 								>
 									Browse through a listing of providers, chat
@@ -154,25 +162,25 @@ const HowItWorks = ({ state, changeState }) => {
 								gap='10px'
 							>
 								<Box
-									w='70px'
-									h='70px'
+									w='5vw'
+									h='5vw'
 									border='3px solid #F6540E'
 									borderRadius={'full'}
 									display='flex'
 									justifyContent={'center'}
 									alignItems='center'
 								>
-									<Image src={card} h='40px' />
+									<Image src={card} h='2vw' />
 								</Box>
 								<Text
-									fontSize={'28px'}
+									fontSize={'1.45vw'}
 									fontFamily='Gilroy-Bold'
 								>
 									Pay Securely
 								</Text>
 								<Text
 									textAlign={'center'}
-									fontSize='16px'
+									fontSize='.833vw'
 									fontFamily={'Gilroy-Medium'}
 								>
 									Pay securely with Udukku and release funds
@@ -186,7 +194,7 @@ const HowItWorks = ({ state, changeState }) => {
 						<Text
 							mt='20px'
 							textAlign={'center'}
-							fontSize='32px'
+							fontSize={'1.66vw'}
 							fontFamily='Gilroy-Bold'
 						>
 							Want to showcase your skills?
@@ -205,25 +213,25 @@ const HowItWorks = ({ state, changeState }) => {
 								gap='10px'
 							>
 								<Box
-									w='70px'
-									h='70px'
+									w='5vw'
+									h='5vw'
 									border='3px solid #F6540E'
 									borderRadius={'full'}
 									display='flex'
 									justifyContent={'center'}
 									alignItems='center'
 								>
-									<Image src={profile} h='40px' />
+									<Image src={profile} h='2vw' />
 								</Box>
 								<Text
-									fontSize={'28px'}
+									fontSize={'1.45vw'}
 									fontFamily='Gilroy-Bold'
 								>
 									Create Your Profile
 								</Text>
 								<Text
 									textAlign={'center'}
-									fontSize='16px'
+									fontSize='.833vw'
 									fontFamily={'Gilroy-Medium'}
 								>
 									Sign up and create an Udukku Artist profile
@@ -239,25 +247,25 @@ const HowItWorks = ({ state, changeState }) => {
 								gap='10px'
 							>
 								<Box
-									w='70px'
-									h='70px'
+									w='5vw'
+									h='5vw'
 									border='3px solid #F6540E'
 									borderRadius={'full'}
 									display='flex'
 									justifyContent={'center'}
 									alignItems='center'
 								>
-									<Image src={clipboardTick} h='40px' />
+									<Image src={clipboardTick} h='2vw' />
 								</Box>
 								<Text
-									fontSize={'28px'}
+									fontSize={'1.45vw'}
 									fontFamily='Gilroy-Bold'
 								>
 									Browse & Apply
 								</Text>
 								<Text
 									textAlign={'center'}
-									fontSize='16px'
+									fontSize='.833vw'
 									fontFamily={'Gilroy-Medium'}
 								>
 									Apply to posted jobs by filtering your
@@ -274,25 +282,25 @@ const HowItWorks = ({ state, changeState }) => {
 								gap='10px'
 							>
 								<Box
-									w='70px'
-									h='70px'
+									w='5vw'
+									h='5vw'
 									border='3px solid #F6540E'
 									borderRadius={'full'}
 									display='flex'
 									justifyContent={'center'}
 									alignItems='center'
 								>
-									<Image src={coin} h='40px' />
+									<Image src={coin} h='2vw' />
 								</Box>
 								<Text
-									fontSize={'28px'}
+									fontSize={'1.45vw'}
 									fontFamily='Gilroy-Bold'
 								>
 									Get Paid Securely
 								</Text>
 								<Text
 									textAlign={'center'}
-									fontSize='16px'
+									fontSize='.833vw'
 									fontFamily={'Gilroy-Medium'}
 								>
 									Complete the assigned project and receive

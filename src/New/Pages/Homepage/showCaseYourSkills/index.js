@@ -36,15 +36,15 @@ const ShowCaseYourSkills = () => {
 					gap='10px'
 				>
 					<Box
-						w='11.11vh'
-						h='11.11vh'
+						w='5vw'
+						h='5vw'
 						border='3px solid #F6540E'
 						borderRadius={'full'}
 						display='flex'
 						justifyContent={'center'}
 						alignItems='center'
 					>
-						<Image src={frame} h='4.44vh' />
+						<Image src={frame} h='2avw' />
 					</Box>
 					<Text fontSize={'1.45vw'} fontFamily={'Gilroy-Bold'}>
 						Create Your Profile
@@ -67,15 +67,15 @@ const ShowCaseYourSkills = () => {
 					gap='10px'
 				>
 					<Box
-						w='11.11vh'
-						h='11.11vh'
+						w='5vw'
+						h='5vw'
 						border='3px solid #F6540E'
 						borderRadius={'full'}
 						display='flex'
 						justifyContent={'center'}
 						alignItems='center'
 					>
-						<Image src={clipboard} h='4.44vh' />
+						<Image src={clipboard} h='2vw' />
 					</Box>
 					<Text fontSize={'1.45vw'} fontFamily={'Gilroy-Bold'}>
 						Browse & Apply
@@ -98,15 +98,15 @@ const ShowCaseYourSkills = () => {
 					gap='10px'
 				>
 					<Box
-						w='11.11vh'
-						h='11.11vh'
+						w='5vw'
+						h='5vw'
 						border='3px solid #F6540E'
 						borderRadius={'full'}
 						display='flex'
 						justifyContent={'center'}
 						alignItems='center'
 					>
-						<Image src={coin} h='4.44vh' />
+						<Image src={coin} h='2vw' />
 					</Box>
 					<Text fontSize={'1.45vw'} fontFamily={'Gilroy-Bold'}>
 						Get Paid Securely

@@ -1,4 +1,5 @@
-import { Box, Button, Text } from '@chakra-ui/react';
+import { Box, Button, Icon, Text } from '@chakra-ui/react';
+import { AiOutlineRight } from 'react-icons/ai';
 import './talents.css';
 
 const Talents = () => {
@@ -35,8 +36,11 @@ const Talents = () => {
 						h='6.66vh'
 						fontSize={'.833vw'}
 						fontFamily={'Gilroy-SemiBold'}
+						fontWeight='normal'
+						borderRadius='20px'
 					>
-						Sell all categories
+						Sell all categories{' '}
+						<Icon as={AiOutlineRight} ml='5px' />
 					</Button>
 				</Box>
 			</Box>

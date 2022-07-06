@@ -1,6 +1,7 @@
-import { Box, Button, Text } from '@chakra-ui/react';
+import { Box, Button, Icon, Text } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
 import JobCard from '../../../Components/jobCard/JobCard';
+import { AiOutlineRight } from 'react-icons/ai';
 
 const ExploreTheMarketplace = () => {
 	const navigate = useNavigate();
@@ -32,13 +33,15 @@ const ExploreTheMarketplace = () => {
 						fontFamily={'Gilroy-SemiBold'}
 						fontWeight='normal'
 						fontSize={'.833vw'}
+						borderRadius='20px'
 						w='14.01vw'
 						h='6.66vh'
 						onClick={() => {
 							navigate('/jobs');
 						}}
 					>
-						Find your next project
+						Find your next project{' '}
+						<Icon as={AiOutlineRight} ml='5px' />
 					</Button>
 				</Box>
 			</Box>

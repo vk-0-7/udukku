@@ -1,8 +1,8 @@
 import { Box, Text, Button, Image } from '@chakra-ui/react';
 import '../';
 import './hero.css';
-import left from '../../../../Assets/Icons/Group 73.png';
-import right from '../../../../Assets/Icons/Group 74.png';
+import left from './left.svg';
+import right from './right.svg';
 import { ReactComponent as People } from '../../../../Assets/Icons/people.svg';
 import { ReactComponent as Man } from '../../../../Assets/Icons/frame.svg';
 
@@ -90,13 +90,13 @@ const Hero = () => {
 						<Box
 							position={'absolute'}
 							h='22.40vh'
-							w='12.91vw'
+							w='12.93vw'
 							bg='rgba(8, 32, 50,.65)'
 							bottom={0}
 							right={0}
 							borderRadius='32px 0 0 0'
 						>
-							<Box mr='30px' mt='40px' position={'relative'}>
+							<Box mr='2.08vw' mt='3.70vh' position={'relative'}>
 								<Box
 									h='4px'
 									w='1.66vw'
@@ -114,6 +114,7 @@ const Hero = () => {
 									Jonathan Morrata
 								</Text>
 								<Text
+									mt='.74vh'
 									color='#fff'
 									fontSize={'1.66vw'}
 									fontFamily={'Gilroy-Bold'}
@@ -123,21 +124,43 @@ const Hero = () => {
 								</Text>
 								<Box
 									display={'flex'}
+									justifyContent='flex-end'
 									position='relative'
-									left='15px'
+									gap='.833vw'
+									mt='1.11vh'
 								>
-									<Image
-										src={left}
-										alt='left'
-										cursor={'pointer'}
-										h='80px'
-									/>
-									<Image
-										src={right}
-										alt='left'
-										cursor={'pointer'}
-										h='80px'
-									/>
+									<Box
+										h='2.5vw'
+										w='2.5vw'
+										display={'flex'}
+										justifyContent='center'
+										alignItems={'center'}
+										borderRadius='full'
+										border='2px solid white'
+									>
+										<Image
+											src={left}
+											alt='left'
+											cursor={'pointer'}
+											w='.5vw'
+										/>
+									</Box>
+									<Box
+										h='2.5vw'
+										w='2.5vw'
+										display={'flex'}
+										justifyContent='center'
+										alignItems={'center'}
+										borderRadius='full'
+										border='2px solid white'
+									>
+										<Image
+											src={right}
+											alt='left'
+											cursor={'pointer'}
+											w='.5vw'
+										/>
+									</Box>
 								</Box>
 							</Box>
 						</Box>

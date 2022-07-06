@@ -36,15 +36,15 @@ const LookingForAMusician = () => {
 					gap='10px'
 				>
 					<Box
-						w='11.11vh'
-						h='11.11vh'
+						w='5vw'
+						h='5vw'
 						border='3px solid #F6540E'
 						borderRadius={'full'}
 						display='flex'
 						justifyContent={'center'}
 						alignItems='center'
 					>
-						<Image src={clipBoard} h='4.44vh' />
+						<Image src={clipBoard} h='2vw' />
 					</Box>
 					<Text fontSize={'1.45vw'} fontFamily={'Gilroy-Bold'}>
 						Post a Job
@@ -67,15 +67,15 @@ const LookingForAMusician = () => {
 					gap='10px'
 				>
 					<Box
-						w='11.11vh'
-						h='11.11vh'
+						w='5vw'
+						h='5vw'
 						border='3px solid #F6540E'
 						borderRadius={'full'}
 						display='flex'
 						justifyContent={'center'}
 						alignItems='center'
 					>
-						<Image src={message} h='4.44vh' />
+						<Image src={message} h='2vw' />
 					</Box>
 					<Text fontSize={'1.45vw'} fontFamily={'Gilroy-Bold'}>
 						Chat & Choose
@@ -97,15 +97,15 @@ const LookingForAMusician = () => {
 					gap='10px'
 				>
 					<Box
-						w='11.11vh'
-						h='11.11vh'
+						w='5vw'
+						h='5vw'
 						border='3px solid #F6540E'
 						borderRadius={'full'}
 						display='flex'
 						justifyContent={'center'}
 						alignItems='center'
 					>
-						<Image src={card} h='4.44vh' />
+						<Image src={card} h='2vw' />
 					</Box>
 					<Text fontSize={'1.45vw'} fontFamily={'Gilroy-Bold'}>
 						Pay Securely

@@ -59,9 +59,13 @@ const ContactUs = () => {
 	};
 
 	return (
-		<Box mt='112px'>
+		<Box mt='7.40vh'>
 			<NavBar />
-			<Box px={{ base: '7vw', lg: '13.54vw' }} py='80px'>
+			<Box
+				px={{ base: '7vw', lg: '13.54vw' }}
+				py='80px'
+				h='calc(100vh - 20.40vh)'
+			>
 				<Box display={'grid'} gridTemplateColumns={'1fr 1fr'} gap='6vw'>
 					<Box>
 						<Text fontFamily={'Gilroy-Bold'} fontSize='2.29vw'>
@@ -89,9 +93,9 @@ const ContactUs = () => {
 									value={name}
 									type='text'
 									borderRadius='15px'
-									fontSize={'16px'}
+									fontSize='.92vw'
 									py='20px'
-									h='6.48vh'
+									h={{ base: '6.48vh', '3xl': '5vh' }}
 									fontFamily={'Gilroy-SemiBold'}
 									onChange={(e) => {
 										setName(e.target.value);
@@ -109,9 +113,9 @@ const ContactUs = () => {
 									value={email}
 									type='email'
 									borderRadius='15px'
-									fontSize={'16px'}
+									fontSize='.92vw'
 									py='20px'
-									h='6.48vh'
+									h={{ base: '6.48vh', '3xl': '5vh' }}
 									fontFamily={'Gilroy-SemiBold'}
 									onChange={(e) => {
 										setEmail(e.target.value);
@@ -129,9 +133,9 @@ const ContactUs = () => {
 									value={subject}
 									type='text'
 									borderRadius='15px'
-									fontSize={'16px'}
+									fontSize='.92vw'
 									py='20px'
-									h='6.48vh'
+									h={{ base: '6.48vh', '3xl': '5vh' }}
 									fontFamily={'Gilroy-SemiBold'}
 									onChange={(e) => {
 										setSubject(e.target.value);
@@ -148,6 +152,7 @@ const ContactUs = () => {
 								<Textarea
 									value={message}
 									borderRadius='20px'
+									fontSize='.92vw'
 									fontFamily={'Gilroy-SemiBold'}
 									onChange={(e) => {
 										setMessage(e.target.value);
@@ -159,7 +164,7 @@ const ContactUs = () => {
 								fontSize='.833vw'
 								bg='#F6540E'
 								color='#fff'
-								h='6.48vh'
+								h={{ base: '6.48vh', '3xl': '5vh' }}
 								borderRadius='20px'
 								_hover={{ background: '#F6540E' }}
 								isDisabled={disable}

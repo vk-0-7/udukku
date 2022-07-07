@@ -125,12 +125,11 @@ const SignUpModal = ({ state, changeState }) => {
 				>
 					<Box
 						h='fit-content'
-						w='43.85%'
+						w='36.04vw'
 						bg='#fff'
 						borderRadius={'32px'}
-						pt='30px'
-						pb='40px'
-						px='50px'
+						py='3.70vh'
+						px='3.125vw'
 						position={'relative'}
 					>
 						{/* close btn */}
@@ -138,9 +137,9 @@ const SignUpModal = ({ state, changeState }) => {
 						<Icon
 							position='absolute'
 							as={GrClose}
-							fontSize={'20px'}
-							top={'30px'}
-							right={'30px'}
+							fontSize={'1.04vw'}
+							top={'2.77vh'}
+							right={'1.56vw'}
 							cursor='pointer'
 							onClick={() => {
 								changeState(false);
@@ -149,15 +148,15 @@ const SignUpModal = ({ state, changeState }) => {
 						/>
 
 						<Text
-							fontSize={'34px'}
+							fontSize={'1.666vw'}
 							fontWeight={600}
 							textAlign='center'
 						>
 							Become our member
 						</Text>
 						<Text
-							fontSize={'18px'}
-							fontWeight={300}
+							fontSize={'.833vw'}
+							fontFamily='Gilroy-Medium'
 							textAlign='center'
 						>
 							Join India's First Music Marketplace
@@ -167,14 +166,14 @@ const SignUpModal = ({ state, changeState }) => {
 							<Box
 								display='flex'
 								flexDir={'column'}
-								gap='20px'
-								pt='30px'
+								gap='2.222vh'
+								pt='2.96vh'
 							>
 								<Box>
 									<label htmlFor='nav-login-email'>
 										<Text
-											fontSize={'18px'}
-											fontWeight={600}
+											fontSize={'.833vw'}
+											fontFamily='Gilroy-SemiBold'
 											_after={{
 												content: "'*'",
 												position: 'relative',
@@ -188,7 +187,8 @@ const SignUpModal = ({ state, changeState }) => {
 										value={name}
 										type='text'
 										id='nav-login-email'
-										h='50px'
+										fontSize={'.93vw'}
+										h={{ base: '6.48vh', '3xl': '5vh' }}
 										borderRadius={'15px'}
 										placeholder='your name'
 										onChange={(e) => {
@@ -202,8 +202,8 @@ const SignUpModal = ({ state, changeState }) => {
 								<Box>
 									<label htmlFor='nav-login-email'>
 										<Text
-											fontSize={'18px'}
-											fontWeight={600}
+											fontSize={'.833vw'}
+											fontFamily='Gilroy-SemiBold'
 											_after={{
 												content: "'*'",
 												position: 'relative',
@@ -218,7 +218,8 @@ const SignUpModal = ({ state, changeState }) => {
 										value={email}
 										type='email'
 										id='nav-login-email'
-										h='50px'
+										fontSize={'.93vw'}
+										h={{ base: '6.48vh', '3xl': '5vh' }}
 										borderRadius={'15px'}
 										placeholder='your-email@gmail.com'
 										onChange={(e) => {
@@ -232,8 +233,8 @@ const SignUpModal = ({ state, changeState }) => {
 								<Box>
 									<label htmlFor='nav-login-pass'>
 										<Text
-											fontSize={'18px'}
-											fontWeight={600}
+											fontSize={'.833vw'}
+											fontFamily='Gilroy-SemiBold'
 											_after={{
 												content: "'*'",
 												position: 'relative',
@@ -249,7 +250,8 @@ const SignUpModal = ({ state, changeState }) => {
 											type={show ? 'text' : 'password'}
 											placeholder='Enter password'
 											borderRadius={'15px'}
-											h='50px'
+											h={{ base: '6.48vh', '3xl': '5vh' }}
+											fontSize={'.93vw'}
 											onChange={(e) => {
 												setPassword(e.target.value);
 											}}
@@ -262,7 +264,6 @@ const SignUpModal = ({ state, changeState }) => {
 											h='100%'
 										>
 											<Button
-												h='1.75rem'
 												size='sm'
 												onClick={handleClick}
 												bg='transparent'
@@ -273,20 +274,20 @@ const SignUpModal = ({ state, changeState }) => {
 												{show ? (
 													<Icon
 														as={AiFillEye}
-														fontSize='20px'
+														fontSize='1vw'
 														fill='#F6540E'
 													/>
 												) : (
 													<Icon
 														as={AiFillEyeInvisible}
-														fontSize='20px'
+														fontSize='1vw'
 														fill='rgba(0,0,0,.3)'
 													/>
 												)}
 											</Button>
 										</InputRightElement>
 									</InputGroup>
-									<Box pt={'10px'}>
+									<Box pt={'.92vh'} fontSize='.833vw'>
 										<Text fontWeight={600}>
 											Password should contain:
 										</Text>
@@ -335,7 +336,8 @@ const SignUpModal = ({ state, changeState }) => {
 										bg='#F6540E'
 										color='#fff'
 										borderRadius={'10px'}
-										py='25px'
+										fontSize='.833vw'
+										h={{ base: '6.48vh', '3xl': '5vh' }}
 										_hover={{ background: '#f6540e' }}
 										isDisabled={disable}
 										onClick={handleUserSignup}
@@ -365,7 +367,7 @@ const SignUpModal = ({ state, changeState }) => {
 							<Text
 								display={'inline-block'}
 								position='relative'
-								fontWeight={600}
+								fontSize={'.833vw'}
 								textAlign='center'
 								bg='#fff'
 								px='10px'
@@ -379,19 +381,19 @@ const SignUpModal = ({ state, changeState }) => {
 							bg='#082032'
 							color='#fff'
 							borderRadius={'10px'}
-							py='25px'
+							fontSize='.833vw'
+							h={{ base: '6.48vh', '3xl': '5vh' }}
 							_hover={{ background: '#082032' }}
 						>
 							Sign in with Google
 						</Button>
-						<Box mt='20px'>
+						<Box mt='1.85vh' fontSize={'.8333vw'}>
 							<Text textAlign={'center'}>
 								Already registered?{' '}
 								<Text
 									as='span'
 									textDecoration={'underline'}
 									color='#F6540E'
-									fontWeight={600}
 								>
 									Sign in
 								</Text>{' '}

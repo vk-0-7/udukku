@@ -20,7 +20,7 @@ const WhoWeWorkWith = () => {
 				mt='30px'
 			>
 				<Box>
-					<Box h='250px' w='23.75vw'>
+					<Box h='23.14vh' w='23.75vw'>
 						<Image src={img1} h='100%' w='100%' />
 					</Box>
 					<Text
@@ -42,7 +42,7 @@ const WhoWeWorkWith = () => {
 					</Text>
 				</Box>
 				<Box>
-					<Box h='250px' w='23.75vw'>
+					<Box h='23.14vh' w='23.75vw'>
 						<Image src={img2} h='100%' w='100%' />
 					</Box>
 					<Text
@@ -64,7 +64,7 @@ const WhoWeWorkWith = () => {
 					</Text>
 				</Box>
 				<Box>
-					<Box h='250px' w='23.75vw'>
+					<Box h='23.14vh' w='23.75vw'>
 						<Image src={img3} h='100%' w='100%' />
 					</Box>
 					<Text

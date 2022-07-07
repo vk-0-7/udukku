@@ -36,7 +36,7 @@ const HowItWorks = ({ state, changeState }) => {
 					top='50%'
 					transform={'translateX(-50%) translateY(-50%)'}
 					w='72.91vw'
-					h='92.40vh'
+					h={{ base: '92.40vh', '3xl': '80vh' }}
 					bg='#fff'
 					borderRadius={'32px'}
 					overflow='hidden'
@@ -60,10 +60,10 @@ const HowItWorks = ({ state, changeState }) => {
 						<Icon
 							as={GrClose}
 							position='absolute'
-							fontSize={'24px'}
+							fontSize={'1.66vw'}
 							top='50%'
 							transform='translateY(-50%)'
-							right={'30px'}
+							right={'1.56vw'}
 							cursor='pointer'
 							onClick={() => {
 								changeState(false);

@@ -71,8 +71,8 @@ const Sidebar = ({
 
 	return (
 		<>
-			<Box w='25%' h='100%'>
-				<Text fontFamily={'Gilroy-Bold'} fontSize={'24px'}>
+			<Box w={{ base: '25vw' }} h='100%'>
+				<Text fontFamily={'Gilroy-Bold'} fontSize={'1.25vw'}>
 					Category
 				</Text>
 				<Box
@@ -82,29 +82,40 @@ const Sidebar = ({
 					mt='10px'
 					gap='5px'
 					fontFamily={'Gilroy-SemiBold'}
-					fontSize='16px'
 					onChange={handleCategory}
 				>
-					<Checkbox value='VOCALISTS'>Vocalists</Checkbox>
-					<Checkbox value='Music Producers & Engineers'>
-						Music Producers & Engineers
+					<Checkbox value='VOCALISTS' size={'lg'}>
+						<Text fontSize={'.833vw'}>Vocalists</Text>
 					</Checkbox>
-					<Checkbox value='Mixing Engineers'>
-						Mixing Engineers
+					<Checkbox value='Music Producers & Engineers' size={'lg'}>
+						<Text fontSize={'.833vw'}>
+							Music Producers & Engineers
+						</Text>
 					</Checkbox>
-					<Checkbox value='DJs'>DJs</Checkbox>
-					<Checkbox value='Song writers & Composers'>
-						Song writers & Composers
+					<Checkbox value='Mixing Engineers' size={'lg'}>
+						<Text fontSize={'.833vw'}>Mixing Engineers</Text>
 					</Checkbox>
-					<Checkbox value='Instruments'>Instruments</Checkbox>
+					<Checkbox value='DJs' size={'lg'}>
+						<Text fontSize={'.833vw'}>DJs</Text>
+					</Checkbox>
+					<Checkbox value='Song writers & Composers' size={'lg'}>
+						<Text fontSize={'.833vw'}>
+							Song writers & Composers
+						</Text>
+					</Checkbox>
+					<Checkbox value='Instruments' size={'lg'}>
+						<Text fontSize={'.833vw'}>Instruments</Text>
+					</Checkbox>
 				</Box>
-				<Text fontFamily={'Gilroy-Bold'} fontSize={'24px'} mt='30px'>
+				<Text fontFamily={'Gilroy-Bold'} fontSize={'1.25vw'} mt='30px'>
 					Budget
 				</Text>
 				<Box display={'flex'} gap='10px' px='10px' mt='10px'>
 					<Input
 						type='number'
 						value={bs}
+						fontSize='.92vw'
+						h={{ base: '6.48vh', '3xl': '4vh' }}
 						onChange={(e) => {
 							setBs(e.target.value);
 						}}
@@ -112,6 +123,8 @@ const Sidebar = ({
 					<Input
 						type='number'
 						value={be}
+						fontSize='.92vw'
+						h={{ base: '6.48vh', '3xl': '4vh' }}
 						onChange={(e) => {
 							setBe(e.target.value);
 						}}
@@ -128,7 +141,8 @@ const Sidebar = ({
 						color='#fff'
 						w='90%'
 						borderRadius={'16px'}
-						h='50px'
+						h={{ base: '6.48vh', '3xl': '4vh' }}
+						fontSize='.833vw'
 						_hover={{ background: '#F6540E' }}
 						isDisabled={budgetInvalid}
 						onClick={handleBudget}
@@ -145,6 +159,7 @@ const Sidebar = ({
 						textAlign={'center'}
 						textDecor='underline'
 						mt='5px'
+						fontSize={'.8333vw'}
 						cursor={'pointer'}
 						onClick={() => {
 							setBs('');
@@ -156,7 +171,7 @@ const Sidebar = ({
 						Clear
 					</Text>
 				</Box>
-				<Text fontFamily={'Gilroy-Bold'} fontSize={'24px'} mt='30px'>
+				<Text fontFamily={'Gilroy-Bold'} fontSize={'1.25vw'} mt='30px'>
 					Deadline
 				</Text>
 				<Box
@@ -169,17 +184,30 @@ const Sidebar = ({
 					fontSize='16px'
 					onChange={handleDeadLine}
 				>
-					<Checkbox value='0-7 Days'>0-7 Days</Checkbox>
-					<Checkbox value='8-14 days'>8-14 Days</Checkbox>
-					<Checkbox value='15-21 Days'>15-21 Days</Checkbox>
-					<Checkbox value='22-30 Days'>22-30 Days</Checkbox>
-					<Checkbox value='31-40 Days'>31-40 Days</Checkbox>
-					<Checkbox value='41-60 Days'>41-60 Days</Checkbox>
-					<Checkbox value='more than 60 Days'>
-						more than 60 Days
+					<Checkbox value='0-7 Days' size={'lg'}>
+						<Text fontSize={'.833vw'}>0-7 Days</Text>
+					</Checkbox>
+					<Checkbox value='8-14 days' size={'lg'}>
+						{' '}
+						<Text fontSize={'.833vw'}>8-14 Days</Text>
+					</Checkbox>
+					<Checkbox value='15-21 Days' size={'lg'}>
+						<Text fontSize={'.833vw'}>15-21 Days</Text>
+					</Checkbox>
+					<Checkbox value='22-30 Days' size={'lg'}>
+						<Text fontSize={'.833vw'}>22-30 Days</Text>
+					</Checkbox>
+					<Checkbox value='31-40 Days' size={'lg'}>
+						<Text fontSize={'.833vw'}>31-40 Days</Text>
+					</Checkbox>
+					<Checkbox value='41-60 Days' size={'lg'}>
+						<Text fontSize={'.833vw'}>41-60 Days</Text>
+					</Checkbox>
+					<Checkbox value='more than 60 Days' size={'lg'}>
+						<Text fontSize={'.833vw'}>more than 60 Days</Text>
 					</Checkbox>
 				</Box>
-				<Text fontFamily={'Gilroy-Bold'} fontSize={'24px'} mt='30px'>
+				<Text fontFamily={'Gilroy-Bold'} fontSize={'1.25vw'} mt='30px'>
 					Genre
 				</Text>
 				<Box
@@ -192,11 +220,15 @@ const Sidebar = ({
 					fontSize='16px'
 					onChange={handleGenre}
 				>
-					<Checkbox value='National or Indian'>
-						National/Indian
+					<Checkbox value='National or Indian' size={'lg'}>
+						<Text fontSize={'.833vw'}>National/Indian</Text>
 					</Checkbox>
-					<Checkbox value='Regional'>Regional</Checkbox>
-					<Checkbox value='International'>International</Checkbox>
+					<Checkbox value='Regional' size={'lg'}>
+						<Text fontSize={'.833vw'}>Regional</Text>
+					</Checkbox>
+					<Checkbox value='International' size={'lg'}>
+						<Text fontSize={'.833vw'}>International</Text>
+					</Checkbox>
 				</Box>
 			</Box>
 		</>

@@ -6,7 +6,7 @@ const OurCommitment = () => {
 		<Box
 			px={{ base: '7vw', lg: '13.54vw' }}
 			display={'flex'}
-			mt='90px'
+			mt='8.33vh'
 			gap='20px'
 		>
 			<Box maxW='50%'>

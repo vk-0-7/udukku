@@ -44,7 +44,7 @@ const OurStory = () => {
 			<Box flexGrow={1}></Box>
 			<Box
 				w='33.38vw'
-				h='55.55vh'
+				h={{ base: '55.55vh', '3xl': '50vh' }}
 				display={'flex'}
 				justifyContent='center'
 			>

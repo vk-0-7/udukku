@@ -59,7 +59,7 @@ const NavBar = () => {
 				top='0'
 				h='fit-content'
 				w='100vw'
-				px={{ base: '7vw', '2xl': '13.54vw' }}
+				px={{ base: '7vw', lg: '13.54vw' }}
 				pt={path.length >= 2 ? '20px' : positon > 10 ? '20px' : '20px'}
 				pb={path.length >= 2 ? '20px' : positon > 10 ? '20px' : '0px'}
 				display={'flex'}

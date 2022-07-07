@@ -1,3 +1,11 @@
+.talents-card-1,
+.talents-card-2,
+.talents-card-3,
+.talents-card-4 {
+	background-size: cover;
+	background-position: 50% 50%;
+}
+
 .talents-card-1 {
 	background-image: url('../../../../Assets/Images/cards/Rectangle\ 7.png');
 }

@@ -9,9 +9,9 @@ const PrivacyPolicy = () => {
 	}, []);
 
 	return (
-		<Box pt='80px'>
+		<Box pt='7.40vh'>
 			<NavBar />
-			<Box w='100vw' px={{ base: '7vw', lg: '13.54vw' }} py='50px'>
+			<Box w='100vw' px={{ base: '7vw', lg: '13.54vw' }} py='70px'>
 				<Text fontSize={'2.29vw'} fontFamily='Gilroy-Bold'>
 					Privacy Policy
 				</Text>

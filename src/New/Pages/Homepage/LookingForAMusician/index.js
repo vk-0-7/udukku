@@ -8,7 +8,7 @@ const LookingForAMusician = () => {
 		<Box
 			bg='rgb(253,247,243)'
 			pt='7.40vh'
-			h='57.03vh'
+			h={{ base: '57.03vh', '3xl': '43.03vh' }}
 			display={'flex'}
 			flexDir='column'
 			alignItems={'center'}

@@ -12,7 +12,7 @@ const OurPlatform = () => {
 			pb='7.40vh'
 			mb='50px'
 		>
-			<Box h='55.55vh' w='33.75vw'>
+			<Box h={{ base: '55.55vh', '3xl': '50vh' }} w='33.75vw'>
 				<Image src={img2} h='100%' />
 			</Box>
 			<Box flexGrow={1}></Box>

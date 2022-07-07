@@ -111,11 +111,11 @@ const SignInModal = ({ state, changeState }) => {
 				>
 					<Box
 						h='fit-content'
-						w='43.85%'
+						w='36.04vw'
 						bg='#fff'
 						borderRadius={'32px'}
-						py='50px'
-						px='50px'
+						py='3.70vh'
+						px='3.125vw'
 						position={'relative'}
 					>
 						{/* close btn */}
@@ -123,9 +123,9 @@ const SignInModal = ({ state, changeState }) => {
 						<Icon
 							position='absolute'
 							as={GrClose}
-							fontSize={'20px'}
-							top={'30px'}
-							right={'30px'}
+							fontSize={'1.04vw'}
+							top={'2.77vh'}
+							right={'1.56vw'}
 							cursor='pointer'
 							onClick={() => {
 								changeState(false);
@@ -134,14 +134,14 @@ const SignInModal = ({ state, changeState }) => {
 						/>
 
 						<Text
-							fontSize={'32px'}
+							fontSize={'1.666vw'}
 							fontFamily='Gilroy-Bold'
 							textAlign='center'
 						>
 							Sign In
 						</Text>
 						<Text
-							fontSize={'16px'}
+							fontSize={'.833vw'}
 							fontFamily='Gilroy-Medium'
 							textAlign='center'
 						>
@@ -152,18 +152,19 @@ const SignInModal = ({ state, changeState }) => {
 							<Box
 								display='flex'
 								flexDir={'column'}
-								gap='20px'
-								pt='30px'
+								gap='2.222vh'
+								pt='2.96vh'
 							>
 								<Box>
 									<label htmlFor='nav-login-email'>
 										<Text
-											fontSize={'16px'}
+											fontSize={'.833vw'}
 											fontFamily='Gilroy-SemiBold'
 											_after={{
 												content: "'*'",
 												position: 'relative',
-												left: '2px',
+												left: '0.104vw',
+												fontSize: '.833vw',
 											}}
 										>
 											Email address
@@ -173,7 +174,8 @@ const SignInModal = ({ state, changeState }) => {
 										value={email}
 										type='email'
 										id='nav-login-email'
-										h='50px'
+										fontSize={'.93vw'}
+										h={{ base: '6.48vh', '3xl': '5vh' }}
 										borderRadius={'15px'}
 										placeholder='your-email@gmail.com'
 										onChange={(e) => {
@@ -199,7 +201,7 @@ const SignInModal = ({ state, changeState }) => {
 								<Box>
 									<label htmlFor='nav-login-pass'>
 										<Text
-											fontSize={'16px'}
+											fontSize={'.8333vw'}
 											fontFamily='Gilroy-SemiBold'
 											_after={{
 												content: "'*'",
@@ -217,7 +219,8 @@ const SignInModal = ({ state, changeState }) => {
 											type={show ? 'text' : 'password'}
 											placeholder='Enter password'
 											borderRadius={'15px'}
-											h='50px'
+											fontSize={'.93vw'}
+											h={{ base: '6.48vh', '3xl': '5vh' }}
 											onChange={(e) => {
 												setPassword(e.target.value);
 											}}
@@ -231,7 +234,6 @@ const SignInModal = ({ state, changeState }) => {
 											h='100%'
 										>
 											<Button
-												h='1.75rem'
 												size='sm'
 												onClick={handleClick}
 												bg='transparent'
@@ -242,13 +244,13 @@ const SignInModal = ({ state, changeState }) => {
 												{show ? (
 													<Icon
 														as={AiFillEye}
-														fontSize='20px'
+														fontSize='1vw'
 														fill='#F6540E'
 													/>
 												) : (
 													<Icon
 														as={AiFillEyeInvisible}
-														fontSize='20px'
+														fontSize='1vw'
 														fill='rgba(0,0,0,.3)'
 													/>
 												)}
@@ -287,9 +289,10 @@ const SignInModal = ({ state, changeState }) => {
 									<Button
 										w='100%'
 										bg='#F6540E'
+										fontSize='.833vw'
 										color='#fff'
 										borderRadius={'10px'}
-										py='25px'
+										h={{ base: '6.48vh', '3xl': '5vh' }}
 										_hover={{ background: '#f6540e' }}
 										isDisabled={loginActive}
 										isLoading={loading}
@@ -319,6 +322,7 @@ const SignInModal = ({ state, changeState }) => {
 							<Text
 								display={'inline-block'}
 								position='relative'
+								fontSize={'.833vw'}
 								fontWeight={600}
 								textAlign='center'
 								bg='#fff'
@@ -333,8 +337,9 @@ const SignInModal = ({ state, changeState }) => {
 							bg='#082032'
 							color='#fff'
 							borderRadius={'10px'}
-							py='25px'
+							h={{ base: '6.48vh', '3xl': '5vh' }}
 							_hover={{ background: '#082032' }}
+							fontSize='.833vw'
 						>
 							Sign in with Google
 						</Button>

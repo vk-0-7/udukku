@@ -10,13 +10,18 @@ const WhyUdukku = () => {
 			display={'flex'}
 			px={{ base: '7vw', lg: '13.54vw' }}
 			alignItems={'center'}
-			h='55.55vh'
+			h={{ base: '55.55vh', '3xl': '40vh' }}
 		>
 			<Box w='40%'>
 				<Text fontSize={'2.291vw'} fontFamily='Gilroy-Bold'>
 					Why Udukku?
 				</Text>
-				<Box display={'flex'} flexDir='column' gap='3.70vh' mt='20px'>
+				<Box
+					display={'flex'}
+					flexDir='column'
+					gap={{ base: '3.70vh', '3xl': '2vh' }}
+					mt='20px'
+				>
 					<Box display={'flex'} gap={'10px'} alignItems='center'>
 						<Image src={bdg} h='2.48vh' w={'1.17vw'} />
 						<Text fontFamily='Gilroy-SemiBold' fontSize={'.833vw'}>

@@ -28,13 +28,25 @@ import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 import { ChakraProvider } from '@chakra-ui/react';
 import { AuthContextProvider } from './New/Context/AuthContext';
+import { extendTheme } from '@chakra-ui/react';
+
+const breakpoints = {
+	sm: '30em',
+	md: '48em',
+	lg: '62em',
+	xl: '80em',
+	'2xl': '96em',
+	'3xl': '121em',
+};
+
+const theme = extendTheme({ breakpoints });
 
 // fonts
 
 ReactDOM.render(
 	<AuthContextProvider>
 		<>
-			<ChakraProvider>
+			<ChakraProvider theme={theme}>
 				<BrowserRouter>
 					<App />
 				</BrowserRouter>

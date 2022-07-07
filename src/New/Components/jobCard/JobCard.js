@@ -9,10 +9,8 @@ const JobCard = () => {
 			bg='#fff'
 			border='1.5px solid #f0f0f0'
 			borderRadius={'28px'}
-			pt='20px'
-			pr='20px'
-			pl='20px'
-			pb='20px'
+			py='2.59vh'
+			px='1.458vw'
 			flexShrink={0}
 			display='flex'
 			flexDir={'column'}
@@ -25,9 +23,10 @@ const JobCard = () => {
 			<Box display={'flex'} gap='10px' flexWrap={'wrap'} mt='10px'>
 				<Box
 					bg='rgba(192, 226, 24,.1)'
-					display={'inline-block'}
+					display={'inline-flex'}
+					justifyContent='center'
+					alignItems={'center'}
 					px='15px'
-					py='8px'
 					borderRadius={'16px'}
 					flexShrink={0}
 					fontFamily={'Gilroy-SemiBold'}
@@ -38,9 +37,10 @@ const JobCard = () => {
 				</Box>
 				<Box
 					bg='rgba(247, 215, 22,.1)'
-					display={'inline-block'}
+					display={'inline-flex'}
+					justifyContent='center'
+					alignItems={'center'}
 					px='15px'
-					py='8px'
 					borderRadius={'16px'}
 					flexShrink={0}
 					fontFamily={'Gilroy-SemiBold'}
@@ -51,9 +51,10 @@ const JobCard = () => {
 				</Box>
 				<Box
 					bg='rgba(192, 226, 24,.1)'
-					display={'inline-block'}
+					display={'inline-flex'}
+					justifyContent='center'
+					alignItems={'center'}
 					px='15px'
-					py='8px'
 					borderRadius={'16px'}
 					flexShrink={0}
 					fontFamily={'Gilroy-SemiBold'}
@@ -64,9 +65,10 @@ const JobCard = () => {
 				</Box>
 				<Box
 					bg='rgba(192, 226, 24,.1)'
-					display={'inline-block'}
+					display={'inline-flex'}
+					justifyContent='center'
+					alignItems={'center'}
 					px='15px'
-					py='8px'
 					borderRadius={'16px'}
 					flexShrink={0}
 					fontFamily={'Gilroy-SemiBold'}
@@ -77,12 +79,12 @@ const JobCard = () => {
 				</Box>
 			</Box>
 			{/* some text */}
-			<Text mt='30px' fontSize={'.833vw'} fontFamily='Gilroy-Medium'>
+			<Text mt='2.222vh' fontSize={'.833vw'} fontFamily='Gilroy-Medium'>
 				Are you a musician looking to provide your skills? Browse here
 				for your next opportunity...
 			</Text>
 			{/* some more badges */}
-			<Box display={'flex'} gap='10px' flexWrap={'wrap'} mt='10px'>
+			<Box display={'flex'} gap='10px' flexWrap={'wrap'} mt='2.40vh'>
 				<Box
 					display={'inline-block'}
 					px='15px'
@@ -118,7 +120,7 @@ const JobCard = () => {
 				</Box>
 			</Box>
 			{/* price */}
-			<Text fontSize={'1.45vw'} mt='20px' fontFamily={'Gilroy-Bold'}>
+			<Text fontSize={'1.45vw'} mt='2.59vh' fontFamily={'Gilroy-Bold'}>
 				$120 - $230
 			</Text>
 			{/* button */}

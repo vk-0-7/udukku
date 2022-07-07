@@ -8,7 +8,7 @@ const CancellationAndRefund = () => {
 		window.scrollTo(0, 0);
 	}, []);
 	return (
-		<Box mt='112px'>
+		<Box mt='7.40vh'>
 			<NavBar />
 			<Box px={{ base: '7vw', lg: '13.54vw' }} py='80px'>
 				<Text fontFamily={'Gilroy-Bold'} fontSize={'2.29vw'}>

@@ -14,7 +14,7 @@ const OurMission = () => {
 				alignItems='center'
 				py='50px'
 				gap='10px'
-				h='48.88vh'
+				h={{ base: '48.88vh', '3xl': '45vh' }}
 			>
 				<Text fontSize={'3.37vw'} fontFamily='Gilroy-Bold'>
 					Our Mission

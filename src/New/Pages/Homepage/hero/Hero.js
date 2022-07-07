@@ -15,7 +15,7 @@ const Hero = () => {
 			bg='#082032'
 			display={'flex'}
 			alignItems='end'
-			px={{ base: '7vw', '2xl': '13.54vw' }}
+			px={{ base: '7vw', lg: '13.54vw' }}
 			gap={'100px'}
 			pt='30px'
 			pb='7.40vh'
@@ -27,7 +27,7 @@ const Hero = () => {
 						as='h1'
 						fontSize={'3.75vw'}
 						color='#fff'
-						lineHeight='80px'
+						lineHeight={{ base: '1.2em' }}
 						fontFamily={'Gilroy-Bold'}
 					>
 						Join India's leading Music Marketplace

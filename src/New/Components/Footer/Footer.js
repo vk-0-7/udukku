@@ -26,7 +26,7 @@ const Footer = () => {
 	return (
 		<>
 			<Box
-				h={{ base: 'fit-content', lg: '400px' }}
+				h={{ base: 'fit-content' }}
 				w='100vw'
 				overflow={'hidden'}
 				className='hide-scroll-bar'
@@ -34,7 +34,7 @@ const Footer = () => {
 				display={'grid'}
 				gridTemplateColumns={{ base: '1fr', lg: '.7fr 1.3fr .7fr' }}
 				gap={{ base: '20px', lg: '0' }}
-				py='30px '
+				py='2.77vh '
 				color='#fff'
 				px={{ base: '7vw', lg: '13.54vw' }}
 			>
@@ -44,7 +44,7 @@ const Footer = () => {
 					</Box>
 					<Text
 						mt='3.70vh'
-						mb='15px'
+						mb='1.388vh'
 						fontFamily={'Gilroy-Medium'}
 						fontSize='.833vw'
 					>
@@ -54,10 +54,10 @@ const Footer = () => {
 					<Box
 						display={'flex'}
 						alignItems='flex-start'
-						gap='5px'
-						mt='10px'
+						gap='.26vw'
+						mt='.925vh'
 					>
-						<Icon as={HiLocationMarker} />
+						<Icon as={HiLocationMarker} fontSize='.833vw' />
 						<Box position='relative' bottom='5px'>
 							<Text
 								fontFamily={'Gilroy-Medium'}
@@ -71,16 +71,20 @@ const Footer = () => {
 					<Box
 						display={'flex'}
 						alignItems='center'
-						gap='5px'
-						mt='10px'
+						gap='.26vw'
+						mt='.925vh'
 					>
-						<Icon as={MdEmail} />
+						<Icon as={MdEmail} fontSize='.833vw' />
 						<Text fontFamily={'Gilroy-Medium'} fontSize='.833vw'>
 							info@udukku.com
 						</Text>
 					</Box>
 					<Box flexGrow={1}></Box>
-					<Text fontFamily={'Gilroy-Medium'} fontSize='.833vw'>
+					<Text
+						fontFamily={'Gilroy-Medium'}
+						mt='.925vh'
+						fontSize='.833vw'
+					>
 						©udukku 2022
 					</Text>
 				</Box>
@@ -93,7 +97,7 @@ const Footer = () => {
 							display={'flex'}
 							flexDir='column'
 							mt='8px'
-							lineHeight={'40px'}
+							lineHeight={'3.70vh'}
 						>
 							<Text
 								fontFamily={'Gilroy-Medium'}
@@ -140,7 +144,7 @@ const Footer = () => {
 						<Box
 							display={'flex'}
 							flexDir='column'
-							lineHeight={'40px'}
+							lineHeight={'3.70vh'}
 							mt='8px'
 						>
 							<Text
@@ -212,7 +216,7 @@ const Footer = () => {
 					</Text>
 					<InputGroup
 						w={{ base: '90%', lg: '21.51vw' }}
-						h='7.41vh'
+						h={{ base: '6.41vh', lg: '5.5vh' }}
 						size={'lg'}
 					>
 						<Input
@@ -221,18 +225,18 @@ const Footer = () => {
 							pr='50px'
 							type='email'
 							placeholder='Email address'
-							borderRadius={'18px'}
+							borderRadius={'1vh'}
+							fontSize='.92vw'
 							color='#000'
 						/>
-						<InputRightElement width='6.19vw' h='6.29vh'>
+						<InputRightElement width='6.19vw' h='100%'>
 							<Button
-								mt='10px'
-								h='6.29vh'
+								h={{ base: '5vh', lg: '5vh' }}
 								w='100%'
 								bg='rgba(246, 84, 14, 1)'
 								position={'relative'}
 								right='5px'
-								borderRadius={'18px'}
+								borderRadius={'1vh'}
 								_hover={{
 									background: '#0E87F6',
 								}}
@@ -242,51 +246,61 @@ const Footer = () => {
 							</Button>
 						</InputRightElement>
 					</InputGroup>
-					<Box display={'flex'} mt='30px' gap='30px'>
+					<Box display={'flex'} mt='2.77vh' gap='1.56vw'>
 						<Box
 							as='a'
 							href='https://www.facebook.com/Plan-My-Leisure-101398345900413'
-							w='20px'
-							h='20px'
+							w='2vw'
+							h='2vw'
 							borderRadius={'5px'}
 							display={'flex'}
 							justifyContent='center'
 							alignItems={'center'}
-							p={5}
 							className='hide-scroll-bar facebook'
 							border='1px solid rgba(255,255,255,.2)'
 						>
-							<Icon as={FaFacebookF} color='rgb(255,255,255)' />
+							<Icon
+								as={FaFacebookF}
+								color='rgb(255,255,255)'
+								fontSize={'.833vw'}
+							/>
 						</Box>
 						<Box
 							as='a'
-							h='fit-content'
+							w='2vw'
+							h='2vw'
 							href='https://www.instagram.com/planmyleisure/'
 							borderRadius={'5px'}
 							display={'flex'}
 							justifyContent='center'
 							alignItems={'center'}
 							className='hide-scroll-bar instagram'
-							p={'11px'}
 							border='1px solid rgba(255,255,255,.2)'
 						>
-							<Icon as={FaInstagram} color='rgb(255,255,255)' />
+							<Icon
+								as={FaInstagram}
+								color='rgb(255,255,255)'
+								fontSize={'.833vw'}
+							/>
 						</Box>
 
 						<Box
 							as='a'
 							href='https://twitter.com/PlanMyLeisure'
-							w='20px'
-							h='20px'
+							w='2vw'
+							h='2vw'
 							borderRadius={'5px'}
 							display={'flex'}
 							justifyContent='center'
 							alignItems={'center'}
-							p={5}
 							className='hide-scroll-bar twitter'
 							border='1px solid rgba(255,255,255,.2)'
 						>
-							<Icon as={FaTwitter} color='rgb(255,255,255)' />
+							<Icon
+								as={FaTwitter}
+								color='rgb(255,255,255)'
+								fontSize={'.833vw'}
+							/>
 						</Box>
 					</Box>
 				</Box>

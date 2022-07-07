@@ -111,7 +111,7 @@ const Jobs = () => {
 
 	return (
 		<>
-			<Box pt='80px'>
+			<Box pt='7.40vh'>
 				<NavBar />
 				<Box
 					display={'flex'}
@@ -120,12 +120,14 @@ const Jobs = () => {
 					justifyContent={'space-between'}
 					alignItems='center'
 				>
-					<Text fontSize={'44px'} fontFamily={'Gilroy-Bold'}>
+					<Text fontSize={'2.29vw'} fontFamily={'Gilroy-Bold'}>
 						Find your next projects
 					</Text>
 					<Input
 						type='text'
-						w='450px'
+						w='23.43vw'
+						h={{ base: '6.48vh', '3xl': '5vh' }}
+						fontSize='.93vw'
 						placeholder='Enter company name, job title, category or genre'
 					/>
 				</Box>
@@ -135,8 +137,8 @@ const Jobs = () => {
 					px='5.7vw'
 					display={'flex'}
 					flexWrap={'nowrap'}
-					mt='30px'
-					pb='100px'
+					mt='2.777vh'
+					pb='9.25vh'
 				>
 					{/* filters */}
 					<Sidebar
@@ -153,15 +155,15 @@ const Jobs = () => {
 					<Box
 						w='75%'
 						h='fit-content'
-						px='20px'
+						px='1.04vw'
 						display={'flex'}
 						flexDir='column'
-						gap='20px'
+						gap='1.85vh'
 					>
 						{loading ? (
 							<Box
 								w='100%'
-								h='300px'
+								h='27.77vh'
 								display={'flex'}
 								justifyContent='center'
 								alignItems={'center'}

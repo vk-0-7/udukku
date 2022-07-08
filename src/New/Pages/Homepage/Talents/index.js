@@ -37,7 +37,7 @@ const Talents = () => {
 						fontSize={'.833vw'}
 						fontFamily={'Gilroy-SemiBold'}
 						fontWeight='normal'
-						borderRadius='20px'
+						borderRadius={'1.04vw'}
 					>
 						Sell all categories{' '}
 						<Icon as={AiOutlineRight} ml='5px' />

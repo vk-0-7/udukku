@@ -159,7 +159,7 @@ const NavBar = () => {
 							<Button
 								bg='transparent'
 								border='1px solid #F6540E'
-								borderRadius={'20px'}
+								borderRadius={'1.04vw'}
 								_hover={{ background: 'rgba(215,85,28)' }}
 								onClick={() => {
 									setSignUpState(true);

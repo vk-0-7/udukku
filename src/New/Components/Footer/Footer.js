@@ -225,7 +225,7 @@ const Footer = () => {
 							pr='50px'
 							type='email'
 							placeholder='Email address'
-							borderRadius={'1vh'}
+							borderRadius={'1.45vw'}
 							fontSize='.92vw'
 							color='#000'
 						/>
@@ -236,7 +236,7 @@ const Footer = () => {
 								bg='rgba(246, 84, 14, 1)'
 								position={'relative'}
 								right='5px'
-								borderRadius={'1vh'}
+								borderRadius={'1.25vw'}
 								_hover={{
 									background: '#0E87F6',
 								}}

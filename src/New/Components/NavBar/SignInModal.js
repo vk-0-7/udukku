@@ -12,6 +12,7 @@ import {
 	InputRightElement,
 	Icon,
 	useDisclosure,
+	Image,
 } from '@chakra-ui/react';
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 import { GrClose } from 'react-icons/gr';
@@ -21,6 +22,7 @@ import signin from '../../../Api/Auth/signin';
 import { AccessAuthContext } from '../../Context/AuthContext';
 import googleLogin from '../../../Api/Auth/googleLogin';
 import jwt_decode from 'jwt-decode';
+import gLogo from '../../../Assets/Icons/Group.svg';
 
 const SignInModal = ({ state, changeState }) => {
 	const [show, setShow] = useState(false);
@@ -335,7 +337,7 @@ const SignInModal = ({ state, changeState }) => {
 										bg='#F6540E'
 										fontSize='.833vw'
 										color='#fff'
-										borderRadius={'10px'}
+										borderRadius={'1.04vw'}
 										h={{ base: '6.48vh', '3xl': '5vh' }}
 										_hover={{ background: '#f6540e' }}
 										isDisabled={loginActive}
@@ -377,10 +379,14 @@ const SignInModal = ({ state, changeState }) => {
 							</Text>
 						</Box>
 						<Button
+							display={'flex'}
+							alignItems='center'
+							justifyContent={'center'}
+							gap='10px'
 							w='100%'
 							bg='#082032'
 							color='#fff'
-							borderRadius={'10px'}
+							borderRadius={'1.04vw'}
 							h={{ base: '6.48vh', '3xl': '5vh' }}
 							_hover={{ background: '#082032' }}
 							fontSize='.833vw'
@@ -393,7 +399,8 @@ const SignInModal = ({ state, changeState }) => {
 								);
 							}}
 						>
-							Sign in with Google
+							<Image src={gLogo} h='.833vw' />{' '}
+							<Text>Sign in with Google</Text>
 						</Button>
 						<Box
 							display={'none'}

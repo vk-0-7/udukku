@@ -17,7 +17,7 @@ const Hero = () => {
 			alignItems='end'
 			px={{ base: '7vw', lg: '13.54vw' }}
 			gap={'100px'}
-			pt='30px'
+			pt='100px'
 			pb='7.40vh'
 		>
 			<Box display={'flex'} alignItems='center'>

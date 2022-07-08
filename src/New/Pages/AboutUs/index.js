@@ -15,7 +15,7 @@ const AboutUs = () => {
 	}, []);
 
 	return (
-		<Box pt='7.40vh'>
+		<Box pt='8vh'>
 			<NavBar />
 			<Box mt='100px' mb='50px'>
 				<Text

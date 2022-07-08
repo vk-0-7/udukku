@@ -15,15 +15,17 @@ import {
 } from '@chakra-ui/react';
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 import { GrClose } from 'react-icons/gr';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import ForgotPasswordModal from './ForgotPasswordModal';
 import signin from '../../../Api/Auth/signin';
 import { AccessAuthContext } from '../../Context/AuthContext';
+import googleLogin from '../../../Api/Auth/googleLogin';
+import jwt_decode from 'jwt-decode';
 
 const SignInModal = ({ state, changeState }) => {
 	const [show, setShow] = useState(false);
-	const { isOpen, onOpen, onClose } = useDisclosure();
 
+	const { isOpen, onOpen, onClose } = useDisclosure();
 	const { setLoginState, setToken, setAvatar } = AccessAuthContext();
 
 	// email and password
@@ -44,6 +46,48 @@ const SignInModal = ({ state, changeState }) => {
 
 	const handleClick = () => {
 		setShow(!show);
+	};
+
+	const gLoginButton = useCallback((node) => {
+		if (node !== null) {
+			/* global google */
+			google.accounts.id.initialize({
+				client_id: process.env.REACT_APP_CLIENT_ID,
+				callback: handleCallbackResponse,
+			});
+
+			google.accounts.id.renderButton(node, {
+				theme: 'outline',
+				size: 'large',
+				background: '#082032',
+			});
+		}
+	}, []);
+
+	const handleCallbackResponse = async (response) => {
+		console.log('google response is : ', response);
+		var userObj = jwt_decode(response.credential);
+		console.log(userObj);
+
+		// this is what we do when user login
+		try {
+			const res = await googleLogin(response.credential);
+			console.log('server se ye aaya : ', res);
+			setLoginState(true);
+			setToken(res.data.token);
+			// setUsed('google');
+			// setOpen(false);
+			onClose();
+			// setProfileurl(res.data.msg.avatar);
+		} catch (error) {
+			// toast({
+			// 	title: 'Error',
+			// 	description: error.response.data.msg,
+			// 	status: 'error',
+			// 	isClosable: true,
+			// 	duration: 3000,
+			// });
+		}
 	};
 
 	useEffect(() => {
@@ -340,9 +384,22 @@ const SignInModal = ({ state, changeState }) => {
 							h={{ base: '6.48vh', '3xl': '5vh' }}
 							_hover={{ background: '#082032' }}
 							fontSize='.833vw'
+							onClick={() => {
+								const a = document.getElementById(
+									'google_login_button'
+								);
+								console.log(
+									a.childNodes[0].childNodes[0].childNodes[0].click()
+								);
+							}}
 						>
 							Sign in with Google
 						</Button>
+						<Box
+							display={'none'}
+							id='google_login_button'
+							ref={gLoginButton}
+						></Box>
 					</Box>
 				</ModalContent>
 			</Modal>

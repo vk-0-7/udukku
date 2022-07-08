@@ -35,6 +35,7 @@ const App = () => {
 						path='/user/activate/:id'
 						element={<ActivateUser />}
 					/>
+
 					{/* *********************** End *************************** */}
 				</Routes>
 			</div>

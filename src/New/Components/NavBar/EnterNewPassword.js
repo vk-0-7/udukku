@@ -73,11 +73,11 @@ const EnterNewPassword = ({ state, changeState, code }) => {
 			>
 				<Box
 					h='fit-content'
-					w='46.85%'
+					w='36.04vw'
 					bg='#fff'
-					borderRadius={'32px'}
-					py='50px'
-					px='50px'
+					borderRadius={'1.666vw'}
+					py='3.70vh'
+					px='3.125vw'
 					position={'relative'}
 				>
 					{/* close btn */}
@@ -85,9 +85,9 @@ const EnterNewPassword = ({ state, changeState, code }) => {
 					<Icon
 						position='absolute'
 						as={GrClose}
-						fontSize={'20px'}
-						top={'30px'}
-						right={'30px'}
+						fontSize={'1.666vw'}
+						top={'3.51vh'}
+						right={'1.97vw'}
 						cursor='pointer'
 						onClick={() => {
 							changeState(false);
@@ -95,10 +95,18 @@ const EnterNewPassword = ({ state, changeState, code }) => {
 						}}
 					/>
 
-					<Text fontSize={'34px'} fontWeight={600} textAlign='center'>
+					<Text
+						fontSize={'1.66vw'}
+						fontFamily='Gilroy-Bold'
+						textAlign='center'
+					>
 						Enter New Password
 					</Text>
-					<Text fontSize={'18px'} fontWeight={300} textAlign='center'>
+					<Text
+						fontSize={'.833vw'}
+						fontFamily='Gilroy-Medium'
+						textAlign='center'
+					>
 						Udukku is the leading destination to hire top music
 						professionals
 					</Text>
@@ -107,14 +115,14 @@ const EnterNewPassword = ({ state, changeState, code }) => {
 						<Box
 							display='flex'
 							flexDir={'column'}
-							gap='20px'
-							pt='30px'
+							gap='2.22vh'
+							pt='2.96vh'
 						>
 							<Box>
 								<label htmlFor='nav-login-pass'>
 									<Text
-										fontSize={'18px'}
-										fontWeight={600}
+										fontSize={'.833vw'}
+										fontFamily='Gilroy-SemiBold'
 										_after={{
 											content: "'*'",
 											position: 'relative',
@@ -130,8 +138,9 @@ const EnterNewPassword = ({ state, changeState, code }) => {
 										pr='4.5rem'
 										type={show1 ? 'text' : 'password'}
 										placeholder='Enter password'
-										borderRadius={'15px'}
-										h='50px'
+										h='6.48vh'
+										fontSize={'.92vw'}
+										borderRadius={'1.04vw'}
 										onChange={(e) => {
 											setPassword1(e.target.value);
 										}}
@@ -167,18 +176,30 @@ const EnterNewPassword = ({ state, changeState, code }) => {
 								</InputGroup>
 							</Box>
 							<Box>
-								<Text fontWeight={600}>
+								<Text
+									fontSize={'.833vw'}
+									fontFamily='Gilroy-SemiBold'
+								>
 									Password should contain:
 								</Text>
 								<UnorderedList>
-									<ListItem>
+									<ListItem
+										fontFamily='Gilroy-SemiBold'
+										fontSize={'.72vw'}
+									>
 										contains at least 8 characters
 									</ListItem>
-									<ListItem>
+									<ListItem
+										fontFamily='Gilroy-SemiBold'
+										fontSize={'.72vw'}
+									>
 										contains both lower (a-z) and upper case
 										letters (A-Z)
 									</ListItem>
-									<ListItem>
+									<ListItem
+										fontFamily='Gilroy-SemiBold'
+										fontSize={'.72vw'}
+									>
 										contains at least one number (0-9) or a
 										symbol
 									</ListItem>
@@ -187,8 +208,8 @@ const EnterNewPassword = ({ state, changeState, code }) => {
 							<Box>
 								<label htmlFor='nav-login-pass'>
 									<Text
-										fontSize={'18px'}
-										fontWeight={600}
+										fontSize={'.833vw'}
+										fontFamily='Gilroy-SemiBold'
 										_after={{
 											content: "'*'",
 											position: 'relative',
@@ -204,8 +225,9 @@ const EnterNewPassword = ({ state, changeState, code }) => {
 										pr='4.5rem'
 										type={show2 ? 'text' : 'password'}
 										placeholder='Enter password'
-										borderRadius={'15px'}
-										h='50px'
+										h='6.48vh'
+										fontSize={'.92vw'}
+										borderRadius={'1.04vw'}
 										onChange={(e) => {
 											setPassword2(e.target.value);
 										}}

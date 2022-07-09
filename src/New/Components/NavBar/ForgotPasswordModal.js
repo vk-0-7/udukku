@@ -68,11 +68,11 @@ const ForgotPasswordModal = ({ state, changeState }) => {
 				>
 					<Box
 						h='fit-content'
-						w='46.85%'
+						w='36.04vw'
 						bg='#fff'
-						borderRadius={'32px'}
+						borderRadius={'1.66vw'}
 						py='50px'
-						px='50px'
+						px='3.125vw'
 						position={'relative'}
 					>
 						{/* close btn */}
@@ -80,9 +80,9 @@ const ForgotPasswordModal = ({ state, changeState }) => {
 						<Icon
 							position='absolute'
 							as={GrClose}
-							fontSize={'20px'}
-							top={'30px'}
-							right={'30px'}
+							fontSize={'1.666vw'}
+							top={'3.51vh'}
+							right={'1.97vw'}
 							cursor='pointer'
 							onClick={() => {
 								changeState(false);
@@ -91,15 +91,15 @@ const ForgotPasswordModal = ({ state, changeState }) => {
 						/>
 
 						<Text
-							fontSize={'34px'}
-							fontWeight={600}
+							fontSize={'1.66vw'}
 							textAlign='center'
+							fontFamily='Gilroy-Bold'
 						>
 							Forgot Password
 						</Text>
 						<Text
-							fontSize={'18px'}
-							fontWeight={300}
+							fontSize={'.833vw'}
+							fontFamily='Gilroy-Medium'
 							textAlign='center'
 						>
 							Udukku is the leading destination to hire top music
@@ -110,14 +110,14 @@ const ForgotPasswordModal = ({ state, changeState }) => {
 							<Box
 								display='flex'
 								flexDir={'column'}
-								gap='20px'
-								pt='30px'
+								gap='1vh'
+								pt='2.96vh'
 							>
 								<Box>
 									<label htmlFor='nav-login-email'>
 										<Text
-											fontSize={'18px'}
-											fontWeight={600}
+											fontSize={'.833vw'}
+											fontFamily='Gilroy-SemiBold'
 											_after={{
 												content: "'*'",
 												position: 'relative',
@@ -130,8 +130,9 @@ const ForgotPasswordModal = ({ state, changeState }) => {
 									<Input
 										type='email'
 										id='nav-login-email'
-										h='50px'
-										borderRadius={'15px'}
+										h='6.48vh'
+										fontSize={'.92vw'}
+										borderRadius={'1.04vw'}
 										placeholder='your-email@gmail.com'
 										value={email}
 										onChange={(e) => {
@@ -144,7 +145,11 @@ const ForgotPasswordModal = ({ state, changeState }) => {
 								</Box>
 								<Box mt='30px'>
 									{emailSent ? (
-										<Text>
+										<Text
+											textAlign={'center'}
+											color='green.600'
+											fontFamily={'Gilroy-SemiBold'}
+										>
 											A mail has been sent to your email
 											address to reset your password.
 										</Text>

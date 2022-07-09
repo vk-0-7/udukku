@@ -33,7 +33,7 @@ const ExploreTheMarketplace = () => {
 						fontFamily={'Gilroy-SemiBold'}
 						fontWeight='normal'
 						fontSize={'.833vw'}
-						borderRadius='20px'
+						borderRadius={'1.04vw'}
 						w='14.01vw'
 						h='6.66vh'
 						onClick={() => {

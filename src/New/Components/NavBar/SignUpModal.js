@@ -335,7 +335,7 @@ const SignUpModal = ({ state, changeState }) => {
 										w='100%'
 										bg='#F6540E'
 										color='#fff'
-										borderRadius={'10px'}
+										borderRadius={'1.04vw'}
 										fontSize='.833vw'
 										h={{ base: '6.48vh', '3xl': '5vh' }}
 										_hover={{ background: '#f6540e' }}
@@ -380,7 +380,7 @@ const SignUpModal = ({ state, changeState }) => {
 							w='100%'
 							bg='#082032'
 							color='#fff'
-							borderRadius={'10px'}
+							borderRadius={'1.04vw'}
 							fontSize='.833vw'
 							h={{ base: '6.48vh', '3xl': '5vh' }}
 							_hover={{ background: '#082032' }}

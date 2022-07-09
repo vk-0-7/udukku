@@ -17,7 +17,7 @@ const Hero = () => {
 			alignItems='end'
 			px={{ base: '7vw', lg: '13.54vw' }}
 			gap={'100px'}
-			pt='30px'
+			pt='100px'
 			pb='7.40vh'
 		>
 			<Box display={'flex'} alignItems='center'>
@@ -45,7 +45,7 @@ const Hero = () => {
 						<Button
 							boxSizing='border-box'
 							bg='#f6540e'
-							borderRadius={'20px'}
+							borderRadius={'1.04vw'}
 							color='#fff'
 							_hover={{ background: 'rgba(177,70,20)' }}
 							w='11.14vw'
@@ -61,7 +61,7 @@ const Hero = () => {
 							boxSizing='border-box'
 							border='1px solid #f6540e'
 							bg='transparent'
-							borderRadius={'20px'}
+							borderRadius={'1.04vw'}
 							color='#fff'
 							_hover={{ background: 'rgba(215,85,28)' }}
 							w='11.14vw'

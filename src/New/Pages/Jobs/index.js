@@ -111,7 +111,7 @@ const Jobs = () => {
 
 	return (
 		<>
-			<Box pt='7.40vh'>
+			<Box pt='8vh'>
 				<NavBar />
 				<Box
 					display={'flex'}

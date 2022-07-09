@@ -132,7 +132,7 @@ const JobCard = () => {
 					bg='rgba(246, 84, 14, 1)'
 					color='#fff'
 					h='6.48vh'
-					borderRadius={'24px'}
+					borderRadius={'1.25vw'}
 					display='flex'
 					alignItems={'center'}
 					transition='.5s'

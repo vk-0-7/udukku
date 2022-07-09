@@ -245,7 +245,7 @@ const EnterNewPassword = ({ state, changeState, code }) => {
 									w='100%'
 									bg='#F6540E'
 									color='#fff'
-									borderRadius={'10px'}
+									borderRadius={'1.04vw'}
 									py='25px'
 									_hover={{ background: '#f6540e' }}
 									isDisabled={sendLink}

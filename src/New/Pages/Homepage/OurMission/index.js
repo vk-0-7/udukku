@@ -34,7 +34,7 @@ const OurMission = () => {
 					color='#fff'
 					h='6.66vh'
 					w='13.59vw'
-					borderRadius={'20px'}
+					borderRadius={'1.04vw'}
 					mt='20px'
 					fontFamily='Gilroy-SemiBold'
 					fontSize={'.833vw'}

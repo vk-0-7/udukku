@@ -60,8 +60,8 @@ const NavBar = () => {
 				h='fit-content'
 				w='100vw'
 				px={{ base: '7vw', lg: '13.54vw' }}
-				pt={path.length >= 2 ? '20px' : positon > 10 ? '20px' : '20px'}
-				pb={path.length >= 2 ? '20px' : positon > 10 ? '20px' : '0px'}
+				pt={path.length >= 2 ? '20px' : positon > 5 ? '20px' : '20px'}
+				pb={path.length >= 2 ? '20px' : positon > 5 ? '20px' : '0px'}
 				display={'flex'}
 				alignItems='center'
 				justifyContent={'space-between'}
@@ -159,7 +159,7 @@ const NavBar = () => {
 							<Button
 								bg='transparent'
 								border='1px solid #F6540E'
-								borderRadius={'20px'}
+								borderRadius={'1.04vw'}
 								_hover={{ background: 'rgba(215,85,28)' }}
 								onClick={() => {
 									setSignUpState(true);

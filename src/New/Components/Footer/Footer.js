@@ -8,7 +8,7 @@ import {
 	InputRightElement,
 	Text,
 } from '@chakra-ui/react';
-import logo from '../../../Assets/Images/Logo/image 1.png';
+import logo from '../../../Assets/Images/Logo/logo.svg';
 import {
 	FaFacebookF,
 	FaInstagram,

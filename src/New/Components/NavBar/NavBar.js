@@ -2,7 +2,7 @@ import { Box, Image, Text, Button } from '@chakra-ui/react';
 import { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import logout from '../../../Api/Auth/logout';
-import logo from '../../../Assets/Images/Logo/image 1.png';
+import logo from '../../../Assets/Images/Logo/logo.svg';
 import { AccessAuthContext } from '../../Context/AuthContext';
 import HowItWorks from './HowItWorks';
 import SignInModal from './SignInModal';

@@ -1,10 +1,9 @@
 import { Box, Text, Button, Image } from '@chakra-ui/react';
 import '../';
 import './hero.css';
-import left from './left.svg';
-import right from './right.svg';
 import { ReactComponent as People } from '../../../../Assets/Icons/people.svg';
 import { ReactComponent as Man } from '../../../../Assets/Icons/frame.svg';
+import Slide from './Slide';
 
 const Hero = () => {
 	return (
@@ -17,7 +16,7 @@ const Hero = () => {
 			alignItems='end'
 			px={{ base: '7vw', lg: '13.54vw' }}
 			gap={'100px'}
-			pt='100px'
+			pt='14.44vh'
 			pb='7.40vh'
 		>
 			<Box display={'flex'} alignItems='center'>
@@ -76,9 +75,9 @@ const Hero = () => {
 						</Button>
 					</Box>
 				</Box>
-
+				<Slide />
 				{/* image slider section on right  */}
-				<Box w='27.60vw' h='51.85vh' flexShrink={0}>
+				{/* <Box w='27.60vw' h='51.85vh' flexShrink={0}>
 					<Box
 						className='hero-image'
 						w='100%'
@@ -137,13 +136,9 @@ const Hero = () => {
 										alignItems={'center'}
 										borderRadius='full'
 										border='2px solid white'
+										cursor={'pointer'}
 									>
-										<Image
-											src={left}
-											alt='left'
-											cursor={'pointer'}
-											w='.5vw'
-										/>
+										<Image src={left} alt='left' w='.5vw' />
 									</Box>
 									<Box
 										h='2.5vw'
@@ -153,11 +148,11 @@ const Hero = () => {
 										alignItems={'center'}
 										borderRadius='full'
 										border='2px solid white'
+										cursor={'pointer'}
 									>
 										<Image
 											src={right}
 											alt='left'
-											cursor={'pointer'}
 											w='.5vw'
 										/>
 									</Box>
@@ -165,7 +160,7 @@ const Hero = () => {
 							</Box>
 						</Box>
 					</Box>
-				</Box>
+				</Box> */}
 			</Box>
 		</Box>
 	);

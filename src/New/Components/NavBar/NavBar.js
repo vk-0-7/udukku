@@ -1,4 +1,15 @@
-import { Box, Image, Text, Button } from '@chakra-ui/react';
+import {
+	Box,
+	Image,
+	Text,
+	Button,
+	Icon,
+	Menu,
+	MenuButton,
+	MenuList,
+	MenuItem,
+	MenuDivider,
+} from '@chakra-ui/react';
 import { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import logout from '../../../Api/Auth/logout';
@@ -8,6 +19,7 @@ import HowItWorks from './HowItWorks';
 import SignInModal from './SignInModal';
 import SignUpModal from './SignUpModal';
 import { ReactComponent as Man } from '../../../Assets/Icons/frame.svg';
+import { BsChevronDown } from 'react-icons/bs';
 
 const NavBar = () => {
 	const [signInState, setSignInState] = useState(false);
@@ -16,7 +28,7 @@ const NavBar = () => {
 	const [positon, setPosition] = useState(0);
 	const navigate = useNavigate();
 	const [howItWorksState, setHowItWorksState] = useState(false);
-	const { loginState, avatar } = AccessAuthContext();
+	const { loginState, avatar, name } = AccessAuthContext();
 
 	useEffect(() => {
 		const getit = () => {
@@ -121,29 +133,66 @@ const NavBar = () => {
 					</Text>
 					<Box h='20px' w='1px' bg='gray'></Box>
 					{loginState === true ? (
-						<Box
-							h='72px'
-							display={'flex'}
-							alignItems={'center'}
-							justifyContent='center'
-							gap={'20px'}
-						>
-							<Text
-								fontSize='.8333vw'
-								fontFamily={'Gilroy-SemiBold'}
-								cursor={'pointer'}
-								onClick={handleLogout}
-							>
-								Logout
-							</Text>
-							<Box
-								bgImage={avatar}
-								bgSize='cover'
+						<Menu>
+							<MenuButton
+								px='.59vw'
+								py='5px'
 								borderRadius={'full'}
-								h='30px'
-								w='30px'
-							></Box>
-						</Box>
+								transition='all 0.2s'
+								_hover={{
+									background: 'rgba(255,255,255,.1)',
+								}}
+								_expanded={{ bg: 'rgba(255,255,255,.1)' }}
+								// _focus={{ boxShadow: 'outline' }}
+							>
+								<Box
+									h='fit-content'
+									display={'flex'}
+									alignItems={'center'}
+									justifyContent='center'
+									gap={'15px'}
+									cursor='pointer'
+								>
+									<Box
+										bgImage={avatar}
+										bgSize='cover'
+										borderRadius={'full'}
+										h='30px'
+										w='30px'
+									></Box>
+									<Box
+										display={'flex'}
+										gap='.26vw'
+										justifyContent={'center'}
+										alignItems='center'
+									>
+										<Text
+											fontSize='.8333vw'
+											fontFamily={'Gilroy-SemiBold'}
+											textTransform='capitalize'
+										>
+											Hello {name.split(' ')[0]}
+										</Text>
+										<Icon
+											as={BsChevronDown}
+											fontSize='.8333vw'
+										/>
+									</Box>
+								</Box>
+							</MenuButton>
+							<MenuList bg='white' color='black'>
+								<MenuItem>Dashboard</MenuItem>
+								<MenuItem>My Jobs</MenuItem>
+								<MenuDivider
+									borderWidth={'2px'}
+									borderStyle='rgba(8, 32, 50, 1)'
+								/>
+								<MenuItem>My Profile</MenuItem>
+								<MenuItem onClick={handleLogout}>
+									Logout
+								</MenuItem>
+							</MenuList>
+						</Menu>
 					) : (
 						<>
 							<Text

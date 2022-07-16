@@ -9,6 +9,7 @@ import CancellationAndRefund from './New/Pages/CancellationAndRefund';
 import TermsAndConditions from './New/Pages/TermsAndConditions';
 import ResetPassword from './New/Pages/resetPassword';
 import ActivateUser from './New/Pages/ActivateUser';
+import TalentRegistration from './New/Pages/talentRegistration/TalentRegistration';
 
 const App = () => {
 	return (
@@ -34,6 +35,10 @@ const App = () => {
 					<Route
 						path='/user/activate/:id'
 						element={<ActivateUser />}
+					/>
+					<Route
+						path='/talent-registration'
+						element={<TalentRegistration />}
 					/>
 
 					{/* *********************** End *************************** */}

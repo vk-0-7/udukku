@@ -28,7 +28,14 @@ const SignInModal = ({ state, changeState }) => {
 	const [show, setShow] = useState(false);
 
 	const { isOpen, onOpen, onClose } = useDisclosure();
-	const { setLoginState, setToken, setAvatar } = AccessAuthContext();
+	const {
+		setLoginState,
+		setToken,
+		setAvatar,
+		setName,
+		setUserId,
+		setUserEmail,
+	} = AccessAuthContext();
 
 	// email and password
 	const [email, setEmail] = useState('');
@@ -128,6 +135,9 @@ const SignInModal = ({ state, changeState }) => {
 			setLoginState(true);
 			setToken(res.data.refresh_token);
 			setAvatar(res.data.user.avatar);
+			setUserEmail(res.data.user.email);
+			setUserId(res.data.user._id);
+			setName(res.data.user.name);
 			onClose();
 		} catch (error) {
 			if (error.response.data.message === 'This email does not exist.') {
@@ -236,7 +246,8 @@ const SignInModal = ({ state, changeState }) => {
 										<Text
 											color='red'
 											pt='5px'
-											fontWeight={600}
+											fontSize={'.729vw'}
+											fontFamily='Gilroy-Medium'
 										>
 											Invalid Email
 										</Text>
@@ -310,8 +321,9 @@ const SignInModal = ({ state, changeState }) => {
 										<Text
 											cursor='pointer'
 											color='red'
-											mt='10px'
-											fontWeight={600}
+											pt='5px'
+											fontSize={'.729vw'}
+											fontFamily='Gilroy-Medium'
 											onClick={handleForgotPassword}
 										>
 											{checkPassword
@@ -323,8 +335,9 @@ const SignInModal = ({ state, changeState }) => {
 											cursor='pointer'
 											color='#F6540E'
 											textAlign={'end'}
+											fontSize={'.8333vw'}
+											fontFamily='Gilroy-SemiBold'
 											mt='10px'
-											fontWeight={600}
 											onClick={handleForgotPassword}
 										>
 											Forgot Password?

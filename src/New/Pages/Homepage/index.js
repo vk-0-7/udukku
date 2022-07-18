@@ -9,6 +9,7 @@ import OurMission from './OurMission';
 import { Box } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import Footer from '../../Components/Footer/Footer';
+import BecomeOurMember from './becomeOurMember/BecomeOurMember';
 
 const HomePage = () => {
 	useEffect(() => {
@@ -21,6 +22,7 @@ const HomePage = () => {
 				console.log(e);
 			}}
 		>
+			<BecomeOurMember />
 			<NavBar />
 			<Hero />
 			<LookingForAMusician />

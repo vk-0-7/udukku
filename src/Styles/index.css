@@ -80,3 +80,11 @@ html {
 	height: 2.22vh;
 	width: 2.22vh;
 }
+
+.splide__arrows {
+	display: none !important;
+}
+
+.splide__pagination {
+	display: none !important;
+}

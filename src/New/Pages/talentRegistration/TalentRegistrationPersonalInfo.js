@@ -47,6 +47,12 @@ const TalentRegistrationPersonalInfo = () => {
 				</Box>
 				<Box mt='2.22vh'>
 					<Text fontFamily={'Gilroy-SemiBold'} fontSize='.833vw'>
+						Username
+					</Text>
+					<Input h='6.48vh' />
+				</Box>
+				<Box mt='2.22vh'>
+					<Text fontFamily={'Gilroy-SemiBold'} fontSize='.833vw'>
 						Whatsapp Number (Personal Only)
 					</Text>
 					<Input h='6.48vh' />

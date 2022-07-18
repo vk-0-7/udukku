@@ -10,6 +10,7 @@ import TermsAndConditions from './New/Pages/TermsAndConditions';
 import ResetPassword from './New/Pages/resetPassword';
 import ActivateUser from './New/Pages/ActivateUser';
 import TalentRegistration from './New/Pages/talentRegistration/TalentRegistration';
+import JobCreatorRegistration from './New/Pages/jobCreatorRegistration/JobCreatorRegistration';
 
 const App = () => {
 	return (
@@ -39,6 +40,10 @@ const App = () => {
 					<Route
 						path='/talent-registration'
 						element={<TalentRegistration />}
+					/>
+					<Route
+						path='/job-creator-registration'
+						element={<JobCreatorRegistration />}
 					/>
 
 					{/* *********************** End *************************** */}

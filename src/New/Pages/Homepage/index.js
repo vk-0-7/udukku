@@ -10,6 +10,7 @@ import { Box } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import Footer from '../../Components/Footer/Footer';
 import BecomeOurMember from './becomeOurMember/BecomeOurMember';
+import SuccesfullyRegisteredModal from '../../Components/talentRegistration/SuccesfullyRegisteredModal';
 
 const HomePage = () => {
 	useEffect(() => {
@@ -22,6 +23,7 @@ const HomePage = () => {
 				console.log(e);
 			}}
 		>
+			<SuccesfullyRegisteredModal />
 			<BecomeOurMember />
 			<NavBar />
 			<Hero />

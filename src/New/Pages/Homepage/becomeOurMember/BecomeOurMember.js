@@ -1,6 +1,8 @@
 import { ReactComponent as MusicIcon } from '../../../../Assets/Icons/Vector.svg';
 import { ReactComponent as BriefCase } from '../../../../Assets/Icons/briefcase.svg';
 import { GrClose } from 'react-icons/gr';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 const {
 	Modal,
 	useDisclosure,
@@ -12,11 +14,18 @@ const {
 	Icon,
 } = require('@chakra-ui/react');
 
-const BecomeOurMember = () => {
+const BecomeOurMember = ({ state, changeState }) => {
 	const { isOpen, onOpen, onClose } = useDisclosure();
+	const navigate = useNavigate();
+
+	useEffect(() => {
+		if (state) {
+			onOpen();
+		}
+	}, []);
 
 	return (
-		<Modal isOpen={false} onClose={onClose} size={'full'}>
+		<Modal isOpen={isOpen} onClose={onClose} size={'full'}>
 			<ModalOverlay />
 			<ModalBody>
 				<ModalContent
@@ -44,6 +53,7 @@ const BecomeOurMember = () => {
 							cursor='pointer'
 							onClick={() => {
 								onClose();
+								changeState(false);
 							}}
 						/>
 						<Box textAlign={'center'} pb='2.96vh'>
@@ -72,6 +82,11 @@ const BecomeOurMember = () => {
 									svg: { fill: 'white !important' },
 								}}
 								cursor={'pointer'}
+								onClick={() => {
+									onClose();
+									changeState(false);
+									navigate('/talent-registration');
+								}}
 							>
 								<Box
 									display={'inline-flex'}
@@ -113,6 +128,11 @@ const BecomeOurMember = () => {
 									background: '#F6540E',
 									color: 'white',
 									svg: { fill: 'white !important' },
+								}}
+								onClick={() => {
+									onClose();
+									changeState(false);
+									navigate('/job-creator-registration');
 								}}
 							>
 								<Box

@@ -1,7 +1,22 @@
 import { Box, Checkbox, Input, Text } from '@chakra-ui/react';
 import { useState } from 'react';
+import Category from './talentRegistrationPro/Category';
+import Gear from './talentRegistrationPro/Gear';
+import Genre from './talentRegistrationPro/Genre';
+import SocialMedia from './talentRegistrationPro/SocialMedia';
+import WorkSample from './talentRegistrationPro/WorkSample';
 
 const TalentRegistrationProfessionalInfo = () => {
+	const [categories, set_categories] = useState([
+		{ category: '', subCategory: '', serviceStargingPrice: '' },
+	]);
+
+	const [genre, set_genre] = useState([{ genre: '', subGenre: '' }]);
+	const [gear, set_gear] = useState([{ gear: '', gearHighlight: '' }]);
+	const [social_media, set_social_media] = useState([{ plat: '', link: '' }]);
+	const [work, set_work] = useState([{ workSample: '', link: '', role: '' }]);
+	const [term, set_term] = useState([{ termsAndServices: '' }]);
+
 	return (
 		<Box mt='5.555vh' w='36.04vw'>
 			<Text fontFamily={'Gilroy-SemiBold'} fontSize='1.45vw'>
@@ -15,164 +30,155 @@ const TalentRegistrationProfessionalInfo = () => {
 			</Text>
 			<Box mt='2.96vh' alignItems='center' gap='1.25vw'>
 				<Box>
-					<Box display={'flex'} gap='.833vw'>
-						<Box>
-							<Text
-								fontFamily={'Gilroy-SemiBold'}
-								fontSize='.833vw'
-							>
-								Category
-							</Text>
-							<Input />
-						</Box>
-						<Box>
-							<Text
-								fontFamily={'Gilroy-SemiBold'}
-								fontSize='.833vw'
-							>
-								Subcategory
-							</Text>
-							<Input />
-						</Box>
-						<Box>
-							<Text
-								fontFamily={'Gilroy-SemiBold'}
-								fontSize='.833vw'
-							>
-								Service Starting Price
-							</Text>
-							<Input />
-						</Box>
-					</Box>
+					{categories.map((data, index) => {
+						return (
+							<Category
+								key={index}
+								currentIndex={index}
+								fullState={categories}
+								changeState={set_categories}
+								showDelete={
+									categories.length > 1 ? true : false
+								}
+							/>
+						);
+					})}
 					<Text
 						fontFamily={'Gilroy-SemiBold'}
 						color='rgba(246, 84, 14, 1)'
 						fontSize={'.833vw'}
+						onClick={() => {
+							set_categories((prev) => {
+								prev.push({
+									category: '',
+									subCategory: '',
+									serviceStargingPrice: '',
+								});
+								return [...prev];
+							});
+						}}
+						cursor='pointer'
 					>
 						+ Add another Category
 					</Text>
 				</Box>
 				<Box mt='2.22vh'>
-					<Box display={'flex'} gap='.833vw'>
-						<Box flexGrow={1}>
-							<Text
-								fontFamily={'Gilroy-SemiBold'}
-								fontSize='.833vw'
-							>
-								Genre
-							</Text>
-							<Input />
-						</Box>
-						<Box flexGrow={1}>
-							<Text
-								fontFamily={'Gilroy-SemiBold'}
-								fontSize='.833vw'
-							>
-								Subgenre
-							</Text>
-							<Input />
-						</Box>
-					</Box>
+					{genre.map((data, index) => {
+						return (
+							<Genre
+								key={index}
+								currentIndex={index}
+								fullState={genre}
+								changeState={set_genre}
+								showDelete={genre.length > 1 ? true : false}
+							/>
+						);
+					})}
+
 					<Text
 						fontFamily={'Gilroy-SemiBold'}
 						color='rgba(246, 84, 14, 1)'
 						fontSize={'.833vw'}
+						onClick={() => {
+							set_genre((prev) => {
+								prev.push({
+									genre: '',
+									subGenre: '',
+								});
+								return [...prev];
+							});
+						}}
+						cursor='pointer'
 					>
 						+ Add another Category
 					</Text>
 				</Box>
 				<Box mt='2.22vh'>
-					<Box display={'flex'} gap='.833vw'>
-						<Box flexGrow={1}>
-							<Text
-								fontFamily={'Gilroy-SemiBold'}
-								fontSize='.833vw'
-							>
-								Gear
-							</Text>
-							<Input />
-						</Box>
-						<Box flexGrow={1}>
-							<Text
-								fontFamily={'Gilroy-SemiBold'}
-								fontSize='.833vw'
-							>
-								Gear Highlight
-							</Text>
-							<Input />
-						</Box>
-					</Box>
+					{gear.map((data, index) => {
+						return (
+							<Gear
+								key={index}
+								currentIndex={index}
+								fullState={gear}
+								changeState={set_gear}
+								showDelete={gear.length > 1 ? true : false}
+							/>
+						);
+					})}
+
 					<Text
 						fontFamily={'Gilroy-SemiBold'}
 						color='rgba(246, 84, 14, 1)'
 						fontSize={'.833vw'}
+						onClick={() => {
+							set_gear((prev) => {
+								prev.push({
+									gear: '',
+									gearHighlight: '',
+								});
+								return [...prev];
+							});
+						}}
+						cursor='pointer'
 					>
 						+ Add another Gear
 					</Text>
 				</Box>
 				<Box mt='2.22vh'>
-					<Box display={'flex'} gap='.833vw'>
-						<Box flexGrow={1}>
-							<Text
-								fontFamily={'Gilroy-SemiBold'}
-								fontSize='.833vw'
-							>
-								Social Media
-							</Text>
-							<Input />
-						</Box>
-						<Box flexGrow={1}>
-							<Text
-								fontFamily={'Gilroy-SemiBold'}
-								fontSize='.833vw'
-							>
-								Social Media Link
-							</Text>
-							<Input />
-						</Box>
-					</Box>
+					{social_media.map((data, index) => (
+						<SocialMedia
+							key={index}
+							currentIndex={index}
+							fullState={social_media}
+							changeState={set_social_media}
+							showDelete={social_media.length > 1 ? true : false}
+						/>
+					))}
 					<Text
 						fontFamily={'Gilroy-SemiBold'}
 						color='rgba(246, 84, 14, 1)'
 						fontSize={'.833vw'}
+						onClick={() => {
+							set_social_media((prev) => {
+								prev.push({
+									plat: '',
+									link: '',
+								});
+								return [...prev];
+							});
+						}}
+						cursor='pointer'
 					>
 						+ Add another Social Media
 					</Text>
 				</Box>
 				<Box mt='2.22vh'>
-					<Box display={'flex'} gap='.833vw'>
-						<Box>
-							<Text
-								fontFamily={'Gilroy-SemiBold'}
-								fontSize='.833vw'
-							>
-								Work Sample
-							</Text>
-							<Input />
-						</Box>
-						<Box>
-							<Text
-								fontFamily={'Gilroy-SemiBold'}
-								fontSize='.833vw'
-							>
-								Link or File
-							</Text>
-							<Input />
-						</Box>
-						<Box>
-							<Text
-								fontFamily={'Gilroy-SemiBold'}
-								fontSize='.833vw'
-							>
-								Your Role
-							</Text>
-							<Input />
-						</Box>
-					</Box>
+					{work.map((data, index) => {
+						return (
+							<WorkSample
+								key={index}
+								currentIndex={index}
+								fullState={work}
+								changeState={set_work}
+								showDelete={work.length > 1 ? true : false}
+							/>
+						);
+					})}
 					<Text
 						fontFamily={'Gilroy-SemiBold'}
 						color='rgba(246, 84, 14, 1)'
 						fontSize={'.833vw'}
+						onClick={() => {
+							set_work((prev) => {
+								prev.push({
+									workSample: '',
+									link: '',
+									role: '',
+								});
+								return [...prev];
+							});
+						}}
+						cursor='pointer'
 					>
 						+ Add another Category
 					</Text>

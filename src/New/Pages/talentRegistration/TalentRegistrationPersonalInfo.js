@@ -1,17 +1,12 @@
-import { Box, Button, Input, Text, Textarea } from '@chakra-ui/react';
+import { Box, Button, Icon, Input, Text, Textarea } from '@chakra-ui/react';
 import { useRef, useState } from 'react';
+import { MdError } from 'react-icons/md';
 import { ReactComponent as Man } from '../../../Assets/Icons/man.svg';
 
-const TalentRegistrationPersonalInfo = () => {
+const TalentRegistrationPersonalInfo = ({ data }) => {
 	const image_input_ref = useRef();
 	const [image_object, set_image_object] = useState(null);
 	const [image_blob_link, set_image_blob_link] = useState(null);
-	const [name, set_name] = useState('');
-	const [username, set_username] = useState('');
-	const [phone, set_phone] = useState('');
-	const [city, set_city] = useState('');
-	const [state, set_state] = useState('');
-	const [description, set_description] = useState('');
 
 	const handleImageSubmit = (e) => {
 		console.log(e.target.files[0]);
@@ -86,9 +81,9 @@ const TalentRegistrationPersonalInfo = () => {
 					</Text>
 					<Input
 						h='6.48vh'
-						value={name}
+						value={data.fname}
 						onChange={(e) => {
-							set_name(e.target.value);
+							data.set_fname(e.target.value);
 						}}
 					/>
 				</Box>
@@ -98,11 +93,25 @@ const TalentRegistrationPersonalInfo = () => {
 					</Text>
 					<Input
 						h='6.48vh'
-						value={username}
+						value={data.username}
 						onChange={(e) => {
-							set_username(e.target.value);
+							data.set_username(e.target.value);
 						}}
 					/>
+					{data.check_username_availability ? (
+						<Box
+							display={'flex'}
+							color='red'
+							fontSize={'.8333vw'}
+							alignItems='center'
+							gap='5px'
+						>
+							<Icon as={MdError} />
+							<Text>User exist! Try another one</Text>
+						</Box>
+					) : (
+						<></>
+					)}
 				</Box>
 				<Box mt='2.22vh'>
 					<Text fontFamily={'Gilroy-SemiBold'} fontSize='.833vw'>
@@ -111,9 +120,9 @@ const TalentRegistrationPersonalInfo = () => {
 					<Input
 						h='6.48vh'
 						type='number'
-						value={phone}
+						value={data.wa_number}
 						onChange={(e) => {
-							set_phone(e.target.value);
+							data.set_wa_number(e.target.value);
 						}}
 					/>
 				</Box>
@@ -125,9 +134,9 @@ const TalentRegistrationPersonalInfo = () => {
 						<Input
 							h='6.48vh'
 							type='text'
-							value={city}
+							value={data.city}
 							onChange={(e) => {
-								set_city(e.target.value);
+								data.set_city(e.target.value);
 							}}
 						/>
 					</Box>
@@ -138,9 +147,9 @@ const TalentRegistrationPersonalInfo = () => {
 						<Input
 							h='6.48vh'
 							type='text'
-							value={state}
+							value={data.state}
 							onChange={(e) => {
-								set_state(e.target.value);
+								data.set_state(e.target.value);
 							}}
 						/>
 					</Box>
@@ -151,10 +160,10 @@ const TalentRegistrationPersonalInfo = () => {
 					</Text>
 					<Textarea
 						type='text'
-						value={description}
+						value={data.description}
 						onChange={(e) => {
 							if (e.target.value.length <= 500) {
-								set_description(e.target.value);
+								data.set_description(e.target.value);
 							}
 						}}
 					/>
@@ -165,7 +174,7 @@ const TalentRegistrationPersonalInfo = () => {
 						justifyContent='space-between'
 					>
 						<Text>Min 150 Characters</Text>
-						<Text>{description.length}/500</Text>
+						<Text>{data.description.length}/500</Text>
 					</Box>
 				</Box>
 			</Box>

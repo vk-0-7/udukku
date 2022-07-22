@@ -13,8 +13,8 @@ import BecomeOurMember from './becomeOurMember/BecomeOurMember';
 import SuccesfullyRegisteredModal from '../../Components/talentRegistration/SuccesfullyRegisteredModal';
 
 const HomePage = () => {
-	const [become_our_member_modal, set_become_our_member_modal] =
-		useState(true);
+	// const [become_our_member_modal, set_become_our_member_modal] =
+	// 	useState(true);
 
 	useEffect(() => {
 		window.scrollTo(0, 0);
@@ -27,10 +27,10 @@ const HomePage = () => {
 			}}
 		>
 			<SuccesfullyRegisteredModal />
-			<BecomeOurMember
+			{/* <BecomeOurMember
 				state={become_our_member_modal}
 				changeState={set_become_our_member_modal}
-			/>
+			/> */}
 			<NavBar />
 			<Hero />
 			<LookingForAMusician />

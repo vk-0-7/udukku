@@ -3,7 +3,8 @@ import left from './left.svg';
 import right from './right.svg';
 import { Splide, SplideSlide, SplideTrack } from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import getUserSlideDataApi from '../../../../Api/User/getUserSlideDataApi';
 
 const old_slide = () => {
 	return (
@@ -97,6 +98,19 @@ const dummy = [
 
 const Slide = () => {
 	const [index, setIndex] = useState(0);
+	const [slides, set_slides] = useState([]);
+
+	// get the data for slide
+	const getSlideData = async () => {
+		try {
+			const res = await getUserSlideDataApi();
+			set_slides(res.data.user);
+		} catch (error) {}
+	};
+
+	useEffect(() => {
+		getSlideData();
+	}, []);
 
 	return (
 		<Box
@@ -107,32 +121,37 @@ const Slide = () => {
 			position={'relative'}
 		>
 			<Splide
+				aria-label='images'
 				hasTrack={false}
-				aria-label='My Favorite Images'
-				options={{ type: 'loop' }}
+				options={{
+					type: 'loop',
+					autoplay: true,
+					interval: 1000,
+					pauseOnHover: false,
+					resetProgress: false,
+					transition: 'slide',
+					width: '27.60vw',
+					height: '51.85vh',
+					gap: '1rem',
+				}}
 				onMove={(e) => {
 					setIndex(e.index);
 				}}
 			>
 				<SplideTrack>
-					<SplideSlide>
-						<Box
-							bgImage={"url('/pngegg 1.png')"}
-							bgSize='cover'
-							bgPos={'50% 50%'}
-							w='27.60vw'
-							h='51.85vh'
-						></Box>
-					</SplideSlide>
-					<SplideSlide>
-						<Box
-							bgImage={"url('/pngegg 1.png')"}
-							bgSize='cover'
-							bgPos={'50% 50%'}
-							w='27.60vw'
-							h='51.85vh'
-						></Box>
-					</SplideSlide>
+					{slides.map((data, index) => {
+						return (
+							<SplideSlide key={index}>
+								<Box
+									bgImage={data.avatar}
+									bgSize='cover'
+									bgPos={'50% 50%'}
+									w='27.60vw'
+									h='51.85vh'
+								></Box>
+							</SplideSlide>
+						);
+					})}
 				</SplideTrack>
 
 				<Box
@@ -160,7 +179,7 @@ const Slide = () => {
 							textAlign='end'
 							fontFamily='Gilroy-Medium'
 						>
-							{dummy[index].name}
+							{slides.length === 0 ? '' : slides[index].name}
 						</Text>
 						<Text
 							mt='.74vh'
@@ -169,7 +188,7 @@ const Slide = () => {
 							fontFamily={'Gilroy-Bold'}
 							textAlign='end'
 						>
-							{dummy[index].type}
+							{slides.length === 0 ? '' : slides[index].type}
 						</Text>
 						<Box
 							display={'flex'}

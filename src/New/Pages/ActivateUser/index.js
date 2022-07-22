@@ -13,6 +13,7 @@ const ActivateUser = () => {
 	const [loading, setLoading] = useState(true);
 	const [become_our_member_modal, set_become_our_member_modal] =
 		useState(true);
+	const [what, set_what] = useState(null);
 
 	const activate_user = async () => {
 		try {
@@ -27,8 +28,20 @@ const ActivateUser = () => {
 				duration: 5000,
 				isClosable: true,
 			});
+			set_what(true);
 			setLoading(false);
 		} catch (error) {
+			console.log(error.response);
+			toast({
+				title: 'Error',
+				description:
+					'either token is expired or not valid please try again.',
+				status: 'error',
+				position: 'top',
+				duration: 5000,
+				isClosable: true,
+			});
+			set_what(false);
 			setLoading(false);
 		}
 	};
@@ -52,11 +65,13 @@ const ActivateUser = () => {
 				>
 					<Spinner color='white' />
 				</Box>
-			) : (
+			) : what ? (
 				<BecomeOurMember
 					state={become_our_member_modal}
 					changeState={set_become_our_member_modal}
 				/>
+			) : (
+				<></>
 			)}
 			<HomePage />
 		</>

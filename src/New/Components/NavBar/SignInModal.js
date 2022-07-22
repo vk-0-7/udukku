@@ -23,10 +23,10 @@ import { AccessAuthContext } from '../../Context/AuthContext';
 import googleLogin from '../../../Api/Auth/googleLogin';
 import jwt_decode from 'jwt-decode';
 import gLogo from '../../../Assets/Icons/Group.svg';
+import BecomeOurMember from '../../Pages/Homepage/becomeOurMember/BecomeOurMember';
 
 const SignInModal = ({ state, changeState }) => {
 	const [show, setShow] = useState(false);
-
 	const { isOpen, onOpen, onClose } = useDisclosure();
 	const {
 		setLoginState,
@@ -42,6 +42,9 @@ const SignInModal = ({ state, changeState }) => {
 	const [checkEmail, setCheckEmail] = useState(false);
 	const [password, setPassword] = useState('');
 	const [checkPassword, setCheckPassword] = useState(false);
+
+	const [show_registration_modal, set_show_registration_modal] =
+		useState(null);
 
 	// loading
 	const [loading, setLoading] = useState(false);
@@ -130,15 +133,22 @@ const SignInModal = ({ state, changeState }) => {
 
 		try {
 			const res = await signin({ email, password });
-			console.log('response is : ', res);
 			setLoading(false);
-			setLoginState(true);
-			setToken(res.data.refresh_token);
-			setAvatar(res.data.user.avatar);
-			setUserEmail(res.data.user.email);
-			setUserId(res.data.user._id);
-			setName(res.data.user.name);
-			onClose();
+			if (res.data.user.isProfileCompleted === false) {
+				set_show_registration_modal(true);
+				onClose();
+				setUserId(res.data.user._id);
+				console.log('setting the value here');
+			} else {
+				set_show_registration_modal(false);
+				setLoginState(true);
+				setToken(res.data.refresh_token);
+				setAvatar(res.data.user.avatar);
+				setUserEmail(res.data.user.email);
+				setUserId(res.data.user._id);
+				setName(res.data.user.name);
+				onClose();
+			}
 		} catch (error) {
 			if (error.response.data.message === 'This email does not exist.') {
 				setCheckPassword(true);
@@ -152,6 +162,11 @@ const SignInModal = ({ state, changeState }) => {
 
 	return (
 		<>
+			{show_registration_modal === true ? (
+				<BecomeOurMember state={true} />
+			) : (
+				<></>
+			)}
 			<ForgotPasswordModal
 				state={forgotPasswordModalState}
 				changeState={setForgotPasswordModalState}

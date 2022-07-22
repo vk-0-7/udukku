@@ -6,17 +6,7 @@ import Genre from './talentRegistrationPro/Genre';
 import SocialMedia from './talentRegistrationPro/SocialMedia';
 import WorkSample from './talentRegistrationPro/WorkSample';
 
-const TalentRegistrationProfessionalInfo = () => {
-	const [categories, set_categories] = useState([
-		{ category: '', subCategory: '', serviceStargingPrice: '' },
-	]);
-
-	const [genre, set_genre] = useState([{ genre: '', subGenre: '' }]);
-	const [gear, set_gear] = useState([{ gear: '', gearHighlight: '' }]);
-	const [social_media, set_social_media] = useState([{ plat: '', link: '' }]);
-	const [work, set_work] = useState([{ workSample: '', link: '', role: '' }]);
-	const [term, set_term] = useState([{ termsAndServices: '' }]);
-
+const TalentRegistrationProfessionalInfo = ({ data }) => {
 	return (
 		<Box mt='5.555vh' w='36.04vw'>
 			<Text fontFamily={'Gilroy-SemiBold'} fontSize='1.45vw'>
@@ -30,15 +20,15 @@ const TalentRegistrationProfessionalInfo = () => {
 			</Text>
 			<Box mt='2.96vh' alignItems='center' gap='1.25vw'>
 				<Box>
-					{categories.map((data, index) => {
+					{data.categories.map((_data, index) => {
 						return (
 							<Category
 								key={index}
 								currentIndex={index}
-								fullState={categories}
-								changeState={set_categories}
+								fullState={data.categories}
+								changeState={data.set_categories}
 								showDelete={
-									categories.length > 1 ? true : false
+									data.categories.length > 1 ? true : false
 								}
 							/>
 						);
@@ -48,7 +38,7 @@ const TalentRegistrationProfessionalInfo = () => {
 						color='rgba(246, 84, 14, 1)'
 						fontSize={'.833vw'}
 						onClick={() => {
-							set_categories((prev) => {
+							data.set_categories((prev) => {
 								prev.push({
 									category: '',
 									subCategory: '',
@@ -63,14 +53,16 @@ const TalentRegistrationProfessionalInfo = () => {
 					</Text>
 				</Box>
 				<Box mt='2.22vh'>
-					{genre.map((data, index) => {
+					{data.genre.map((_data, index) => {
 						return (
 							<Genre
 								key={index}
 								currentIndex={index}
-								fullState={genre}
-								changeState={set_genre}
-								showDelete={genre.length > 1 ? true : false}
+								fullState={data.genre}
+								changeState={data.set_genre}
+								showDelete={
+									data.genre.length > 1 ? true : false
+								}
 							/>
 						);
 					})}
@@ -80,7 +72,7 @@ const TalentRegistrationProfessionalInfo = () => {
 						color='rgba(246, 84, 14, 1)'
 						fontSize={'.833vw'}
 						onClick={() => {
-							set_genre((prev) => {
+							data.set_genre((prev) => {
 								prev.push({
 									genre: '',
 									subGenre: '',
@@ -94,14 +86,14 @@ const TalentRegistrationProfessionalInfo = () => {
 					</Text>
 				</Box>
 				<Box mt='2.22vh'>
-					{gear.map((data, index) => {
+					{data.gear.map((_data, index) => {
 						return (
 							<Gear
 								key={index}
 								currentIndex={index}
-								fullState={gear}
-								changeState={set_gear}
-								showDelete={gear.length > 1 ? true : false}
+								fullState={data.gear}
+								changeState={data.set_gear}
+								showDelete={data.gear.length > 1 ? true : false}
 							/>
 						);
 					})}
@@ -111,7 +103,7 @@ const TalentRegistrationProfessionalInfo = () => {
 						color='rgba(246, 84, 14, 1)'
 						fontSize={'.833vw'}
 						onClick={() => {
-							set_gear((prev) => {
+							data.set_gear((prev) => {
 								prev.push({
 									gear: '',
 									gearHighlight: '',
@@ -125,13 +117,15 @@ const TalentRegistrationProfessionalInfo = () => {
 					</Text>
 				</Box>
 				<Box mt='2.22vh'>
-					{social_media.map((data, index) => (
+					{data.social_media.map((_data, index) => (
 						<SocialMedia
 							key={index}
 							currentIndex={index}
-							fullState={social_media}
-							changeState={set_social_media}
-							showDelete={social_media.length > 1 ? true : false}
+							fullState={data.social_media}
+							changeState={data.set_social_media}
+							showDelete={
+								data.social_media.length > 1 ? true : false
+							}
 						/>
 					))}
 					<Text
@@ -139,7 +133,7 @@ const TalentRegistrationProfessionalInfo = () => {
 						color='rgba(246, 84, 14, 1)'
 						fontSize={'.833vw'}
 						onClick={() => {
-							set_social_media((prev) => {
+							data.set_social_media((prev) => {
 								prev.push({
 									plat: '',
 									link: '',
@@ -153,14 +147,14 @@ const TalentRegistrationProfessionalInfo = () => {
 					</Text>
 				</Box>
 				<Box mt='2.22vh'>
-					{work.map((data, index) => {
+					{data.work.map((_data, index) => {
 						return (
 							<WorkSample
 								key={index}
 								currentIndex={index}
-								fullState={work}
-								changeState={set_work}
-								showDelete={work.length > 1 ? true : false}
+								fullState={data.work}
+								changeState={data.set_work}
+								showDelete={data.work.length > 1 ? true : false}
 							/>
 						);
 					})}
@@ -169,7 +163,7 @@ const TalentRegistrationProfessionalInfo = () => {
 						color='rgba(246, 84, 14, 1)'
 						fontSize={'.833vw'}
 						onClick={() => {
-							set_work((prev) => {
+							data.set_work((prev) => {
 								prev.push({
 									workSample: '',
 									link: '',

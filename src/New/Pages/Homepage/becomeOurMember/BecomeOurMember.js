@@ -14,7 +14,7 @@ const {
 	Icon,
 } = require('@chakra-ui/react');
 
-const BecomeOurMember = ({ state, changeState }) => {
+const BecomeOurMember = ({ state }) => {
 	const { isOpen, onOpen, onClose } = useDisclosure();
 	const navigate = useNavigate();
 
@@ -44,7 +44,7 @@ const BecomeOurMember = ({ state, changeState }) => {
 						px='2.08vw'
 						position={'relative'}
 					>
-						<Icon
+						{/* <Icon
 							position='absolute'
 							as={GrClose}
 							fontSize={'1.04vw'}
@@ -55,7 +55,7 @@ const BecomeOurMember = ({ state, changeState }) => {
 								onClose();
 								changeState(false);
 							}}
-						/>
+						/> */}
 						<Box textAlign={'center'} pb='2.96vh'>
 							<Text fontFamily={'Gilroy-Bold'} fontSize='1.66vw'>
 								Become our member
@@ -84,7 +84,7 @@ const BecomeOurMember = ({ state, changeState }) => {
 								cursor={'pointer'}
 								onClick={() => {
 									onClose();
-									changeState(false);
+									// changeState(false);
 									navigate('/talent-registration');
 								}}
 							>
@@ -131,7 +131,7 @@ const BecomeOurMember = ({ state, changeState }) => {
 								}}
 								onClick={() => {
 									onClose();
-									changeState(false);
+									// changeState(false);
 									navigate('/job-creator-registration');
 								}}
 							>

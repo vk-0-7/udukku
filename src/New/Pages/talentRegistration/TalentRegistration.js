@@ -1,5 +1,6 @@
 import { Box, Button, Text } from '@chakra-ui/react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import registerTalentApi from '../../../Api/Registration/registerTalentApi';
 import Footer from '../../Components/Footer/Footer';
 import NavBar from '../../Components/NavBar/NavBar';
 import checkForUserName from '../../Utility/checkForUserName';
@@ -17,16 +18,43 @@ const TalentRegistration = () => {
 	const [state, set_state] = useState('');
 	const [description, set_description] = useState('');
 
+	// for professioinal info
+	const [categories, set_categories] = useState([
+		{ category: '', subCategory: '', serviceStargingPrice: '' },
+	]);
+	const [genre, set_genre] = useState([{ genre: '', subGenre: '' }]);
+	const [gear, set_gear] = useState([{ gear: '', gearHighlight: '' }]);
+	const [social_media, set_social_media] = useState([{ plat: '', link: '' }]);
+	const [work, set_work] = useState([{ workSample: '', link: '', role: '' }]);
+	const [term, set_term] = useState([{ termsAndServices: '' }]);
+
 	// functions to handle submissions
 	const handleSubmit = async () => {
-		// step 1 : check for the username if it exists or not
+		// check for the username if it exists or not
 		const res = await checkForUserName(username);
-		console.log('res after checking for availability : ', res);
 		if (res === 'notAvailable') {
 			set_check_username_availability(true);
 		} else {
 			set_check_username_availability(false);
 		}
+
+		// now update the data
+		try {
+			const res = await registerTalentApi({
+				fname,
+				username,
+				wa_number,
+				city,
+				state,
+				description,
+				categories,
+				genre,
+				gear,
+				social_media,
+				work,
+				term,
+			});
+		} catch (error) {}
 	};
 
 	return (
@@ -61,7 +89,22 @@ const TalentRegistration = () => {
 				/>
 
 				{/* professional info */}
-				<TalentRegistrationProfessionalInfo />
+				<TalentRegistrationProfessionalInfo
+					data={{
+						categories,
+						set_categories,
+						gear,
+						set_gear,
+						genre,
+						set_genre,
+						social_media,
+						set_social_media,
+						work,
+						set_work,
+						term,
+						set_term,
+					}}
+				/>
 
 				<Button
 					mt='3.70vh'

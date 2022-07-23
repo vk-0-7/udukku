@@ -1,11 +1,16 @@
 import { Box, Button, Text } from '@chakra-ui/react';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import registerCreatorApi from '../../../Api/Registration/registerCreatorApi';
 import Footer from '../../Components/Footer/Footer';
 import NavBar from '../../Components/NavBar/NavBar';
 import checkForUserName from '../../Utility/checkForUserName';
 import TalentRegistrationPersonalInfo from '../talentRegistration/TalentRegistrationPersonalInfo';
 
 const JobCreatorRegistration = () => {
+	const navigate = useNavigate();
+	const [loading, set_loading] = useState(false);
+
 	// for personal info
 	const [fname, set_fname] = useState('');
 	const [username, set_username] = useState('');
@@ -15,16 +20,35 @@ const JobCreatorRegistration = () => {
 	const [city, set_city] = useState('');
 	const [state, set_state] = useState('');
 	const [description, set_description] = useState('');
+	const [avatar, set_avatar] = useState(null);
 
 	// functions to handle submissions
 	const handleSubmit = async () => {
 		// step 1 : check for the username if it exists or not
+		set_loading(true);
 		const res = await checkForUserName(username);
 		console.log('res after checking for availability : ', res);
 		if (res === 'notAvailable') {
 			set_check_username_availability(true);
+			set_loading(false);
 		} else {
 			set_check_username_availability(false);
+
+			try {
+				const res = await registerCreatorApi({
+					fname,
+					username,
+					wa_number,
+					city,
+					state,
+					description,
+				});
+				console.log('success creator register : ', res);
+				navigate('/', { state: { status: 'success' } });
+				set_loading(false);
+			} catch (error) {
+				set_loading(false);
+			}
 		}
 	};
 
@@ -56,6 +80,8 @@ const JobCreatorRegistration = () => {
 						description,
 						set_description,
 						check_username_availability,
+						avatar,
+						set_avatar,
 					}}
 				/>
 
@@ -70,6 +96,7 @@ const JobCreatorRegistration = () => {
 					fontSize='.833vw'
 					_hover={{ background: 'rgba(246, 84, 14, 1)' }}
 					onClick={handleSubmit}
+					isLoading={loading}
 				>
 					Create Profile
 				</Button>

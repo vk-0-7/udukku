@@ -1,5 +1,6 @@
 import { Box, Button, Text } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import registerTalentApi from '../../../Api/Registration/registerTalentApi';
 import Footer from '../../Components/Footer/Footer';
 import NavBar from '../../Components/NavBar/NavBar';
@@ -8,6 +9,7 @@ import TalentRegistrationPersonalInfo from './TalentRegistrationPersonalInfo';
 import TalentRegistrationProfessionalInfo from './TalentRegistrationProfessionalInfo';
 
 const TalentRegistration = () => {
+	const navigate = useNavigate();
 	// for personal info
 	const [fname, set_fname] = useState('');
 	const [username, set_username] = useState('');
@@ -17,6 +19,7 @@ const TalentRegistration = () => {
 	const [city, set_city] = useState('');
 	const [state, set_state] = useState('');
 	const [description, set_description] = useState('');
+	const [avatar, set_avatar] = useState(null);
 
 	// for professioinal info
 	const [categories, set_categories] = useState([
@@ -28,33 +31,41 @@ const TalentRegistration = () => {
 	const [work, set_work] = useState([{ workSample: '', link: '', role: '' }]);
 	const [term, set_term] = useState([{ termsAndServices: '' }]);
 
+	const [loading, set_loading] = useState(false);
+
 	// functions to handle submissions
 	const handleSubmit = async () => {
 		// check for the username if it exists or not
 		const res = await checkForUserName(username);
+		set_loading(true);
 		if (res === 'notAvailable') {
 			set_check_username_availability(true);
 		} else {
 			set_check_username_availability(false);
-		}
 
-		// now update the data
-		try {
-			const res = await registerTalentApi({
-				fname,
-				username,
-				wa_number,
-				city,
-				state,
-				description,
-				categories,
-				genre,
-				gear,
-				social_media,
-				work,
-				term,
-			});
-		} catch (error) {}
+			// now update the data
+			try {
+				const res = await registerTalentApi({
+					fname,
+					username,
+					wa_number,
+					city,
+					state,
+					description,
+					categories,
+					genre,
+					gear,
+					social_media,
+					work,
+					term,
+					avatar,
+				});
+				navigate('/', { state: { status: 'success' } });
+				set_loading(false);
+			} catch (error) {
+				set_loading(false);
+			}
+		}
 	};
 
 	return (
@@ -85,6 +96,8 @@ const TalentRegistration = () => {
 						description,
 						set_description,
 						check_username_availability,
+						avatar,
+						set_avatar,
 					}}
 				/>
 
@@ -117,6 +130,7 @@ const TalentRegistration = () => {
 					fontSize='.833vw'
 					_hover={{ background: 'rgba(246, 84, 14, 1)' }}
 					onClick={handleSubmit}
+					isLoading={loading}
 				>
 					Create Profile
 				</Button>

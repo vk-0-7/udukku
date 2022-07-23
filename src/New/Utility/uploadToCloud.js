@@ -6,7 +6,7 @@ const uploadToCloud = async (mediaObject) => {
 		formData.append('cloud_name', process.env.REACT_APP_CLOUD_NAME);
 
 		let response = await fetch(
-			`https://api.cloudinary.com/v1_1/${process.env.REACT_APP_UPLOAD_PRESET}/upload`,
+			`https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUD_NAME}/upload`,
 			{ method: 'post', body: formData }
 		);
 
@@ -16,3 +16,5 @@ const uploadToCloud = async (mediaObject) => {
 		console.log('error occurred ', error);
 	}
 };
+
+export default uploadToCloud;

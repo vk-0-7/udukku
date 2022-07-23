@@ -10,9 +10,16 @@ import {
 } from '@chakra-ui/react';
 import { ReactComponent as CheckIcon } from '../../../Assets/Icons/Group 482.svg';
 import { ReactComponent as CloseIcon } from '../../../Assets/Icons/CloseIcon.svg';
+import { useEffect } from 'react';
 
-const SuccesfullyRegisteredModal = () => {
+const SuccesfullyRegisteredModal = ({ status, changeStatus }) => {
 	const { isOpen, onOpen, onClose } = useDisclosure();
+
+	useEffect(() => {
+		if (status) {
+			onOpen();
+		}
+	}, [status]);
 
 	return (
 		<Modal size={'full'} isOpen={isOpen} onClose={onClose}>
@@ -33,6 +40,10 @@ const SuccesfullyRegisteredModal = () => {
 					position={'relative'}
 				>
 					<CloseIcon
+						onClick={() => {
+							changeStatus(false);
+							onClose();
+						}}
 						style={{
 							height: '1.66vw',
 							width: '1.66vw',

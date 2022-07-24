@@ -81,10 +81,91 @@ html {
 	width: 2.22vh;
 }
 
-.splide__arrows {
-	display: none !important;
+/* .splide__arrows {
+	visibility: hidden;
 }
 
 .splide__pagination {
-	display: none !important;
+	visibility: hidden;
+} */
+/* 
+.hero .splide__arrows,
+.hero .splide__arrows--ltr {
+	z-index: 10;
+	position: absolute;
+	width: 12.93vw;
+	height: 22.4vh;
+	background: rgba(8, 32, 50, 0.65);
+	right: 0;
+	bottom: 0;
+	border-radius: 32px 0 0 0;
+}
+
+.hero .splide__arrows .orange_bar {
+	width: 50px;
+	height: 5px;
+	background: rgb(255, 136, 0);
+	border-radius: 20px;
+	float: right;
+}
+
+.hero .slider_controls {
+	display: flex;
+	justify-content: space-between;
+	padding-top: 40px;
+	width: 100%;
+	float: right;
+}
+.hero .splide__arrow {
+}
+.hero .splide__arrow svg {
+	fill: #fff;
+}
+.hero .slider_city {
+	margin-top: 10px;
+	font-size: 20px;
+	text-align: end;
+	color: #fff;
+}
+.hero .slider_location {
+	font-size: 24px;
+	font-weight: 600;
+	text-align: end;
+	color: #fff;
+}
+
+.hero .splide__arrow--prev {
+	background: transparent;
+	position: relative !important;
+	height: 30px;
+	width: 30px;
+	color: #fff;
+}
+.hero .splide__arrow--prev svg {
+	transform: rotateZ(0deg) !important;
+	font-size: 30px;
+}
+.hero .splide__arrow--next {
+	background: transparent;
+	position: relative !important;
+	height: 30px;
+	width: 30px;
+	padding: 0 !important;
+	margin: 0 !important;
+
+	right: 0 !important;
+}
+.hero .splide__arrow--next svg {
+	font-size: 30px;
+}
+
+@media screen and (max-width: 992px) {
+	.hero .splide__arrows,
+	.hero .splide__arrows--ltr {
+		display: none;
+	}
+} */
+.hero .splide__arrows,
+.hero .splide__arrows--ltr {
+	display: none;
 }

@@ -137,7 +137,7 @@ const SignInModal = ({ state, changeState }) => {
 			if (res.data.user.isProfileCompleted === false) {
 				set_show_registration_modal(true);
 				onClose();
-				setUserId(res.data.user._id);
+				sessionStorage.setItem('id', res.data.user._id);
 				console.log('setting the value here');
 			} else {
 				set_show_registration_modal(false);

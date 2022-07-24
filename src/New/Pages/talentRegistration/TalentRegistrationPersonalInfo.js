@@ -5,12 +5,11 @@ import { ReactComponent as Man } from '../../../Assets/Icons/man.svg';
 
 const TalentRegistrationPersonalInfo = ({ data }) => {
 	const image_input_ref = useRef();
-	const [image_object, set_image_object] = useState(null);
 	const [image_blob_link, set_image_blob_link] = useState(null);
 
 	const handleImageSubmit = (e) => {
 		console.log(e.target.files[0]);
-		set_image_object(e.target.files[0]);
+		data.set_avatar(e.target.files[0]);
 		set_image_blob_link(URL.createObjectURL(e.target.files[0]));
 	};
 
@@ -24,7 +23,7 @@ const TalentRegistrationPersonalInfo = ({ data }) => {
 				Be clear, detailed, and authentic!
 			</Text>
 			<Box mt='2.96vh' display={'flex'} alignItems='center' gap='1.25vw'>
-				{image_object === null ? (
+				{data.avatar === null ? (
 					<Box
 						w='7.29vw'
 						h='7.29vw'

@@ -10,6 +10,7 @@ const AuthContextProvider = ({ children }) => {
 	const [name, setName] = useState('');
 	const [userId, setUserId] = useState('');
 	const [email, setEmail] = useState('');
+	const [username, set_username] = useState('');
 
 	const set_other_details_using_api = async () => {
 		try {
@@ -32,6 +33,9 @@ const AuthContextProvider = ({ children }) => {
 		if (localStorage.getItem('avatar')) {
 			setAvatar(localStorage.getItem('avatar'));
 		}
+		if (localStorage.getItem('username')) {
+			set_username(localStorage.getItem('username'));
+		}
 	}, []);
 
 	const value = {
@@ -41,6 +45,7 @@ const AuthContextProvider = ({ children }) => {
 		name: name,
 		userId: userId,
 		email: email,
+		username: username,
 		setUserEmail: (val) => {
 			setEmail(val);
 		},
@@ -61,6 +66,10 @@ const AuthContextProvider = ({ children }) => {
 		setAvatar: (val) => {
 			setAvatar(val);
 			localStorage.setItem('avatar', val);
+		},
+		setUsername: (val) => {
+			set_username(val);
+			localStorage.setItem('username', val);
 		},
 	};
 

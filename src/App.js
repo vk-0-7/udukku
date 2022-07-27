@@ -11,6 +11,8 @@ import ResetPassword from './New/Pages/resetPassword';
 import ActivateUser from './New/Pages/ActivateUser';
 import TalentRegistration from './New/Pages/talentRegistration/TalentRegistration';
 import JobCreatorRegistration from './New/Pages/jobCreatorRegistration/JobCreatorRegistration';
+import Dashboard from './New/Pages/Dashboard';
+import Profile from './New/Pages/Profile';
 
 const App = () => {
 	return (
@@ -18,7 +20,10 @@ const App = () => {
 			<div style={{ overflowY: 'hidden' }}>
 				<Routes>
 					{/* *********************** NEW *************************** */}
-					<Route path={'/'} element={<HomePage />} />
+					<Route path={'/'}>
+						<Route index element={<HomePage />} />
+						<Route path={'/:id'} element={<Profile />} />
+					</Route>
 					<Route path='/jobs' element={<Jobs />} />
 					<Route path='/talents' element={<Talents />} />
 					<Route path='/about-us' element={<AboutUs />} />
@@ -45,6 +50,7 @@ const App = () => {
 						path='/job-creator-registration'
 						element={<JobCreatorRegistration />}
 					/>
+					<Route path='/dashboard' element={<Dashboard />} />
 
 					{/* *********************** End *************************** */}
 				</Routes>

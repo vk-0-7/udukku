@@ -110,7 +110,15 @@ const RespondToJob = () => {
 								/>
 							</Box>
 						</Box>
-						<Text>+</Text>
+						<Box position={'relative'}>
+							<Text
+								position={'absolute'}
+								bottom='3.24vh'
+								transform={'translateY(50%)'}
+							>
+								+
+							</Text>
+						</Box>
 						<Box
 							display={'flex'}
 							flexDir='column'
@@ -137,7 +145,15 @@ const RespondToJob = () => {
 								</Text>
 							</Box>
 						</Box>
-						<Text>=</Text>
+						<Box position={'relative'}>
+							<Text
+								position={'absolute'}
+								bottom='3.24vh'
+								transform={'translateY(50%)'}
+							>
+								=
+							</Text>
+						</Box>
 						<Box
 							display={'flex'}
 							flexDir='column'

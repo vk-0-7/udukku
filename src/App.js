@@ -14,6 +14,7 @@ import JobCreatorRegistration from './New/Pages/jobCreatorRegistration/JobCreato
 import Dashboard from './New/Pages/Dashboard';
 import Profile from './New/Pages/Profile';
 import RespondToJob from './New/Pages/RespondToJob';
+import PostAJob from './New/Pages/PostAJob';
 
 const App = () => {
 	return (
@@ -53,6 +54,7 @@ const App = () => {
 					/>
 					<Route path='/dashboard' element={<Dashboard />} />
 					<Route path='/respond-to-job' element={<RespondToJob />} />
+					<Route path='/post-a-job' element={<PostAJob />} />
 
 					{/* *********************** End *************************** */}
 				</Routes>

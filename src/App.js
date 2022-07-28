@@ -13,6 +13,7 @@ import TalentRegistration from './New/Pages/talentRegistration/TalentRegistratio
 import JobCreatorRegistration from './New/Pages/jobCreatorRegistration/JobCreatorRegistration';
 import Dashboard from './New/Pages/Dashboard';
 import Profile from './New/Pages/Profile';
+import RespondToJob from './New/Pages/RespondToJob';
 
 const App = () => {
 	return (
@@ -51,6 +52,7 @@ const App = () => {
 						element={<JobCreatorRegistration />}
 					/>
 					<Route path='/dashboard' element={<Dashboard />} />
+					<Route path='/respond-to-job' element={<RespondToJob />} />
 
 					{/* *********************** End *************************** */}
 				</Routes>

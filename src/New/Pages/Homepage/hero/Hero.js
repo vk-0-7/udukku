@@ -28,6 +28,7 @@ const Hero = () => {
 						color='#fff'
 						lineHeight={{ base: '1.2em' }}
 						fontFamily={'Gilroy-Bold'}
+						w='90%'
 					>
 						Join India's leading Music Marketplace
 					</Text>

@@ -16,7 +16,7 @@ const registerTalentApi = async (data) => {
 				`/user/update-user-by-id/${userId}`,
 			{
 				name: data.name,
-				username: data.username,
+				userName: data.username,
 				mobile: data.wa_number,
 				city: data.city,
 				state: data.state,

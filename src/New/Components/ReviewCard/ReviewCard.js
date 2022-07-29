@@ -98,7 +98,7 @@ const ReviewCard = ({ data }) => {
 
 			{/* Description section */}
 			<Box
-				mt='1.48'
+				mt='1.48vh'
 				w='41.51vw'
 				fontFamily={'Gilroy-Medium'}
 				fontSize='.833vw'

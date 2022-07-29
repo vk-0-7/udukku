@@ -16,6 +16,7 @@ import Profile from './New/Pages/Profile';
 import RespondToJob from './New/Pages/RespondToJob';
 import PostAJob from './New/Pages/PostAJob';
 import JobDetailPage from './New/Pages/JobDetailPage';
+import Lyrics from './New/Pages/Lyrics';
 
 const App = () => {
 	return (
@@ -60,7 +61,7 @@ const App = () => {
 						path='/job-detail-page'
 						element={<JobDetailPage />}
 					/>
-
+					<Route path='/lyrics' element={<Lyrics />} />
 					{/* *********************** End *************************** */}
 				</Routes>
 			</div>

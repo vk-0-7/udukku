@@ -104,7 +104,32 @@ const NavBar = () => {
 					gap='30px'
 					alignItems={'center'}
 				>
-					<Text fontFamily={'Gilroy-SemiBold'} fontSize='.8333vw'>
+					<Text
+						fontFamily={'Gilroy-SemiBold'}
+						fontSize='.8333vw'
+						onClick={() => {
+							navigate('/lyrics');
+						}}
+						color={path[1] === 'lyrics' ? '#F6540E' : '#fff'}
+						_hover={{
+							color: '#F6540E',
+						}}
+						cursor='pointer'
+					>
+						Lyrics
+					</Text>
+					<Text
+						fontFamily={'Gilroy-SemiBold'}
+						fontSize='.8333vw'
+						_hover={{
+							color: '#F6540E',
+						}}
+						cursor='pointer'
+						color={path[1] === 'talents' ? '#F6540E' : '#fff'}
+						onClick={() => {
+							navigate('/talents');
+						}}
+					>
 						Explore
 					</Text>
 					<Text

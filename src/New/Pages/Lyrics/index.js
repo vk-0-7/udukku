@@ -21,6 +21,7 @@ import { ReactComponent as CategoryIcon } from '../../../Assets/Icons/element-4.
 import { ReactComponent as GenreIcon } from '../../../Assets/Icons/Vector.svg';
 import { ReactComponent as SearchIcon } from '../../../Assets/Icons/search-normal.svg';
 import { ReactComponent as PlusIcon } from '../../../Assets/Icons/plus.svg';
+import { useNavigate } from 'react-router-dom';
 
 const d_data = [
 	{ name: 'Doja', img: img1, sub: 'Central Cee' },
@@ -44,6 +45,8 @@ const d_data = [
 ];
 
 const Lyrics = () => {
+	const navigate = useNavigate();
+
 	return (
 		<Box pt='8.5vh'>
 			<NavBar />
@@ -173,6 +176,9 @@ const Lyrics = () => {
 							/>
 						}
 						_hover={{ background: 'rgba(246, 84, 14, 1)' }}
+						onClick={() => {
+							navigate('/create-new-lyrics');
+						}}
 					>
 						Create New Lyric
 					</Button>
@@ -194,6 +200,9 @@ const Lyrics = () => {
 								w='100%'
 								h='39.07vh'
 								cursor={'pointer'}
+								onClick={() => {
+									navigate('/lyrics-details');
+								}}
 							>
 								<Image
 									src={data.img}

@@ -1,5 +1,5 @@
 import { Box, Button, Image, Text } from '@chakra-ui/react';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import Footer from '../../Components/Footer/Footer';
 import NavBar from '../../Components/NavBar/NavBar';
@@ -55,6 +55,11 @@ const d_data = [
 
 const Profile = () => {
 	const navigate = useNavigate();
+	const [show_video, set_show_video] = useState(false);
+
+	const handlePlay = () => {
+		set_show_video(true);
+	};
 
 	return (
 		<>
@@ -491,30 +496,51 @@ const Profile = () => {
 
 						<Box w='35vw' h='10px'>
 							{/* video section */}
-							<Box w='100%' h='31.48vh' pos='relative'>
-								<Image w='100%' h='100%' src={videoImg} />
+
+							{show_video ? (
 								<Box
-									position={'absolute'}
-									w='4.16vw'
-									h='4.16vw'
-									borderRadius={'full'}
-									bg='#F6540E'
-									top='50%'
-									left='50%'
-									transform={'translate(-50%,-50%)'}
-									display='flex'
-									alignItems={'center'}
-									justifyContent='center'
-									cursor={'pointer'}
+									width={'100%'}
+									h='31.48vh'
+									borderRadius={'1.66vw'}
+									overflow='hidden'
 								>
-									<PlayIcon
+									<iframe
 										style={{
-											width: '1.04vw',
-											height: '1.1vw',
+											width: '100%',
+											height: '100%',
 										}}
-									/>
+										src='https://www.youtube.com/embed/_VuJA-VQRcY?controls=0&autoplay=1&showinfo=0'
+										title='Central Cee - Doja (Directed by Cole Bennett)'
+										allow='autoplay; encrypted-media;'
+									></iframe>
 								</Box>
-							</Box>
+							) : (
+								<Box w='100%' h='31.48vh' pos='relative'>
+									<Image w='100%' h='100%' src={videoImg} />
+									<Box
+										position={'absolute'}
+										w='4.16vw'
+										h='4.16vw'
+										borderRadius={'full'}
+										bg='#F6540E'
+										top='50%'
+										left='50%'
+										transform={'translate(-50%,-50%)'}
+										display='flex'
+										alignItems={'center'}
+										justifyContent='center'
+										cursor={'pointer'}
+										onClick={handlePlay}
+									>
+										<PlayIcon
+											style={{
+												width: '1.04vw',
+												height: '1.1vw',
+											}}
+										/>
+									</Box>
+								</Box>
+							)}
 
 							{/* starting price section */}
 							<Box

@@ -1,6 +1,12 @@
 import { Box, Image, Text } from '@chakra-ui/react';
 import profileImg from '../../../Assets/Images/dummyProfile/Ellipse 5.png';
 
+//icon
+import { ReactComponent as CategoryIcon } from '../../../Assets/Icons/category.svg';
+import { ReactComponent as MoneyIcon } from '../../../Assets/Icons/dollar-circle-transparent.svg';
+import { ReactComponent as TimeIcon } from '../../../Assets/Icons/clock_trans.svg';
+import { ReactComponent as AttachIcon } from '../../../Assets/Icons/attach-circle-trans.svg';
+
 const JobSearchCard = ({ data }) => {
 	return (
 		<Box
@@ -9,8 +15,8 @@ const JobSearchCard = ({ data }) => {
 			border='1.5px solid #f0f0f0'
 			borderRadius={'28px'}
 			flexShrink={0}
-			px='1.04vw'
-			py='1.85vh'
+			px='1.45vw'
+			py='2.59vh'
 		>
 			{/* heading */}
 			<Box display={'flex'} justifyContent='space-between'>
@@ -62,15 +68,21 @@ const JobSearchCard = ({ data }) => {
 						<Box
 							key={index}
 							bg='rgba(192, 226, 24,.1)'
-							display={'inline-block'}
+							display={'inline-flex'}
+							alignItems='center'
 							px='.78vw'
-							py='.74vh'
+							// py='.74vh'
+							h='4.07vh'
 							borderRadius={'16px'}
 							flexShrink={0}
 							fontSize='.729vw'
 							fontFamily={'Gilroy-SemiBold'}
+							gap={'.41vw'}
 						>
-							{val.subService}
+							<CategoryIcon
+								style={{ width: '.93vw', height: '.93vw' }}
+							/>
+							<Text>{val.subService}</Text>
 						</Box>
 					);
 				})}
@@ -84,36 +96,63 @@ const JobSearchCard = ({ data }) => {
 			{/* another tags */}
 			<Box display={'flex'} gap='.52vw' flexWrap={'wrap'} mt='.92vh'>
 				<Box
-					display={'inline-block'}
+					display={'inline-flex'}
 					px='15px'
 					py='8px'
 					borderRadius={'16px'}
 					flexShrink={0}
 					fontSize='.833vw'
 					fontFamily={'Gilroy-Medium'}
+					alignItems='center'
+					gap='.52vw'
 				>
+					<MoneyIcon
+						style={{
+							width: '1.25vw',
+							height: '1.25vw',
+							fill: 'rgba(8, 32, 50, .5)',
+						}}
+					/>
 					Fixed Price
 				</Box>
 				<Box
-					display={'inline-block'}
+					display={'inline-flex'}
 					px='15px'
 					py='8px'
 					borderRadius={'16px'}
 					flexShrink={0}
 					fontSize='.833vw'
 					fontFamily={'Gilroy-Medium'}
+					alignItems='center'
+					gap='.52vw'
 				>
+					<TimeIcon
+						style={{
+							width: '1.25vw',
+							height: '1.25vw',
+							fill: 'rgba(8, 32, 50, .5)',
+						}}
+					/>
 					{data.deadLine}
 				</Box>
 				<Box
-					display={'inline-block'}
+					display={'inline-flex'}
 					px='15px'
 					py='8px'
 					borderRadius={'16px'}
 					flexShrink={0}
 					fontSize='.833vw'
 					fontFamily={'Gilroy-Medium'}
+					alignItems='center'
+					gap='.52vw'
 				>
+					<AttachIcon
+						style={{
+							width: '1.25vw',
+							height: '1.25vw',
+							fill: 'rgba(8, 32, 50, .5)',
+						}}
+					/>
 					2 references
 				</Box>
 			</Box>

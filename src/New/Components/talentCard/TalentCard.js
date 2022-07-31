@@ -4,8 +4,10 @@ import { Box, Image, Text } from '@chakra-ui/react';
 import { ReactComponent as Star } from '../../../Assets/Icons/star.svg';
 import { ReactComponent as CategoryIcon } from '../../../Assets/Icons/category.svg';
 import { ReactComponent as GenreIcon } from '../../../Assets/Icons/Vector.svg';
-
+import { useNavigate } from 'react-router-dom';
 const TalentCard = ({ data }) => {
+	const navigate = useNavigate('');
+
 	return (
 		<Box
 			h='57.40vh'
@@ -16,6 +18,10 @@ const TalentCard = ({ data }) => {
 			py='2.59vh'
 			display={'flex'}
 			flexDir='column'
+			cursor={'pointer'}
+			onClick={() => {
+				navigate('/asfsdfd');
+			}}
 		>
 			{/* section one with profile image, name, city and star */}
 			<Box display={'flex'} gap='.72vw' alignItems={'center'}>

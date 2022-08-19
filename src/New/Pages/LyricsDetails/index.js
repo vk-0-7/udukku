@@ -16,11 +16,13 @@ import { ReactComponent as PlayIcon } from "../../../Assets/Icons/play.svg";
 import { useRef, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import getLyrics from "../../../Api/Lyrics/getLyrics";
+import { person } from "@cloudinary/url-gen/qualifiers/focusOn";
 
 const LyricsDetails = () => {
   const videoRef = useRef();
   const [show_video, set_show_video] = useState(false);
   const [lyrics, setLyrics] = useState({});
+  const [people, setPeople] = useState([]);
   const { id } = useParams("");
 
   const handlePlay = () => {
@@ -39,10 +41,11 @@ const LyricsDetails = () => {
       // console.log("UseEffect", page);
       getLyrics(id).then((ly) => {
         setLyrics(ly.message);
-        console.log("lyrics", JSON.stringify(lyrics));
+        setPeople(ly.message.peopleInvolved);
+        console.log("lyrics", ly.message);
       });
     })();
-  }, [id]);
+  }, []);
 
   return (
     <Box pt="8.5vh">
@@ -267,9 +270,9 @@ const LyricsDetails = () => {
                 gridTemplateColumns="1fr 1fr"
                 rowGap={"2.96vh"}
               >
-                {lyrics.peopleInvolved.map((person, index) => {
+                {people.map((person, index) => {
                   return (
-                    <Box>
+                    <Box key={index}>
                       <Text fontFamily={"Gilroy-Medium"} fontSize=".833vw">
                         {person.role}
                       </Text>
@@ -384,7 +387,7 @@ const LyricsDetails = () => {
                     lyrics.youtubeVideoLink +
                     "?controls=0&autoplay=1&showinfo=0"
                   }
-                  title={lyrics.songName + " - " + lyrics.artistName}
+                  title={lyrics.songName}
                   allow="autoplay; encrypted-media;"
                   ref={videoRef}
                 ></iframe>

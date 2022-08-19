@@ -1,19 +1,21 @@
 var axios = require("axios");
-const getLyrics = async () => {
-  var data = '{\n    "page":"1",\n    "count":"10"\n}';
-
+const getLyrics = async (id) => {
   var config = {
     method: "get",
-    url: "https://udukku-test.herokuapp.com/lyrics/get-lyrics-by-id/62fe426a670d89c5b6c1381b",
+    url: `https://udukku-test.herokuapp.com/lyrics/get-lyrics-by-id/${id}`,
     headers: {},
-    data: data,
   };
 
-  axios(config)
+  let res = axios(config)
     .then(function (response) {
-      console.log(JSON.stringify(response.data));
+      // console.log(response);
+      return response.data;
     })
     .catch(function (error) {
       console.log(error);
     });
+  return res;
+  //return await axios(config);
 };
+
+export default getLyrics;

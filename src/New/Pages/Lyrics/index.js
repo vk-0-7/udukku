@@ -187,7 +187,7 @@ const Lyrics = () => {
                 h="39.07vh"
                 cursor={"pointer"}
                 onClick={() => {
-                  navigate("/lyrics-details");
+                  navigate(`/lyrics-details/${data._id}`);
                 }}
               >
                 <Image

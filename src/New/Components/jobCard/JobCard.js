@@ -1,9 +1,10 @@
 import { Box, Text, Button, Icon, propNames } from "@chakra-ui/react";
 import { HiOutlineChevronRight } from "react-icons/hi";
 import { useState, useEffect } from "react";
-import getJobById from "../../../Api/Jobs/getJobById";
+
 //jobTitle, service, genre, description, deadline, budget
 const JobCard = (props) => {
+  const category = props.category;
   return (
     <Box
       w="23.75vw"
@@ -23,6 +24,25 @@ const JobCard = (props) => {
       </Text>
       {/* section which contain all the badges */}
       <Box display={"flex"} gap="10px" flexWrap={"wrap"} mt="10px">
+        {/* {category.map((item, index) => {
+          return (
+            <Box
+              bg="rgba(192, 226, 24,.1)"
+              display={"inline-flex"}
+              justifyContent="center"
+              alignItems={"center"}
+              px="15px"
+              borderRadius={"16px"}
+              flexShrink={0}
+              fontFamily={"Gilroy-SemiBold"}
+              fontSize={".729vw"}
+              h="4.07vh"
+              key={index}
+            >
+              {item.service}
+            </Box>
+          );
+        })} */}
         <Box
           bg="rgba(192, 226, 24,.1)"
           display={"inline-flex"}
@@ -49,7 +69,7 @@ const JobCard = (props) => {
           fontSize={".729vw"}
           h="4.07vh"
         >
-          Hindustani Classical
+          {props.genre}
         </Box>
         <Box
           bg="rgba(192, 226, 24,.1)"
@@ -63,7 +83,7 @@ const JobCard = (props) => {
           fontSize={".729vw"}
           h="4.07vh"
         >
-          Female Vocalist or Singer
+          {props.subService}
         </Box>
         <Box
           bg="rgba(192, 226, 24,.1)"
@@ -77,7 +97,7 @@ const JobCard = (props) => {
           fontSize={".729vw"}
           h="4.07vh"
         >
-          Hindustani Classical
+          {props.subGenre}
         </Box>
       </Box>
       {/* some text */}

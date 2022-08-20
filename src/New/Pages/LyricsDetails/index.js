@@ -250,6 +250,7 @@ const LyricsDetails = () => {
             </Box>
 
             {/* Lyrics section */}
+
             <Box mt="3.70vh">
               <Text fontFamily={"Gilroy-Bold"} fontSize="1.45vw" mt="1.11vh">
                 Lyrics

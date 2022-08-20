@@ -20,8 +20,6 @@ import { useNavigate } from "react-router-dom";
 import getSongs from "../../../Api/Lyrics/getSongs";
 import { useState, useEffect } from "react";
 
-// { name: 'Doja', img: img1, sub: 'Central Cee' }
-
 const Lyrics = () => {
   const [d_data, setDData] = useState([]);
   const [page, setPage] = useState(1);

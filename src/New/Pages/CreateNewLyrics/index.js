@@ -37,6 +37,7 @@ const CreateNewLyrics = () => {
     const songName = e.target.form.songName.value;
     const artistName = e.target.form.artistName.value;
     const lyrics = e.target.form.lyrics.value;
+
     const aboutArtist = e.target.form.aboutArtist.value;
     const youtubeVideoLink = e.target.form.youtubeVideoLink.value;
 
@@ -44,8 +45,8 @@ const CreateNewLyrics = () => {
       coverPhoto,
       songName,
       artistName,
-      // genre,
-      // subgenre,
+      genre,
+      //subgenre,
       lyrics,
       aboutArtist,
       peopleInvolved,

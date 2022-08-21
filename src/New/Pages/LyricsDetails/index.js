@@ -23,6 +23,7 @@ const LyricsDetails = () => {
   const [show_video, set_show_video] = useState(false);
   const [lyrics, setLyrics] = useState({});
   const [people, setPeople] = useState([]);
+  const [genre, setGenre] = useState([]);
   const [videoLink, setVideoLink] = useState("");
   const { id } = useParams("");
 
@@ -43,6 +44,7 @@ const LyricsDetails = () => {
       getLyrics(id).then((ly) => {
         setLyrics(ly.message);
         setPeople(ly.message.peopleInvolved);
+        setGenre(ly.message.genre);
         console.log("lyrics", ly.message);
         setVideoLink(ly.message.youtubeVideoLink.replace("watch?v=", "embed/"));
       });
@@ -182,73 +184,60 @@ const LyricsDetails = () => {
             </Box>
 
             {/* tags section */}
+
             <Box display={"flex"} flexWrap={"wrap"} gap=".41vw" mt="1.85vh">
-              <Box
-                h="4.07vh"
-                pl=".70vw"
-                pr=".62vw"
-                borderRadius={".833vw"}
-                display="flex"
-                alignItems={"center"}
-                justifyContent="center"
-                bg={"rgba(247, 215, 22, .1)"}
-                gap=".41vw"
-              >
-                <GenreIcon
-                  style={{
-                    height: ".93vw",
-                    width: ".72vw",
-                    fill: "rgba(8, 32, 50, 1)",
-                  }}
-                />
-                <Text fontFamily={"Gilroy-SemiBold"} fontSize=".72vw">
-                  Hindustani Classical
-                </Text>
-              </Box>
-              <Box
-                h="4.07vh"
-                pl=".70vw"
-                pr=".62vw"
-                borderRadius={".833vw"}
-                display="flex"
-                alignItems={"center"}
-                justifyContent="center"
-                bg={"rgba(247, 215, 22, .1)"}
-                gap=".41vw"
-              >
-                <GenreIcon
-                  style={{
-                    height: ".93vw",
-                    width: ".72vw",
-                    fill: "rgba(8, 32, 50, 1)",
-                  }}
-                />
-                <Text fontFamily={"Gilroy-SemiBold"} fontSize=".72vw">
-                  International
-                </Text>
-              </Box>
-              <Box
-                h="4.07vh"
-                pl=".70vw"
-                pr=".62vw"
-                borderRadius={".833vw"}
-                display="flex"
-                alignItems={"center"}
-                justifyContent="center"
-                bg={"rgba(247, 215, 22, .1)"}
-                gap=".41vw"
-              >
-                <GenreIcon
-                  style={{
-                    height: ".93vw",
-                    width: ".72vw",
-                    fill: "rgba(8, 32, 50, 1)",
-                  }}
-                />
-                <Text fontFamily={"Gilroy-SemiBold"} fontSize=".72vw">
-                  Regional
-                </Text>
-              </Box>
+              {genre.map((item, index) => {
+                return (
+                  <>
+                    <Box
+                      key={index}
+                      h="4.07vh"
+                      pl=".70vw"
+                      pr=".62vw"
+                      borderRadius={".833vw"}
+                      display="flex"
+                      alignItems={"center"}
+                      justifyContent="center"
+                      bg={"rgba(247, 215, 22, .1)"}
+                      gap=".41vw"
+                    >
+                      <GenreIcon
+                        style={{
+                          height: ".93vw",
+                          width: ".72vw",
+                          fill: "rgba(8, 32, 50, 1)",
+                        }}
+                      />
+                      <Text fontFamily={"Gilroy-SemiBold"} fontSize=".72vw">
+                        {item.genre}
+                      </Text>
+                    </Box>
+                    <Box
+                      key={index}
+                      h="4.07vh"
+                      pl=".70vw"
+                      pr=".62vw"
+                      borderRadius={".833vw"}
+                      display="flex"
+                      alignItems={"center"}
+                      justifyContent="center"
+                      bg={"rgba(247, 215, 22, .1)"}
+                      gap=".41vw"
+                    >
+                      <GenreIcon
+                        style={{
+                          height: ".93vw",
+                          width: ".72vw",
+                          fill: "rgba(8, 32, 50, 1)",
+                        }}
+                      />
+                      <Text fontFamily={"Gilroy-SemiBold"} fontSize=".72vw">
+                        {item.subgenre}
+                      </Text>
+                    </Box>
+                  </>
+                );
+              })}
             </Box>
 
             {/* Lyrics section */}

@@ -44,8 +44,10 @@ const GenreFields = ({ showDelete, currentIndex, fullState, changeState }) => {
           defaultValue={"Select"}
         >
           <option value="">Select</option>
-          <option value={"two"}>One</option>
-          <option value={"three"}>One</option>
+          <option value={"Jazz"}>Jazz</option>
+          <option value={"Rock"}>Rock</option>
+          <option value={"Country"}>Country</option>
+          <option value={"Soul"}>Soul</option>
         </Select>
       </Box>
       <Box flexGrow={1}>
@@ -66,8 +68,8 @@ const GenreFields = ({ showDelete, currentIndex, fullState, changeState }) => {
           defaultValue={"Select"}
         >
           <option value="">Select</option>
-          <option value={"two"}>One</option>
-          <option value={"three"}>One</option>
+          <option value={"Funk"}>Funk</option>
+          <option value={"Hip Hop"}>Hip Hop</option>
         </Select>
       </Box>
       {/* delete icon */}

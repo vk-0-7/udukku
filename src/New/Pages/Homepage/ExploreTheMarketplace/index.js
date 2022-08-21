@@ -6,31 +6,15 @@ import getJobs from "../../../../Api/Jobs/getJobsApi";
 import { useEffect, useState } from "react";
 //jobTitle, service, genre, description, deadline, budget
 const ExploreTheMarketplace = () => {
-  const [jobId, setJobId] = useState(0);
-  const [jobTitle, setJobTitle] = useState("");
-  const [subService, setSubService] = useState("");
-  const [service, setService] = useState("");
-  const [genre, setGenre] = useState("");
-  const [subGenre, setSubGenre] = useState("");
-  const [description, setDescription] = useState("");
-  const [deadline, setDeadline] = useState("");
-  const [budget, setBudget] = useState([]);
+  const [jobs, setJobs] = useState([]);
 
   const navigate = useNavigate();
 
   const getData = async () => {
     try {
       const res = await getJobs();
+      setJobs(res.data);
       //console.log(res.data[0]);
-      setJobId(res.data[0]._id);
-      setJobTitle(res.data[0].jobTitle);
-      setService(res.data[0].category[0].service);
-      setDeadline(res.data[0].deadLine);
-      setGenre(res.data[0].genres[0].genere);
-      setDescription(res.data[0].description);
-      setBudget(res.data[0].budget);
-      setSubGenre(res.data[0].genres[0].subGenere);
-      setSubService(res.data[0].category[0].subService);
     } catch (error) {
       console.log("Get Jobs Api Error : ", error);
     }
@@ -79,6 +63,7 @@ const ExploreTheMarketplace = () => {
           </Button>
         </Box>
       </Box>
+
       <Box
         display={"flex"}
         gap="20px"
@@ -87,18 +72,25 @@ const ExploreTheMarketplace = () => {
         flexWrap={"nowrap"}
         overflowX="scroll"
       >
-        <JobCard
-          id={jobId}
-          title={jobTitle}
-          description={description}
-          service={service}
-          genre={genre}
-          deadline={deadline}
-          budget={budget}
-          subService={subService}
-          subGenre={subGenre}
-        />
-        ;
+        {jobs.map((job, index) => {
+          if (index >= 3) {
+            return null;
+          }
+          return (
+            <JobCard
+              id={job._id}
+              title={job.jobTitle}
+              description={job.description}
+              service={job.category[0].service}
+              genre={job.genres[0].genere}
+              deadline={job.deadLine}
+              budget={job.budget}
+              subService={job.category[0].subService}
+              subGenre={job.genres[0].subGenere}
+              key={job._id}
+            />
+          );
+        })}
       </Box>
     </Box>
   );

@@ -23,6 +23,7 @@ const LyricsDetails = () => {
   const [show_video, set_show_video] = useState(false);
   const [lyrics, setLyrics] = useState({});
   const [people, setPeople] = useState([]);
+  const [videoLink, setVideoLink] = useState("");
   const { id } = useParams("");
 
   const handlePlay = () => {
@@ -43,6 +44,7 @@ const LyricsDetails = () => {
         setLyrics(ly.message);
         setPeople(ly.message.peopleInvolved);
         console.log("lyrics", ly.message);
+        setVideoLink(ly.message.youtubeVideoLink.replace("watch?v=", "embed/"));
       });
     })();
   }, []);
@@ -374,14 +376,21 @@ const LyricsDetails = () => {
 
           {/* right section */}
           <Box w="100%">
-            {show_video ? (
-              <Box
+            <Box
+              width={"100%"}
+              h="31.48vh"
+              borderRadius={"1.66vw"}
+              overflow="hidden"
+            >
+              {/* "https://www.youtube.com/embed/e-ORhEE9VVg?controls=0" */}
+              <iframe
                 width={"100%"}
-                h="31.48vh"
-                borderRadius={"1.66vw"}
-                overflow="hidden"
-              >
-                <iframe
+                height={"100%"}
+                src={videoLink}
+                title={lyrics.songName}
+                allow="autoplay; encrypted-media;"
+              ></iframe>
+              {/* <iframe
                   style={{ width: "100%", height: "100%" }}
                   //?controls=0&autoplay=1&showinfo=0
                   src={
@@ -391,43 +400,8 @@ const LyricsDetails = () => {
                   title={lyrics.songName}
                   allow="autoplay; encrypted-media;"
                   ref={videoRef}
-                ></iframe>
-              </Box>
-            ) : (
-              <Box w="100%" h="31.48vh" position={"relative"} overflow="hidden">
-                <Image
-                  src={img3}
-                  w="100%"
-                  h="100%"
-                  objectFit={"cover"}
-                  objectPosition="50% 50%"
-                  borderRadius={"1.66vw"}
-                  overflow={"hidden"}
-                />
-                <Box
-                  position={"absolute"}
-                  w="4.16vw"
-                  h="4.16vw"
-                  bg="rgba(246, 84, 14, 1)"
-                  top="50%"
-                  left="50%"
-                  transform={"translate(-50%,-50%)"}
-                  borderRadius="full"
-                  display={"flex"}
-                  justifyContent="center"
-                  alignItems={"center"}
-                  cursor="pointer"
-                  onClick={handlePlay}
-                >
-                  <PlayIcon
-                    style={{
-                      width: "1.04vw",
-                      height: "1.04vw",
-                    }}
-                  />
-                </Box>
-              </Box>
-            )}
+                ></iframe> */}
+            </Box>
           </Box>
         </Box>
 

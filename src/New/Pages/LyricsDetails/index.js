@@ -79,7 +79,7 @@ const LyricsDetails = () => {
             <Image
               src={lyrics.coverPhoto}
               w="100%"
-              h="31.48vh"
+              h="40vh"
               objectFit={"cover"}
               objectPosition="50% 50%"
               borderRadius={"1.66vw"}
@@ -378,7 +378,7 @@ const LyricsDetails = () => {
           <Box w="100%">
             <Box
               width={"100%"}
-              h="31.48vh"
+              h="40vh"
               borderRadius={"1.66vw"}
               overflow="hidden"
             >

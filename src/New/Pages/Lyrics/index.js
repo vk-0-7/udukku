@@ -182,8 +182,11 @@ const Lyrics = () => {
               <Box
                 key={index}
                 w="100%"
-                h="39.07vh"
+                h="auto"
                 cursor={"pointer"}
+                borderRadius={"10px"}
+                backgroundColor={"#e0d3d366"}
+                //padding={"1px"}
                 onClick={() => {
                   navigate(`/lyrics-details/${data._id}`);
                 }}
@@ -192,6 +195,8 @@ const Lyrics = () => {
                   src={data.coverPhoto}
                   w="100%"
                   h="31.29vh"
+                  borderTopLeftRadius={"10px"}
+                  borderTopRightRadius={"10px"}
                   objectFit={"cover"}
                   objectPosition="50% 50%"
                 />
@@ -203,6 +208,7 @@ const Lyrics = () => {
                     fontFamily={"Gilroy-SemiBold"}
                     fontSize="1.04vw"
                     color="rgba(43, 43, 43, .5)"
+                    mb={".5vh"}
                   >
                     {data.artistName}
                   </Text>

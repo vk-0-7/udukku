@@ -22,6 +22,7 @@ import { useState, useEffect } from "react";
 
 const Lyrics = () => {
   const [d_data, setDData] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
   const [page, setPage] = useState(1);
   const navigate = useNavigate();
   useEffect(() => {
@@ -132,6 +133,9 @@ const Lyrics = () => {
               _focus={{
                 border: "2px solid rgba(246, 84, 14, 1)",
               }}
+              onChange={(e) => {
+                setSearchTerm(e.target.value);
+              }}
               // onFocus={() => {
               // 	console.log('in focus');
               // 	set_search_color('rgba(246, 84, 14, 1)');
@@ -177,45 +181,55 @@ const Lyrics = () => {
           rowGap={"5.55vh"}
           mb="7.40vh"
         >
-          {d_data.map((data, index) => {
-            return (
-              <Box
-                key={index}
-                w="100%"
-                h="auto"
-                cursor={"pointer"}
-                borderRadius={"10px"}
-                backgroundColor={"#e0d3d366"}
-                //padding={"1px"}
-                onClick={() => {
-                  navigate(`/lyrics-details/${data._id}`);
-                }}
-              >
-                <Image
-                  src={data.coverPhoto}
+          {d_data
+            .filter((data) => {
+              if (searchTerm === "") {
+                return data;
+              } else if (
+                data.songName.toLowerCase().includes(searchTerm.toLowerCase())
+              ) {
+                return data;
+              }
+            })
+            .map((data, index) => {
+              return (
+                <Box
+                  key={index}
                   w="100%"
-                  h="31.29vh"
-                  borderTopLeftRadius={"10px"}
-                  borderTopRightRadius={"10px"}
-                  objectFit={"cover"}
-                  objectPosition="50% 50%"
-                />
-                <Box pl=".41vw" pt="1.48vh">
-                  <Text fontFamily={"Gilroy-SemiBold"} fontSize="1.45vw">
-                    {data.songName}
-                  </Text>
-                  <Text
-                    fontFamily={"Gilroy-SemiBold"}
-                    fontSize="1.04vw"
-                    color="rgba(43, 43, 43, .5)"
-                    mb={".5vh"}
-                  >
-                    {data.artistName}
-                  </Text>
+                  h="auto"
+                  cursor={"pointer"}
+                  borderRadius={"10px"}
+                  backgroundColor={"#e0d3d366"}
+                  //padding={"1px"}
+                  onClick={() => {
+                    navigate(`/lyrics-details/${data._id}`);
+                  }}
+                >
+                  <Image
+                    src={data.coverPhoto}
+                    w="100%"
+                    h="31.29vh"
+                    borderTopLeftRadius={"10px"}
+                    borderTopRightRadius={"10px"}
+                    objectFit={"cover"}
+                    objectPosition="50% 50%"
+                  />
+                  <Box pl=".41vw" pt="1.48vh">
+                    <Text fontFamily={"Gilroy-SemiBold"} fontSize="1.45vw">
+                      {data.songName}
+                    </Text>
+                    <Text
+                      fontFamily={"Gilroy-SemiBold"}
+                      fontSize="1.04vw"
+                      color="rgba(43, 43, 43, .5)"
+                      mb={".5vh"}
+                    >
+                      {data.artistName}
+                    </Text>
+                  </Box>
                 </Box>
-              </Box>
-            );
-          })}
+              );
+            })}
         </Box>
       </Box>
       <Footer />

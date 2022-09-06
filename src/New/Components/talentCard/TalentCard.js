@@ -20,7 +20,7 @@ const TalentCard = ({ data }) => {
       flexDir="column"
       cursor={"pointer"}
       onClick={() => {
-        navigate("/asfsdfd");
+        navigate("/" + data._id);
       }}
     >
       {/* section one with profile image, name, city and star */}

@@ -10,7 +10,7 @@ const TalentCard = ({ data }) => {
 
   return (
     <Box
-      h="57.40vh"
+      h={"65vh"}
       w={"23.75vw"}
       border="1.5px solid #F0F0F0"
       borderRadius={"1.45vw"}
@@ -19,6 +19,7 @@ const TalentCard = ({ data }) => {
       display={"flex"}
       flexDir="column"
       cursor={"pointer"}
+      overflow="hidden"
       onClick={() => {
         navigate("/" + data._id);
       }}

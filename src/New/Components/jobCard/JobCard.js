@@ -55,22 +55,9 @@ const JobCard = (props) => {
           fontSize={".729vw"}
           h="4.07vh"
         >
-          {props.service}
+          {props.category.service}
         </Box>
-        <Box
-          bg="rgba(247, 215, 22,.1)"
-          display={"inline-flex"}
-          justifyContent="center"
-          alignItems={"center"}
-          px="15px"
-          borderRadius={"16px"}
-          flexShrink={0}
-          fontFamily={"Gilroy-SemiBold"}
-          fontSize={".729vw"}
-          h="4.07vh"
-        >
-          {props.genre}
-        </Box>
+
         <Box
           bg="rgba(192, 226, 24,.1)"
           display={"inline-flex"}
@@ -83,22 +70,42 @@ const JobCard = (props) => {
           fontSize={".729vw"}
           h="4.07vh"
         >
-          {props.subService}
+          {props.category.subservice}
         </Box>
-        <Box
-          bg="rgba(192, 226, 24,.1)"
-          display={"inline-flex"}
-          justifyContent="center"
-          alignItems={"center"}
-          px="15px"
-          borderRadius={"16px"}
-          flexShrink={0}
-          fontFamily={"Gilroy-SemiBold"}
-          fontSize={".729vw"}
-          h="4.07vh"
-        >
-          {props.subGenre}
-        </Box>
+        {props.genres.map((item, index) => {
+          return (
+            <div key={index}>
+              <Box
+                bg="rgba(247, 215, 22,.1)"
+                display={"inline-flex"}
+                justifyContent="center"
+                alignItems={"center"}
+                px="15px"
+                borderRadius={"16px"}
+                flexShrink={0}
+                fontFamily={"Gilroy-SemiBold"}
+                fontSize={".729vw"}
+                h="4.07vh"
+              >
+                {item.genere}
+              </Box>
+              <Box
+                bg="rgba(192, 226, 24,.1)"
+                display={"inline-flex"}
+                justifyContent="center"
+                alignItems={"center"}
+                px="15px"
+                borderRadius={"16px"}
+                flexShrink={0}
+                fontFamily={"Gilroy-SemiBold"}
+                fontSize={".729vw"}
+                h="4.07vh"
+              >
+                {item.subGenere}
+              </Box>
+            </div>
+          );
+        })}
       </Box>
       {/* some text */}
       <Text mt="2.222vh" fontSize={".833vw"} fontFamily="Gilroy-Medium">

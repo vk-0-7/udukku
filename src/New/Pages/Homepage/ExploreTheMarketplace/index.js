@@ -6,14 +6,26 @@ import getJobs from "../../../../Api/Jobs/getJobsApi";
 import { useEffect, useState } from "react";
 //jobTitle, service, genre, description, deadline, budget
 const ExploreTheMarketplace = () => {
-  const [jobs, setJobs] = useState([]);
+  const [jobs, setJobs] = useState([
+    {
+      jobTitle: "",
+      category: [{ service: "", subService: "" }],
+      deadLine: "",
+      budget: [],
+      genres: [{ genere: "", subGenere: "" }],
+      description: "",
+    },
+  ]);
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
 
   const getData = async () => {
     try {
+      setLoading(true);
       const res = await getJobs();
       setJobs(res.data);
+      setLoading(false);
       //console.log(res.data[0]);
     } catch (error) {
       console.log("Get Jobs Api Error : ", error);
@@ -81,12 +93,12 @@ const ExploreTheMarketplace = () => {
               id={job._id}
               title={job.jobTitle}
               description={job.description}
-              service={job.category[0].service}
-              genre={job.genres[0].genere}
+              category={job.category}
+              genres={job.genres}
               deadline={job.deadLine}
               budget={job.budget}
-              subService={job.category[0].subService}
-              subGenre={job.genres[0].subGenere}
+              //subService={job.category[0].subService}
+              //subGenre={job.genres[0].subGenere}
               key={job._id}
             />
           );

@@ -47,6 +47,7 @@ const Jobs = () => {
     }
   };
 
+  console.log(jobs);
   useEffect(() => {
     window.scrollTo(0, 0);
     getData();
@@ -176,7 +177,7 @@ const Jobs = () => {
               </Box>
             ) : (
               <>
-                {jobs.map((data, index) => {
+                {jobs?.map((data, index) => {
                   if (
                     category.length === 0 &&
                     deadline.length === 0 &&

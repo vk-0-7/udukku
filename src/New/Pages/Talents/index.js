@@ -122,7 +122,6 @@ const Talents = () => {
   const [genre, set_genre] = useState("");
   const [show_clear, set_show_clear] = useState(false);
 
-  console.log("talents", talents);
   useEffect(() => {
     //window.scrollTo(0, 0);
     getAllUsers().then((res) => setTalents(res.user));
@@ -314,8 +313,8 @@ const Talents = () => {
           {talents
             .filter((talent) => talent.isMusician === "Musician")
             .map((talent) => (
-              //<TalentCard key={talent._id} data={talent} />
-              <p>{talent._id}</p>
+              <TalentCard key={talent._id} data={talent} />
+              //<p>{talent._id}</p>
             ))}
         </Box>
       </Box>

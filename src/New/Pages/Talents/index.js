@@ -122,6 +122,8 @@ const Talents = () => {
   const [genre, set_genre] = useState("");
   const [show_clear, set_show_clear] = useState(false);
 
+  console.log(talents);
+
   useEffect(() => {
     //window.scrollTo(0, 0);
     getAllUsers().then((res) => setTalents(res.user));
@@ -129,23 +131,23 @@ const Talents = () => {
 
   useEffect(() => {
     set_temp_list((prev) => {
-      let result = d_data.filter((data) => {
-        if (search === "") {
-          return true;
-        } else {
-          console.log(
-            "blablaba : ",
-            data.heading.toLowerCase().indexOf(search.toLowerCase())
-          );
-          if (data.heading.toLowerCase().indexOf(search.toLowerCase()) === -1) {
-            return false;
-          } else {
-            return true;
-          }
-        }
-      });
+      // let result = d_data.filter((data) => {
+      //   if (search === "") {
+      //     return true;
+      //   } else {
+      //     console.log(
+      //       "blablaba : ",
+      //       data.heading.toLowerCase().indexOf(search.toLowerCase())
+      //     );
+      //     if (data.heading.toLowerCase().indexOf(search.toLowerCase()) === -1) {
+      //       return false;
+      //     } else {
+      //       return true;
+      //     }
+      //   }
+      // });
 
-      result = result.filter((data) => {
+      let result = d_data.filter((data) => {
         if (category === "") {
           return true;
         } else {
@@ -271,6 +273,8 @@ const Talents = () => {
             />
           </InputGroup>
         </Box>
+
+        {/* filters */}
         <Box display={"flex"} gap=".62vw" mt="2.31vh" alignItems={"center"}>
           <CategoryFilter Main={category} SetMainCat={set_category} />
 
@@ -312,6 +316,15 @@ const Talents = () => {
         >
           {talents
             .filter((talent) => talent.isMusician === "Musician")
+            .filter((data) => {
+              if (search === "") {
+                return data;
+              } else if (
+                data.tag?.toLowerCase().includes(search.toLowerCase())
+              ) {
+                return data;
+              }
+            })
             .map((talent) => (
               <TalentCard key={talent._id} data={talent} />
               //<p>{talent._id}</p>

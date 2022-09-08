@@ -90,7 +90,9 @@ const TalentCard = ({ data }) => {
       {/* section three tag section */}
       <Box display={"flex"} flexWrap={"wrap"} gap=".41vw" mt="1.48vh">
         {data.tag}
-        {/* {data.tags.map((val, index) => {
+      </Box>
+      <Box display={"flex"} flexWrap={"wrap"} gap=".41vw" mt="1.48vh">
+        {data.genres?.map((val, index) => {
           return (
             <Box
               h="4.07vh"
@@ -107,23 +109,19 @@ const TalentCard = ({ data }) => {
               }
               gap=".41vw"
             >
-              {val.type === "genre" ? (
-                <GenreIcon
-                  style={{
-                    height: ".93vw",
-                    width: ".72vw",
-                    fill: "rgba(8, 32, 50, 1)",
-                  }}
-                />
-              ) : (
-                <CategoryIcon style={{ height: ".93vw", width: ".93vw" }} />
-              )}
+              <GenreIcon
+                style={{
+                  height: ".93vw",
+                  width: ".72vw",
+                  fill: "rgba(8, 32, 50, 1)",
+                }}
+              />
               <Text fontFamily={"Gilroy-SemiBold"} fontSize=".72vw">
-                {val.value}
+                {val.genere}
               </Text>
             </Box>
           );
-        })} */}
+        })}
       </Box>
 
       {/* section four description section */}

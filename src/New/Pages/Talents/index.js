@@ -122,7 +122,7 @@ const Talents = () => {
   const [genre, set_genre] = useState("");
   const [show_clear, set_show_clear] = useState(false);
 
-  //console.log(start_price, end_price);
+  //console.log(genre);
 
   useEffect(() => {
     //window.scrollTo(0, 0);
@@ -287,7 +287,11 @@ const Talents = () => {
 
           <RatingFilter Main={star} setMainStar={set_star} />
 
-          <GenreFilter Main={genre} setMainGenre={set_genre} />
+          <GenreFilter
+            Main={genre}
+            setMainGenre={set_genre}
+            talents={talents}
+          />
           <Box flexGrow={1}></Box>
 
           {show_clear ? (
@@ -335,6 +339,10 @@ const Talents = () => {
                 return t;
               }
             })
+            .filter((t) =>
+              t.genres[0]?.genere.toLowerCase().includes(genre.toLowerCase())
+            )
+
             .map((talent) => (
               <TalentCard key={talent._id} data={talent} />
               //<p>{talent._id}</p>

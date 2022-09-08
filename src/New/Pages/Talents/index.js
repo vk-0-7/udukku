@@ -122,7 +122,7 @@ const Talents = () => {
   const [genre, set_genre] = useState("");
   const [show_clear, set_show_clear] = useState(false);
 
-  //console.log(genre);
+  console.log(category);
 
   useEffect(() => {
     //window.scrollTo(0, 0);
@@ -342,7 +342,11 @@ const Talents = () => {
             .filter((t) =>
               t.genres[0]?.genere.toLowerCase().includes(genre.toLowerCase())
             )
-
+            .filter((t) =>
+              t.services[0]?.service
+                .toLowerCase()
+                .includes(category.toLowerCase())
+            )
             .map((talent) => (
               <TalentCard key={talent._id} data={talent} />
               //<p>{talent._id}</p>

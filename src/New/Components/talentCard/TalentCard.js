@@ -122,6 +122,36 @@ const TalentCard = ({ data }) => {
             </Box>
           );
         })}
+        {data.services?.map((val, index) => {
+          return (
+            <Box
+              h="4.07vh"
+              pl=".70vw"
+              pr=".62vw"
+              borderRadius={".833vw"}
+              display="flex"
+              alignItems={"center"}
+              justifyContent="center"
+              bg={
+                val.type === "genre"
+                  ? "rgba(247, 215, 22, .1)"
+                  : "rgba(192, 226, 24, .1)"
+              }
+              gap=".41vw"
+            >
+              <GenreIcon
+                style={{
+                  height: ".93vw",
+                  width: ".72vw",
+                  fill: "rgba(8, 32, 50, 1)",
+                }}
+              />
+              <Text fontFamily={"Gilroy-SemiBold"} fontSize=".72vw">
+                {val.service}
+              </Text>
+            </Box>
+          );
+        })}
       </Box>
 
       {/* section four description section */}

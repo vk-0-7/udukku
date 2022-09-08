@@ -65,19 +65,19 @@ const CategoryFilter = ({ Main, SetMainCat }) => {
         <PopoverArrow />
         <PopoverBody>
           <RadioGroup onChange={handleChange} value={Main}>
-            <Radio value="Female Vocalist or Singer" colorScheme="blackAlpha">
+            <Radio value="Singer" colorScheme="blackAlpha">
               <Text fontFamily={"Gilroy-SemiBold"} fontSize={".833vw"}>
-                Female Vocalist or Singer
+                Singer
               </Text>
             </Radio>
-            <Radio value="Songwriter Music or Melody" colorScheme="blackAlpha">
+            <Radio value="Songwriter" colorScheme="blackAlpha">
               <Text fontFamily={"Gilroy-SemiBold"} fontSize={".833vw"}>
-                Songwriter Music or Melody
+                Songwriter
               </Text>
             </Radio>
-            <Radio value="Full Instrument Productions" colorScheme="blackAlpha">
+            <Radio value="Vocalist" colorScheme="blackAlpha">
               <Text fontFamily={"Gilroy-SemiBold"} fontSize={".833vw"}>
-                Full Instrument Productions
+                Vocalist
               </Text>
             </Radio>
           </RadioGroup>

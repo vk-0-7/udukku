@@ -122,7 +122,7 @@ const Talents = () => {
   const [genre, set_genre] = useState("");
   const [show_clear, set_show_clear] = useState(false);
 
-  console.log(talents);
+  //console.log(start_price, end_price);
 
   useEffect(() => {
     //window.scrollTo(0, 0);
@@ -323,6 +323,16 @@ const Talents = () => {
                 data.tag?.toLowerCase().includes(search.toLowerCase())
               ) {
                 return data;
+              }
+            })
+            .filter((t) => {
+              if (start_price == "" && end_price == "") {
+                return t;
+              } else if (
+                t.startingPrice?.[0] >= start_price &&
+                t.startingPrice?.[0] <= end_price
+              ) {
+                return t;
               }
             })
             .map((talent) => (

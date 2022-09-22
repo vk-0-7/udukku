@@ -28,7 +28,7 @@ const NavBar = () => {
 	const [positon, setPosition] = useState(0);
 	const navigate = useNavigate();
 	const [howItWorksState, setHowItWorksState] = useState(false);
-	const { loginState, avatar, name } = AccessAuthContext();
+	const { loginState, avatar, username } = AccessAuthContext();
 
 	useEffect(() => {
 		const getit = () => {
@@ -104,7 +104,32 @@ const NavBar = () => {
 					gap='30px'
 					alignItems={'center'}
 				>
-					<Text fontFamily={'Gilroy-SemiBold'} fontSize='.8333vw'>
+					<Text
+						fontFamily={'Gilroy-SemiBold'}
+						fontSize='.8333vw'
+						onClick={() => {
+							navigate('/lyrics');
+						}}
+						color={path[1] === 'lyrics' ? '#F6540E' : '#fff'}
+						_hover={{
+							color: '#F6540E',
+						}}
+						cursor='pointer'
+					>
+						Lyrics
+					</Text>
+					<Text
+						fontFamily={'Gilroy-SemiBold'}
+						fontSize='.8333vw'
+						_hover={{
+							color: '#F6540E',
+						}}
+						cursor='pointer'
+						color={path[1] === 'talents' ? '#F6540E' : '#fff'}
+						onClick={() => {
+							navigate('/talents');
+						}}
+					>
 						Explore
 					</Text>
 					<Text
@@ -169,9 +194,8 @@ const NavBar = () => {
 										<Text
 											fontSize='.8333vw'
 											fontFamily={'Gilroy-SemiBold'}
-											textTransform='capitalize'
 										>
-											Hello {name.split(' ')[0]}
+											Hello {username}
 										</Text>
 										<Icon
 											as={BsChevronDown}
@@ -181,13 +205,29 @@ const NavBar = () => {
 								</Box>
 							</MenuButton>
 							<MenuList bg='white' color='black'>
-								<MenuItem>Dashboard</MenuItem>
+								<MenuItem
+									onClick={() => {
+										navigate('/dashboard');
+									}}
+								>
+									Dashboard
+								</MenuItem>
 								<MenuItem>My Jobs</MenuItem>
 								<MenuDivider
 									borderWidth={'2px'}
 									borderStyle='rgba(8, 32, 50, 1)'
 								/>
-								<MenuItem>My Profile</MenuItem>
+								<MenuItem
+									onClick={() => {
+										navigate(
+											`/${localStorage.getItem(
+												'username'
+											)}`
+										);
+									}}
+								>
+									My Profile
+								</MenuItem>
 								<MenuItem onClick={handleLogout}>
 									Logout
 								</MenuItem>

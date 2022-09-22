@@ -2,6 +2,10 @@ import { Box, Button, Icon, Text } from '@chakra-ui/react';
 import { AiOutlineRight } from 'react-icons/ai';
 import './talents.css';
 
+//icons
+import { ReactComponent as ArrowLeft } from '../../../../Assets/Icons/arrow-left.svg';
+import { ReactComponent as ArrowRight } from '../../../../Assets/Icons/arrow-right.svg';
+
 const Talents = () => {
 	return (
 		<Box
@@ -13,6 +17,7 @@ const Talents = () => {
 			flexDir='column'
 			justifyContent={'center'}
 			gap={'2vh'}
+			position='relative'
 		>
 			<Box
 				display={'flex'}
@@ -166,6 +171,42 @@ const Talents = () => {
 						</Text>
 					</Box>
 				</Box>
+			</Box>
+
+			{/* left icon */}
+			<Box
+				position={'absolute'}
+				width='3.33vw'
+				height={'3.33vw'}
+				bg='rgba(246, 84, 14, 1)'
+				borderRadius={'full'}
+				bottom='12.96vh'
+				left={{ base: '7vw', lg: '13.54vw' }}
+				transform={'translateY(-50%) translateX(-50%)'}
+				display='flex'
+				justifyContent={'center'}
+				alignItems='center'
+				cursor={'pointer'}
+			>
+				<ArrowLeft style={{ width: '1.04vw', height: '1.04vw' }} />
+			</Box>
+
+			{/* right icon */}
+			<Box
+				position={'absolute'}
+				width='3.33vw'
+				height={'3.33vw'}
+				bg='rgba(246, 84, 14, 1)'
+				borderRadius={'full'}
+				bottom='12.96vh'
+				transform={'translateY(-50%) translateX(50%)'}
+				right={{ base: '7vw', lg: '13.54vw' }}
+				display='flex'
+				justifyContent={'center'}
+				alignItems='center'
+				cursor={'pointer'}
+			>
+				<ArrowRight style={{ width: '1.04vw', height: '1.04vw' }} />
 			</Box>
 		</Box>
 	);

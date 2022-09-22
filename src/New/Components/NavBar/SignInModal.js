@@ -35,6 +35,7 @@ const SignInModal = ({ state, changeState }) => {
 		setName,
 		setUserId,
 		setUserEmail,
+		setUsername,
 	} = AccessAuthContext();
 
 	// email and password
@@ -134,6 +135,7 @@ const SignInModal = ({ state, changeState }) => {
 		try {
 			const res = await signin({ email, password });
 			setLoading(false);
+			console.log('login res : ', res);
 			if (res.data.user.isProfileCompleted === false) {
 				set_show_registration_modal(true);
 				onClose();
@@ -147,6 +149,7 @@ const SignInModal = ({ state, changeState }) => {
 				setUserEmail(res.data.user.email);
 				setUserId(res.data.user._id);
 				setName(res.data.user.name);
+				setUsername(res.data.user.userName);
 				onClose();
 			}
 		} catch (error) {

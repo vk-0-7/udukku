@@ -75,6 +75,9 @@ const Hero = () => {
               fontSize=".833vw"
               letterSpacing={"1px"}
               id="home_hero_be_discovered_btn"
+              onClick={() => {
+                navigate("/jobs");
+              }}
             >
               <Man />
               Be Discovered

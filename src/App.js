@@ -19,6 +19,7 @@ import JobDetailPage from "./New/Pages/JobDetailPage";
 import Lyrics from "./New/Pages/Lyrics";
 import LyricsDetails from "./New/Pages/LyricsDetails";
 import CreateNewLyrics from "./New/Pages/CreateNewLyrics";
+import Messages from "./New/Pages/Dashboard/Messages/Messages";
 
 const App = () => {
   return (
@@ -57,6 +58,7 @@ const App = () => {
           <Route path="/lyrics" element={<Lyrics />} />
           <Route path="/lyrics-details/:id" element={<LyricsDetails />} />
           <Route path="/create-new-lyrics" element={<CreateNewLyrics />} />
+          <Route path="/messages" element={<Messages />} />
           {/* *********************** End *************************** */}
         </Routes>
       </div>

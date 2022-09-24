@@ -130,7 +130,7 @@ const NavBar = () => {
 							navigate('/talents');
 						}}
 					>
-						Explore
+						Talents
 					</Text>
 					<Text
 						fontFamily={'Gilroy-SemiBold'}

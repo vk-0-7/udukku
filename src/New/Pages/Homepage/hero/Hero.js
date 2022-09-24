@@ -1,84 +1,89 @@
-import { Box, Text, Button, Image } from '@chakra-ui/react';
-import '../';
-import './hero.css';
-import { ReactComponent as People } from '../../../../Assets/Icons/people.svg';
-import { ReactComponent as Man } from '../../../../Assets/Icons/frame.svg';
-import Slide from './Slide';
+import { Box, Text, Button, Image } from "@chakra-ui/react";
+import "../";
+import "./hero.css";
+import { ReactComponent as People } from "../../../../Assets/Icons/people.svg";
+import { ReactComponent as Man } from "../../../../Assets/Icons/frame.svg";
+import Slide from "./Slide";
+import { useNavigate } from "react-router-dom";
 
 const Hero = () => {
-	return (
-		<Box
-			h='73.70vh'
-			w='100vw'
-			overflow={'hidden'}
-			bg='#082032'
-			display={'flex'}
-			alignItems='end'
-			px={{ base: '7vw', lg: '13.54vw' }}
-			gap={'100px'}
-			pt='14.44vh'
-			pb='7.40vh'
-		>
-			<Box display={'flex'} alignItems='center'>
-				{/* text section on left */}
-				<Box display={'flex'} flexDir='column' gap={'30px'}>
-					<Text
-						as='h1'
-						fontSize={'3.75vw'}
-						color='#fff'
-						lineHeight={{ base: '1.2em' }}
-						fontFamily={'Gilroy-Bold'}
-						w='90%'
-					>
-						Join India's leading Music Marketplace
-					</Text>
-					<Text
-						as='p'
-						color='#fff'
-						fontSize={'1.041vw'}
-						fontFamily={'Gilroy-Medium'}
-					>
-						Get discovered for your music skills and explore India’s
-						unique musical talents at Udukku
-					</Text>
-					<Box display={'flex'} gap='50px' mt='40px'>
-						<Button
-							boxSizing='border-box'
-							bg='#f6540e'
-							borderRadius={'1.04vw'}
-							color='#fff'
-							_hover={{ background: 'rgba(177,70,20)' }}
-							w='11.14vw'
-							h='6.48vh'
-							fontFamily={'Gilroy-SemiBold'}
-							fontSize='.833vw'
-							letterSpacing={'1px'}
-							id='home_hero_discover_talent_btn'
-						>
-							<People /> Discover Talents
-						</Button>
-						<Button
-							boxSizing='border-box'
-							border='1px solid #f6540e'
-							bg='transparent'
-							borderRadius={'1.04vw'}
-							color='#fff'
-							_hover={{ background: 'rgba(215,85,28)' }}
-							w='11.14vw'
-							h='6.48vh'
-							fontFamily={'Gilroy-SemiBold'}
-							fontSize='.833vw'
-							letterSpacing={'1px'}
-							id='home_hero_be_discovered_btn'
-						>
-							<Man />
-							Be Discovered
-						</Button>
-					</Box>
-				</Box>
-				<Slide />
-				{/* image slider section on right  */}
-				{/* <Box w='27.60vw' h='51.85vh' flexShrink={0}>
+  const navigate = useNavigate();
+  return (
+    <Box
+      h="73.70vh"
+      w="100vw"
+      overflow={"hidden"}
+      bg="#082032"
+      display={"flex"}
+      alignItems="end"
+      px={{ base: "7vw", lg: "13.54vw" }}
+      gap={"100px"}
+      pt="14.44vh"
+      pb="7.40vh"
+    >
+      <Box display={"flex"} alignItems="center">
+        {/* text section on left */}
+        <Box display={"flex"} flexDir="column" gap={"30px"}>
+          <Text
+            as="h1"
+            fontSize={"3.75vw"}
+            color="#fff"
+            lineHeight={{ base: "1.2em" }}
+            fontFamily={"Gilroy-Bold"}
+            w="90%"
+          >
+            Join India's leading Music Marketplace
+          </Text>
+          <Text
+            as="p"
+            color="#fff"
+            fontSize={"1.041vw"}
+            fontFamily={"Gilroy-Medium"}
+          >
+            Get discovered for your music skills and explore India’s unique
+            musical talents at Udukku
+          </Text>
+          <Box display={"flex"} gap="50px" mt="40px">
+            <Button
+              boxSizing="border-box"
+              bg="#f6540e"
+              borderRadius={"1.04vw"}
+              color="#fff"
+              _hover={{ background: "rgba(177,70,20)" }}
+              w="11.14vw"
+              h="6.48vh"
+              fontFamily={"Gilroy-SemiBold"}
+              fontSize=".833vw"
+              letterSpacing={"1px"}
+              id="home_hero_discover_talent_btn"
+              onClick={() => {
+                navigate("/talents");
+              }}
+            >
+              <People /> Discover Talents
+            </Button>
+            <Button
+              boxSizing="border-box"
+              border="1px solid #f6540e"
+              bg="transparent"
+              borderRadius={"1.04vw"}
+              color="#fff"
+              _hover={{ background: "rgba(215,85,28)" }}
+              w="11.14vw"
+              h="6.48vh"
+              fontFamily={"Gilroy-SemiBold"}
+              fontSize=".833vw"
+              letterSpacing={"1px"}
+              id="home_hero_be_discovered_btn"
+            >
+              <Man />
+              Be Discovered
+            </Button>
+          </Box>
+        </Box>
+        <Slide />
+        {/* image slider section on right  */}
+        {/* <Box w='27.60vw' h='51.85vh' flexShrink={0}>
 					<Box
 						className='hero-image'
 						w='100%'
@@ -162,9 +167,9 @@ const Hero = () => {
 						</Box>
 					</Box>
 				</Box> */}
-			</Box>
-		</Box>
-	);
+      </Box>
+    </Box>
+  );
 };
 
 export default Hero;

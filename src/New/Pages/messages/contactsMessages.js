@@ -1,10 +1,11 @@
 import { Box } from "@chakra-ui/react";
-import Footer from "../../../Components/Footer/Footer";
-import SignInNavbar from "../../../Components/NavBar/SignInNavbar";
-import IndividualMessage from "./IndividualMessage";
-import MessageList from "./MessageList";
+import Footer from "../../Components/Footer/Footer";
+import SignInNavbar from "../../Components/NavBar/SignInNavbar";
+import IndividualMessage from "../Dashboard/Messages/IndividualMessage";
+import MessageList from "../Dashboard/Messages/MessageList";
+import IndividualMessageBox from "./IndividualMessageBox";
 
-const Messages = ({ state }) => {
+const ContactMessages = ({ state }) => {
   return (
     <Box display={"flex"} flexDir="column" overflow={"hidden"} w="100%">
       <SignInNavbar />
@@ -19,7 +20,7 @@ const Messages = ({ state }) => {
           flexDir="row"
         >
           <MessageList />
-          <IndividualMessage />
+          <IndividualMessageBox/>
         </Box>
       </Box>
       <Footer />
@@ -27,4 +28,4 @@ const Messages = ({ state }) => {
   );
 };
 
-export default Messages;
+export default ContactMessages;

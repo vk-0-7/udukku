@@ -1,0 +1,109 @@
+import { Box, Avatar, AvatarBadge, Text, Link } from "@chakra-ui/react";
+import profileIcon from "../../../Assets/Images/dummyProfile/Ellipse 8.png";
+import { ReactComponent as InfoIcon } from "../../../Assets/Icons/info-circle.svg";
+import IncomingMessage from "./IncomingMessage";
+import IncomingImageMessage from "./IncomingImageMessage";
+import OutgoingTextMessage from "./OutgoingTextMessage";
+import OutgoingSongMessage from "./OutgoingSongMessage";
+import TypeMessageBox from "./TypeMessageBox";
+const IndividualMessageBox = ({ state }) => {
+  return (
+    <Box display={"flex"} flexDirection={"column"} gap={"1rem"} w="65%">
+      <Box
+        p="2rem"
+        display={"flex"}
+        flexDir="row"
+        gap="1rem"
+        borderBottom={"2px"}
+        borderColor={"#F0F0F0"}
+        alignItems="center"
+      >
+        <Avatar size={"lg"} src={profileIcon}>
+          <AvatarBadge
+            boxSize="0.6em"
+            bg="#38C222"
+            borderColor={"#38C222"}
+            transform="translate(-23%, 9%)"
+          />
+        </Avatar>
+        <Text fontFamily={"Gilroy-Bold"} fontSize="1.3rem" alignSelf={"center"}>
+          Ishita Parathkar
+        </Text>
+        <Box
+          display={"flex"}
+          flexDir={"row"}
+          gap="1rem"
+          alignItems={"center"}
+          ml="auto"
+        >
+          <Link color="#F6540E" fontFamily={"Gilroy-Bold"} fontSize="1.1rem">
+            View Proposal?
+          </Link>
+          <InfoIcon fontSize="5px" />
+        </Box>
+      </Box>
+      <Box
+        w="100%"
+        p="2rem"
+        display={"flex"}
+        flexDir="column"
+        gap="1rem"
+        alignItems={"flex-start"}
+        overflow={"scroll"}
+        scrollBehavior="smooth"
+        css={{
+            '::-webkit-scrollbar': {
+                width: '5px'
+              },
+              
+              '::-webkit-scrollbar-thumb' :{
+                background: '#888'
+              }
+              
+        }}
+      >
+        <Box display={"flex"} flexDir="row" gap="1rem">
+          <Avatar size={"lg"} src={profileIcon}></Avatar>
+          <Box display={"flex"} flexDir="column" gap="1rem" w="auto">
+            <Box
+              display={"flex"}
+              flexDir="row"
+              gap="1rem"
+              alignItems={"center"}
+            >
+              <IncomingMessage />
+              <Text
+                fontFamily={"Gilroy-SemiBold"}
+                fontSize="1rem"
+                color="#ACADAF"
+                ml="auto"
+              >
+                30min
+              </Text>
+            </Box>
+            <IncomingImageMessage />
+          </Box>
+        </Box>
+        <Box
+          ml="auto"
+          display={"flex"}
+          flexDir="column"
+          gap="1rem"
+          alignItems={"flex-end"}
+        >
+          <OutgoingTextMessage />
+          <OutgoingSongMessage />
+          <OutgoingTextMessage />
+          <OutgoingTextMessage />
+          <OutgoingTextMessage />
+          <OutgoingTextMessage />
+          <OutgoingTextMessage />
+        </Box>
+      </Box>
+      <Box p="1rem" pos={"sticky"}>
+        <TypeMessageBox />
+      </Box>
+    </Box>
+  );
+};
+export default IndividualMessageBox;

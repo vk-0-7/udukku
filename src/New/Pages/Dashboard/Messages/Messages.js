@@ -12,7 +12,7 @@ const Messages = ({ state }) => {
         <Box
           border="2px"
           borderColor={"#F0F0F0"}
-          h="50rem"
+          h="70rem"
           w="100%"
           borderRadius={"32px"}
           display={"flex"}

@@ -5,8 +5,10 @@ import './talents.css';
 //icons
 import { ReactComponent as ArrowLeft } from '../../../../Assets/Icons/arrow-left.svg';
 import { ReactComponent as ArrowRight } from '../../../../Assets/Icons/arrow-right.svg';
+import { useNavigate } from 'react-router-dom';
 
 const Talents = () => {
+	const navigate= useNavigate();
 	return (
 		<Box
 			bg='#fff'
@@ -43,6 +45,7 @@ const Talents = () => {
 						fontFamily={'Gilroy-SemiBold'}
 						fontWeight='normal'
 						borderRadius={'1.04vw'}
+						onClick={()=>navigate('/talents')}
 					>
 						Sell all categories{' '}
 						<Icon as={AiOutlineRight} ml='5px' />

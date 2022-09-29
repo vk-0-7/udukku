@@ -123,6 +123,7 @@ const MessagingPageDetails = ({
           display={"flex"}
           flexDir="row"
           onClick={() => setGoToMedia(!goToMedia)}
+          cursor="pointer"
         >
           <Text fontFamily={"Gilroy-Bold"} fontSize="1.7rem">
             Media, Docs and Links

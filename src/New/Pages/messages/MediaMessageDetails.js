@@ -30,6 +30,7 @@ const MediaMessageDetail = ({ goToMedia, setGoToMedia }) => {
         <ArrowLeft
           style={{
             backgroundColor: "#2B2B2B",
+            cursor: "pointer",
           }}
           onClick={() => setGoToMedia(!goToMedia)}
         />

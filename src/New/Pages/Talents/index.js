@@ -238,7 +238,7 @@ const Talents = () => {
           alignItems="center"
         >
           <Text fontSize={"2.29vw"} fontFamily={"Gilroy-Bold"}>
-            Discover pro {category === "" ? "musicians" : category} in india
+            Discover {category === "" ? "Pro musicians" : category} in india
           </Text>
           <InputGroup
             w="36.04vw"

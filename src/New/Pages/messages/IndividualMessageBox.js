@@ -8,12 +8,14 @@ import OutgoingSongMessage from "./OutgoingSongMessage";
 import TypeMessageBox from "./TypeMessageBox";
 import MessagingPageDetails from "./MessagingPageDetails";
 import { useState } from "react";
+import MediaMessageDetail from "./MediaMessageDetails";
 const IndividualMessageBox = ({ state }) => {
   // to display or hide the message details box
   function infoHandler() {
     setInfoToggle(!infoToggle);
   }
   const [infoToggle, setInfoToggle] = useState(false);
+  const [goToMedia, setGoToMedia] = useState(true);
   return (
     // contains both i button box and message box
     <Box display={"flex"} flexDir="row" w="65%">
@@ -130,7 +132,18 @@ const IndividualMessageBox = ({ state }) => {
           <TypeMessageBox />
         </Box>
       </Box>
-      <MessagingPageDetails state={infoToggle} />
+      {/* if go to media is true-> display message detail box
+      else -> display media box */}
+      {goToMedia ? (
+        <MessagingPageDetails
+          state={infoToggle}
+          setInfoToggle={setInfoToggle}
+          goToMedia={goToMedia}
+          setGoToMedia={setGoToMedia}
+        />
+      ) : (
+        <MediaMessageDetail goToMedia={goToMedia} setGoToMedia={setGoToMedia} />
+      )}
     </Box>
   );
 };

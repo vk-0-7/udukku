@@ -8,11 +8,20 @@ import { ReactComponent as DollarIcon } from "../../../Assets/Icons/dollar-circl
 import { ReactComponent as ClockIcon } from "../../../Assets/Icons/clock.svg";
 import { ReactComponent as AttachIcon } from "../../../Assets/Icons/attach-circle.svg";
 import { ReactComponent as ArrowIcon } from "../../../Assets/Icons/arrow-right.svg";
-const MessagingPageDetails = ({ state }) => {
+import { ReactComponent as CrossIcon } from "../../../Assets/Icons/Group 118.svg";
+
+const MessagingPageDetails = ({
+  state,
+  setInfoToggle,
+  goToMedia,
+  setGoToMedia,
+}) => {
   return (
     // whole rightmost messagedetails
+
+    // if "go to media" is false , then media box will open
     <Box
-      display={state ? "flex" : "none"}
+      display={state && goToMedia ? "flex" : "none"}
       flexDirection={"column"}
       gap={"2rem"}
       w="40%"
@@ -50,6 +59,14 @@ const MessagingPageDetails = ({ state }) => {
               5.0
             </Text>
           </Box>
+        </Box>
+        <Box
+          ml="auto"
+          p="1rem"
+          cursor={"pointer"}
+          onClick={() => setInfoToggle(!state)}
+        >
+          <CrossIcon style={{ width: "2rem", height: "2rem" }} />
         </Box>
       </Box>
       {/* Job Completion button */}
@@ -102,7 +119,11 @@ const MessagingPageDetails = ({ state }) => {
           View Proposal
         </Button>
         {/* Media and content */}
-        <Box display={"flex"} flexDir="row">
+        <Box
+          display={"flex"}
+          flexDir="row"
+          onClick={() => setGoToMedia(!goToMedia)}
+        >
           <Text fontFamily={"Gilroy-Bold"} fontSize="1.7rem">
             Media, Docs and Links
           </Text>

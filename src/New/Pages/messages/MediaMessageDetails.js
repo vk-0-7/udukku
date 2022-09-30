@@ -1,7 +1,11 @@
 import { Box, Text, Image } from "@chakra-ui/react";
+import { useState } from "react";
 import { ReactComponent as ArrowLeft } from "../../../Assets/Icons/arrow-left.svg";
-import Media1 from "../../../Assets/Images/Rectangle 217.png";
+import DocsMessageDetails from "./DocsMessageDetails";
+import LinksMessageDetails from "./LinksMessageDetails";
+import MediaMessageDetailsBox from "./MediaMessageDetailsBox";
 const MediaMessageDetail = ({ goToMedia, setGoToMedia }) => {
+  const [mediaState, setMediaState] = useState("media");
   return (
     // media box
     <Box
@@ -49,94 +53,65 @@ const MediaMessageDetail = ({ goToMedia, setGoToMedia }) => {
       >
         <Box
           p="1rem"
-          backgroundColor={"#FEEEE7"}
+          cursor="pointer"
+          backgroundColor={mediaState === "media" ? "#FEEEE7" : "transparent"}
           borderRadius={"1.5rem"}
           w="7rem"
         >
           <Text
-            color={"#F6540E"}
+            color={mediaState === "media" ? "#F6540E" : "#2B2B2B"}
             align={"center"}
             fontFamily={"Gilroy-SemiBold"}
-            fontSize={"1rem"}
+            fontSize={"1.2rem"}
+            onClick={() => setMediaState("media")}
           >
             Media
           </Text>
         </Box>
-        <Box p="1rem" borderRadius={"1.5rem"} w="7rem">
+        <Box
+          p="1rem"
+          borderRadius={"1.5rem"}
+          w="7rem"
+          cursor="pointer"
+          backgroundColor={mediaState === "docs" ? "#FEEEE7" : "transparent"}
+        >
           <Text
             fontSize={"1.2rem"}
             fontFamily={"Gilroy-SemiBold"}
-            color=" #2B2B2B"
+            color={mediaState === "docs" ? "#F6540E" : "#2B2B2B"}
             align={"center"}
-            opacity={0.5}
+            onClick={() => setMediaState("docs")}
           >
             Docs
           </Text>
         </Box>
-        <Box p="1rem" borderRadius={"1.5rem"} w="7rem">
+        <Box
+          p="1rem"
+          borderRadius={"1.5rem"}
+          w="7rem"
+          cursor="pointer"
+          backgroundColor={mediaState === "links" ? "#FEEEE7" : "transparent"}
+        >
           <Text
             fontSize={"1.2rem"}
             fontFamily={"Gilroy-SemiBold"}
-            color=" #2B2B2B"
+            color={mediaState === "links" ? "#F6540E" : "#2B2B2B"}
             align={"center"}
-            opacity={0.5}
+            onClick={() => setMediaState("links")}
           >
             Links
           </Text>
         </Box>
       </Box>
-      {/* box for all pictures in media */}
-      <Box display={"flex"} flexDir="column" gap="1rem">
-        <Text
-          fontSize={"1.5rem"}
-          fontFamily={"Gilroy-SemiBold"}
-          color=" #0f0f0f"
-        >
-          Today
-        </Text>
-        <Box display={"flex"} flexDir="row" gap="5px" flexWrap={"wrap"}>
-          <Image src={Media1} h="7rem" w="7rem" borderRadius={"1rem"} />
-          <Image src={Media1} h="7rem" w="7rem" borderRadius={"1rem"} />
-          <Image src={Media1} h="7rem" w="7rem" borderRadius={"1rem"} />
-          <Image src={Media1} h="7rem" w="7rem" borderRadius={"1rem"} />
-          <Image src={Media1} h="7rem" w="7rem" borderRadius={"1rem"} />
-          <Image src={Media1} h="7rem" w="7rem" borderRadius={"1rem"} />
-        </Box>
-      </Box>
-      <Box display={"flex"} flexDir="column" gap="1rem">
-        <Text
-          fontSize={"1.5rem"}
-          fontFamily={"Gilroy-SemiBold"}
-          color=" #0f0f0f"
-        >
-          2 July
-        </Text>
-        <Box display={"flex"} flexDir="row" gap="5px" flexWrap={"wrap"}>
-          <Image src={Media1} h="7rem" w="7rem" borderRadius={"1rem"} />
-          <Image src={Media1} h="7rem" w="7rem" borderRadius={"1rem"} />
-          <Image src={Media1} h="7rem" w="7rem" borderRadius={"1rem"} />
-        </Box>
-      </Box>
-      <Box display={"flex"} flexDir="column" gap="1rem">
-        <Text
-          fontSize={"1.5rem"}
-          fontFamily={"Gilroy-SemiBold"}
-          color=" #0f0f0f"
-        >
-          20 June
-        </Text>
-        <Box display={"flex"} flexDir="row" gap="5px" flexWrap={"wrap"}>
-          <Image src={Media1} h="7rem" w="7rem" borderRadius={"1rem"} />
-          <Image src={Media1} h="7rem" w="7rem" borderRadius={"1rem"} />
-          <Image src={Media1} h="7rem" w="7rem" borderRadius={"1rem"} />
-          <Image src={Media1} h="7rem" w="7rem" borderRadius={"1rem"} />
-          <Image src={Media1} h="7rem" w="7rem" borderRadius={"1rem"} />
-          <Image src={Media1} h="7rem" w="7rem" borderRadius={"1rem"} />
-          <Image src={Media1} h="7rem" w="7rem" borderRadius={"1rem"} />
-          <Image src={Media1} h="7rem" w="7rem" borderRadius={"1rem"} />
-          <Image src={Media1} h="7rem" w="7rem" borderRadius={"1rem"} />
-        </Box>
-      </Box>
+      {/* box for all different media */}
+
+      {mediaState === "docs" ? (
+        <DocsMessageDetails />
+      ) : mediaState === "links" ? (
+        <LinksMessageDetails />
+      ) : (
+        <MediaMessageDetailsBox />
+      )}
     </Box>
   );
 };

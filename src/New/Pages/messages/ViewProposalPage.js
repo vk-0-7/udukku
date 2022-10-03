@@ -21,6 +21,7 @@ import { ReactComponent as LinkIcon } from "../../../Assets/Icons/link-2.svg";
 import { ReactComponent as RatingIcon } from "../../../Assets/Images/icos/star.svg";
 import CompanyLogo from "../../../Assets/Images/dummyProfile/Ellipse 5.png";
 
+// the main view propsal screen
 const ViewProposal = ({ state }) => {
   return (
     <Box w="100%" overflowX={"hidden"}>

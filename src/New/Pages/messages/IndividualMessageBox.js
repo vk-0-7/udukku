@@ -17,6 +17,7 @@ const IndividualMessageBox = ({ state }) => {
   }
   const [infoToggle, setInfoToggle] = useState(false);
   const [goToMedia, setGoToMedia] = useState(true);
+  // to navigate to view-proposal screen
   const navigate = useNavigate();
   return (
     // contains both i button box and message box

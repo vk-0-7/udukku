@@ -9,6 +9,7 @@ import TypeMessageBox from "./TypeMessageBox";
 import MessagingPageDetails from "./MessagingPageDetails";
 import { useState } from "react";
 import MediaMessageDetail from "./MediaMessageDetails";
+import { useNavigate } from "react-router-dom";
 const IndividualMessageBox = ({ state }) => {
   // to display or hide the message details box
   function infoHandler() {
@@ -16,6 +17,8 @@ const IndividualMessageBox = ({ state }) => {
   }
   const [infoToggle, setInfoToggle] = useState(false);
   const [goToMedia, setGoToMedia] = useState(true);
+  // to navigate to view-proposal screen
+  const navigate = useNavigate();
   return (
     // contains both i button box and message box
     <Box display={"flex"} flexDir="row" w="65%">
@@ -60,7 +63,7 @@ const IndividualMessageBox = ({ state }) => {
               color="#F6540E"
               fontFamily={"Gilroy-Bold"}
               fontSize="1.1rem"
-              onClick={() => infoHandler()}
+              onClick={() => navigate("/view-proposal")}
             >
               View Proposal?
             </Link>

@@ -274,9 +274,23 @@ const ViewProposal = ({ state }) => {
                 </Text>
               </Box>
             </Box>
-            <Button color='#F6540E' leftIcon={<MessageIcon style={{backgroundColor:"orange",height:"1.2rem" , width:"1.2rem"}}/>} borderRadius="1rem" size="lg" variant='outline'>
-    Button
-  </Button>
+            <Button
+              color="#F6540E"
+              leftIcon={
+                <MessageIcon
+                  style={{
+                    backgroundColor: "orange",
+                    height: "1.2rem",
+                    width: "1.2rem",
+                  }}
+                />
+              }
+              borderRadius="1rem"
+              size="lg"
+              variant="outline"
+            >
+              Button
+            </Button>
           </Box>
         </Box>
       </Box>

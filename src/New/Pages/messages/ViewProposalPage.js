@@ -13,19 +13,20 @@ import { ReactComponent as DollarIcon } from "../../../Assets/Icons/dollar-circl
 import { ReactComponent as ClockIcon } from "../../../Assets/Icons/clock.svg";
 import { ReactComponent as AttachIcon } from "../../../Assets/Icons/attach-circle.svg";
 import { ReactComponent as CategoryIcon } from "../../../Assets/Icons/category.svg";
-import { ReactComponent as MessageIcon } from "../../../Assets/Icons/sms.svg";
+import { ReactComponent as MessageIcon } from "../../../Assets/Icons/Vector.svg";
 import { ReactComponent as MusicNoteIcon } from "../../../Assets/Icons/musicnote.svg";
 import { ReactComponent as MusicIcon } from "../../../Assets/Icons/Group 219.svg";
 import { ReactComponent as MusicRecIcon } from "../../../Assets/Icons/Group 220.svg";
 import { ReactComponent as LinkIcon } from "../../../Assets/Icons/link-2.svg";
 import { ReactComponent as RatingIcon } from "../../../Assets/Images/icos/star.svg";
 import CompanyLogo from "../../../Assets/Images/dummyProfile/Ellipse 5.png";
+import NavBar from "../../Components/NavBar/NavBar";
 
 // the main view propsal screen
 const ViewProposal = ({ state }) => {
   return (
     <Box w="100%" overflowX={"hidden"}>
-      <SignInNavbar />
+      <NavBar />
       <Box
         display={"flex"}
         flexDir="row"
@@ -184,7 +185,7 @@ const ViewProposal = ({ state }) => {
             Best Of Luck!
           </Text>
           <Text fontFamily={"Gilroy-Bold"} fontSize="2rem">
-            $5,000
+            ₹5,000
           </Text>
           <Text fontFamily={"Gilroy-Bold"} fontSize="2rem">
             Terms of Services
@@ -271,7 +272,7 @@ const ViewProposal = ({ state }) => {
                   alignSelf={"center"}
                   pl="2px"
                 >
-                  $2k+ total spent
+                  ₹2k+ total spent
                 </Text>
               </Box>
             </Box>
@@ -280,7 +281,7 @@ const ViewProposal = ({ state }) => {
               leftIcon={
                 <MessageIcon
                   style={{
-                    backgroundColor: "orange",
+                    // backgroundColor: "orange",
                     height: "1.2rem",
                     width: "1.2rem",
                   }}

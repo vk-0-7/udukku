@@ -92,7 +92,7 @@ const MessagingPageDetails = ({
           <Box display={"flex"} flexDir="row" gap="5px" alignItems={"center"}>
             <DollarIcon />
             <Text fontFamily={"Gilroy-Medium"} fontSize="1.2rem">
-              $5000
+            ₹5000
             </Text>
           </Box>
           <Box display={"flex"} flexDir="row" gap="5px" alignItems={"center"}>

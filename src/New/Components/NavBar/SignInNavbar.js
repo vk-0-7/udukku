@@ -9,7 +9,7 @@ import { ReactComponent as Sms } from "../../../Assets/Icons/sms.svg";
 import { ReactComponent as Downarrow } from "../../../Assets/Icons/arrow-down.svg";
 import profileIcon from "../../../Assets/Images/dummyProfile/Ellipse 8.png";
 import { useState, useEffect } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate, useNavigationType } from "react-router-dom";
 import logout from "../../../Api/Auth/logout";
 import logo from "../../../Assets/Images/Logo/logo.svg";
 import { AccessAuthContext } from "../../Context/AuthContext";
@@ -127,6 +127,7 @@ const SignInNavbar = () => {
               height: "1.7rem",
               opacity: "0.5",
             }}
+            onClick={()=>navigate('/contactMessage')}
           />
           <Box
             p="1rem"

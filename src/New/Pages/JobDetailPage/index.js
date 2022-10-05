@@ -391,7 +391,7 @@ const JobDetailPage = () => {
 								fontFamily='Gilroy-Bold'
 								mt='1.48vh'
 							>
-								$5,000
+								₹5,000
 							</Text>
 						</Box>
 					</Box>
@@ -486,7 +486,7 @@ const JobDetailPage = () => {
 									textAlign={'end'}
 								>
 									<Text>6 jobs posted</Text>
-									<Text mt='.74vh'>$2k+ total spent</Text>
+									<Text mt='.74vh'>₹2k+ total spent</Text>
 								</Box>
 							</Box>
 							<Button

@@ -1,5 +1,6 @@
 import { Box } from "@chakra-ui/react";
 import Footer from "../../../Components/Footer/Footer";
+import NavBar from "../../../Components/NavBar/NavBar";
 import SignInNavbar from "../../../Components/NavBar/SignInNavbar";
 import IndividualMessage from "./IndividualMessage";
 import MessageList from "./MessageList";
@@ -7,7 +8,7 @@ import MessageList from "./MessageList";
 const Messages = ({ state }) => {
   return (
     <Box display={"flex"} flexDir="column" overflow={"hidden"} w="100%">
-      <SignInNavbar />
+      <NavBar/>
       <Box mt="10rem" pb="2rem" w="100%" pl="15rem" pr="15rem" pt="2rem">
         <Box
           border="2px"

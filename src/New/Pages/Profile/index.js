@@ -513,7 +513,7 @@ const Profile = () => {
                     </Box>
                     <Box flexGrow={1}></Box>
                     <Text fontFamily={"Gilroy-Bold"} fontSize="1.45vw">
-                      Starting Price: $300
+                      Starting Price: ₹300
                     </Text>
                   </Box>
 
@@ -541,7 +541,7 @@ const Profile = () => {
                     </Box>
                     <Box flexGrow={1}></Box>
                     <Text fontFamily={"Gilroy-Bold"} fontSize="1.45vw">
-                      Starting Price: $250
+                      Starting Price: ₹250
                     </Text>
                   </Box>
 
@@ -569,7 +569,7 @@ const Profile = () => {
                     </Box>
                     <Box flexGrow={1}></Box>
                     <Text fontFamily={"Gilroy-Bold"} fontSize="1.45vw">
-                      Starting Price: $500
+                      Starting Price: ₹500
                     </Text>
                   </Box>
                 </Box>

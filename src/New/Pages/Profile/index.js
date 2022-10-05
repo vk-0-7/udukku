@@ -5,7 +5,7 @@ import Footer from "../../Components/Footer/Footer";
 import NavBar from "../../Components/NavBar/NavBar";
 import profileImg from "../../../Assets/Dummy/Ellipse 6.png";
 import videoImg from "../../../Assets/Dummy/Rectangle 179.png";
-
+import ProfilePic from "../../../Assets/Images/Rectangle 188.png";
 // Icons
 import { ReactComponent as FbIcon } from "../../../Assets/Icons/fb.svg";
 import { ReactComponent as InstaIcon } from "../../../Assets/Icons/insta.svg";
@@ -74,153 +74,175 @@ const Profile = () => {
 
   return (
     <>
-      <Box mt="7.40vh">
+      <Box overflowX={"hidden"}>
         <NavBar />
         <Box
           px={{ base: "7vw", lg: "13.54vw" }}
-          pt="7.40vh"
+          pt="12rem"
           minH="calc(100vh - 7.40vh)"
         >
+          <Text fontFamily={"Gilroy-Bold"} fontSize="3rem" pb="1rem">
+            MY PROFILE
+          </Text>
           <Box display="grid" gridTemplateColumns={"1fr 1fr"} gap="1.85vw">
             <Box w="36.04vw" h="fit-content">
-              <Box display={"flex"} alignItems="center" gap="1.04vw">
-                <Image
-                  height={"10.41vw"}
-                  width={"10.41vw"}
-                  objectFit="cover"
-                  objectPosition={"50% 50%"}
-                  borderRadius="full"
-                  src={user.avatar}
-                />
-                <Box flexGrow={1}>
-                  <Text fontFamily={"Gilroy-Bold"} fontSize="1.66vw">
-                    {user.name}
-                  </Text>
-                  <Text
-                    fontFamily={"Gilroy-SemiBold"}
-                    fontSize="1.04vw"
-                    color="rgba(43, 43, 43, .5)"
+              <Box display={"flex"} flexDir="column" gap="1.04vw">
+                <Box position={"relative"}>
+                  <Image
+                    width={"100%"}
+                    objectFit="cover"
+                    // objectPosition={"50% 50%"}
+                    src={ProfilePic}
+                  />
+                  <Button
+                    size="lg"
+                    backgroundColor={"#F6540E"}
+                    color="white"
+                    pt="2rem"
+                    pb="2rem"
+                    w="80%"
+                    borderRadius={"1rem"}
+                    position="absolute"
+                    bottom="3rem"
+                    left="4rem"
                   >
-                    {user.city},{user.state}
-                  </Text>
-                  {/* stars */}
-                  <Box display={"flex"} gap={".277vw"} alignItems="flex-end">
-                    <Star
-                      style={{
-                        fill: "rgba(247, 215, 22, 1)",
-                        width: ".86vw",
-                      }}
-                    />
-                    <Star
-                      style={{
-                        fill: "rgba(247, 215, 22, 1)",
-                        width: ".86vw",
-                      }}
-                    />
-                    <Star
-                      style={{
-                        fill: "rgba(247, 215, 22, 1)",
-                        width: ".86vw",
-                      }}
-                    />
-                    <Star
-                      style={{
-                        fill: "rgba(247, 215, 22, 1)",
-                        width: ".86vw",
-                      }}
-                    />
-                    <Star
-                      style={{
-                        fill: "rgba(247, 215, 22, 1)",
-                        width: ".86vw",
-                      }}
-                    />
-                    <Text fontFamily={"Gilroy-SemiBold"} fontSize=".72vw">
-                      5.0
-                    </Text>
-                  </Box>
+                    Edit Profile
+                  </Button>
                 </Box>
-                <Box
-                  display={"flex"}
-                  flexDir="column"
-                  justifyContent={"space-around"}
-                  gap="1.11vh"
-                >
-                  <Box
-                    h="2.70vw"
-                    w="2.70vw"
-                    border="2px solid rgba(43, 43, 43, .1)"
-                    display={"flex"}
-                    alignItems="center"
-                    justifyContent={"center"}
-                    borderRadius=".833vw"
-                    cursor="pointer"
-                    _hover={{
-                      background: "rgba(246, 84, 14, 1)",
-                      svg: {
-                        fill: "#fff !important",
-                      },
-                    }}
-                  >
-                    <FbIcon
-                      style={{
-                        fill: "rgba(246, 84, 14, 1)",
-                        height: "1.85vh",
-                      }}
-                    />
+                <Box display={"flex"} flexDir="row">
+                  <Box>
+                    <Text fontFamily={"Gilroy-Bold"} fontSize="1.66vw">
+                      Ishita parathkar
+                    </Text>
+                    <Text
+                      fontFamily={"Gilroy-SemiBold"}
+                      fontSize="1.04vw"
+                      color="rgba(43, 43, 43, .5)"
+                    >
+                      Rajasthan
+                    </Text>
+
+                    {/* stars */}
+                    <Box display={"flex"} gap={".277vw"} alignItems="flex-end">
+                      <Star
+                        style={{
+                          fill: "rgba(247, 215, 22, 1)",
+                          width: ".86vw",
+                        }}
+                      />
+                      <Star
+                        style={{
+                          fill: "rgba(247, 215, 22, 1)",
+                          width: ".86vw",
+                        }}
+                      />
+                      <Star
+                        style={{
+                          fill: "rgba(247, 215, 22, 1)",
+                          width: ".86vw",
+                        }}
+                      />
+                      <Star
+                        style={{
+                          fill: "rgba(247, 215, 22, 1)",
+                          width: ".86vw",
+                        }}
+                      />
+                      <Star
+                        style={{
+                          fill: "rgba(247, 215, 22, 1)",
+                          width: ".86vw",
+                        }}
+                      />
+                      <Text fontFamily={"Gilroy-SemiBold"} fontSize=".72vw">
+                        5.0
+                      </Text>
+                    </Box>
                   </Box>
+
                   <Box
-                    h="2.70vw"
-                    w="2.70vw"
-                    border="2px solid rgba(43, 43, 43, .1)"
                     display={"flex"}
-                    alignItems="center"
+                    flexDir="row"
                     justifyContent={"center"}
-                    borderRadius=".833vw"
-                    cursor="pointer"
-                    _hover={{
-                      background: "rgba(246, 84, 14, 1)",
-                      svg: {
-                        fill: "#fff !important",
-                      },
-                    }}
+                    gap="1.11vh"
+                    ml="auto"
                   >
-                    <InstaIcon
-                      style={{
-                        fill: "rgba(246, 84, 14, 1)",
-                        width: "1.04vw",
+                    <Box
+                      h="2.70vw"
+                      w="2.70vw"
+                      border="2px solid rgba(43, 43, 43, .1)"
+                      display={"flex"}
+                      alignItems="center"
+                      justifyContent={"center"}
+                      borderRadius=".833vw"
+                      cursor="pointer"
+                      _hover={{
+                        background: "rgba(246, 84, 14, 1)",
+                        svg: {
+                          fill: "#fff !important",
+                        },
                       }}
-                    />
-                  </Box>
-                  <Box
-                    h="2.70vw"
-                    w="2.70vw"
-                    border="2px solid rgba(43, 43, 43, .1)"
-                    display={"flex"}
-                    alignItems="center"
-                    justifyContent={"center"}
-                    borderRadius=".833vw"
-                    cursor="pointer"
-                    _hover={{
-                      background: "rgba(246, 84, 14, 1)",
-                      svg: {
-                        fill: "#fff !important",
-                      },
-                    }}
-                  >
-                    <SoundCouldIcon
-                      style={{
-                        fill: "rgba(246, 84, 14, 1)",
-                        width: "1.04vw",
+                    >
+                      <FbIcon
+                        style={{
+                          fill: "rgba(246, 84, 14, 1)",
+                          height: "1.85vh",
+                        }}
+                      />
+                    </Box>
+                    <Box
+                      h="2.70vw"
+                      w="2.70vw"
+                      border="2px solid rgba(43, 43, 43, .1)"
+                      display={"flex"}
+                      alignItems="center"
+                      justifyContent={"center"}
+                      borderRadius=".833vw"
+                      cursor="pointer"
+                      _hover={{
+                        background: "rgba(246, 84, 14, 1)",
+                        svg: {
+                          fill: "#fff !important",
+                        },
                       }}
-                    />
+                    >
+                      <InstaIcon
+                        style={{
+                          fill: "rgba(246, 84, 14, 1)",
+                          width: "1.04vw",
+                        }}
+                      />
+                    </Box>
+                    <Box
+                      h="2.70vw"
+                      w="2.70vw"
+                      border="2px solid rgba(43, 43, 43, .1)"
+                      display={"flex"}
+                      alignItems="center"
+                      justifyContent={"center"}
+                      borderRadius=".833vw"
+                      cursor="pointer"
+                      _hover={{
+                        background: "rgba(246, 84, 14, 1)",
+                        svg: {
+                          fill: "#fff !important",
+                        },
+                      }}
+                    >
+                      <SoundCouldIcon
+                        style={{
+                          fill: "rgba(246, 84, 14, 1)",
+                          width: "1.04vw",
+                        }}
+                      />
+                    </Box>
                   </Box>
                 </Box>
               </Box>
               <Box w="100%" mt="2.96vh">
                 {/* heading */}
                 <Text fontFamily="Gilroy-Bold" fontSize={"1.45vw"}>
-                  {user.tag}
+                  Female Vocalist: Full Instrumental Productions
                 </Text>
 
                 {/* Tags */}
@@ -292,9 +314,16 @@ const Profile = () => {
                 <Text
                   mt="3.70vh"
                   fontFamily={"Gilroy-Medium"}
-                  fontSize=".8333vw"
+                  fontSize="1.2rem"
                 >
-                  {user.description}
+                  I am a rock, pop and RnB singer/songwriter with an experience
+                  of over 12 years. I have worked on various Western pop
+                  originals, and collaborated on covers with Universal Music
+                  India. My inspirations are various Indie musicians like Asees
+                  Kaur, Hasan Raheem, Jonita Gandhi and more. I aim to blend the
+                  western and Indian musical styles into one in my songs. I have
+                  a calm bassy voice and texture, and work well with songs
+                  having a western touch.
                 </Text>
 
                 {/* Terms of Services */}
@@ -302,7 +331,11 @@ const Profile = () => {
                   <Text fontFamily={"Gilroy-Bold"} fontSize="1.45vw">
                     Terms of Services
                   </Text>
-                  {user.terms?.map((t, index) => (
+                  <Text fontFamily={"Gilroy-Medium"} fontSize=".833vw">
+                    1. 20 revisions 2. Would need complete information before
+                    providing first scratch
+                  </Text>
+                  {/* {user.terms?.map((t, index) => (
                     <Text
                       fontFamily={"Gilroy-Medium"}
                       fontSize=".833vw"
@@ -310,7 +343,7 @@ const Profile = () => {
                     >
                       {index + 1}. {t}
                     </Text>
-                  ))}
+                  ))} */}
                 </Box>
 
                 {/* Gear Highlights */}
@@ -394,7 +427,7 @@ const Profile = () => {
               {show_video ? (
                 <Box
                   width={"100%"}
-                  h="31.48vh"
+                  h="23rem"
                   borderRadius={"1.66vw"}
                   overflow="hidden"
                 >
@@ -409,7 +442,7 @@ const Profile = () => {
                   ></iframe>
                 </Box>
               ) : (
-                <Box w="100%" h="31.48vh" pos="relative">
+                <Box w="100%" h="23rem" pos="relative">
                   <Image w="100%" h="100%" src={videoImg} />
                   <Box
                     position={"absolute"}
@@ -451,7 +484,7 @@ const Profile = () => {
                     Starting Price:
                   </Text>
                   <Text fontFamily={"Gilroy-Bold"} fontSize="1.45vw">
-                    ${user.startingPrice?.[0]}
+                    ₹5000
                   </Text>
                 </Box>
                 <a href={`mailto:${user.email}`}>
@@ -492,7 +525,7 @@ const Profile = () => {
                   {/* card-1  */}
                   <Box
                     w="100%"
-                    h="12.222vh"
+                    h="8rem"
                     bg="rgba(192, 226, 24, .1)"
                     borderRadius={"1.66vw"}
                     px="1.34vw"
@@ -512,7 +545,7 @@ const Profile = () => {
                       </Text>
                     </Box>
                     <Box flexGrow={1}></Box>
-                    <Text fontFamily={"Gilroy-Bold"} fontSize="1.45vw">
+                    <Text fontFamily={"Gilroy-Bold"} fontSize="1.6rem">
                       Starting Price: ₹300
                     </Text>
                   </Box>
@@ -520,7 +553,7 @@ const Profile = () => {
                   {/* card-2  */}
                   <Box
                     w="100%"
-                    h="12.222vh"
+                    h="8rem"
                     bg="rgba(192, 226, 24, .1)"
                     borderRadius={"1.66vw"}
                     px="1.34vw"
@@ -540,7 +573,7 @@ const Profile = () => {
                       </Text>
                     </Box>
                     <Box flexGrow={1}></Box>
-                    <Text fontFamily={"Gilroy-Bold"} fontSize="1.45vw">
+                    <Text fontFamily={"Gilroy-Bold"} fontSize="1.6rem">
                       Starting Price: ₹250
                     </Text>
                   </Box>
@@ -548,7 +581,7 @@ const Profile = () => {
                   {/* card-3  */}
                   <Box
                     w="100%"
-                    h="12.222vh"
+                    h="8rem"
                     bg="rgba(192, 226, 24, .1)"
                     borderRadius={"1.66vw"}
                     px="1.34vw"
@@ -568,7 +601,7 @@ const Profile = () => {
                       </Text>
                     </Box>
                     <Box flexGrow={1}></Box>
-                    <Text fontFamily={"Gilroy-Bold"} fontSize="1.45vw">
+                    <Text fontFamily={"Gilroy-Bold"} fontSize="1.6rem">
                       Starting Price: ₹500
                     </Text>
                   </Box>
@@ -578,7 +611,8 @@ const Profile = () => {
           </Box>
           <Box mt="5.55vh">
             <Text fontFamily="Gilroy-Bold" fontSize={"1.45vw"}>
-              Reviews ({user.reviews?.length})
+              {/* Reviews ({user.reviews?.length}) */}
+              Reviews (4)
             </Text>
             <Box
               mt="1.01vh"

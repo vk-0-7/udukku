@@ -105,6 +105,7 @@ const Profile = () => {
                     position="absolute"
                     bottom="3rem"
                     left="4rem"
+                    onClick={() => navigate("/talent-registration")}
                   >
                     Edit Profile
                   </Button>

@@ -29,12 +29,13 @@ const Genre = ({ showDelete, changeState, currentIndex, fullState }) => {
 		<Box display={'flex'} gap='.833vw' mt='1.111vh' position={'relative'}>
 			<Box flexGrow={1}>
 				<Text fontFamily={'Gilroy-SemiBold'} fontSize='.833vw'>
-					Genre
+					Genre*
 				</Text>
 				<Select
 					placeholder='Select'
 					value={fullState[currentIndex].genre}
 					onChange={updating_genre}
+					h="6.48vh"
 				>
 					<option value={'option1'}>Option 1</option>
 					<option value={'option2'}>Option 2</option>
@@ -44,12 +45,13 @@ const Genre = ({ showDelete, changeState, currentIndex, fullState }) => {
 			</Box>
 			<Box flexGrow={1}>
 				<Text fontFamily={'Gilroy-SemiBold'} fontSize='.833vw'>
-					Subgenre
+					Subgenre*
 				</Text>
 				<Select
 					placeholder='Select'
 					value={fullState[currentIndex].subGenre}
 					onChange={updating_sub_genre}
+					h="6.48vh"
 				>
 					<option value={'option1'}>Option 1</option>
 					<option value={'option2'}>Option 2</option>

@@ -40,6 +40,7 @@ const WorkSample = ({ showDelete, changeState, currentIndex, fullState }) => {
 					placeholder='Select'
 					value={fullState[currentIndex].workSample}
 					onChange={update_work_sample}
+					h="6.48vh"
 				>
 					<option value={'option1'}>Option 1</option>
 					<option value={'option2'}>Option 2</option>
@@ -51,13 +52,13 @@ const WorkSample = ({ showDelete, changeState, currentIndex, fullState }) => {
 				<Text fontFamily={'Gilroy-SemiBold'} fontSize='.833vw'>
 					Link or File
 				</Text>
-				<Input type='text' onChange={update_link} />
+				<Input type='text' onChange={update_link} h="6.48vh" />
 			</Box>
 			<Box>
 				<Text fontFamily={'Gilroy-SemiBold'} fontSize='.833vw'>
 					Your Role
 				</Text>
-				<Input onChange={update_role} />
+				<Input onChange={update_role} h="6.48vh" />
 			</Box>
 			{showDelete ? (
 				<DeleteIcon

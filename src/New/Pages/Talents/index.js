@@ -121,6 +121,7 @@ const Talents = () => {
   const [star, set_star] = useState("");
   const [genre, set_genre] = useState("");
   const [show_clear, set_show_clear] = useState(false);
+  const [pageTitle, setPageTitle] = useState("");
 
   console.log(category);
 
@@ -237,7 +238,7 @@ const Talents = () => {
           alignItems="center"
         >
           <Text fontSize={"2.29vw"} fontFamily={"Gilroy-Bold"}>
-            Discover pro musicians in india
+            Discover {category === "" ? "Pro musicians" : category} in india
           </Text>
           <InputGroup
             w="36.04vw"
@@ -277,6 +278,11 @@ const Talents = () => {
         {/* filters */}
         <Box display={"flex"} gap=".62vw" mt="2.31vh" alignItems={"center"}>
           <CategoryFilter Main={category} SetMainCat={set_category} />
+          <GenreFilter
+            Main={genre}
+            setMainGenre={set_genre}
+            talents={talents}
+          />
 
           <BudgetFilter
             MainStart={start_price}
@@ -287,11 +293,6 @@ const Talents = () => {
 
           <RatingFilter Main={star} setMainStar={set_star} />
 
-          <GenreFilter
-            Main={genre}
-            setMainGenre={set_genre}
-            talents={talents}
-          />
           <Box flexGrow={1}></Box>
 
           {show_clear ? (

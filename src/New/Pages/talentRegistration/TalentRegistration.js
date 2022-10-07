@@ -69,7 +69,7 @@ const TalentRegistration = () => {
 	};
 
 	return (
-		<Box pt='8.5vh'>
+		<Box pt='8.5vh' overflowX={"hidden"}>
 			<NavBar />
 			<Box px={{ base: '7vw', lg: '13.54vw' }} pt='6.01vh' pb='100px'>
 				<Text

@@ -34,22 +34,24 @@ const Category = ({ showDelete, currentIndex, fullState, changeState }) => {
 		<Box display={'flex'} gap='.833vw' mt='1.111vh' position={'relative'}>
 			<Box>
 				<Text fontFamily={'Gilroy-SemiBold'} fontSize='.833vw'>
-					Category
+					Category*
 				</Text>
 				<Input
 					type={'text'}
 					value={fullState[currentIndex].category}
 					onChange={updating_categories}
+					h="6.48vh"
 				/>
 			</Box>
 			<Box>
 				<Text fontFamily={'Gilroy-SemiBold'} fontSize='.833vw'>
-					Subcategory
+					Subcategory*
 				</Text>
 				<Input
 					type={'text'}
 					value={fullState[currentIndex].subCategory}
 					onChange={updating_sub_categories}
+					h="6.48vh"
 				/>
 			</Box>
 			<Box>
@@ -60,6 +62,7 @@ const Category = ({ showDelete, currentIndex, fullState, changeState }) => {
 					type={'number'}
 					value={fullState[currentIndex].serviceStargingPrice}
 					onChange={updating_staring_price}
+					h="6.48vh"
 				/>
 			</Box>
 			{/* delete icon */}

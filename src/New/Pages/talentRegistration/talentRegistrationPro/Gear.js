@@ -26,12 +26,13 @@ const Gear = ({ showDelete, changeState, currentIndex, fullState }) => {
 		<Box display={'flex'} gap='.833vw' mt='1.111vh' position={'relative'}>
 			<Box flexGrow={1}>
 				<Text fontFamily={'Gilroy-SemiBold'} fontSize='.833vw'>
-					Gear
+					Gear*
 				</Text>
 				<Select
 					placeholder='Select'
 					value={fullState[currentIndex].gear}
 					onChange={updating_gear}
+					h="6.48vh"
 				>
 					<option value={'option1'}>Option 1</option>
 					<option value={'option2'}>Option 2</option>
@@ -41,12 +42,13 @@ const Gear = ({ showDelete, changeState, currentIndex, fullState }) => {
 			</Box>
 			<Box flexGrow={1}>
 				<Text fontFamily={'Gilroy-SemiBold'} fontSize='.833vw'>
-					Gear Highlight
+					Gear Highlight*
 				</Text>
 				<Input
 					type='text'
 					value={fullState[currentIndex].gearHighlight}
 					onChange={updating_gear_highlight}
+					h="6.48vh"
 				/>
 			</Box>
 			{showDelete ? (

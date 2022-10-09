@@ -11,7 +11,7 @@ import img3 from "../../../Assets/Dummy/Rectangle 179-6.png";
 import { ReactComponent as FacebookIcon } from "../../../Assets/Icons/fb.svg";
 import { ReactComponent as InstaIcon } from "../../../Assets/Icons/insta.svg";
 import { ReactComponent as SoundCloudIcon } from "../../../Assets/Icons/Soundcloud_1_.svg";
-import { ReactComponent as GenreIcon } from "../../../Assets/Icons/Vector.svg";
+import { ReactComponent as GenreIcon } from "../../../Assets/Icons/VectorGen.svg";
 import { ReactComponent as PlayIcon } from "../../../Assets/Icons/play.svg";
 import { useRef, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";

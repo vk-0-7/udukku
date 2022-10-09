@@ -3,7 +3,7 @@ import { Box, Image, Text } from "@chakra-ui/react";
 // icon
 import { ReactComponent as Star } from "../../../Assets/Icons/star.svg";
 import { ReactComponent as CategoryIcon } from "../../../Assets/Icons/category.svg";
-import { ReactComponent as GenreIcon } from "../../../Assets/Icons/Vector.svg";
+import { ReactComponent as GenreIcon } from "../../../Assets/Icons/VectorGen.svg";
 import { useNavigate } from "react-router-dom";
 const TalentCard = ({ data }) => {
   const navigate = useNavigate("");

@@ -208,25 +208,29 @@ const NavBar = () => {
                 </MenuButton>
                 <MenuList bg="white" color="black">
                   <MenuItem
+                    fontSize={"1.4rem"}
                     onClick={() => {
                       navigate("/dashboard");
                     }}
                   >
                     Dashboard
                   </MenuItem>
-                  <MenuItem>My Jobs</MenuItem>
+                  <MenuItem fontSize={"1.4rem"}>My Jobs</MenuItem>
                   <MenuDivider
                     borderWidth={"2px"}
                     borderStyle="rgba(8, 32, 50, 1)"
                   />
                   <MenuItem
+                    fontSize={"1.4rem"}
                     onClick={() => {
                       navigate(`/${localStorage.getItem("username")}`);
                     }}
                   >
                     My Profile
                   </MenuItem>
-                  <MenuItem onClick={handleLogout}>Logout</MenuItem>
+                  <MenuItem fontSize={"1.4rem"} onClick={handleLogout}>
+                    Logout
+                  </MenuItem>
                 </MenuList>
               </Menu>
             </Box>

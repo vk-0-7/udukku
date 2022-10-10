@@ -12,7 +12,7 @@ import NavBar from "../../Components/NavBar/NavBar";
 
 // icon
 import { ReactComponent as CategoryIcon } from "../../../Assets/Icons/element-4.svg";
-import { ReactComponent as GenreIcon } from "../../../Assets/Icons/Vector.svg";
+import { ReactComponent as GenreIcon } from "../../../Assets/Icons/VectorGen.svg";
 import { ReactComponent as SearchIcon } from "../../../Assets/Icons/search-normal.svg";
 import { ReactComponent as PlusIcon } from "../../../Assets/Icons/plus.svg";
 import { useNavigate } from "react-router-dom";
@@ -104,7 +104,7 @@ const Lyrics = () => {
             <GenreIcon
               style={{
                 fill: "rgba(8, 32, 50, .5)",
-                width: ".96vw",
+                width: "1.25vw",
                 height: "1.25vw",
               }}
             />

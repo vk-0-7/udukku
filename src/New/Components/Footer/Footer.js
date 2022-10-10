@@ -206,7 +206,7 @@ const Footer = () => {
           <Box display={"flex"} mt="2.77vh" gap="1.56vw">
             <Box
               as="a"
-              href="https://www.facebook.com/Plan-My-Leisure-101398345900413"
+              href="https://www.facebook.com/udukkumusic/"
               target="_blank"
               w="2vw"
               h="2vw"
@@ -227,7 +227,7 @@ const Footer = () => {
               as="a"
               w="2vw"
               h="2vw"
-              href="https://www.instagram.com/planmyleisure/"
+              href="https://www.instagram.com/udukkumusic/"
               target="_blank"
               borderRadius={"5px"}
               display={"flex"}
@@ -245,7 +245,7 @@ const Footer = () => {
 
             <Box
               as="a"
-              href="https://twitter.com/PlanMyLeisure"
+              href="https://twitter.com/udukkumusic"
               target="_blank"
               w="2vw"
               h="2vw"

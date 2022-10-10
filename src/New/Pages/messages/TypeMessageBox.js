@@ -1,6 +1,5 @@
 import { Box, Text, Image } from "@chakra-ui/react";
 import { ReactComponent as LinkIcon } from "../../../Assets/Icons/link-2.svg";
-import { ReactComponent as SmileIcon } from "../../../Assets/Icons/Vector.svg";
 import { ReactComponent as SendIcon } from "../../../Assets/Icons/send.svg";
 import smileEmoji from "../../../Assets/Icons/Vector.png";
 const TypeMessageBox = ({ state }) => {

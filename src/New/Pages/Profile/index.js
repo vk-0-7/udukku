@@ -11,7 +11,7 @@ import { ReactComponent as FbIcon } from "../../../Assets/Icons/fb.svg";
 import { ReactComponent as InstaIcon } from "../../../Assets/Icons/insta.svg";
 import { ReactComponent as SoundCouldIcon } from "../../../Assets/Icons/Soundcloud_1_.svg";
 import { ReactComponent as Star } from "../../../Assets/Icons/star.svg";
-import { ReactComponent as MusicIcon } from "../../../Assets/Icons/Vector.svg";
+import { ReactComponent as MusicIcon } from "../../../Assets/Icons/VectorGen.svg";
 import { ReactComponent as Monitor } from "../../../Assets/Icons/monitor.svg";
 import { ReactComponent as Headphone } from "../../../Assets/Icons/headphone.svg";
 import { ReactComponent as Microphone } from "../../../Assets/Icons/microphone-2.svg";

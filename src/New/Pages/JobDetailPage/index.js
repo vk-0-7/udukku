@@ -5,7 +5,7 @@ import NavBar from '../../Components/NavBar/NavBar';
 // Icons
 import { ReactComponent as Category } from '../../../Assets/Icons/category.svg';
 import { ReactComponent as Star } from '../../../Assets/Icons/star.svg';
-import { ReactComponent as MusicIcon } from '../../../Assets/Icons/Vector.svg';
+import { ReactComponent as MusicIcon } from '../../../Assets/Icons/VectorGen.svg';
 import { ReactComponent as Sms } from '../../../Assets/Icons/orange-sms.svg';
 import { ReactComponent as DollarCircle } from '../../../Assets/Icons/dollar-circle.svg';
 import { ReactComponent as ClockIcon } from '../../../Assets/Icons/clock.svg';

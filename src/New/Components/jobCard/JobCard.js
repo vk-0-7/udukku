@@ -1,10 +1,12 @@
 import { Box, Text, Button, Icon, propNames } from "@chakra-ui/react";
 import { HiOutlineChevronRight } from "react-icons/hi";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 //jobTitle, service, genre, description, deadline, budget
 const JobCard = (props) => {
   const category = props.category;
+  const navigate = useNavigate();
   return (
     <Box
       w="23.75vw"
@@ -165,12 +167,7 @@ const JobCard = (props) => {
           alignItems={"center"}
           transition=".5s"
           className="move-to-right"
-          // _hover={{
-          // 	background: 'rgba(177,70,20)',
-          // 	'.right-icon': {
-          // 		left: '5px',
-          // 	},
-          // }}
+          onClick={() => navigate("/job-detail-page")}
         >
           <Text fontFamily={"Gilroy-SemiBold"} fontSize=".833vw">
             See Details

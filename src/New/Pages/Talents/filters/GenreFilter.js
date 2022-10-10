@@ -16,7 +16,7 @@ import {
 import { useEffect, useState } from "react";
 import getAllUsers from "../../../../Api/User/getAllUsers";
 //Icon
-import { ReactComponent as GenreIcon } from "../../../../Assets/Icons/Vector.svg";
+import { ReactComponent as GenreIcon } from "../../../../Assets/Icons/VectorGen.svg";
 const genres = [
   "National",
   "Indian",

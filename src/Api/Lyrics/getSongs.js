@@ -10,7 +10,6 @@ const getSongs = (page, count) => {
 
   let res = axios(config)
     .then(function (response) {
-      // console.log(response);
       return response.data;
     })
     .catch(function (error) {

@@ -33,7 +33,6 @@ const createLyrics = async (
     },
     data: data,
   };
-
   return await axios(config);
 };
 export default createLyrics;

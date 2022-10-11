@@ -4,9 +4,10 @@ const getAllUsers = async () => {
 
   var config = {
     method: "get",
-    url: "https://udukku-test.herokuapp.com/admin/get-all-user",
+    url: "https://udukku.herokuapp.com/admin/get-all-user",
     headers: {
-      Authorization: token,
+      Authorization:
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzM2ZmNGZjN2FkMmQwODdiYjZkYTVmNSIsImlhdCI6MTY2NTQxODQyNiwiZXhwIjoxNjY2MDIzMjI2fQ.nnml-RDA1hsPDFg6Cb6oXlBlzaF9hThDcYb6jZuTIfc",
     },
   };
 

@@ -24,6 +24,7 @@ const CategoryFilter = ({ Main, SetMainCat }) => {
     onClose();
   };
 
+  
   return (
     <Popover isOpen={isOpen} onClose={onClose} closeOnBlur={true}>
       <PopoverTrigger>

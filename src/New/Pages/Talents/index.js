@@ -21,101 +21,102 @@ import BudgetFilter from "./filters/BudgetFilter";
 import RatingFilter from "./filters/RatingFilter";
 import GenreFilter from "./filters/GenreFilter";
 import getAllUsers from "../../../Api/User/getAllUsers";
+import { useCategoryContext } from "../../Context/CategoryContext";
 
-const d_data = [
-  {
-    img: "https://source.unsplash.com/random?face?women",
-    name: "Ishita Parakh",
-    state: "Rajasthan",
-    star: 2,
-    heading: "Female Vocalist: Full Instrumental Productions",
-    description:
-      "Are you a musician looking to provide your skills? Browse here for your next opportunity...",
-    d_audio: d_audio,
-    price: 200,
-    tags: [
-      { value: "Female Vocalist or Singer", type: "category" },
-      { value: "Hindustani Classical", type: "genre" },
-      { value: "Songwriter Music or Melody", type: "category" },
-      { value: "International", type: "genre" },
-      { value: "Full Instrument Productions", type: "category" },
-      { value: "Regional", type: "genre" },
-    ],
-  },
-  {
-    img: "https://source.unsplash.com/random?face?men",
-    name: "Neha",
-    state: "Rajasthan",
-    star: 3,
-    heading: "Female Vocalist: Full Instrumental Productions",
-    description:
-      "Are you a musician looking to provide your skills? Browse here for your next opportunity...",
-    d_audio: d_audio,
-    price: 160,
-    tags: [
-      { value: "Female Vocalist or Singer", type: "category" },
-      { value: "Hindustani Classical", type: "genre" },
-      { value: "International", type: "genre" },
-      { value: "Regional", type: "genre" },
-    ],
-  },
+// const d_data = [
+//   {
+//     img: "https://source.unsplash.com/random?face?women",
+//     name: "Ishita Parakh",
+//     state: "Rajasthan",
+//     star: 2,
+//     heading: "Female Vocalist: Full Instrumental Productions",
+//     description:
+//       "Are you a musician looking to provide your skills? Browse here for your next opportunity...",
+//     d_audio: d_audio,
+//     price: 200,
+//     tags: [
+//       { value: "Female Vocalist or Singer", type: "category" },
+//       { value: "Hindustani Classical", type: "genre" },
+//       { value: "Songwriter Music or Melody", type: "category" },
+//       { value: "International", type: "genre" },
+//       { value: "Full Instrument Productions", type: "category" },
+//       { value: "Regional", type: "genre" },
+//     ],
+//   },
+//   {
+//     img: "https://source.unsplash.com/random?face?men",
+//     name: "Neha",
+//     state: "Rajasthan",
+//     star: 3,
+//     heading: "Female Vocalist: Full Instrumental Productions",
+//     description:
+//       "Are you a musician looking to provide your skills? Browse here for your next opportunity...",
+//     d_audio: d_audio,
+//     price: 160,
+//     tags: [
+//       { value: "Female Vocalist or Singer", type: "category" },
+//       { value: "Hindustani Classical", type: "genre" },
+//       { value: "International", type: "genre" },
+//       { value: "Regional", type: "genre" },
+//     ],
+//   },
 
-  {
-    img: "https://source.unsplash.com/random?face?girl",
-    name: "Rahul",
-    state: "Rajasthan",
-    star: 5,
-    heading: "Different Vocalist: Full Instrumental Productions",
-    description:
-      "Are you a musician looking to provide your skills? Browse here for your next opportunity...",
-    d_audio: d_audio,
-    price: 200,
-    tags: [
-      { value: "Hindustani Classical", type: "genre" },
-      { value: "Songwriter Music or Melody", type: "category" },
-      { value: "International", type: "genre" },
-    ],
-  },
-  {
-    img: "https://source.unsplash.com/random?face?white",
-    name: "Rahul",
-    state: "Rajasthan",
-    star: 5,
-    heading: "Male Vocalist: Full Instrumental Productions",
-    description:
-      "Are you a musician looking to provide your skills? Browse here for your next opportunity...",
-    d_audio: d_audio,
-    price: 200,
-    tags: [
-      { value: "Hindustani Classical", type: "genre" },
-      { value: "Songwriter Music or Melody", type: "category" },
-      { value: "International", type: "genre" },
-    ],
-  },
-  {
-    img: "https://source.unsplash.com/random?face?brown",
-    name: "Rahul",
-    state: "Rajasthan",
-    star: 5,
-    heading: "Female Vocalist: Full Instrumental Productions",
-    description:
-      "Are you a musician looking to provide your skills? Browse here for your next opportunity...",
-    d_audio: d_audio,
-    price: 200,
-    tags: [
-      { value: "Hindustani Classical", type: "genre" },
-      { value: "Songwriter Music or Melody", type: "category" },
-      { value: "International", type: "genre" },
-    ],
-  },
-];
+//   {
+//     img: "https://source.unsplash.com/random?face?girl",
+//     name: "Rahul",
+//     state: "Rajasthan",
+//     star: 5,
+//     heading: "Different Vocalist: Full Instrumental Productions",
+//     description:
+//       "Are you a musician looking to provide your skills? Browse here for your next opportunity...",
+//     d_audio: d_audio,
+//     price: 200,
+//     tags: [
+//       { value: "Hindustani Classical", type: "genre" },
+//       { value: "Songwriter Music or Melody", type: "category" },
+//       { value: "International", type: "genre" },
+//     ],
+//   },
+//   {
+//     img: "https://source.unsplash.com/random?face?white",
+//     name: "Rahul",
+//     state: "Rajasthan",
+//     star: 5,
+//     heading: "Male Vocalist: Full Instrumental Productions",
+//     description:
+//       "Are you a musician looking to provide your skills? Browse here for your next opportunity...",
+//     d_audio: d_audio,
+//     price: 200,
+//     tags: [
+//       { value: "Hindustani Classical", type: "genre" },
+//       { value: "Songwriter Music or Melody", type: "category" },
+//       { value: "International", type: "genre" },
+//     ],
+//   },
+//   {
+//     img: "https://source.unsplash.com/random?face?brown",
+//     name: "Rahul",
+//     state: "Rajasthan",
+//     star: 5,
+//     heading: "Female Vocalist: Full Instrumental Productions",
+//     description:
+//       "Are you a musician looking to provide your skills? Browse here for your next opportunity...",
+//     d_audio: d_audio,
+//     price: 200,
+//     tags: [
+//       { value: "Hindustani Classical", type: "genre" },
+//       { value: "Songwriter Music or Melody", type: "category" },
+//       { value: "International", type: "genre" },
+//     ],
+//   },
+// ];
 
 const Talents = () => {
   const [talents, setTalents] = useState([]);
   const [search, set_search] = useState("");
-  const [category, set_category] = useState("");
+  const { categoryF, setCategoryF } = useCategoryContext();
   const [search_color, set_search_color] = useState("rgba(43, 43, 43, .3)");
-  const [temp_list, set_temp_list] = useState(d_data);
+  // const [temp_list, set_temp_list] = useState(d_data);
   const [start_price, set_star_price] = useState("");
   const [end_price, set_end_price] = useState("");
   const [star, set_star] = useState("");
@@ -123,88 +124,89 @@ const Talents = () => {
   const [show_clear, set_show_clear] = useState(false);
   const [pageTitle, setPageTitle] = useState("");
 
-  console.log(category);
-
   useEffect(() => {
     //window.scrollTo(0, 0);
-    getAllUsers().then((res) => setTalents(res.user));
-  }, []);
-
-  useEffect(() => {
-    set_temp_list((prev) => {
-      // let result = d_data.filter((data) => {
-      //   if (search === "") {
-      //     return true;
-      //   } else {
-      //     console.log(
-      //       "blablaba : ",
-      //       data.heading.toLowerCase().indexOf(search.toLowerCase())
-      //     );
-      //     if (data.heading.toLowerCase().indexOf(search.toLowerCase()) === -1) {
-      //       return false;
-      //     } else {
-      //       return true;
-      //     }
-      //   }
-      // });
-
-      let result = d_data.filter((data) => {
-        if (category === "") {
-          return true;
-        } else {
-          for (let i = 0; i < data.tags.length; i++) {
-            if (category === data.tags[i].value) {
-              return true;
-            }
-          }
-          return false;
-        }
-      });
-
-      result = result.filter((data) => {
-        if (start_price === "" || end_price === "") {
-          return true;
-        } else {
-          if (start_price <= data.price && end_price >= data.price) {
-            return true;
-          } else {
-            return false;
-          }
-        }
-      });
-
-      result = result.filter((data) => {
-        if (star === "") {
-          return true;
-        } else {
-          if (star == data.star) {
-            return true;
-          } else {
-            return false;
-          }
-        }
-      });
-
-      result = result.filter((data) => {
-        if (genre === "") {
-          return true;
-        } else {
-          for (let i = 0; i < data.tags.length; i++) {
-            if (genre === data.tags[i].value) {
-              return true;
-            }
-          }
-          return false;
-        }
-      });
-
-      return result;
+    getAllUsers().then((res) => {
+      console.log(res);
+      setTalents(res.user);
     });
-  }, [category, start_price, end_price, star, genre, search]);
+  }, []);
+  console.log({ talents });
+  // useEffect(() => {
+  //   set_temp_list((prev) => {
+  //     // let result = d_data.filter((data) => {
+  //     //   if (search === "") {
+  //     //     return true;
+  //     //   } else {
+  //     //     console.log(
+  //     //       "blablaba : ",
+  //     //       data.heading.toLowerCase().indexOf(search.toLowerCase())
+  //     //     );
+  //     //     if (data.heading.toLowerCase().indexOf(search.toLowerCase()) === -1) {
+  //     //       return false;
+  //     //     } else {
+  //     //       return true;
+  //     //     }
+  //     //   }
+  //     // });
+
+  //     let result = d_data.filter((data) => {
+  //       if (category === "") {
+  //         return true;
+  //       } else {
+  //         for (let i = 0; i < data.tags.length; i++) {
+  //           if (category === data.tags[i].value) {
+  //             return true;
+  //           }
+  //         }
+  //         return false;
+  //       }
+  //     });
+
+  //     result = result.filter((data) => {
+  //       if (start_price === "" || end_price === "") {
+  //         return true;
+  //       } else {
+  //         if (start_price <= data.price && end_price >= data.price) {
+  //           return true;
+  //         } else {
+  //           return false;
+  //         }
+  //       }
+  //     });
+
+  //     result = result.filter((data) => {
+  //       if (star === "") {
+  //         return true;
+  //       } else {
+  //         if (star == data.star) {
+  //           return true;
+  //         } else {
+  //           return false;
+  //         }
+  //       }
+  //     });
+
+  //     result = result.filter((data) => {
+  //       if (genre === "") {
+  //         return true;
+  //       } else {
+  //         for (let i = 0; i < data.tags.length; i++) {
+  //           if (genre === data.tags[i].value) {
+  //             return true;
+  //           }
+  //         }
+  //         return false;
+  //       }
+  //     });
+
+  //     return result;
+  //   });
+  // }, [category, start_price, end_price, star, genre, search]);
 
   useEffect(() => {
     if (
-      category === "" &&
+      categoryF === "" &&
       start_price === "" &&
       end_price === "" &&
       star === "" &&
@@ -214,10 +216,10 @@ const Talents = () => {
     } else {
       set_show_clear(true);
     }
-  }, [category, start_price, end_price, star, genre]);
+  }, [categoryF, start_price, end_price, star, genre]);
 
   const handleClear = () => {
-    set_category("");
+    setCategoryF("");
     set_star_price("");
     set_end_price("");
     set_star("");
@@ -238,7 +240,7 @@ const Talents = () => {
           alignItems="center"
         >
           <Text fontSize={"2.29vw"} fontFamily={"Gilroy-Bold"}>
-            Discover {category === "" ? "Pro musicians" : category} in india
+            Discover {categoryF === "" ? "Pro musicians" : categoryF} in india
           </Text>
           <InputGroup
             w="36.04vw"
@@ -277,7 +279,7 @@ const Talents = () => {
 
         {/* filters */}
         <Box display={"flex"} gap=".62vw" mt="2.31vh" alignItems={"center"}>
-          <CategoryFilter Main={category} SetMainCat={set_category} />
+          <CategoryFilter Main={categoryF} SetMainCat={setCategoryF} />
           <GenreFilter
             Main={genre}
             setMainGenre={set_genre}
@@ -346,7 +348,7 @@ const Talents = () => {
             .filter((t) =>
               t.services[0]?.service
                 .toLowerCase()
-                .includes(category.toLowerCase())
+                .includes(categoryF.toLowerCase())
             )
             .map((talent) => (
               <TalentCard key={talent._id} data={talent} />

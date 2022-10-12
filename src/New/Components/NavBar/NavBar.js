@@ -21,6 +21,10 @@ import SignUpModal from "./SignUpModal";
 import { ReactComponent as Man } from "../../../Assets/Icons/frame.svg";
 import { BsChevronDown } from "react-icons/bs";
 import { ReactComponent as Sms } from "../../../Assets/Icons/sms.svg";
+import { ReactComponent as GenreIcon } from "../../../Assets/Icons/element-4.svg";
+import { ReactComponent as JobIcon } from "../../../Assets/Icons/Vector(1).svg";
+import { ReactComponent as LogOutIcon } from "../../../Assets/Icons/logout.svg";
+import { ReactComponent as SwitchIcon } from "../../../Assets/Icons/repeat.svg";
 const NavBar = () => {
   const [signInState, setSignInState] = useState(false);
   const [signUpState, setSignUpState] = useState(false);
@@ -212,10 +216,32 @@ const NavBar = () => {
                     onClick={() => {
                       navigate("/dashboard");
                     }}
+                    icon={
+                      <GenreIcon
+                        style={{
+                          fill: "#F6540E",
+                          width: "1.25vw",
+                          height: "1.25vw",
+                        }}
+                      />
+                    }
                   >
                     Dashboard
                   </MenuItem>
-                  <MenuItem fontSize={"1.4rem"}>My Jobs</MenuItem>
+                  <MenuItem
+                    fontSize={"1.4rem"}
+                    icon={
+                      <JobIcon
+                        style={{
+                          fill: "#F6540E",
+                          width: "1.25vw",
+                          height: "1.25vw",
+                        }}
+                      />
+                    }
+                  >
+                    My Jobs
+                  </MenuItem>
                   <MenuDivider
                     borderWidth={"2px"}
                     borderStyle="rgba(8, 32, 50, 1)"
@@ -225,11 +251,47 @@ const NavBar = () => {
                     onClick={() => {
                       navigate(`/${localStorage.getItem("username")}`);
                     }}
+                    icon={
+                      <Man
+                        style={{
+                          fill: "#F6540E",
+                          width: "1.25vw",
+                          height: "1.25vw",
+                          background: "#F6540E",
+                        }}
+                      />
+                    }
                   >
                     My Profile
                   </MenuItem>
-                  <MenuItem fontSize={"1.4rem"} onClick={handleLogout}>
+                  <MenuItem
+                    fontSize={"1.4rem"}
+                    icon={
+                      <LogOutIcon
+                        style={{
+                          fill: "#F6540E",
+                          width: "1.25vw",
+                          height: "1.25vw",
+                        }}
+                      />
+                    }
+                    onClick={handleLogout}
+                  >
                     Logout
+                  </MenuItem>
+                  <MenuItem
+                    fontSize={"1.4rem"}
+                    icon={
+                      <SwitchIcon
+                        style={{
+                          fill: "#F6540E",
+                          width: "1.25vw",
+                          height: "1.25vw",
+                        }}
+                      />
+                    }
+                  >
+                    Switch to Job creator
                   </MenuItem>
                 </MenuList>
               </Menu>

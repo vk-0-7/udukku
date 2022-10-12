@@ -64,14 +64,13 @@ const Profile = () => {
     set_show_video(true);
   };
 
-  console.log(user);
   useEffect(() => {
     getAllUsers().then((res) => {
       const filteredUser = res.user.filter((user) => user._id === id);
       setUser(filteredUser[0]);
     });
   }, []);
-
+  console.log({ user });
   return (
     <>
       <Box overflowX={"hidden"}>
@@ -92,7 +91,7 @@ const Profile = () => {
                     width={"100%"}
                     objectFit="cover"
                     // objectPosition={"50% 50%"}
-                    src={ProfilePic}
+                    src={user.avatar}
                   />
                   <Button
                     size="lg"
@@ -113,14 +112,14 @@ const Profile = () => {
                 <Box display={"flex"} flexDir="row">
                   <Box>
                     <Text fontFamily={"Gilroy-Bold"} fontSize="1.66vw">
-                      Ishita parathkar
+                      {user.name}
                     </Text>
                     <Text
                       fontFamily={"Gilroy-SemiBold"}
                       fontSize="1.04vw"
                       color="rgba(43, 43, 43, .5)"
                     >
-                      Rajasthan
+                      {user.city}
                     </Text>
 
                     {/* stars */}
@@ -243,7 +242,7 @@ const Profile = () => {
               <Box w="100%" mt="2.96vh">
                 {/* heading */}
                 <Text fontFamily="Gilroy-Bold" fontSize={"1.45vw"}>
-                  Female Vocalist: Full Instrumental Productions
+                  {user.tag}
                 </Text>
 
                 {/* Tags */}
@@ -317,14 +316,7 @@ const Profile = () => {
                   fontFamily={"Gilroy-Medium"}
                   fontSize="1.2rem"
                 >
-                  I am a rock, pop and RnB singer/songwriter with an experience
-                  of over 12 years. I have worked on various Western pop
-                  originals, and collaborated on covers with Universal Music
-                  India. My inspirations are various Indie musicians like Asees
-                  Kaur, Hasan Raheem, Jonita Gandhi and more. I aim to blend the
-                  western and Indian musical styles into one in my songs. I have
-                  a calm bassy voice and texture, and work well with songs
-                  having a western touch.
+                  {user.description}
                 </Text>
 
                 {/* Terms of Services */}
@@ -333,8 +325,7 @@ const Profile = () => {
                     Terms of Services
                   </Text>
                   <Text fontFamily={"Gilroy-Medium"} fontSize=".833vw">
-                    1. 20 revisions 2. Would need complete information before
-                    providing first scratch
+                    {user.terms}
                   </Text>
                   {/* {user.terms?.map((t, index) => (
                     <Text
@@ -485,7 +476,7 @@ const Profile = () => {
                     Starting Price:
                   </Text>
                   <Text fontFamily={"Gilroy-Bold"} fontSize="1.45vw">
-                    ₹5000
+                    ₹{user.startingPrice}
                   </Text>
                 </Box>
                 <a href={`mailto:${user.email}`}>

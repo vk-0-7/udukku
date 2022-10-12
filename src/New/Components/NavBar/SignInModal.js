@@ -87,7 +87,7 @@ const SignInModal = ({ state, changeState }) => {
 			const res = await googleLogin(response.credential);
 			console.log('server se ye aaya : ', res);
 			setLoginState(true);
-			setToken(res.data.token);
+			setToken(res.data.refresh_token);
 			// setUsed('google');
 			// setOpen(false);
 			onClose();

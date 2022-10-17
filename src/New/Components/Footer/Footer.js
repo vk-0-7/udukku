@@ -42,37 +42,73 @@ const Footer = () => {
           <Box>
             <Image src={logo} h="35px" />
           </Box>
-          <Text
-            mt="3.70vh"
-            mb="1.388vh"
-            fontFamily={"Gilroy-Medium"}
-            fontSize=".833vw"
+          <Box
+            display={{ base: "flex", lg: "block" }}
+            alignItems={{ base: "center" }}
+            gap={{ base: "2.5rem", lg: "0" }}
           >
-            A one-of-its-kind destination for musicians to harness their love of
-            music and connect with each other.
-          </Text>
-          <Box display={"flex"} alignItems="flex-start" gap=".26vw" mt=".925vh">
-            <Icon as={HiLocationMarker} fontSize=".833vw" />
-            <Box position="relative" bottom="5px">
-              <Text fontFamily={"Gilroy-Medium"} fontSize=".833vw">
-                M-23 Income Tax Colony, Tonk Road, Durgapura, Jaipur - 302018
+            <Box w={{ base: "50%", lg: "100%" }}>
+              <Text
+                mt="3.70vh"
+                mb="1.388vh"
+                fontFamily={"Gilroy-Medium"}
+                fontSize={{ base: "1.7rem", lg: ".833vw" }}
+              >
+                A one-of-its-kind destination for musicians to harness their
+                love of music and connect with each other.
+              </Text>
+            </Box>
+            <Box pt={{ base: "2rem", lg: "0rem" }}>
+              <Box
+                display={"flex"}
+                alignItems="flex-start"
+                gap=".26vw"
+                mt=".925vh"
+              >
+                <Icon
+                  as={HiLocationMarker}
+                  fontSize={{ base: "1.7rem", lg: ".833vw" }}
+                />
+                <Box position="relative" bottom="5px">
+                  <Text
+                    fontFamily={"Gilroy-Medium"}
+                    fontSize={{ base: "1.7rem", lg: ".833vw" }}
+                  >
+                    M-23 Income Tax Colony, Tonk Road, Durgapura, Jaipur -
+                    302018
+                  </Text>
+                </Box>
+              </Box>
+              <Box display={"flex"} alignItems="center" gap=".26vw" mt=".925vh">
+                <Icon
+                  as={MdEmail}
+                  fontSize={{ base: "1.7rem", lg: ".833vw" }}
+                />
+                <Text
+                  fontFamily={"Gilroy-Medium"}
+                  fontSize={{ base: "1.7rem", lg: ".833vw" }}
+                >
+                  info@udukku.com
+                </Text>
+              </Box>
+
+              <Box flexGrow={1}></Box>
+              <Text
+                fontFamily={"Gilroy-Medium"}
+                mt=".925vh"
+                fontSize={{ base: "1.7rem", lg: ".833vw" }}
+              >
+                ©udukku 2022
               </Text>
             </Box>
           </Box>
-          <Box display={"flex"} alignItems="center" gap=".26vw" mt=".925vh">
-            <Icon as={MdEmail} fontSize=".833vw" />
-            <Text fontFamily={"Gilroy-Medium"} fontSize=".833vw">
-              info@udukku.com
-            </Text>
-          </Box>
-          <Box flexGrow={1}></Box>
-          <Text fontFamily={"Gilroy-Medium"} mt=".925vh" fontSize=".833vw">
-            ©udukku 2022
-          </Text>
         </Box>
         <Box display={"flex"} justifyContent="space-around">
           <Box>
-            <Text fontSize="1.45vw" fontFamily={"Gilroy-Bold"}>
+            <Text
+              fontSize={{ base: "2.4rem", lg: "1.45vw" }}
+              fontFamily={"Gilroy-Bold"}
+            >
               Categories
             </Text>
             <Box
@@ -81,28 +117,49 @@ const Footer = () => {
               mt="8px"
               lineHeight={"3.70vh"}
             >
-              <Text fontFamily={"Gilroy-Medium"} fontSize=".833vw">
+              <Text
+                fontFamily={"Gilroy-Medium"}
+                fontSize={{ base: "1.7rem", lg: ".833vw" }}
+              >
                 Vocalists
               </Text>
-              <Text fontFamily={"Gilroy-Medium"} fontSize=".833vw">
+              <Text
+                fontFamily={"Gilroy-Medium"}
+                fontSize={{ base: "1.7rem", lg: ".833vw" }}
+              >
                 Music Producer & Engineers
               </Text>
-              <Text fontFamily={"Gilroy-Medium"} fontSize=".833vw">
+              <Text
+                fontFamily={"Gilroy-Medium"}
+                fontSize={{ base: "1.7rem", lg: ".833vw" }}
+              >
                 Indian Instruments
               </Text>
-              <Text fontFamily={"Gilroy-Medium"} fontSize=".833vw">
+              <Text
+                fontFamily={"Gilroy-Medium"}
+                fontSize={{ base: "1.7rem", lg: ".833vw" }}
+              >
                 International Instruments
               </Text>
-              <Text fontFamily={"Gilroy-Medium"} fontSize=".833vw">
+              <Text
+                fontFamily={"Gilroy-Medium"}
+                fontSize={{ base: "1.7rem", lg: ".833vw" }}
+              >
                 Songwriters & Composers
               </Text>
-              <Text fontFamily={"Gilroy-Medium"} fontSize=".833vw">
+              <Text
+                fontFamily={"Gilroy-Medium"}
+                fontSize={{ base: "1.7rem", lg: ".833vw" }}
+              >
                 DJs
               </Text>
             </Box>
           </Box>
           <Box>
-            <Text fontSize="1.45vw" fontFamily={"Gilroy-Bold"}>
+            <Text
+              fontSize={{ base: "2.4rem", lg: "1.45vw" }}
+              fontFamily={"Gilroy-Bold"}
+            >
               Support
             </Text>
             <Box
@@ -111,12 +168,15 @@ const Footer = () => {
               lineHeight={"3.70vh"}
               mt="8px"
             >
-              <Text fontFamily={"Gilroy-Medium"} fontSize=".833vw">
+              <Text
+                fontFamily={"Gilroy-Medium"}
+                fontSize={{ base: "1.7rem", lg: ".833vw" }}
+              >
                 FAQs
               </Text>
               <Text
                 fontFamily={"Gilroy-Medium"}
-                fontSize=".833vw"
+                fontSize={{ base: "1.7rem", lg: ".833vw" }}
                 cursor={"pointer"}
                 onClick={() => {
                   navigate("/privacy-policy");
@@ -126,7 +186,7 @@ const Footer = () => {
               </Text>
               <Text
                 fontFamily={"Gilroy-Medium"}
-                fontSize=".833vw"
+                fontSize={{ base: "1.7rem", lg: ".833vw" }}
                 cursor={"pointer"}
                 onClick={() => {
                   navigate("/about-us");
@@ -136,7 +196,7 @@ const Footer = () => {
               </Text>
               <Text
                 fontFamily={"Gilroy-Medium"}
-                fontSize=".833vw"
+                fontSize={{ base: "1.7rem", lg: ".833vw" }}
                 cursor={"pointer"}
                 onClick={() => {
                   navigate("/cancellation-and-refund");
@@ -146,7 +206,7 @@ const Footer = () => {
               </Text>
               <Text
                 fontFamily={"Gilroy-Medium"}
-                fontSize=".833vw"
+                fontSize={{ base: "1.7rem", lg: ".833vw" }}
                 cursor={"pointer"}
                 onClick={() => {
                   navigate("/terms-and-conditions");
@@ -156,7 +216,7 @@ const Footer = () => {
               </Text>
               <Text
                 fontFamily={"Gilroy-Medium"}
-                fontSize=".833vw"
+                fontSize={{ base: "1.7rem", lg: ".833vw" }}
                 cursor={"pointer"}
                 onClick={() => {
                   navigate("/contact-us");
@@ -168,7 +228,11 @@ const Footer = () => {
           </Box>
         </Box>
         <Box>
-          <Text fontSize="1.45vw" fontFamily={"Gilroy-Bold"} mb="10px">
+          <Text
+            fontSize={{ base: "2.4rem", lg: "1.45vw" }}
+            fontFamily={"Gilroy-Bold"}
+            mb="10px"
+          >
             Subscribe to hear news
           </Text>
           <InputGroup
@@ -197,7 +261,7 @@ const Footer = () => {
                 _hover={{
                   background: "#0E87F6",
                 }}
-                fontSize=".833vw"
+                fontSize={{ base: "1.7rem", lg: ".833vw" }}
               >
                 Send
               </Button>
@@ -208,8 +272,8 @@ const Footer = () => {
               as="a"
               href="https://www.facebook.com/udukkumusic/"
               target="_blank"
-              w="2vw"
-              h="2vw"
+              w={{ base: "2.4rem", lg: "2vw" }}
+              h={{ base: "2.4rem", lg: "2vw" }}
               borderRadius={"5px"}
               display={"flex"}
               justifyContent="center"
@@ -220,13 +284,13 @@ const Footer = () => {
               <Icon
                 as={FaFacebookF}
                 color="rgb(255,255,255)"
-                fontSize={".833vw"}
+                fontSize={{ base: "2rem", lg: ".833vw" }}
               />
             </Box>
             <Box
               as="a"
-              w="2vw"
-              h="2vw"
+              w={{ base: "2.4rem", lg: "2vw" }}
+              h={{ base: "2.4rem", lg: "2vw" }}
               href="https://www.instagram.com/udukkumusic/"
               target="_blank"
               borderRadius={"5px"}
@@ -239,7 +303,7 @@ const Footer = () => {
               <Icon
                 as={FaInstagram}
                 color="rgb(255,255,255)"
-                fontSize={".833vw"}
+                fontSize={{ base: "2rem", lg: ".833vw" }}
               />
             </Box>
 
@@ -247,8 +311,8 @@ const Footer = () => {
               as="a"
               href="https://twitter.com/udukkumusic"
               target="_blank"
-              w="2vw"
-              h="2vw"
+              w={{ base: "2.4rem", lg: "2vw" }}
+              h={{ base: "2.4rem", lg: "2vw" }}
               borderRadius={"5px"}
               display={"flex"}
               justifyContent="center"
@@ -259,7 +323,7 @@ const Footer = () => {
               <Icon
                 as={FaTwitter}
                 color="rgb(255,255,255)"
-                fontSize={".833vw"}
+                fontSize={{ base: "2rem", lg: ".833vw" }}
               />
             </Box>
           </Box>

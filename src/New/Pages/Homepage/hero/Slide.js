@@ -37,11 +37,12 @@ const Slide = () => {
   return (
     <Box
       flexShrink={0}
-      w="27.60vw"
+      w={{base:"100vw",lg:"27.60vw"}}
       borderRadius={"1.666vw"}
       overflow="hidden"
       position={"relative"}
       className="hero"
+      px={{base:"3.5rem"}}
     >
       <Splide
         aria-label="images"
@@ -49,7 +50,7 @@ const Slide = () => {
         options={{
           type: "loop",
           gap: "1rem",
-          width: "27.60vw",
+          width: {base:"100vw",lg:"27.60vw"},
           height: "51.85vh",
           transition: "slide",
           interval: 3000,
@@ -66,7 +67,7 @@ const Slide = () => {
                   bgImage={data.avatar}
                   bgSize="cover"
                   bgPos={"50% 50%"}
-                  w="27.60vw"
+                  w={{base:"100vw",lg:"27.60vw"}}
                   h="51.85vh"
                 ></Box>
               </SplideSlide>
@@ -78,7 +79,7 @@ const Slide = () => {
           // display={'none'}
           position={"absolute"}
           h="22.40vh"
-          w="12.93vw"
+          w={{base:"20rem",lg:"12.93vw"}}
           bg="rgba(8, 32, 50,.65)"
           bottom={0}
           right={0}
@@ -96,7 +97,7 @@ const Slide = () => {
             <Text
               pt="10px"
               color="#fff"
-              fontSize={"1.04vw"}
+              fontSize={{base:"2rem",lg:"1.04vw"}}
               textAlign="end"
               fontFamily="Gilroy-Medium"
             >
@@ -119,8 +120,8 @@ const Slide = () => {
               mt="1.11vh"
             >
               <Box
-                h="2.5vw"
-                w="2.5vw"
+                h={{base:"3rem",lg:"2.5vw"}}
+                w={{base:"3rem",lg:"2.5vw"}}
                 display={"flex"}
                 justifyContent="center"
                 alignItems={"center"}
@@ -131,11 +132,11 @@ const Slide = () => {
                   document.querySelector(".splide__arrow--prev").click();
                 }}
               >
-                <Image src={left} alt="left" w=".5vw" />
+                <Image src={left} alt="left" w={{base:"1.3rem",lg:".5vw"}} />
               </Box>
               <Box
-                h="2.5vw"
-                w="2.5vw"
+                h={{base:"3rem",lg:"2.5vw"}}
+                w={{base:"3rem",lg:"2.5vw"}}
                 display={"flex"}
                 justifyContent="center"
                 alignItems={"center"}
@@ -146,7 +147,7 @@ const Slide = () => {
                   document.querySelector(".splide__arrow--next").click();
                 }}
               >
-                <Image src={right} alt="left" w=".5vw" />
+                <Image src={right} alt="left" w={{base:"1.3rem",lg:".5vw"}} />
               </Box>
             </Box>
           </Box>

@@ -41,19 +41,24 @@ const ExploreTheMarketplace = () => {
     <Box
       bg="#fff"
       px={{ base: "7vw", lg: "13.54vw" }}
-      h="fit-content"
+      // h="fit-content"
       py="50px"
+      display={"flex"}
+      flexDir="column"
+      gap="3rem"
     >
       <Box
         display={"flex"}
+        flexDir={{base:"column",lg:"row"}}
         justifyContent="space-between"
-        alignItems={"center"}
+        alignItems={{base:"flex-start",lg:"center"}}
+        gap={{base:"3rem"}}
       >
-        <Box w="60%">
-          <Text fontSize={"2.29vw"} fontFamily={"Gilroy-Bold"}>
+        <Box w={{base:"100%",lg:"50%"}}>
+          <Text fontSize={{base:"4.7rem",lg:"2.29vw"}}fontFamily={"Gilroy-Bold"}>
             Explore The Marketplace For A Job
           </Text>
-          <Text fontSize={"1.04vw"} fontFamily={"Gilroy-Medium"}>
+          <Text fontSize={{base:"1.7rem",lg:"1.04vw"}} fontFamily={"Gilroy-Medium"}>
             Are you a musician looking to provide your skills? Browse here for
             your next opportunity.
           </Text>
@@ -63,10 +68,10 @@ const ExploreTheMarketplace = () => {
             position="relative"
             fontFamily={"Gilroy-SemiBold"}
             fontWeight="normal"
-            fontSize={".833vw"}
-            borderRadius={"1.04vw"}
-            w="14.01vw"
-            h="6.66vh"
+            fontSize={{base:"1.5rem",lg:".833vw"}}
+            borderRadius={{base:"2rem",lg:"1.04vw"}}
+            w={{base:"20rem",lg:"12.55vw"}}
+            h={{base:"5rem",lg:"6.66vh"}}
             onClick={() => {
               navigate("/jobs");
             }}
@@ -79,10 +84,11 @@ const ExploreTheMarketplace = () => {
       <Box
         display={"flex"}
         gap="20px"
-        mt="30px"
+        // mt="30px"
         className="talents hide-it"
-        flexWrap={"nowrap"}
+        // flexWrap={"nowrap"}
         overflowX="scroll"
+
       >
         {jobs.map((job, index) => {
           if (index >= 3) {

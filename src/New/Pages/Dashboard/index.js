@@ -10,7 +10,7 @@ import { ReactComponent as PeopleIcon } from "../../../Assets/Icons/profile-2use
 import { ReactComponent as MoneyIcon } from "../../../Assets/Icons/dollar-circle-transparent.svg";
 import { ReactComponent as ExportIcon } from "../../../Assets/Icons/export.svg";
 import JobSearchCard from "../../Components/jobSearchCard/JobSearchCard";
-import SignInNavbar from "../../Components/NavBar/SignInNavbar";
+
 
 // dummy
 const d_data = [

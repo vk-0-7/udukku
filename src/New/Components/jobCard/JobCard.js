@@ -2,6 +2,11 @@ import { Box, Text, Button, Icon, propNames } from "@chakra-ui/react";
 import { HiOutlineChevronRight } from "react-icons/hi";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { ReactComponent as CategoryIcon } from "../../../Assets/Icons/category.svg";
+import { ReactComponent as GenreIcon } from "../../../Assets/Icons/VectorGen.svg";
+import { ReactComponent as MoneyIcon } from "../../../Assets/Icons/dollar-circle-transparent.svg";
+import { ReactComponent as TimeIcon } from "../../../Assets/Icons/clock_trans.svg";
+import { ReactComponent as AttachIcon } from "../../../Assets/Icons/attach-circle-trans.svg";
 
 //jobTitle, service, genre, description, deadline, budget
 const JobCard = (props) => {
@@ -9,8 +14,8 @@ const JobCard = (props) => {
   const navigate = useNavigate();
   return (
     <Box
-      w="23.75vw"
-      h="52.77vh"
+      w={{ base: "35rem", lg: "23.75vw" }}
+      // h="52.77vh"
       bg="#fff"
       border="1.5px solid #f0f0f0"
       borderRadius={"28px"}
@@ -21,7 +26,10 @@ const JobCard = (props) => {
       flexDir={"column"}
     >
       {/* heading */}
-      <Text fontSize={"1.45vw"} fontFamily={"Gilroy-Bold"}>
+      <Text
+        fontSize={{ base: "3rem", lg: "1.45vw" }}
+        fontFamily={"Gilroy-Bold"}
+      >
         {props.title}
       </Text>
       {/* section which contain all the badges */}
@@ -37,7 +45,7 @@ const JobCard = (props) => {
               borderRadius={"16px"}
               flexShrink={0}
               fontFamily={"Gilroy-SemiBold"}
-              fontSize={".729vw"}
+              fontSize={{base:"1.3rem",lg:".729vw"}}
               h="4.07vh"
               key={index}
             >
@@ -50,14 +58,22 @@ const JobCard = (props) => {
           display={"inline-flex"}
           justifyContent="center"
           alignItems={"center"}
-          px="15px"
-          borderRadius={"16px"}
+          px={{ base: "5px", lg: "15px" }}
+          borderRadius={{ base: "10px", lg: "16px" }}
           flexShrink={0}
           fontFamily={"Gilroy-SemiBold"}
-          fontSize={".729vw"}
+          fontSize={{ base: "1.3rem", lg: ".729vw" }}
+          // py={{base:"2px",lg:"4.07vh"}}
           h="4.07vh"
+          gap={".41vw"}
         >
-          {props.category.service}
+          <CategoryIcon
+            style={{
+              width: "1.3rem",
+              height: "1.3rem",
+            }}
+          />
+          {props.category?.service}
         </Box>
 
         <Box
@@ -69,10 +85,13 @@ const JobCard = (props) => {
           borderRadius={"16px"}
           flexShrink={0}
           fontFamily={"Gilroy-SemiBold"}
-          fontSize={".729vw"}
+          fontSize={{base:"1.3rem",lg:".729vw"}}
           h="4.07vh"
+          gap={".41vw"}
         >
-          {props.category.subservice}
+          <CategoryIcon style={{  width: "1.3rem",
+              height: "1.3rem",}} />
+          {props.category?.subservice}
         </Box>
         {props.genres.map((item, index) => {
           return (
@@ -86,72 +105,88 @@ const JobCard = (props) => {
                 borderRadius={"16px"}
                 flexShrink={0}
                 fontFamily={"Gilroy-SemiBold"}
-                fontSize={".729vw"}
+                fontSize={{base:"1.3rem",lg:".729vw"}}
                 h="4.07vh"
+                gap={".41vw"}
               >
+                <GenreIcon style={{ width: "1.3rem",
+              height: "1.3rem",}} />
                 {item.genere}
-              </Box>
-              <Box
-                bg="rgba(192, 226, 24,.1)"
-                display={"inline-flex"}
-                justifyContent="center"
-                alignItems={"center"}
-                px="15px"
-                borderRadius={"16px"}
-                flexShrink={0}
-                fontFamily={"Gilroy-SemiBold"}
-                fontSize={".729vw"}
-                h="4.07vh"
-              >
-                {item.subGenere}
               </Box>
             </div>
           );
         })}
       </Box>
       {/* some text */}
-      <Text mt="2.222vh" fontSize={".833vw"} fontFamily="Gilroy-Medium">
+      <Text mt="2.222vh" fontSize={{base:"1.5rem",lg:".833vw"}} fontFamily="Gilroy-Medium">
         {props.description}
       </Text>
       {/* some more badges */}
       <Box display={"flex"} gap="10px" flexWrap={"wrap"} mt="2.40vh">
         <Box
-          display={"inline-block"}
+          display={"inline-flex"}
           px="15px"
-          py="8px"
+          py="5px"
+          alignItems="center"
+          gap=".52vw"
           borderRadius={"16px"}
           flexShrink={0}
           fontFamily="Gilroy-Medium"
-          fontSize={".833vw"}
+          fontSize={{base:"1.5rem",lg:".833vw"}}
         >
+          <MoneyIcon
+            style={{
+              width: "1.5rem",
+              height: "1.5rem",
+              fill: "rgba(8, 32, 50, .5)",
+            }}
+          />
           Fixed Price
         </Box>
         <Box
-          display={"inline-block"}
+          display={"inline-flex"}
           px="15px"
           py="8px"
+          alignItems="center"
+          gap=".52vw"
           borderRadius={"16px"}
           flexShrink={0}
           fontFamily="Gilroy-Medium"
-          fontSize={".833vw"}
+          fontSize={{base:"1.5rem",lg:".833vw"}}
         >
+          <TimeIcon
+            style={{
+              width: "1.5rem",
+              height: "1.5rem",
+              fill: "rgba(8, 32, 50, .5)",
+            }}
+          />
           {props.deadline}
         </Box>
         <Box
-          display={"inline-block"}
+          display={"inline-flex"}
           px="15px"
           py="8px"
+          alignItems="center"
+          gap=".52vw"
           borderRadius={"16px"}
           flexShrink={0}
           fontFamily="Gilroy-Medium"
-          fontSize={".833vw"}
+          fontSize={{base:"1.5rem",lg:".833vw"}}
         >
+          <AttachIcon
+            style={{
+              width: "1.5rem",
+              height: "1.5rem",
+              fill: "rgba(8, 32, 50, .5)",
+            }}
+          />
           2 references
         </Box>
       </Box>
       {/* price */}
-      <Text fontSize={"1.45vw"} mt="2.59vh" fontFamily={"Gilroy-Bold"}>
-        ${props.budget[0]} - ${props.budget[1]}
+      <Text fontSize={{base:"2.3rem",lg:"1.45vw"}} fontFamily={"Gilroy-Bold"} py="1.5rem">
+        ₹{props.budget[0]} -₹{props.budget[1]}
       </Text>
       {/* button */}
       <Box flexGrow={1}></Box>
@@ -161,7 +196,7 @@ const JobCard = (props) => {
           w="22.5vw"
           bg="rgba(246, 84, 14, 1)"
           color="#fff"
-          h="6.48vh"
+          h={{base:"4rem",lg:"6.48vh"}}
           borderRadius={"1.25vw"}
           display="flex"
           alignItems={"center"}
@@ -169,7 +204,7 @@ const JobCard = (props) => {
           className="move-to-right"
           onClick={() => navigate("/job-detail-page")}
         >
-          <Text fontFamily={"Gilroy-SemiBold"} fontSize=".833vw">
+          <Text fontFamily={"Gilroy-SemiBold"} fontSize={{base:"1.5rem",lg:".833vw"}}>
             See Details
           </Text>
 

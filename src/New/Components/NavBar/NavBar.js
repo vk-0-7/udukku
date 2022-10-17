@@ -25,6 +25,7 @@ import { ReactComponent as GenreIcon } from "../../../Assets/Icons/element-4.svg
 import { ReactComponent as JobIcon } from "../../../Assets/Icons/Vector(1).svg";
 import { ReactComponent as LogOutIcon } from "../../../Assets/Icons/logout.svg";
 import { ReactComponent as SwitchIcon } from "../../../Assets/Icons/repeat.svg";
+import { ReactComponent as HamIcon } from "../../../Assets/Icons/Group 519.svg";
 const NavBar = () => {
   const [signInState, setSignInState] = useState(false);
   const [signUpState, setSignUpState] = useState(false);
@@ -33,7 +34,7 @@ const NavBar = () => {
   const navigate = useNavigate();
   const [howItWorksState, setHowItWorksState] = useState(false);
   const { loginState, avatar, username } = AccessAuthContext();
-
+  const [hamMenu, setHamMenu] = useState(false);
   useEffect(() => {
     const getit = () => {
       const winScroll =
@@ -70,14 +71,18 @@ const NavBar = () => {
       <Box
         position={"fixed"}
         top="0"
-        h="fit-content"
+        h={{ base: hamMenu ? "100vh" : "fit-content", lg: "fit-content" }}
         w="100vw"
         px={{ base: "7vw", lg: "13.54vw" }}
         pt={path.length >= 2 ? "20px" : positon > 5 ? "20px" : "20px"}
         pb={path.length >= 2 ? "20px" : positon > 5 ? "20px" : "0px"}
         display={"flex"}
-        alignItems="center"
-        justifyContent={"space-between"}
+        flexDir={{ base: hamMenu ? "column" : "row", lg: "row" }}
+        alignItems={{ base: hamMenu ? "center" : "flex-start", lg: "center" }}
+        justifyContent={{
+          base: hamMenu ? "flex-start" : "space-between",
+          lg: "space-between",
+        }}
         transition=".5s"
         bg={
           path.length >= 2
@@ -94,239 +99,281 @@ const NavBar = () => {
         backdropFilter={positon > 10 ? "blur(15px)" : ""}
         zIndex={1000}
       >
-        <Box flexGrow={1}>
+        <Box
+          pr="1.5rem"
+          display={{ base: "block", lg: "none" }}
+          cursor={{ base: "pointer", lg: "none" }}
+          alignSelf={"flex-start"}
+        >
+          <HamIcon onClick={() => setHamMenu(!hamMenu)} />
+        </Box>
+        <Box flexGrow={{ base: hamMenu ? "" : "1", lg: "1" }}>
           {loginState === true ? (
             <Link to="/dashboard">
-              <Image src={logo} />
+              <Image display={{base:hamMenu===false&&loginState===false?"none":"block",lg:"inline-block"}} onClick={()=>setHamMenu(false)} src={logo} />
             </Link>
           ) : (
             <Link to="/">
-              <Image src={logo} />
+              <Image display={{base:hamMenu===false&&loginState===false?"none":"block",lg:"inline-block"}} onClick={()=>setHamMenu(false)} src={logo} />
             </Link>
           )}
         </Box>
-        <Box display={"flex"} color="#fff" gap="30px" alignItems={"center"}>
-          <Text
-            fontFamily={"Gilroy-SemiBold"}
-            fontSize=".8333vw"
-            onClick={() => {
-              navigate("/lyrics");
-            }}
-            color={path[1] === "lyrics" ? "#F6540E" : "#fff"}
-            _hover={{
-              color: "#F6540E",
-            }}
-            cursor="pointer"
+        <Box
+          display={"flex"}
+          pt={{ base: hamMenu ? "3rem" : "0", lg: "0" }}
+          flexDir={{ base: "column", lg: "row" }}
+          color="#fff"
+          gap="30px"
+          alignItems={"center"}
+        >
+          <Box
+            display={{ base: hamMenu ? "flex" : "none", lg: "flex" }}
+            flexDir={{ base: "column", lg: "row" }}
+            gap="30px"
+            alignItems={"center"}
           >
-            Lyrics
-          </Text>
-          <Text
-            fontFamily={"Gilroy-SemiBold"}
-            fontSize=".8333vw"
-            _hover={{
-              color: "#F6540E",
-            }}
-            cursor="pointer"
-            color={path[1] === "talents" ? "#F6540E" : "#fff"}
-            onClick={() => {
-              navigate("/talents");
-            }}
-          >
-            Talents
-          </Text>
-          <Text
-            fontFamily={"Gilroy-SemiBold"}
-            fontSize=".8333vw"
-            color={path[1] === "jobs" ? "#F6540E" : "#fff"}
-            _hover={{
-              color: "#F6540E",
-            }}
-            cursor="pointer"
-            onClick={() => {
-              navigate("/jobs/");
-            }}
-          >
-            Jobs
-          </Text>
-          <Text
-            fontFamily={"Gilroy-SemiBold"}
-            fontSize=".8333vw"
-            cursor={"pointer"}
-            onClick={() => {
-              setHowItWorksState(true);
-            }}
-          >
-            How it works
-          </Text>
-          <Box h="20px" w="1px" bg="gray"></Box>
-          {loginState === true ? (
-            <Box
-              display={"flex"}
-              flexDir="row"
-              gap="1rem"
-              alignItems={"center"}
+            <Text
+              fontFamily={"Gilroy-SemiBold"}
+              fontSize={{ base: "4rem", lg: ".8333vw" }}
+              onClick={() => {
+                navigate("/lyrics");
+                setHamMenu(!hamMenu);
+              }}
+              color={path[1] === "lyrics" ? "#F6540E" : "#fff"}
+              _hover={{
+                color: "#F6540E",
+              }}
+              cursor="pointer"
             >
-              <Sms
-                style={{ height: "1.5rem", width: "1.5rem", cursor: "pointer" }}
-                onClick={() => navigate("/contactMessage")}
-              />
-              <Menu>
-                <MenuButton
-                  px=".59vw"
-                  py="5px"
-                  borderRadius={"full"}
-                  transition="all 0.2s"
-                  _hover={{
-                    background: "rgba(255,255,255,.1)",
+              Lyrics
+            </Text>
+            <Text
+              fontFamily={"Gilroy-SemiBold"}
+              fontSize={{ base: "4rem", lg: ".8333vw" }}
+              _hover={{
+                color: "#F6540E",
+              }}
+              cursor="pointer"
+              color={path[1] === "talents" ? "#F6540E" : "#fff"}
+              onClick={() => {
+                navigate("/talents");
+                setHamMenu(!hamMenu);
+              }}
+            >
+              Talents
+            </Text>
+            <Text
+              fontFamily={"Gilroy-SemiBold"}
+              fontSize={{ base: "4rem", lg: ".8333vw" }}
+              color={path[1] === "jobs" ? "#F6540E" : "#fff"}
+              _hover={{
+                color: "#F6540E",
+              }}
+              cursor="pointer"
+              onClick={() => {
+                navigate("/jobs/");
+                setHamMenu(!hamMenu);
+              }}
+            >
+              Jobs
+            </Text>
+            <Text
+              fontFamily={"Gilroy-SemiBold"}
+              fontSize={{ base: "4rem", lg: ".8333vw" }}
+              cursor={"pointer"}
+              onClick={() => {
+                setHowItWorksState(true);
+                setHamMenu(!hamMenu);
+              }}
+            >
+              How it works
+            </Text>
+          </Box>
+          <Box
+            h="20px"
+            w="1px"
+            bg="gray"
+            display={{ base: "none", lg: "block" }}
+          ></Box>
+          <Box
+            display={"flex"}
+            flexDir="row"
+            alignItems={"center"}
+            gap="1.7rem"
+          >
+            {loginState === true ? (
+              <Box
+                display={{ base: hamMenu ? "none" : "flex", lg: "flex" }}
+                flexDir={{ base: hamMenu ? "column" : "row", lg: "row" }}
+                gap="1rem"
+                alignItems={"center"}
+              >
+                <Sms
+                  style={{
+                    height: "1.5rem",
+                    width: "1.5rem",
+                    cursor: "pointer",
                   }}
-                  _expanded={{ bg: "rgba(255,255,255,.1)" }}
-                  // _focus={{ boxShadow: 'outline' }}
-                >
-                  <Box
-                    h="fit-content"
-                    display={"flex"}
-                    alignItems={"center"}
-                    justifyContent="center"
-                    gap={"15px"}
-                    cursor="pointer"
+                  onClick={() => navigate("/contactMessage")}
+                />
+                <Menu>
+                  <MenuButton
+                    px=".59vw"
+                    py="5px"
+                    borderRadius={"full"}
+                    transition="all 0.2s"
+                    _hover={{
+                      background: "rgba(255,255,255,.1)",
+                    }}
+                    _expanded={{ bg: "rgba(255,255,255,.1)" }}
+                    // _focus={{ boxShadow: 'outline' }}
                   >
                     <Box
-                      bgImage={avatar}
-                      bgSize="cover"
-                      borderRadius={"full"}
-                      h="30px"
-                      w="30px"
-                    ></Box>
-                    <Box
+                      h="fit-content"
                       display={"flex"}
-                      gap=".26vw"
-                      justifyContent={"center"}
-                      alignItems="center"
+                      alignItems={"center"}
+                      justifyContent="center"
+                      gap={"15px"}
+                      cursor="pointer"
                     >
-                      <Text fontSize=".8333vw" fontFamily={"Gilroy-SemiBold"}>
-                        Hello {username}
-                      </Text>
-                      <Icon as={BsChevronDown} fontSize=".8333vw" />
+                      <Box
+                        bgImage={avatar}
+                        bgSize="cover"
+                        borderRadius={"full"}
+                        h="30px"
+                        w="30px"
+                      ></Box>
+                      <Box
+                        display={"flex"}
+                        gap=".26vw"
+                        justifyContent={"center"}
+                        alignItems="center"
+                      >
+                        <Text fontSize={{base:"1.5rem",lg:".8333vw" }}fontFamily={"Gilroy-SemiBold"}>
+                          Hello {username}
+                        </Text>
+                        <Icon as={BsChevronDown} fontSize={{base:"1.5rem",lg:".8333vw" }}/>
+                      </Box>
                     </Box>
-                  </Box>
-                </MenuButton>
-                <MenuList bg="white" color="black">
-                  <MenuItem
-                    fontSize={"1.4rem"}
-                    onClick={() => {
-                      navigate("/dashboard");
-                    }}
-                    icon={
-                      <GenreIcon
-                        style={{
-                          fill: "#F6540E",
-                          width: "1.25vw",
-                          height: "1.25vw",
-                        }}
-                      />
-                    }
-                  >
-                    Dashboard
-                  </MenuItem>
-                  <MenuItem
-                    fontSize={"1.4rem"}
-                    icon={
-                      <JobIcon
-                        style={{
-                          fill: "#F6540E",
-                          width: "1.25vw",
-                          height: "1.25vw",
-                        }}
-                      />
-                    }
-                  >
-                    My Jobs
-                  </MenuItem>
-                  <MenuDivider
-                    borderWidth={"2px"}
-                    borderStyle="rgba(8, 32, 50, 1)"
-                  />
-                  <MenuItem
-                    fontSize={"1.4rem"}
-                    onClick={() => {
-                      navigate(`/${localStorage.getItem("username")}`);
-                    }}
-                    icon={
-                      <Man
-                        style={{
-                          fill: "#F6540E",
-                          width: "1.25vw",
-                          height: "1.25vw",
-                          background: "#F6540E",
-                        }}
-                      />
-                    }
-                  >
-                    My Profile
-                  </MenuItem>
-                  <MenuItem
-                    fontSize={"1.4rem"}
-                    icon={
-                      <LogOutIcon
-                        style={{
-                          fill: "#F6540E",
-                          width: "1.25vw",
-                          height: "1.25vw",
-                        }}
-                      />
-                    }
-                    onClick={handleLogout}
-                  >
-                    Logout
-                  </MenuItem>
-                  <MenuItem
-                    fontSize={"1.4rem"}
-                    icon={
-                      <SwitchIcon
-                        style={{
-                          fill: "#F6540E",
-                          width: "1.25vw",
-                          height: "1.25vw",
-                        }}
-                      />
-                    }
-                  >
-                    Switch to Job creator
-                  </MenuItem>
-                </MenuList>
-              </Menu>
-            </Box>
-          ) : (
-            <>
-              <Text
-                fontFamily={"Gilroy-SemiBold"}
-                cursor={"pointer"}
-                onClick={() => {
-                  setSignInState(true);
-                }}
-                fontSize=".8333vw"
-              >
-                Sign in
-              </Text>
-              <Button
-                bg="transparent"
-                border="1px solid #F6540E"
-                borderRadius={"1.04vw"}
-                _hover={{ background: "rgba(215,85,28)" }}
-                onClick={() => {
-                  setSignUpState(true);
-                }}
-                fontFamily={"Gilroy-SemiBold"}
-                fontSize=".8333vw"
-                w="13.59vw"
-                h="6.66vh"
-                id="navbar_become_member_btn"
-              >
-                <Man />
-                Become a memeber
-              </Button>
-            </>
-          )}
+                  </MenuButton>
+                  <MenuList bg="white" color="black">
+                    <MenuItem
+                      fontSize={"1.4rem"}
+                      onClick={() => {
+                        navigate("/dashboard");
+                      }}
+                      icon={
+                        <GenreIcon
+                          style={{
+                            fill: "#F6540E",
+                            width: "1.25vw",
+                            height: "1.25vw",
+                          }}
+                        />
+                      }
+                    >
+                      Dashboard
+                    </MenuItem>
+                    <MenuItem
+                      fontSize={"1.4rem"}
+                      icon={
+                        <JobIcon
+                          style={{
+                            fill: "#F6540E",
+                            width: "1.25vw",
+                            height: "1.25vw",
+                          }}
+                        />
+                      }
+                    >
+                      My Jobs
+                    </MenuItem>
+                    <MenuDivider
+                      borderWidth={"2px"}
+                      borderStyle="rgba(8, 32, 50, 1)"
+                    />
+                    <MenuItem
+                      fontSize={"1.4rem"}
+                      onClick={() => {
+                        navigate(`/${localStorage.getItem("username")}`);
+                      }}
+                      icon={
+                        <Man
+                          style={{
+                            fill: "#F6540E",
+                            width: "1.25vw",
+                            height: "1.25vw",
+                            background: "#F6540E",
+                          }}
+                        />
+                      }
+                    >
+                      My Profile
+                    </MenuItem>
+                    <MenuItem
+                      fontSize={"1.4rem"}
+                      icon={
+                        <LogOutIcon
+                          style={{
+                            fill: "#F6540E",
+                            width: "1.25vw",
+                            height: "1.25vw",
+                          }}
+                        />
+                      }
+                      onClick={handleLogout}
+                    >
+                      Logout
+                    </MenuItem>
+                    <MenuItem
+                      fontSize={"1.4rem"}
+                      icon={
+                        <SwitchIcon
+                          style={{
+                            fill: "#F6540E",
+                            width: "1.25vw",
+                            height: "1.25vw",
+                          }}
+                        />
+                      }
+                    >
+                      Switch to Job creator
+                    </MenuItem>
+                  </MenuList>
+                </Menu>
+              </Box>
+            ) : (
+              <>
+                <Text
+                  fontFamily={"Gilroy-SemiBold"}
+                  cursor={"pointer"}
+                  onClick={() => {
+                    setSignInState(true);
+                  }}
+                  fontSize={{ base: "1.5rem", lg: ".8333vw" }}
+                >
+                  Sign in
+                </Text>
+                <Button
+                  bg="transparent"
+                  border="1px solid #F6540E"
+                  borderRadius={"1.04vw"}
+                  _hover={{ background: "rgba(215,85,28)" }}
+                  onClick={() => {
+                    setSignUpState(true);
+                  }}
+                  fontFamily={"Gilroy-SemiBold"}
+                  fontSize={{ base: "1.5rem", lg: ".8333vw" }}
+                  w={{ lg: "13.59vw" }}
+                  h="6.66vh"
+                  id="navbar_become_member_btn"
+                >
+                  <Man />
+                  Become a memeber
+                </Button>
+              </>
+            )}
+          </Box>
         </Box>
       </Box>
     </>

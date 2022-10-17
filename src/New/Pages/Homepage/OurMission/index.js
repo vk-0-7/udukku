@@ -18,15 +18,15 @@ const OurMission = () => {
         alignItems="center"
         py="50px"
         gap="10px"
-        h={{ base: "48.88vh", "3xl": "45vh" }}
+        h={{ base: "45rem", "3xl": "45vh" }}
       >
-        <Text fontSize={"3.37vw"} fontFamily="Gilroy-Bold">
+      <Text fontSize={{base:"5rem",lg:"3.37vw"}} fontFamily="Gilroy-Bold">
           Our Mission
         </Text>
         <Text
           textAlign={"center"}
           w="70%"
-          fontSize={"1.04vw"}
+          fontSize={{base:"2rem",lg:"1.04vw"}}
           fontFamily="Gilroy-Medium"
         >
           To provide a marketplace platform for musicians to monetize their
@@ -37,11 +37,11 @@ const OurMission = () => {
           bg="rgba(246, 84, 14, 1)"
           color="#fff"
           h="6.66vh"
-          w="13.59vw"
+          w={{base:"",lg:"13.59vw"}}
           borderRadius={"1.04vw"}
           mt="20px"
           fontFamily="Gilroy-SemiBold"
-          fontSize={".833vw"}
+          fontSize={{base:"1.5rem",lg:".833vw"}}
           id="our_mission_btn"
           onClick={() => setSignupState(true)}
         >

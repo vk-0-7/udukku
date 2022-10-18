@@ -40,7 +40,7 @@ const BudgetFilter = ({ MainStart, MainEnd, setMainStart, setMainEnd }) => {
       <PopoverTrigger>
         <Box
           fontFamily={"Gilroy-SemiBold"}
-          fontSize=".833vw"
+          fontSize={{ base: "1.5rem", lg: ".833vw" }}
           w="fit-content"
           h="6.48vh"
           border="1.5px solid #F0F0F0"
@@ -48,7 +48,7 @@ const BudgetFilter = ({ MainStart, MainEnd, setMainStart, setMainEnd }) => {
           alignItems="center"
           justifyContent={"center"}
           borderRadius="1.25vw"
-          gap=".31vw"
+          gap={{ base: "1rem", lg: ".31vw" }}
           cursor={"pointer"}
           _hover={{
             background: "rgba(8, 32, 50, 1)",
@@ -70,7 +70,7 @@ const BudgetFilter = ({ MainStart, MainEnd, setMainStart, setMainEnd }) => {
             }}
           />
 
-          <Text fontFamily={"Gilroy-SemiBold"} fontSize=".833vw">
+          <Text fontFamily={"Gilroy-SemiBold"} >
             {done ? `$${MainStart} - $${MainEnd}` : "Budget"}
           </Text>
         </Box>

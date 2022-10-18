@@ -30,7 +30,7 @@ const CategoryFilter = ({ Main, SetMainCat }) => {
       <PopoverTrigger>
         <Box
           fontFamily={"Gilroy-SemiBold"}
-          fontSize=".833vw"
+          fontSize={{base:"1.5rem",lg:".833vw"}}
           w="fit-content"
           h="6.48vh"
           border="1.5px solid #F0F0F0"
@@ -38,7 +38,7 @@ const CategoryFilter = ({ Main, SetMainCat }) => {
           alignItems="center"
           justifyContent={"center"}
           borderRadius="1.25vw"
-          gap=".31vw"
+          gap={{base:"1rem",lg:".31vw"}}
           cursor={"pointer"}
           _hover={{
             background: "rgba(8, 32, 50, 1)",

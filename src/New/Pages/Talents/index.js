@@ -123,7 +123,8 @@ const Talents = () => {
   const [genre, set_genre] = useState("");
   const [show_clear, set_show_clear] = useState(false);
   const [pageTitle, setPageTitle] = useState("");
-
+//mobile view
+const [filterButton,setFilterButton]= useState(false);
   useEffect(() => {
     //window.scrollTo(0, 0);
     getAllUsers().then((res) => {
@@ -236,45 +237,62 @@ const Talents = () => {
       >
         <Box
           display={"flex"}
+          flexDir={{ base: "column", lg: "row" }}
           justifyContent={"space-between"}
-          alignItems="center"
+          alignItems={{ base: "flex-start", lg: "center" }}
         >
-          <Text fontSize={"2.29vw"} fontFamily={"Gilroy-Bold"}>
+          <Text
+            fontSize={{ base: "4rem", lg: "2.29vw" }}
+            fontFamily={"Gilroy-Bold"}
+            w="100%"
+          >
             Discover {categoryF === "" ? "Pro musicians" : categoryF} in india
           </Text>
-          <InputGroup
-            w="36.04vw"
-            _focus={{
-              svg: { stroke: "rgba(246, 84, 14, 1) !important" },
-            }}
-          >
-            <InputLeftElement
-              pointerEvents="none"
-              h="100%"
-              children={<SearchIcon style={{ stroke: search_color }} />}
-            />
-            <Input
-              borderRadius={"1.04vw"}
-              h={{ base: "6.48vh", "3xl": "5vh" }}
-              type="text"
-              fontSize=".93vw"
-              placeholder="Enter talent name, category or genre"
+          <Box display={"flex"} w="100%" gap={{ base: "2rem", lg: "" }}>
+            <InputGroup
+              w={{ base: "80%", lg: "100%" }}
               _focus={{
-                border: "2px solid rgba(246, 84, 14, 1)",
+                svg: { stroke: "rgba(246, 84, 14, 1) !important" },
               }}
-              onFocus={() => {
-                console.log("in focus");
-                set_search_color("rgba(246, 84, 14, 1)");
-              }}
-              onBlur={() => {
-                set_search_color("rgba(43, 43, 43, .3)");
-              }}
-              value={search}
-              onChange={(e) => {
-                set_search(e.target.value);
-              }}
-            />
-          </InputGroup>
+            >
+              <InputLeftElement
+                pointerEvents="none"
+                h="100%"
+                children={<SearchIcon style={{ stroke: search_color }} />}
+              />
+              <Input
+                borderRadius={"1.04vw"}
+                h={{ base: "4rem", lg: "6rem" }}
+                type="text"
+                fontSize={{ base: "1.2rem", lg: ".93vw" }}
+                placeholder="Enter talent name, category or genre"
+                _focus={{
+                  border: "2px solid rgba(246, 84, 14, 1)",
+                }}
+                onFocus={() => {
+                  console.log("in focus");
+                  set_search_color("rgba(246, 84, 14, 1)");
+                }}
+                onBlur={() => {
+                  set_search_color("rgba(43, 43, 43, .3)");
+                }}
+                value={search}
+                onChange={(e) => {
+                  set_search(e.target.value);
+                }}
+              />
+            </InputGroup>
+            <Box
+              display={{base:"flex",lg:"none"}}
+              borderRadius={"1.2rem"}
+              border="1.5px solid #F0F0F0"
+              px="2rem"
+              alignItems={"center"}
+              justifyContent="center"
+            >
+              <Text fontSize={"1.2rem"}>Filters</Text>
+            </Box>
+          </Box>
         </Box>
 
         {/* filters */}
@@ -316,7 +334,7 @@ const Talents = () => {
         <Box
           mt="3.70vh"
           display={"grid"}
-          gridTemplateColumns="1fr 1fr 1fr"
+          gridTemplateColumns={{base:"1fr",lg:"1fr 1fr 1fr"}}
           columnGap={".833vw"}
           rowGap={"1.48vh"}
           mb="5.55vh"

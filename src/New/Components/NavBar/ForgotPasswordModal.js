@@ -68,7 +68,7 @@ const ForgotPasswordModal = ({ state, changeState }) => {
 				>
 					<Box
 						h='fit-content'
-						w='36.04vw'
+						w={{base:"70%",lg:'36.04vw'}}
 						bg='#fff'
 						borderRadius={'1.66vw'}
 						py='50px'
@@ -91,14 +91,14 @@ const ForgotPasswordModal = ({ state, changeState }) => {
 						/>
 
 						<Text
-							fontSize={'1.66vw'}
+							fontSize={{base:"2.5rem",lg:'1.66vw'}}
 							textAlign='center'
 							fontFamily='Gilroy-Bold'
 						>
 							Forgot Password
 						</Text>
 						<Text
-							fontSize={'.833vw'}
+							fontSize={{base:"1.6rem",lg:'.833vw'}}
 							fontFamily='Gilroy-Medium'
 							textAlign='center'
 						>
@@ -116,7 +116,7 @@ const ForgotPasswordModal = ({ state, changeState }) => {
 								<Box>
 									<label htmlFor='nav-login-email'>
 										<Text
-											fontSize={'.833vw'}
+											fontSize={{base:"1.5rem",lg:'.833vw'}}
 											fontFamily='Gilroy-SemiBold'
 											_after={{
 												content: "'*'",
@@ -131,7 +131,7 @@ const ForgotPasswordModal = ({ state, changeState }) => {
 										type='email'
 										id='nav-login-email'
 										h='6.48vh'
-										fontSize={'.92vw'}
+										fontSize={{base:"1.3rem",lg:'.92vw'}}
 										borderRadius={'1.04vw'}
 										placeholder='your-email@gmail.com'
 										value={email}
@@ -164,6 +164,7 @@ const ForgotPasswordModal = ({ state, changeState }) => {
 											isDisabled={sendLink}
 											onClick={handleLinkSubmit}
 											isLoading={loading}
+											fontSize="1.5rem"
 										>
 											Send link
 										</Button>

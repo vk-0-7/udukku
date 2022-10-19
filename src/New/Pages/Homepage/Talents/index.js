@@ -1,7 +1,7 @@
 import { Box, Button, Icon, Text } from "@chakra-ui/react";
 import { AiOutlineRight } from "react-icons/ai";
 import "./talents.css";
-
+import GoToTop from "../../../Utility/goToTop";
 //icons
 import { ReactComponent as ArrowLeft } from "../../../../Assets/Icons/arrow-left.svg";
 import { ReactComponent as ArrowRight } from "../../../../Assets/Icons/arrow-right.svg";
@@ -27,16 +27,22 @@ const Talents = () => {
     >
       <Box
         display={"flex"}
-        flexDir={{base:"column",lg:"row"}}
+        flexDir={{ base: "column", lg: "row" }}
         justifyContent="space-between"
-        alignItems={{base:"flex-start",lg:"center"}}
-        gap={{base:"3rem"}}
+        alignItems={{ base: "flex-start", lg: "center" }}
+        gap={{ base: "3rem" }}
       >
-        <Box w={{base:"80%",lg:"50%"}}>
-          <Text fontSize={{base:"5.2rem",lg:"2.29vw"}} fontFamily={"Gilroy-Bold"}>
+        <Box w={{ base: "80%", lg: "50%" }}>
+          <Text
+            fontSize={{ base: "5.2rem", lg: "2.29vw" }}
+            fontFamily={"Gilroy-Bold"}
+          >
             Talents
           </Text>
-          <Text fontSize={{base:"1.7rem",lg:"1.04vw"}} fontFamily={"Gilroy-Medium"}>
+          <Text
+            fontSize={{ base: "1.7rem", lg: "1.04vw" }}
+            fontFamily={"Gilroy-Medium"}
+          >
             A whole world of musical talent at your service - browse through our
             list of musicians to find the one perfect for your job
           </Text>
@@ -44,12 +50,12 @@ const Talents = () => {
         <Box>
           <Button
             position="relative"
-            w={{base:"17rem",lg:"12.55vw"}}
-            h={{base:"5rem",lg:"6.66vh"}}
-            fontSize={{base:"1.5rem",lg:".833vw"}}
+            w={{ base: "17rem", lg: "12.55vw" }}
+            h={{ base: "5rem", lg: "6.66vh" }}
+            fontSize={{ base: "1.5rem", lg: ".833vw" }}
             fontFamily={"Gilroy-SemiBold"}
             fontWeight="normal"
-            borderRadius={{base:"2rem",lg:"1.04vw"}}
+            borderRadius={{ base: "2rem", lg: "1.04vw" }}
             onClick={() => navigate("/talents")}
           >
             Sell all categories <Icon as={AiOutlineRight} ml="5px" />
@@ -66,7 +72,7 @@ const Talents = () => {
         overflowX="scroll"
       >
         <Box
-          w={{base:"40rem",lg:"17.60vw"}}
+          w={{ base: "40rem", lg: "17.60vw" }}
           h="25.92vh"
           bgSize="cover"
           borderRadius="28px"
@@ -75,8 +81,8 @@ const Talents = () => {
           className="talents-card-1"
           cursor={"pointer"}
           onClick={() => {
-            setCategoryF("Vocalist")
-			 navigate("/talents");
+            setCategoryF("Vocalist");
+            navigate("/talents");
           }}
         >
           <Box
@@ -92,15 +98,16 @@ const Talents = () => {
               bottom="2.26vh"
               left={"1.45vw"}
               color="#fff"
-              fontSize={{base:"3rem",lg:"1.45vw"}}
+              fontSize={{ base: "3rem", lg: "1.45vw" }}
               fontFamily={"Gilroy-Bold"}
             >
               Vocalist
             </Text>
           </Box>
+          <GoToTop />
         </Box>
         <Box
-          w={{base:"40rem",lg:"17.60vw"}}
+          w={{ base: "40rem", lg: "17.60vw" }}
           h="25.92vh"
           borderRadius="28px"
           flexShrink={0}
@@ -108,8 +115,8 @@ const Talents = () => {
           overflow="hidden"
           cursor={"pointer"}
           onClick={() => {
-            setCategoryF("Singer")
-		    navigate("/talents");
+            setCategoryF("Singer");
+            navigate("/talents");
           }}
         >
           <Box
@@ -125,15 +132,16 @@ const Talents = () => {
               bottom="2.26vh"
               left={"1.45vw"}
               color="#fff"
-              fontSize={{base:"3rem",lg:"1.45vw"}}
+              fontSize={{ base: "3rem", lg: "1.45vw" }}
               fontFamily={"Gilroy-Bold"}
             >
               Music Producers
             </Text>
           </Box>
+          <GoToTop />
         </Box>
         <Box
-          w={{base:"40rem",lg:"17.60vw"}}
+          w={{ base: "40rem", lg: "17.60vw" }}
           h="25.92vh"
           borderRadius="28px"
           flexShrink={0}
@@ -141,8 +149,8 @@ const Talents = () => {
           overflow="hidden"
           cursor={"pointer"}
           onClick={() => {
-            setCategoryF("Singer")
-			 navigate("/talents");
+            setCategoryF("Singer");
+            navigate("/talents");
           }}
         >
           <Box
@@ -158,15 +166,16 @@ const Talents = () => {
               bottom="2.26vh"
               left={"1.45vw"}
               color="#fff"
-              fontSize={{base:"3rem",lg:"1.45vw"}}
+              fontSize={{ base: "3rem", lg: "1.45vw" }}
               fontFamily={"Gilroy-Bold"}
             >
               DJ
             </Text>
           </Box>
+          <GoToTop />
         </Box>
         <Box
-          w={{base:"40rem",lg:"17.60vw"}}
+          w={{ base: "40rem", lg: "17.60vw" }}
           h="25.92vh"
           borderRadius="28px"
           flexShrink={0}
@@ -174,8 +183,8 @@ const Talents = () => {
           overflow="hidden"
           cursor={"pointer"}
           onClick={() => {
-            setCategoryF("Songwriter")
-			 navigate("/talents");
+            setCategoryF("Songwriter");
+            navigate("/talents");
           }}
         >
           <Box
@@ -191,12 +200,13 @@ const Talents = () => {
               bottom="2.26vh"
               left={"1.45vw"}
               color="#fff"
-              fontSize={{base:"3rem",lg:"1.45vw"}}
+              fontSize={{ base: "3rem", lg: "1.45vw" }}
               fontFamily={"Gilroy-Bold"}
             >
               Song Writers & Composers
             </Text>
           </Box>
+          <GoToTop />
         </Box>
       </Box>
 

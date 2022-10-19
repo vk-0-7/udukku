@@ -169,7 +169,7 @@ const TalentCard = ({ data }) => {
       <Box flexGrow={1}></Box>
 
       <Text fontFamily={"Gilroy-Bold"} fontSize={{base:"2.3rem",lg:"1.45vw"}} mt={{lg:"2.96vh"}}>
-        From ${data.startingPrice[0]}
+        From ₹{data.startingPrice[0]}
       </Text>
     </Box>
   );

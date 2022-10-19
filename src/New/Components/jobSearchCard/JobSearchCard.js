@@ -202,7 +202,7 @@ const JobSearchCard = ({ data }) => {
       </Box>
       {/* price */}
       <Text fontSize={"1.45vw"} fontFamily="Gilroy-Bold" mt="1.85vh">
-        ${data.budget[0]}
+      ₹{data.budget[0]}
       </Text>
     </Box>
   );

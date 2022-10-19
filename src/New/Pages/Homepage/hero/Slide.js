@@ -20,7 +20,7 @@ const Slide = () => {
       set_slides(res.data.user);
     } catch (error) {}
   };
-
+console.log({slides})
   //console.log(slides);
   useEffect(() => {
     getSlideData();

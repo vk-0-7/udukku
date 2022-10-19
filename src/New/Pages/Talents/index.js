@@ -8,7 +8,7 @@ import {
 import NavBar from "../../Components/NavBar/NavBar";
 import Footer from "../../Components/Footer/Footer";
 import { useEffect, useState } from "react";
-
+import GoToTop from "../../Utility/goToTop";
 // icons
 import { ReactComponent as SearchIcon } from "../../../Assets/Icons/search-normal.svg";
 
@@ -123,8 +123,8 @@ const Talents = () => {
   const [genre, set_genre] = useState("");
   const [show_clear, set_show_clear] = useState(false);
   const [pageTitle, setPageTitle] = useState("");
-//mobile view
-const [filterButton,setFilterButton]= useState(false);
+  //mobile view
+  const [filterButton, setFilterButton] = useState(false);
   useEffect(() => {
     //window.scrollTo(0, 0);
     getAllUsers().then((res) => {
@@ -283,7 +283,7 @@ const [filterButton,setFilterButton]= useState(false);
               />
             </InputGroup>
             <Box
-              display={{base:"flex",lg:"none"}}
+              display={{ base: "flex", lg: "none" }}
               borderRadius={"1.2rem"}
               border="1.5px solid #F0F0F0"
               px="2rem"
@@ -334,7 +334,7 @@ const [filterButton,setFilterButton]= useState(false);
         <Box
           mt="3.70vh"
           display={"grid"}
-          gridTemplateColumns={{base:"1fr",lg:"1fr 1fr 1fr"}}
+          gridTemplateColumns={{ base: "1fr", lg: "1fr 1fr 1fr" }}
           columnGap={".833vw"}
           rowGap={"1.48vh"}
           mb="5.55vh"
@@ -375,6 +375,7 @@ const [filterButton,setFilterButton]= useState(false);
         </Box>
       </Box>
       <Footer />
+      <GoToTop />
     </Box>
   );
 };

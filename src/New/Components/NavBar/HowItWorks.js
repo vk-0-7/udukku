@@ -33,7 +33,7 @@ const HowItWorks = ({ state, changeState }) => {
         <Box
           position={"absolute"}
           left="50%"
-          top={{ base: "120%", md: "50%" }}
+          top={{ base: "120%", md: "50%",lg:"60%" }}
           transform={"translateX(-50%) translateY(-50%)"}
           w={{ base: "90%", md: "80%", lg: "72.91vw" }}
           h={{ base: "", "3xl": "80vh" }}

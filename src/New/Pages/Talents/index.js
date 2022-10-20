@@ -258,11 +258,12 @@ const Talents = () => {
               <InputLeftElement
                 pointerEvents="none"
                 h="100%"
+                p="6px"
                 children={<SearchIcon style={{ stroke: search_color }} />}
               />
               <Input
                 borderRadius={"1.04vw"}
-                h={{ base: "4rem", lg: "6rem" }}
+                h={{ base: "4rem", lg: "5rem" }}
                 type="text"
                 fontSize={{ base: "1.2rem", lg: ".93vw" }}
                 placeholder="Enter talent name, category or genre"

@@ -168,12 +168,12 @@ const Footer = () => {
               lineHeight={"3.70vh"}
               mt="8px"
             >
-              <Text
+              {/* <Text
                 fontFamily={"Gilroy-Medium"}
                 fontSize={{ base: "1.7rem", lg: ".833vw" }}
               >
                 FAQs
-              </Text>
+              </Text> */}
               <Text
                 fontFamily={"Gilroy-Medium"}
                 fontSize={{ base: "1.7rem", lg: ".833vw" }}

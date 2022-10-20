@@ -120,8 +120,9 @@ const Lyrics = () => {
             <InputLeftElement
               pointerEvents="none"
               h="100%"
+              p="6px"
               children={
-                <SearchIcon style={{ stroke: "rgba(43, 43, 43, .3)" }} />
+                <SearchIcon style={{ h:"1rem",stroke: "rgba(43, 43, 43, .3)" }} />
               }
             />
             <Input
@@ -133,9 +134,11 @@ const Lyrics = () => {
               _focus={{
                 border: "2px solid rgba(246, 84, 14, 1)",
               }}
+              value={searchTerm}
               onChange={(e) => {
                 setSearchTerm(e.target.value);
               }}
+            
               // onFocus={() => {
               // 	console.log('in focus');
               // 	set_search_color('rgba(246, 84, 14, 1)');
@@ -168,7 +171,7 @@ const Lyrics = () => {
               navigate("/create-new-lyrics");
             }}
           >
-            Create New Lyric
+            Add Music
           </Button>
         </Box>
 
@@ -186,7 +189,7 @@ const Lyrics = () => {
               if (searchTerm === "") {
                 return data;
               } else if (
-                data.songName.toLowerCase().includes(searchTerm.toLowerCase())
+                data.songName?.toLowerCase().includes(searchTerm.toLowerCase())
               ) {
                 return data;
               }

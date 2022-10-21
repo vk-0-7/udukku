@@ -184,7 +184,7 @@ const SignInModal = ({ state, changeState }) => {
         >
           <Box
             h="fit-content"
-            w={{ base: "70%", lg: "36.04vw" }}
+            w={{ base: "90%",md:"70%", lg: "36.04vw" }}
             bg="#fff"
             borderRadius={"32px"}
             py="3.70vh"

@@ -31,9 +31,9 @@ const Category = ({ showDelete, currentIndex, fullState, changeState }) => {
 	};
 
 	return (
-		<Box display={'flex'} gap='.833vw' mt='1.111vh' position={'relative'}>
+		<Box display={'flex'} gap={'.833vw'} mt='1.111vh' position={'relative'} w="100%"  >
 			<Box>
-				<Text fontFamily={'Gilroy-SemiBold'} fontSize='.833vw'>
+				<Text fontFamily={'Gilroy-SemiBold'} fontSize={{base:"1.2rem",md:"1.5rem",lg:'.833vw'}}>
 					Category*
 				</Text>
 				<Input
@@ -41,10 +41,11 @@ const Category = ({ showDelete, currentIndex, fullState, changeState }) => {
 					value={fullState[currentIndex].category}
 					onChange={updating_categories}
 					h="6.48vh"
+					w="100%"
 				/>
 			</Box>
 			<Box>
-				<Text fontFamily={'Gilroy-SemiBold'} fontSize='.833vw'>
+				<Text fontFamily={'Gilroy-SemiBold'} fontSize={{base:"1.2rem",md:"1.5rem",lg:'.833vw'}}>
 					Subcategory*
 				</Text>
 				<Input
@@ -52,10 +53,11 @@ const Category = ({ showDelete, currentIndex, fullState, changeState }) => {
 					value={fullState[currentIndex].subCategory}
 					onChange={updating_sub_categories}
 					h="6.48vh"
+					w="100%"
 				/>
 			</Box>
 			<Box>
-				<Text fontFamily={'Gilroy-SemiBold'} fontSize='.833vw'>
+				<Text fontFamily={'Gilroy-SemiBold'} fontSize={{base:"1.2rem",md:"1.5rem",lg:'.833vw'}}>
 					Service Starting Price
 				</Text>
 				<Input
@@ -63,6 +65,7 @@ const Category = ({ showDelete, currentIndex, fullState, changeState }) => {
 					value={fullState[currentIndex].serviceStargingPrice}
 					onChange={updating_staring_price}
 					h="6.48vh"
+					w="100%"
 				/>
 			</Box>
 			{/* delete icon */}

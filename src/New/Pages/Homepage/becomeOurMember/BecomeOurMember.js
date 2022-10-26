@@ -37,7 +37,7 @@ const BecomeOurMember = ({ state }) => {
         >
           <Box
             h="fit-content"
-            w="36.04vw"
+            w={{base:"80%",lg:"36.04vw"}}
             bg="#fff"
             borderRadius={"1.66vw"}
             py="3.70vh"
@@ -57,16 +57,16 @@ const BecomeOurMember = ({ state }) => {
 							}}
 						/> */}
             <Box textAlign={"center"} pb="2.96vh">
-              <Text fontFamily={"Gilroy-Bold"} fontSize="1.66vw">
+              <Text fontFamily={"Gilroy-Bold"} fontSize={{base:"2.5rem",lg:"1.66vw"}}>
                 Become our member
               </Text>
-              <Text fontFamily={"Gilroy-Medium"} fontSize=".833vw">
+              <Text fontFamily={"Gilroy-Medium"} fontSize={{base:"2rem",lg:".833vw"}}>
                 Choose User Type
               </Text>
             </Box>
             <Box display={"flex"} gap=".833vw">
               <Box
-                w="15.52vw"
+                w={{base:"50%",lg:"15.52vw"}}
                 h="29.62vh"
                 border="1px solid #f0f0f0 "
                 borderRadius={"1.66vw"}
@@ -93,21 +93,21 @@ const BecomeOurMember = ({ state }) => {
                   <MusicIcon
                     style={{
                       fill: "#F6540E",
-                      width: "1.92vw",
-                      height: "3.98vh",
+                      width: "4rem",
+                      height: "4rem",
                       marginBottom: "1.80vh",
                     }}
                   />
-                  <Text fontFamily={"Gilroy-Bold"} fontSize="1.25vw">
+                  <Text fontFamily={"Gilroy-Bold"} fontSize={{base:"1.5rem",md:"2rem",lg:"1.25vw"}}>
                     Music Artist
                   </Text>
-                  <Text fontFamily={"Gilroy-Medium"} fontSize=".833vw">
+                  <Text fontFamily={"Gilroy-Medium"} fontSize={{base:"1.2rem",md:"1.5rem",lg:".833vw"}}>
                     Vocalist, DJ, Producer
                   </Text>
                 </Box>
               </Box>
               <Box
-                w="15.52vw"
+                w={{base:"50%",lg:"15.52vw"}}
                 h="29.62vh"
                 border="1px solid #f0f0f0 "
                 borderRadius={"1.66vw"}
@@ -134,15 +134,15 @@ const BecomeOurMember = ({ state }) => {
                   <BriefCase
                     style={{
                       fill: "#F6540E",
-                      width: "2.5vw",
-                      height: "4.44vh",
+                      width: "4rem",
+                      height: "4rem",
                       marginBottom: "1.80vh",
                     }}
                   />
-                  <Text fontFamily={"Gilroy-Bold"} fontSize="1.25vw">
+                  <Text fontFamily={"Gilroy-Bold"} fontSize={{base:"1.5rem",md:"2rem",lg:"1.25vw"}}>
                     Job Creator
                   </Text>
-                  <Text fontFamily={"Gilroy-Medium"} fontSize=".833vw">
+                  <Text fontFamily={"Gilroy-Medium"} fontSize={{base:"1.2rem",md:"1.5rem",lg:".833vw"}}>
                     Company, Enterpreneur
                   </Text>
                 </Box>

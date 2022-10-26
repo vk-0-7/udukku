@@ -58,7 +58,7 @@ const JobCreatorRegistration = () => {
 			<Box px={{ base: '7vw', lg: '13.54vw' }} pt='6.01vh' pb='100px'>
 				<Text
 					display={'block'}
-					fontSize={'2.29vw'}
+					fontSize={{base:"2.5rem",lg:'2.29vw'}}
 					fontFamily={'Gilroy-Bold'}
 				>
 					Job Creator Registration
@@ -93,7 +93,7 @@ const JobCreatorRegistration = () => {
 					h={'6.48vh'}
 					borderRadius='1.04vw'
 					fontFamily={'Gilroy-SemiBold'}
-					fontSize='.833vw'
+					fontSize={{base:"1.2rem",md:"1.6rem",lg:'.833vw'}}
 					_hover={{ background: 'rgba(246, 84, 14, 1)' }}
 					onClick={handleSubmit}
 					isLoading={loading}

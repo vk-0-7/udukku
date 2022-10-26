@@ -29,7 +29,7 @@ const SocialMedia = ({ showDelete, currentIndex, fullState, changeState }) => {
       <Box flexGrow={1}>
         <Text
           fontFamily={"Gilroy-SemiBold"}
-          fontSize=".833vw"
+          fontSize={{ base: "1.2rem", md: "1.5rem", lg: ".833vw" }}
           display={currentIndex > 0 ? "none" : ""}
         >
           Social Media*
@@ -56,7 +56,7 @@ const SocialMedia = ({ showDelete, currentIndex, fullState, changeState }) => {
       <Box flexGrow={1}>
         <Text
           fontFamily={"Gilroy-SemiBold"}
-          fontSize=".833vw"
+          fontSize={{ base: "1.2rem", md: "1.5rem", lg: ".833vw" }}
           display={currentIndex > 0 ? "none" : ""}
         >
           Social Media Link*

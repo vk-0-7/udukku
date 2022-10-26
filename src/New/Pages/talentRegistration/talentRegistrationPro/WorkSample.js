@@ -33,7 +33,7 @@ const WorkSample = ({ showDelete, changeState, currentIndex, fullState }) => {
 	return (
 		<Box display={'flex'} gap='.833vw' mt='1.111vh' position={'relative'}>
 			<Box>
-				<Text fontFamily={'Gilroy-SemiBold'} fontSize='.833vw'>
+				<Text fontFamily={'Gilroy-SemiBold'} fontSize={{ base: "1.2rem", md: "1.5rem", lg: ".833vw" }}>
 					Work Sample
 				</Text>
 				<Select
@@ -49,13 +49,13 @@ const WorkSample = ({ showDelete, changeState, currentIndex, fullState }) => {
 				</Select>
 			</Box>
 			<Box>
-				<Text fontFamily={'Gilroy-SemiBold'} fontSize='.833vw'>
+				<Text fontFamily={'Gilroy-SemiBold'} fontSize={{ base: "1.2rem", md: "1.5rem", lg: ".833vw" }}>
 					Link or File
 				</Text>
 				<Input type='text' onChange={update_link} h="6.48vh" />
 			</Box>
 			<Box>
-				<Text fontFamily={'Gilroy-SemiBold'} fontSize='.833vw'>
+				<Text fontFamily={'Gilroy-SemiBold'} fontSize={{ base: "1.2rem", md: "1.5rem", lg: ".833vw" }}>
 					Your Role
 				</Text>
 				<Input onChange={update_role} h="6.48vh" />

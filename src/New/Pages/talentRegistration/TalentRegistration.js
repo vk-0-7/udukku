@@ -127,7 +127,7 @@ const TalentRegistration = () => {
 					h={'6.48vh'}
 					borderRadius='1.04vw'
 					fontFamily={'Gilroy-SemiBold'}
-					fontSize='.833vw'
+					fontSize={{ base: "1.2rem", md: "1.5rem", lg: ".833vw" }}
 					_hover={{ background: 'rgba(246, 84, 14, 1)' }}
 					onClick={handleSubmit}
 					isLoading={loading}

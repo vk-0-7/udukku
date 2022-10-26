@@ -28,7 +28,7 @@ const Genre = ({ showDelete, changeState, currentIndex, fullState }) => {
 	return (
 		<Box display={'flex'} gap='.833vw' mt='1.111vh' position={'relative'}>
 			<Box flexGrow={1}>
-				<Text fontFamily={'Gilroy-SemiBold'} fontSize='.833vw'>
+				<Text fontFamily={'Gilroy-SemiBold'} fontSize={{base:"1.2rem",md:"1.5rem",lg:'.833vw'}}>
 					Genre*
 				</Text>
 				<Select
@@ -44,7 +44,7 @@ const Genre = ({ showDelete, changeState, currentIndex, fullState }) => {
 				</Select>
 			</Box>
 			<Box flexGrow={1}>
-				<Text fontFamily={'Gilroy-SemiBold'} fontSize='.833vw'>
+				<Text fontFamily={'Gilroy-SemiBold'} fontSize={{base:"1.2rem",md:"1.5rem",lg:'.833vw'}}>
 					Subgenre*
 				</Text>
 				<Select

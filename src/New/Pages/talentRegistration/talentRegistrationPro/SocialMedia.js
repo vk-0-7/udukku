@@ -26,13 +26,14 @@ const SocialMedia = ({ showDelete, changeState, currentIndex, fullState }) => {
 	return (
 		<Box display={'flex'} gap='.833vw' mt='1.111vh' position={'relative'}>
 			<Box flexGrow={1}>
-				<Text fontFamily={'Gilroy-SemiBold'} fontSize='.833vw'>
+				<Text fontFamily={'Gilroy-SemiBold'} fontSize={{base:"1.2rem",md:"1.5rem",lg:'.833vw'}}>
 					Social Media
 				</Text>
 				<Select
 					placeholder='Select'
 					value={fullState[currentIndex].plat}
 					onChange={updating_social_media}
+					h="6.48vh"
 				>
 					<option value={'option1'}>Option 1</option>
 					<option value={'option2'}>Option 2</option>
@@ -41,13 +42,14 @@ const SocialMedia = ({ showDelete, changeState, currentIndex, fullState }) => {
 				</Select>
 			</Box>
 			<Box flexGrow={1}>
-				<Text fontFamily={'Gilroy-SemiBold'} fontSize='.833vw'>
+				<Text fontFamily={'Gilroy-SemiBold'} fontSize={{base:"1.2rem",md:"1.5rem",lg:'.833vw'}}>
 					Social Media Link
 				</Text>
 				<Input
 					type={'text'}
 					value={fullState[currentIndex].link}
 					onChange={updating_link}
+					h="6.48vh"
 				/>
 			</Box>
 			{showDelete ? (

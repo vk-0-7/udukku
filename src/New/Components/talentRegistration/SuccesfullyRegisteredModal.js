@@ -11,6 +11,7 @@ import {
 import { ReactComponent as CheckIcon } from '../../../Assets/Icons/Group 482.svg';
 import { ReactComponent as CloseIcon } from '../../../Assets/Icons/CloseIcon.svg';
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const SuccesfullyRegisteredModal = ({ status, changeStatus }) => {
 	const { isOpen, onOpen, onClose } = useDisclosure();
@@ -20,6 +21,7 @@ const SuccesfullyRegisteredModal = ({ status, changeStatus }) => {
 			onOpen();
 		}
 	}, [status]);
+	const navigate= useNavigate();
 
 	return (
 		<Modal size={'full'} isOpen={isOpen} onClose={onClose}>
@@ -32,7 +34,7 @@ const SuccesfullyRegisteredModal = ({ status, changeStatus }) => {
 			>
 				<Box
 					h='fit-content'
-					w='36.04vw'
+					w={{base:"80%",lg:'36.04vw'}}
 					bg='#fff'
 					borderRadius={'1.66vw'}
 					py='3.70vh'
@@ -45,8 +47,8 @@ const SuccesfullyRegisteredModal = ({ status, changeStatus }) => {
 							onClose();
 						}}
 						style={{
-							height: '1.66vw',
-							width: '1.66vw',
+							height: '3rem',
+							width: '3rem',
 							position: 'absolute',
 							right: '1.45vw',
 							top: '2.59vh',
@@ -56,23 +58,24 @@ const SuccesfullyRegisteredModal = ({ status, changeStatus }) => {
 					<Box textAlign={'center'} mt='1.85vh'>
 						<CheckIcon
 							style={{
-								height: '5.20vw',
-								width: '5.20vw',
+								height: '5rem',
+								width: '5rem',
 								margin: '0 auto 2.222vh auto',
 							}}
 						/>
-						<Text fontFamily={'Gilroy-Bold'} fontSize='1.66vw'>
+						<Text fontFamily={'Gilroy-Bold'} fontSize={{base:"1.5rem",md:"2rem",lg:'1.66vw'}}>
 							Talent Registered Succesfully
 						</Text>
 						<Button
 							fontFamily={'Gilroy-SemiBold'}
-							fontSize='.833vw'
+							fontSize={{base:"1.1rem",md:"1.6rem",lg:'.833vw'}}
 							w='29.79vw'
 							bg='#F6540E'
 							color='#fff'
 							height={'6.48vh'}
 							borderRadius={'1.04vw'}
 							mt='3.70vh'
+                            onClick={()=>navigate('/dashboard')}
 						>
 							Go to My Profile
 						</Button>

@@ -24,6 +24,7 @@ import ReviewCard from "../../Components/ReviewCard/ReviewCard";
 // dummy data
 import d_audio from "../../../Assets/Dummy/allthat.mp3";
 import getAllUsers from "../../../Api/User/getAllUsers";
+import { AuthContext } from "../../Context/AuthContext";
 const d_data = [
   {
     profile_link: "https://source.unsplash.com/random?face?girl",
@@ -56,6 +57,8 @@ const d_data = [
 
 const Profile = () => {
   const { id } = useParams();
+  console.log("Here is Id",id)
+  console.log(AuthContext)
   const [user, setUser] = useState({});
   const navigate = useNavigate();
   const [show_video, set_show_video] = useState(false);

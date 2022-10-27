@@ -87,6 +87,7 @@ const SignInModal = ({ state, changeState }) => {
       console.log("server se ye aaya : ", res);
       setLoginState(true);
       setToken(res.data.refresh_token);
+      setUserId(res.data.user._id)
       // setUsed('google');
       // setOpen(false);
       onClose();

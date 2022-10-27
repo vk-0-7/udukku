@@ -15,7 +15,8 @@ const AuthContextProvider = ({ children }) => {
   const set_other_details_using_api = async () => {
     try {
       const res = await getUserInfo();
-      console.log("user info is : ", res);
+      console.log("user info is : ", res.data._id);
+      
       setName(res.data.name);
       setUserId(res.data._id);
       setEmail(res.data.email);
@@ -36,6 +37,9 @@ const AuthContextProvider = ({ children }) => {
     if (localStorage.getItem("username")) {
       set_username(localStorage.getItem("username"));
     }
+    if (localStorage.getItem("userId")) {
+      setUserId(localStorage.getItem("userId"));
+    }
   }, []);
 
   const value = {
@@ -48,9 +52,11 @@ const AuthContextProvider = ({ children }) => {
     username: username,
     setUserEmail: (val) => {
       setEmail(val);
+      localStorage.setItem("email",val)
     },
     setUserId: (val) => {
       setUserId(val);
+      localStorage.setItem("userId",val)
     },
     setName: (val) => {
       setName(val);

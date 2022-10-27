@@ -295,7 +295,7 @@ const NavBar = () => {
                     <MenuItem
                       fontSize={"1.4rem"}
                       onClick={() => {
-                        navigate(`/${localStorage.getItem("username")}`);
+                        navigate(`/${localStorage.getItem("userId")}`);
                       }}
                       icon={
                         <Man

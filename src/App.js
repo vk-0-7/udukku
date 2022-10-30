@@ -22,6 +22,7 @@ import CreateNewLyrics from "./New/Pages/CreateNewLyrics";
 import Messages from "./New/Pages/Dashboard/Messages/Messages";
 import ContactMessages from "./New/Pages/messages/contactsMessages";
 import ViewProposal from "./New/Pages/messages/ViewProposalPage";
+import MyJobs from "./New/Pages/MyJobs";
 
 const App = () => {
   return (
@@ -63,7 +64,7 @@ const App = () => {
           <Route path="/messages" element={<Messages />} />
           <Route path="/contactMessage" element={<ContactMessages />} />
           <Route path="/view-proposal" element={<ViewProposal />} />
-
+          <Route path="/myjobs" element={<MyJobs />} />
           {/* *********************** End *************************** */}
         </Routes>
       </div>

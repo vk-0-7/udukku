@@ -8,11 +8,17 @@ import WorkSample from "./talentRegistrationPro/WorkSample";
 
 const TalentRegistrationProfessionalInfo = ({ data }) => {
   return (
-    <Box mt="5.555vh" w={{base:"100%",lg:"36.04vw"}}>
-      <Text fontFamily={"Gilroy-SemiBold"} fontSize={{base:"2rem",lg:"1.45vw"}}>
+    <Box mt="5.555vh" w={{ base: "100%", lg: "36.04vw" }}>
+      <Text
+        fontFamily={"Gilroy-SemiBold"}
+        fontSize={{ base: "2rem", lg: "1.45vw" }}
+      >
         Professional Info
       </Text>
-      <Text fontFamily={"Gilroy-Medium"} fontSize={{base:"1.5rem",lg:".833vw"}}>
+      <Text
+        fontFamily={"Gilroy-Medium"}
+        fontSize={{ base: "1.5rem", lg: ".833vw" }}
+      >
         Fill out your professional details such as your genres, experience
         rates, gears, and conditions. Provide high quality work samples, so
         clients can learn more about your musical abilities
@@ -33,7 +39,7 @@ const TalentRegistrationProfessionalInfo = ({ data }) => {
           <Text
             fontFamily={"Gilroy-SemiBold"}
             color="rgba(246, 84, 14, 1)"
-            fontSize={{base:"1rem",md:"1.2rem",lg:".833vw"}}
+            fontSize={{ base: "1rem", md: "1.2rem", lg: ".833vw" }}
             onClick={() => {
               data.set_categories((prev) => {
                 prev.push({
@@ -65,7 +71,7 @@ const TalentRegistrationProfessionalInfo = ({ data }) => {
           <Text
             fontFamily={"Gilroy-SemiBold"}
             color="rgba(246, 84, 14, 1)"
-            fontSize={{base:"1rem",md:"1.2rem",lg:".833vw"}}
+            fontSize={{ base: "1rem", md: "1.2rem", lg: ".833vw" }}
             onClick={() => {
               data.set_genre((prev) => {
                 prev.push({
@@ -96,7 +102,7 @@ const TalentRegistrationProfessionalInfo = ({ data }) => {
           <Text
             fontFamily={"Gilroy-SemiBold"}
             color="rgba(246, 84, 14, 1)"
-            fontSize={{base:"1rem",md:"1.2rem",lg:".833vw"}}
+            fontSize={{ base: "1rem", md: "1.2rem", lg: ".833vw" }}
             onClick={() => {
               data.set_gear((prev) => {
                 prev.push({
@@ -124,7 +130,7 @@ const TalentRegistrationProfessionalInfo = ({ data }) => {
           <Text
             fontFamily={"Gilroy-SemiBold"}
             color="rgba(246, 84, 14, 1)"
-            fontSize={{base:"1rem",md:"1.2rem",lg:".833vw"}}
+            fontSize={{ base: "1rem", md: "1.2rem", lg: ".833vw" }}
             onClick={() => {
               data.set_social_media((prev) => {
                 prev.push({
@@ -154,7 +160,7 @@ const TalentRegistrationProfessionalInfo = ({ data }) => {
           <Text
             fontFamily={"Gilroy-SemiBold"}
             color="rgba(246, 84, 14, 1)"
-            fontSize={{base:"1rem",md:"1.2rem",lg:".833vw"}}
+            fontSize={{ base: "1rem", md: "1.2rem", lg: ".833vw" }}
             onClick={() => {
               data.set_work((prev) => {
                 prev.push({
@@ -171,21 +177,27 @@ const TalentRegistrationProfessionalInfo = ({ data }) => {
           </Text>
         </Box>
         <Box mt="2.22vh">
-          <Text fontFamily={"Gilroy-SemiBold"} fontSize={{ base: "1.2rem", md: "1.5rem", lg: ".833vw" }}>
+          <Text
+            fontFamily={"Gilroy-SemiBold"}
+            fontSize={{ base: "1.2rem", md: "1.5rem", lg: ".833vw" }}
+          >
             Terms of Service*
           </Text>
           <Input h="6.48vh" />
           <Text
             fontFamily={"Gilroy-SemiBold"}
             color="rgba(246, 84, 14, 1)"
-            fontSize={{base:"1rem",md:"1.2rem",lg:".833vw"}}
+            fontSize={{ base: "1rem", md: "1.2rem", lg: ".833vw" }}
           >
             + Add another Terms of Service
           </Text>
         </Box>
         <Box mt="2.22vh">
           <Checkbox>
-            <Box fontFamily={"Gilroy-SemiBold"} fontSize={{ base: "1.2rem", md: "1.5rem", lg: ".833vw" }}>
+            <Box
+              fontFamily={"Gilroy-SemiBold"}
+              fontSize={{ base: "1.2rem", md: "1.5rem", lg: ".833vw" }}
+            >
               By checking the box, you are agreeing to our{" "}
               <Text
                 as={"span"}

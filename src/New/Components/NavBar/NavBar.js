@@ -110,11 +110,31 @@ const NavBar = () => {
         <Box flexGrow={{ base: hamMenu ? "" : "1", lg: "1" }}>
           {loginState === true ? (
             <Link to="/dashboard">
-              <Image display={{base:hamMenu===false&&loginState===false?"none":"block",lg:"inline-block"}} onClick={()=>setHamMenu(false)} src={logo} />
+              <Image
+                display={{
+                  base:
+                    hamMenu === false && loginState === false
+                      ? "none"
+                      : "block",
+                  lg: "inline-block",
+                }}
+                onClick={() => setHamMenu(false)}
+                src={logo}
+              />
             </Link>
           ) : (
             <Link to="/">
-              <Image display={{base:hamMenu===false&&loginState===false?"none":"block",lg:"inline-block"}} onClick={()=>setHamMenu(false)} src={logo} />
+              <Image
+                display={{
+                  base:
+                    hamMenu === false && loginState === false
+                      ? "none"
+                      : "block",
+                  lg: "inline-block",
+                }}
+                onClick={() => setHamMenu(false)}
+                src={logo}
+              />
             </Link>
           )}
         </Box>
@@ -249,10 +269,16 @@ const NavBar = () => {
                         justifyContent={"center"}
                         alignItems="center"
                       >
-                        <Text fontSize={{base:"1.5rem",lg:".8333vw" }}fontFamily={"Gilroy-SemiBold"}>
+                        <Text
+                          fontSize={{ base: "1.5rem", lg: ".8333vw" }}
+                          fontFamily={"Gilroy-SemiBold"}
+                        >
                           Hello {username}
                         </Text>
-                        <Icon as={BsChevronDown} fontSize={{base:"1.5rem",lg:".8333vw" }}/>
+                        <Icon
+                          as={BsChevronDown}
+                          fontSize={{ base: "1.5rem", lg: ".8333vw" }}
+                        />
                       </Box>
                     </Box>
                   </MenuButton>
@@ -276,6 +302,7 @@ const NavBar = () => {
                     </MenuItem>
                     <MenuItem
                       fontSize={"1.4rem"}
+                      onClick={() => navigate("/myjobs")}
                       icon={
                         <JobIcon
                           style={{

@@ -27,6 +27,7 @@ import { GrClose } from "react-icons/gr";
 import { useEffect, useState } from "react";
 import getJobs from "../../../Api/Jobs/getJobsApi";
 
+
 const Jobs = () => {
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(true);

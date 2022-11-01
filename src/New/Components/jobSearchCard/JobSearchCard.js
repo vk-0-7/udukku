@@ -6,8 +6,10 @@ import { ReactComponent as CategoryIcon } from "../../../Assets/Icons/category.s
 import { ReactComponent as MoneyIcon } from "../../../Assets/Icons/dollar-circle-transparent.svg";
 import { ReactComponent as TimeIcon } from "../../../Assets/Icons/clock_trans.svg";
 import { ReactComponent as AttachIcon } from "../../../Assets/Icons/attach-circle-trans.svg";
+import { useNavigate } from "react-router-dom";
 
 const JobSearchCard = ({ data }) => {
+  const navigate = useNavigate();
   const formatDate = (d) => {
     var date = new Date(d);
     let year = date.getFullYear();
@@ -22,6 +24,7 @@ const JobSearchCard = ({ data }) => {
     date = day + "/" + month + "/" + year;
     return date;
   };
+  console.log({ data });
   return (
     <Box
       w="100%"
@@ -31,6 +34,8 @@ const JobSearchCard = ({ data }) => {
       flexShrink={0}
       px="1.45vw"
       py="2.59vh"
+      onClick={()=>navigate(`/job-detail-page/${data._id}`)}
+      cursor="pointer"
     >
       {/* heading */}
       <Box display={"flex"} justifyContent="space-between">
@@ -202,7 +207,7 @@ const JobSearchCard = ({ data }) => {
       </Box>
       {/* price */}
       <Text fontSize={"1.45vw"} fontFamily="Gilroy-Bold" mt="1.85vh">
-      ₹{data.budget[0]}
+        ₹{data.budget[0]}
       </Text>
     </Box>
   );

@@ -57,7 +57,7 @@ const App = () => {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/respond-to-job" element={<RespondToJob />} />
           <Route path="/post-a-job" element={<PostAJob />} />
-          <Route path="/job-detail-page" element={<JobDetailPage />} />
+          <Route path="/job-detail-page/:id" element={<JobDetailPage />} />
           <Route path="/lyrics" element={<Lyrics />} />
           <Route path="/lyrics-details/:id" element={<LyricsDetails />} />
           <Route path="/create-new-lyrics" element={<CreateNewLyrics />} />

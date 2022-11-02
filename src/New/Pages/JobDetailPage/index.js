@@ -16,7 +16,7 @@ import { ReactComponent as ClipboardTick } from "../../../Assets/Icons/clipboard
 // dummy
 import d_audio from "../../../Assets/Dummy/allthat.mp3";
 import ReviewCard from "../../Components/ReviewCard/ReviewCard";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import getJobs from "../../../Api/Jobs/getJobsApi";
 import { useState, useEffect } from "react";
 
@@ -53,6 +53,7 @@ const d_data = [
 const JobDetailPage = () => {
   const { id } = useParams();
   const [jobs, setJobs] = useState([]);
+  const navigate= useNavigate();
   const getData = async () => {
     try {
       const res = await getJobs();
@@ -369,6 +370,7 @@ const JobDetailPage = () => {
                 display="flex"
                 justifyContent={"center"}
                 alignItems="center"
+				onClick={()=>navigate("/respond-to-job")}
               >
                 <ClipboardTick
                   style={{

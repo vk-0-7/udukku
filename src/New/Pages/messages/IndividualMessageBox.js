@@ -1,4 +1,4 @@
-import { Box, Avatar, AvatarBadge, Text, Link } from "@chakra-ui/react";
+import { Box, Avatar, AvatarBadge, Text, Button } from "@chakra-ui/react";
 import profileIcon from "../../../Assets/Images/dummyProfile/Ellipse 8.png";
 import { ReactComponent as InfoIcon } from "../../../Assets/Icons/info-circle.svg";
 import IncomingMessage from "./IncomingMessage";
@@ -59,14 +59,17 @@ const IndividualMessageBox = ({ state }) => {
             alignItems={"center"}
             ml="auto"
           >
-            <Link
-              color="#F6540E"
-              fontFamily={"Gilroy-Bold"}
-              fontSize="1.1rem"
-              onClick={() => navigate("/view-proposal")}
+            {/* Job Completion button */}
+            <Button
+              backgroundColor="#F6540E"
+              color="white"
+              pt="1.7rem"
+              pb="1.7rem"
+              size="lg"
+              borderRadius={"2rem"}
             >
-              View Proposal?
-            </Link>
+              Mark Job as Completed
+            </Button>
             {/* on click , should show the message details box */}
             <InfoIcon
               style={{ fontSize: "5px", cursor: "pointer" }}

@@ -74,6 +74,7 @@ const Profile = () => {
     });
   }, []);
   console.log({ user });
+  console.log(user.name);
   return (
     <>
       <Box overflowX={"hidden"}>

@@ -9,6 +9,8 @@ import { ReactComponent as ClockIcon } from "../../../Assets/Icons/clock.svg";
 import { ReactComponent as AttachIcon } from "../../../Assets/Icons/attach-circle.svg";
 import { ReactComponent as ArrowIcon } from "../../../Assets/Icons/arrow-right.svg";
 import { ReactComponent as CrossIcon } from "../../../Assets/Icons/Group 118.svg";
+import { useNavigate } from "react-router-dom";
+
 
 const MessagingPageDetails = ({
   state,
@@ -16,6 +18,7 @@ const MessagingPageDetails = ({
   goToMedia,
   setGoToMedia,
 }) => {
+  const navigate= useNavigate();
   return (
     // whole rightmost messagedetails
 
@@ -69,17 +72,7 @@ const MessagingPageDetails = ({
           <CrossIcon style={{ width: "2rem", height: "2rem" }} />
         </Box>
       </Box>
-      {/* Job Completion button */}
-      <Button
-        backgroundColor="#F6540E"
-        color="white"
-        pt="1.7rem"
-        pb="1.7rem"
-        size="lg"
-        borderRadius={"2rem"}
-      >
-        Mark Job as Completed
-      </Button>
+     
       {/* JobDetails */}
       <Box display={"flex"} flexDir="column" gap="1.2rem">
         <Text fontFamily={"Gilroy-Bold"} fontSize="1.7rem">
@@ -115,6 +108,7 @@ const MessagingPageDetails = ({
           pb="1.7rem"
           size="lg"
           borderRadius={"2rem"}
+          onClick={() => navigate("/view-proposal")}
         >
           View Proposal
         </Button>

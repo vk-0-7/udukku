@@ -1,14 +1,14 @@
-import { Box, Text, Image, Input } from "@chakra-ui/react";
+import { Box, Text, Button, Input } from "@chakra-ui/react";
 import { ReactComponent as LinkIcon } from "../../../Assets/Icons/link-2.svg";
 import { ReactComponent as SendIcon } from "../../../Assets/Icons/send.svg";
-import { useRef } from 'react';
+import { useRef } from "react";
 
 const TypeMessageBox = ({ state }) => {
-    const ref = useRef()
-    const handleClick = (e) => {
-      ref.current.click()
-    }
-    
+  const ref = useRef();
+  const handleClick = (e) => {
+    ref.current.click();
+  };
+
   return (
     <Box
       border={"2px"}
@@ -19,25 +19,40 @@ const TypeMessageBox = ({ state }) => {
       flexDir={"row"}
       alignItems="center"
     >
-      <Input variant='unstyled' fontFamily={"Gilroy-SemiBold"} placeholder="Type here" type="text" color="gray" fontSize={"1.2rem"} border="none" w="80%"/>
-      <Box ml="auto" display={"flex"} flexDir="row" gap="1rem" alignItems={"center"}>
+      <Input
+        variant="unstyled"
+        fontFamily={"Gilroy-SemiBold"}
+        placeholder="Type here"
+        type="text"
+        color="gray"
+        fontSize={"1.2rem"}
+        border="none"
+        w="80%"
+      />
+      <Box
+        ml="auto"
+        display={"flex"}
+        flexDir="row"
+        gap="1rem"
+        alignItems={"center"}
+      >
         <LinkIcon
           style={{
             height: "1.5rem",
             width: "1.5rem",
-            cursor:"pointer"
+            cursor: "pointer",
           }}
           onClick={handleClick}
         />
-        <input ref={ref} type="file" style={{ display: 'none' }}/>
-        <Box p="1rem" backgroundColor={"#F6540E"} borderRadius="1rem">
+        <input ref={ref} type="file" style={{ display: "none" }} />
+        <Button p="1rem" backgroundColor={"#F6540E"} borderRadius="1rem">
           <SendIcon
             style={{
               height: "1.5rem",
               width: "1.5rem",
             }}
           />
-        </Box>
+        </Button>
       </Box>
     </Box>
   );

@@ -1,8 +1,14 @@
 import { Box, Text, Image, Input } from "@chakra-ui/react";
 import { ReactComponent as LinkIcon } from "../../../Assets/Icons/link-2.svg";
 import { ReactComponent as SendIcon } from "../../../Assets/Icons/send.svg";
-import smileEmoji from "../../../Assets/Icons/Vector.png";
+import { useRef } from 'react';
+
 const TypeMessageBox = ({ state }) => {
+    const ref = useRef()
+    const handleClick = (e) => {
+      ref.current.click()
+    }
+    
   return (
     <Box
       border={"2px"}
@@ -19,8 +25,11 @@ const TypeMessageBox = ({ state }) => {
           style={{
             height: "1.5rem",
             width: "1.5rem",
+            cursor:"pointer"
           }}
+          onClick={handleClick}
         />
+        <input ref={ref} type="file" style={{ display: 'none' }}/>
         <Box p="1rem" backgroundColor={"#F6540E"} borderRadius="1rem">
           <SendIcon
             style={{

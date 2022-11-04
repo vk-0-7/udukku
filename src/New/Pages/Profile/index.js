@@ -6,6 +6,7 @@ import NavBar from "../../Components/NavBar/NavBar";
 import profileImg from "../../../Assets/Dummy/Ellipse 6.png";
 import videoImg from "../../../Assets/Dummy/Rectangle 179.png";
 import ProfilePic from "../../../Assets/Images/Rectangle 188.png";
+import ReactPlayer from "react-player";
 // Icons
 import { ReactComponent as FbIcon } from "../../../Assets/Icons/fb.svg";
 import { ReactComponent as InstaIcon } from "../../../Assets/Icons/insta.svg";
@@ -57,15 +58,10 @@ const d_data = [
 
 const Profile = () => {
   const { id } = useParams();
-  console.log("Here is Id",id)
-  console.log(AuthContext)
+  console.log("Here is Id", id);
+  console.log(AuthContext);
   const [user, setUser] = useState({});
   const navigate = useNavigate();
-  const [show_video, set_show_video] = useState(false);
-
-  const handlePlay = () => {
-    set_show_video(true);
-  };
 
   useEffect(() => {
     getAllUsers().then((res) => {
@@ -73,8 +69,9 @@ const Profile = () => {
       setUser(filteredUser[0]);
     });
   }, []);
+
   console.log({ user });
-  console.log(user.name);
+
   return (
     <>
       <Box overflowX={"hidden"}>
@@ -420,50 +417,34 @@ const Profile = () => {
             <Box w="35vw" h="10px">
               {/* video section */}
 
-              {show_video ? (
-                <Box
+              {user.socialMedia?.size === 0 ? (
+                <Box></Box>
+              ) : user.socialMedia?.filter(
+                  (vid) => vid.plat === "youtube" 
+                ).map(vid=>{
+                  return <Box
                   width={"100%"}
                   h="23rem"
                   borderRadius={"1.66vw"}
                   overflow="hidden"
+                  position="relative"
                 >
-                  <iframe
+                  <ReactPlayer
                     style={{
+                      position: "absolute",
                       width: "100%",
                       height: "100%",
                     }}
-                    src="https://www.youtube.com/embed/_VuJA-VQRcY?controls=0&autoplay=1&showinfo=0"
-                    title="Central Cee - Doja (Directed by Cole Bennett)"
-                    allow="autoplay; encrypted-media;"
-                  ></iframe>
+                    height="100%"
+                    width={"100%"}
+                    url={
+                     vid.link
+                    }
+                  />
                 </Box>
-              ) : (
-                <Box w="100%" h="23rem" pos="relative">
-                  <Image w="100%" h="100%" src={videoImg} />
-                  <Box
-                    position={"absolute"}
-                    w="4.16vw"
-                    h="4.16vw"
-                    borderRadius={"full"}
-                    bg="#F6540E"
-                    top="50%"
-                    left="50%"
-                    transform={"translate(-50%,-50%)"}
-                    display="flex"
-                    alignItems={"center"}
-                    justifyContent="center"
-                    cursor={"pointer"}
-                    onClick={handlePlay}
-                  >
-                    <PlayIcon
-                      style={{
-                        width: "1.04vw",
-                        height: "1.1vw",
-                      }}
-                    />
-                  </Box>
-                </Box>
-              )}
+                })
+                
+              }
 
               {/* starting price section */}
               <Box

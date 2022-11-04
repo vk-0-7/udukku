@@ -19,7 +19,7 @@ const TypeMessageBox = ({ state }) => {
       flexDir={"row"}
       alignItems="center"
     >
-      <Input fontFamily={"Gilroy-SemiBold"} type="text" color="gray" fontSize={"1.2rem"} border="none" w="80%"/>
+      <Input variant='unstyled' fontFamily={"Gilroy-SemiBold"} placeholder="Type here" type="text" color="gray" fontSize={"1.2rem"} border="none" w="80%"/>
       <Box ml="auto" display={"flex"} flexDir="row" gap="1rem" alignItems={"center"}>
         <LinkIcon
           style={{

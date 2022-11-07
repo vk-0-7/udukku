@@ -1,12 +1,21 @@
-import { Box, List, ListItem, Text, UnorderedList } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  List,
+  ListItem,
+  Text,
+  UnorderedList,
+} from "@chakra-ui/react";
 import NavBar from "../../Components/NavBar/NavBar";
 import { ReactComponent as Searchicon } from "../../../Assets/Icons/search-normal.svg";
 import Footer from "../../Components/Footer/Footer";
 import getMyJobs from "../../../Api/MyJobs/getMyJobs";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const MyJobs = ({ state }) => {
-    const [myJobs,setMyJobs]=useState([]);
+  const [myJobs, setMyJobs] = useState([]);
+  const navigate = useNavigate();
   const getData = async () => {
     try {
       const res = await getMyJobs();
@@ -29,9 +38,24 @@ const MyJobs = ({ state }) => {
         pb="5rem"
         px="15rem"
       >
-        <Text fontSize={"3rem"} fontFamily="Gilroy-Bold">
-          My Jobs
-        </Text>
+        <Box display="flex" flexDir="row" alignItems={"center"}>
+          <Text fontSize={"3rem"} fontFamily="Gilroy-Bold">
+            My Jobs
+          </Text>
+          <Box ml="auto">
+            <Button
+              size="lg"
+              backgroundColor={"#F6540E"}
+              color="white"
+              py="2rem"
+              px="1.5rem"
+              borderRadius={"1.5rem"}
+              onClick={() => navigate("/post-a-job")}
+            >
+             + Create Job
+            </Button>
+          </Box>
+        </Box>
         <Box
           border="2px solid #F0F0F0"
           borderRadius={"20px"}
@@ -128,8 +152,9 @@ const MyJobs = ({ state }) => {
           </Box>
           <Box>
             <List w="100%">
-                {myJobs.map(job=>{
-                    return     <ListItem
+              {myJobs.map((job) => {
+                return (
+                  <ListItem
                     display={"flex"}
                     flexDir="row"
                     alignItems={"center"}
@@ -140,14 +165,14 @@ const MyJobs = ({ state }) => {
                   >
                     <Box display={"flex"} flexDir="column" gap="3px">
                       <Text fontSize={"1.3rem"} fontFamily="Gilroy-SemiBold">
-                       {job.jobTitle}
+                        {job.jobTitle}
                       </Text>
                       <Text
                         fontSize={"1rem"}
                         fontFamily="Gilroy-SemiBold"
                         color="gray"
                       >
-                        {job.createdAt.substring(0,10)}
+                        {job.createdAt.substring(0, 10)}
                       </Text>
                     </Box>
                     <Box>
@@ -157,7 +182,7 @@ const MyJobs = ({ state }) => {
                     </Box>
                     <Box>
                       <Text fontSize={"1.3rem"} fontFamily="Gilroy-SemiBold">
-                      ₹{job.budget[0]} - ₹{job.budget[1]}
+                        ₹{job.budget[0]} - ₹{job.budget[1]}
                       </Text>
                     </Box>
                     <Box>
@@ -173,7 +198,8 @@ const MyJobs = ({ state }) => {
                       </Box>
                     </Box>
                   </ListItem>
-                })}
+                );
+              })}
             </List>
             <Box
               display={"flex"}

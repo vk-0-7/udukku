@@ -24,6 +24,7 @@ import googleLogin from "../../../Api/Auth/googleLogin";
 import jwt_decode from "jwt-decode";
 import gLogo from "../../../Assets/Icons/Group.svg";
 import BecomeOurMember from "../../Pages/Homepage/becomeOurMember/BecomeOurMember";
+import { useNavigate } from "react-router-dom";
 
 const SignInModal = ({ state, changeState }) => {
   const [show, setShow] = useState(false);
@@ -75,7 +76,7 @@ const SignInModal = ({ state, changeState }) => {
       });
     }
   }, []);
-
+const navigate= useNavigate();
   const handleCallbackResponse = async (response) => {
     console.log("google response is : ", response);
     var userObj = jwt_decode(response.credential);
@@ -91,6 +92,7 @@ const SignInModal = ({ state, changeState }) => {
       // setUsed('google');
       // setOpen(false);
       onClose();
+      
       // setProfileurl(res.data.msg.avatar);
     } catch (error) {
       // toast({
@@ -141,6 +143,7 @@ const SignInModal = ({ state, changeState }) => {
         onClose();
         sessionStorage.setItem("id", res.data.user._id);
         console.log("setting the value here");
+        navigate('/dashboard')
       } else {
         set_show_registration_modal(false);
         setLoginState(true);
@@ -151,6 +154,7 @@ const SignInModal = ({ state, changeState }) => {
         setName(res.data.user.name);
         setUsername(res.data.user.userName);
         onClose();
+        navigate('/dashboard')
       }
     } catch (error) {
       if (error.response.data.message === "This email does not exist.") {

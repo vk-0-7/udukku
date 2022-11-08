@@ -23,6 +23,7 @@ import Messages from "./New/Pages/Dashboard/Messages/Messages";
 import ContactMessages from "./New/Pages/messages/contactsMessages";
 import ViewProposal from "./New/Pages/messages/ViewProposalPage";
 import MyJobs from "./New/Pages/MyJobs";
+import ClientDashboard from "./New/Pages/ClientDashboard/clientDashboard";
 
 const App = () => {
   return (
@@ -65,6 +66,7 @@ const App = () => {
           <Route path="/contactMessage" element={<ContactMessages />} />
           <Route path="/view-proposal" element={<ViewProposal />} />
           <Route path="/myjobs" element={<MyJobs />} />
+          <Route path="/client-dashboard" element={<ClientDashboard/> }/>
           {/* *********************** End *************************** */}
         </Routes>
       </div>

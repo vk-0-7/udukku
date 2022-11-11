@@ -24,7 +24,7 @@ const TalentCard = ({ data }) => {
   }
   return (
     <Box
-      h={{ base: "", lg: "65vh" }}
+      h={{ base: "", lg: "" }}
       w={{ base: "100%", lg: "23.75vw" }}
       border="1.5px solid #F0F0F0"
       borderRadius={"1.45vw"}
@@ -32,7 +32,7 @@ const TalentCard = ({ data }) => {
       py="2.59vh"
       display={"flex"}
       flexDir="column"
-      gap={{ base: "2rem", lg: "" }}
+      gap={{ base: "2rem", lg: "1rem" }}
       cursor={"pointer"}
       overflow="hidden"
       onClick={() => {
@@ -83,10 +83,10 @@ const TalentCard = ({ data }) => {
       {/* section three tag section */}
       <Box
         display={"flex"}
-        mt={{ base: "0rem", lg: "2.22vh" }}
+        mt={{ base: "0rem", lg: "0rem" }}
         fontFamily={"Gilroy-Bold"}
         fontSize={{ base: "3rem", lg: "1.45vw" }}
-        lineHeight={"3.5vh"}
+        // lineHeight={"3.5vh"}
       >
         {data.tag}
       </Box>
@@ -148,7 +148,7 @@ const TalentCard = ({ data }) => {
       </Box>
 
       {/* section four description section */}
-      <Text fontFamily={"Gilroy-Medium"} fontSize={{base:"1.4rem",lg:".833vw"}} mt={{base:"1rem",lg:"2.22vh"}}>
+      <Text fontFamily={"Gilroy-Medium"} fontSize={{base:"1.4rem",lg:".833vw"}} mt={{base:"1rem",lg:"1rem"}}>
         Jobs Completed: {data.jobsCompleted}
       </Text>
       <Text fontFamily={"Gilroy-Medium"} fontSize={{base:"1.4rem",lg:".833vw"}} mt={{base:"1rem",lg:"2.22vh"}}>

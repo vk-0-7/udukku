@@ -22,6 +22,8 @@ import RatingFilter from "./filters/RatingFilter";
 import GenreFilter from "./filters/GenreFilter";
 import getAllUsers from "../../../Api/User/getAllUsers";
 import { useCategoryContext } from "../../Context/CategoryContext";
+import getAllTalents from "../../../Api/AllTalents/allTalents";
+import { AccessAuthContext } from "../../Context/AuthContext";
 
 // const d_data = [
 //   {
@@ -123,16 +125,28 @@ const Talents = () => {
   const [genre, set_genre] = useState("");
   const [show_clear, set_show_clear] = useState(false);
   const [pageTitle, setPageTitle] = useState("");
+  const [allTalents, setAllTalents] = useState([]);
+  const { loginState } = AccessAuthContext();
   //mobile view
   const [filterButton, setFilterButton] = useState(false);
-  useEffect(() => {
-    //window.scrollTo(0, 0);
-    getAllUsers().then((res) => {
-      console.log(res);
-      setTalents(res.user);
-    });
-  }, []);
-  console.log({ talents });
+
+  if (loginState === true) {
+    useEffect(() => {
+      //window.scrollTo(0, 0);
+      getAllUsers().then((res) => {
+        console.log(res);
+        setTalents(res.user);
+      });
+    }, []);
+  } else {
+    useEffect(() => {
+      getAllTalents().then((res) => {
+        setAllTalents(res.data.talents);
+      });
+    }, []);
+  }
+
+  console.log({ allTalents });
   // useEffect(() => {
   //   set_temp_list((prev) => {
   //     // let result = d_data.filter((data) => {
@@ -340,39 +354,45 @@ const Talents = () => {
           rowGap={"1.48vh"}
           mb="5.55vh"
         >
-          {talents
-            .filter((talent) => talent.isMusician === "Musician")
-            .filter((data) => {
-              if (search === "") {
-                return data;
-              } else if (
-                data.tag?.toLowerCase().includes(search.toLowerCase())
-              ) {
-                return data;
-              }
-            })
-            .filter((t) => {
-              if (start_price == "" && end_price == "") {
-                return t;
-              } else if (
-                t.startingPrice?.[0] >= start_price &&
-                t.startingPrice?.[0] <= end_price
-              ) {
-                return t;
-              }
-            })
-            .filter((t) =>
-              t.genres[0]?.genere.toLowerCase().includes(genre.toLowerCase())
-            )
-            .filter((t) =>
-              t.services[0]?.service
-                .toLowerCase()
-                .includes(categoryF.toLowerCase())
-            )
-            .map((talent) => (
-              <TalentCard key={talent._id} data={talent} />
-              //<p>{talent._id}</p>
-            ))}
+          {loginState === true
+            ? talents
+                .filter((talent) => talent.isMusician === "Musician")
+                .filter((data) => {
+                  if (search === "") {
+                    return data;
+                  } else if (
+                    data.tag?.toLowerCase().includes(search.toLowerCase())
+                  ) {
+                    return data;
+                  }
+                })
+                .filter((t) => {
+                  if (start_price == "" && end_price == "") {
+                    return t;
+                  } else if (
+                    t.startingPrice?.[0] >= start_price &&
+                    t.startingPrice?.[0] <= end_price
+                  ) {
+                    return t;
+                  }
+                })
+                .filter((t) =>
+                  t.genres[0]?.genere
+                    .toLowerCase()
+                    .includes(genre.toLowerCase())
+                )
+                .filter((t) =>
+                  t.services[0]?.service
+                    .toLowerCase()
+                    .includes(categoryF.toLowerCase())
+                )
+                .map((talent) => (
+                  <TalentCard key={talent._id} data={talent} />
+                  //<p>{talent._id}</p>
+                ))
+            : allTalents.map((talent) => {
+                return <TalentCard key={talent._id} data={talent} />;
+              })}
         </Box>
       </Box>
       <Footer />

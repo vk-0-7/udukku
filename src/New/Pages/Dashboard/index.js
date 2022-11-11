@@ -48,7 +48,7 @@ const Dashboard = () => {
         <NavBar/>
         <Box
           px={{ base: "7vw", lg: "13.54vw" }}
-          py="3.70vh"
+          py="10rem"
           minH="calc(100vh - 7.40vh)"
         >
           <Text fontSize={"2.29vw"} fontFamily="Gilroy-Bold">

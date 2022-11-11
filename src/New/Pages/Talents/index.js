@@ -130,21 +130,17 @@ const Talents = () => {
   //mobile view
   const [filterButton, setFilterButton] = useState(false);
 
-  if (loginState === true) {
-    useEffect(() => {
-      //window.scrollTo(0, 0);
-      getAllUsers().then((res) => {
-        console.log(res);
-        setTalents(res.user);
-      });
-    }, []);
-  } else {
-    useEffect(() => {
-      getAllTalents().then((res) => {
-        setAllTalents(res.data.talents);
-      });
-    }, []);
-  }
+  useEffect(() => {
+    //window.scrollTo(0, 0);
+    getAllUsers().then((res) => {
+      console.log(res);
+      setTalents(res.user);
+    });
+
+    getAllTalents().then((res) => {
+      setAllTalents(res.data.talents);
+    });
+  }, []);
 
   console.log({ allTalents });
   // useEffect(() => {

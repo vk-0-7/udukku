@@ -9,6 +9,7 @@ import NavBar from "../../Components/NavBar/NavBar";
 import Footer from "../../Components/Footer/Footer";
 import { useEffect, useState } from "react";
 import GoToTop from "../../Utility/goToTop";
+import { ColorRing } from "react-loader-spinner";
 // icons
 import { ReactComponent as SearchIcon } from "../../../Assets/Icons/search-normal.svg";
 
@@ -129,17 +130,19 @@ const Talents = () => {
   const { loginState } = AccessAuthContext();
   //mobile view
   const [filterButton, setFilterButton] = useState(false);
-
-  useEffect(() => {
+  const [loading, setLoading] = useState(false);
+  useEffect(async () => {
     //window.scrollTo(0, 0);
-    getAllUsers().then((res) => {
-      console.log(res);
+    setLoading(true);
+    try {
+      const res = await getAllUsers();
+      const res2 = await getAllTalents();
+      setLoading(false);
       setTalents(res.user);
-    });
-
-    getAllTalents().then((res) => {
       setAllTalents(res.data.talents);
-    });
+    } catch (err) {
+      console.log(err);
+    }
   }, []);
 
   console.log({ allTalents });
@@ -350,8 +353,9 @@ const Talents = () => {
           rowGap={"1.48vh"}
           mb="5.55vh"
         >
-          {loginState === true
-            ? talents
+          {loginState === true ? (
+            loading === false ? (
+              talents
                 .filter((talent) => talent.isMusician === "Musician")
                 .filter((data) => {
                   if (search === "") {
@@ -386,9 +390,58 @@ const Talents = () => {
                   <TalentCard key={talent._id} data={talent} />
                   //<p>{talent._id}</p>
                 ))
-            : allTalents.map((talent) => {
-                return <TalentCard key={talent._id} data={talent} />;
-              })}
+            ) : (
+              <Box
+                w="70vw"
+                h="50vh"
+                display="flex"
+                flexDir="row"
+                alignItems="center"
+                justifyContent="center"
+              >
+                {" "}
+                <ColorRing
+                  visible={true}
+                  height="80"
+                  width="80"
+                  ariaLabel="blocks-loading"
+                  wrapperStyle={{}}
+                  wrapperClass="blocks-wrapper"
+                  colors={[
+                    "#F6540E",
+                    "#F6540E",
+                    "#F6540E",
+                    "#F6540E",
+                    "#F6540E",
+                  ]}
+                />
+              </Box>
+            )
+          ) : loading === false ? (
+            allTalents.map((talent) => {
+              return <TalentCard key={talent._id} data={talent} />;
+            })
+          ) : (
+            <Box
+              w="70vw"
+              h="50vh"
+              display="flex"
+              flexDir="row"
+              alignItems="center"
+              justifyContent="center"
+            >
+              {" "}
+              <ColorRing
+                visible={true}
+                height="80"
+                width="80"
+                ariaLabel="blocks-loading"
+                wrapperStyle={{}}
+                wrapperClass="blocks-wrapper"
+                colors={["#F6540E", "#F6540E", "#F6540E", "#F6540E", "#F6540E"]}
+              />
+            </Box>
+          )}
         </Box>
       </Box>
       <Footer />

@@ -20,7 +20,7 @@ const Slide = () => {
       set_slides(res.data.user);
     } catch (error) {}
   };
-console.log({slides})
+  console.log({ slides });
   //console.log(slides);
   useEffect(() => {
     getSlideData();
@@ -37,12 +37,12 @@ console.log({slides})
   return (
     <Box
       flexShrink={0}
-      w={{base:"100vw",lg:"27.60vw"}}
+      w={{ base: "100vw", lg: "27.60vw" }}
       borderRadius={"1.666vw"}
       overflow="hidden"
       position={"relative"}
       className="hero"
-      px={{base:"3.5rem"}}
+      px={{ base: "3.5rem" }}
     >
       <Splide
         aria-label="images"
@@ -50,7 +50,7 @@ console.log({slides})
         options={{
           type: "loop",
           gap: "1rem",
-          width: {base:"100vw",lg:"27.60vw"},
+          width: { base: "100vw", lg: "27.60vw" },
           height: "51.85vh",
           transition: "slide",
           interval: 3000,
@@ -65,9 +65,8 @@ console.log({slides})
               <SplideSlide key={index}>
                 <Box
                   bgImage={data.avatar}
-                  bgSize="cover"
-                  bgPos={"50% 50%"}
-                  w={{base:"100vw",lg:"27.60vw"}}
+                  bgSize="contain"
+                  w={{ base: "100vw", lg: "27.60vw" }}
                   h="51.85vh"
                 ></Box>
               </SplideSlide>
@@ -79,7 +78,7 @@ console.log({slides})
           // display={'none'}
           position={"absolute"}
           h="22.40vh"
-          w={{base:"20rem",lg:"12.93vw"}}
+          w={{ base: "20rem", lg: "12.93vw" }}
           bg="rgba(8, 32, 50,.65)"
           bottom={0}
           right={0}
@@ -97,7 +96,7 @@ console.log({slides})
             <Text
               pt="10px"
               color="#fff"
-              fontSize={{base:"2rem",lg:"1.04vw"}}
+              fontSize={{ base: "2rem", lg: "1.04vw" }}
               textAlign="end"
               fontFamily="Gilroy-Medium"
             >
@@ -120,8 +119,8 @@ console.log({slides})
               mt="1.11vh"
             >
               <Box
-                h={{base:"3rem",lg:"2.5vw"}}
-                w={{base:"3rem",lg:"2.5vw"}}
+                h={{ base: "3rem", lg: "2.5vw" }}
+                w={{ base: "3rem", lg: "2.5vw" }}
                 display={"flex"}
                 justifyContent="center"
                 alignItems={"center"}
@@ -132,11 +131,15 @@ console.log({slides})
                   document.querySelector(".splide__arrow--prev").click();
                 }}
               >
-                <Image src={left} alt="left" w={{base:"1.3rem",lg:".5vw"}} />
+                <Image
+                  src={left}
+                  alt="left"
+                  w={{ base: "1.3rem", lg: ".5vw" }}
+                />
               </Box>
               <Box
-                h={{base:"3rem",lg:"2.5vw"}}
-                w={{base:"3rem",lg:"2.5vw"}}
+                h={{ base: "3rem", lg: "2.5vw" }}
+                w={{ base: "3rem", lg: "2.5vw" }}
                 display={"flex"}
                 justifyContent="center"
                 alignItems={"center"}
@@ -147,7 +150,11 @@ console.log({slides})
                   document.querySelector(".splide__arrow--next").click();
                 }}
               >
-                <Image src={right} alt="left" w={{base:"1.3rem",lg:".5vw"}} />
+                <Image
+                  src={right}
+                  alt="left"
+                  w={{ base: "1.3rem", lg: ".5vw" }}
+                />
               </Box>
             </Box>
           </Box>

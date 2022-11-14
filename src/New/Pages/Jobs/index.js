@@ -26,6 +26,7 @@ import Sidebar from "./sidebar/Sidebar";
 import { GrClose } from "react-icons/gr";
 import { useEffect, useState } from "react";
 import getJobs from "../../../Api/Jobs/getJobsApi";
+import { ColorRing } from "react-loader-spinner";
 
 
 const Jobs = () => {
@@ -174,7 +175,21 @@ const Jobs = () => {
                 justifyContent="center"
                 alignItems={"center"}
               >
-                <Spinner />
+                <ColorRing
+                  visible={true}
+                  height="80"
+                  width="80"
+                  ariaLabel="blocks-loading"
+                  wrapperStyle={{}}
+                  wrapperClass="blocks-wrapper"
+                  colors={[
+                    "#F6540E",
+                    "#F6540E",
+                    "#F6540E",
+                    "#F6540E",
+                    "#F6540E",
+                  ]}
+                />
               </Box>
             ) : (
               <>

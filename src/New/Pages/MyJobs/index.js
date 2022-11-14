@@ -12,13 +12,16 @@ import Footer from "../../Components/Footer/Footer";
 import getMyJobs from "../../../Api/MyJobs/getMyJobs";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import { ColorRing } from "react-loader-spinner";
 const MyJobs = ({ state }) => {
   const [myJobs, setMyJobs] = useState([]);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const getData = async () => {
+    setLoading(true);
     try {
       const res = await getMyJobs();
+      setLoading(false);
       setMyJobs(res.job);
     } catch {
       console.log("error heree");
@@ -52,7 +55,7 @@ const MyJobs = ({ state }) => {
               borderRadius={"1.5rem"}
               onClick={() => navigate("/post-a-job")}
             >
-             + Create Job
+              + Create Job
             </Button>
           </Box>
         </Box>
@@ -152,54 +155,83 @@ const MyJobs = ({ state }) => {
           </Box>
           <Box>
             <List w="100%">
-              {myJobs.map((job) => {
-                return (
-                  <ListItem
-                    display={"flex"}
-                    flexDir="row"
-                    alignItems={"center"}
-                    justifyContent="space-between"
-                    px="2rem"
-                    py="1.5rem"
-                    borderBottom={"2px solid #F0F0F0"}
-                  >
-                    <Box display={"flex"} flexDir="column" gap="3px">
-                      <Text fontSize={"1.3rem"} fontFamily="Gilroy-SemiBold">
-                        {job.jobTitle}
-                      </Text>
-                      <Text
-                        fontSize={"1rem"}
-                        fontFamily="Gilroy-SemiBold"
-                        color="gray"
-                      >
-                        {job.createdAt.substring(0, 10)}
-                      </Text>
-                    </Box>
-                    <Box>
-                      <Text fontSize={"1.3rem"} fontFamily="Gilroy-SemiBold">
-                        Hired by: {job.jobPostedBy.name}
-                      </Text>
-                    </Box>
-                    <Box>
-                      <Text fontSize={"1.3rem"} fontFamily="Gilroy-SemiBold">
-                        ₹{job.budget[0]} - ₹{job.budget[1]}
-                      </Text>
-                    </Box>
-                    <Box>
-                      <Box
-                        py="1rem"
-                        px="1.5rem"
-                        backgroundColor={"#FEFBE8"}
-                        borderRadius="2rem"
-                      >
+              {loading === false ? (
+                myJobs.map((job) => {
+                  return (
+                    <ListItem
+                      display={"flex"}
+                      flexDir="row"
+                      alignItems={"center"}
+                      justifyContent="space-between"
+                      px="2rem"
+                      py="1.5rem"
+                      borderBottom={"2px solid #F0F0F0"}
+                    >
+                      <Box display={"flex"} flexDir="column" gap="3px">
                         <Text fontSize={"1.3rem"} fontFamily="Gilroy-SemiBold">
-                          In Progress
+                          {job.jobTitle}
+                        </Text>
+                        <Text
+                          fontSize={"1rem"}
+                          fontFamily="Gilroy-SemiBold"
+                          color="gray"
+                        >
+                          {job.createdAt.substring(0, 10)}
                         </Text>
                       </Box>
-                    </Box>
-                  </ListItem>
-                );
-              })}
+                      <Box>
+                        <Text fontSize={"1.3rem"} fontFamily="Gilroy-SemiBold">
+                          Hired by: {job.jobPostedBy.name}
+                        </Text>
+                      </Box>
+                      <Box>
+                        <Text fontSize={"1.3rem"} fontFamily="Gilroy-SemiBold">
+                          ₹{job.budget[0]} - ₹{job.budget[1]}
+                        </Text>
+                      </Box>
+                      <Box>
+                        <Box
+                          py="1rem"
+                          px="1.5rem"
+                          backgroundColor={"#FEFBE8"}
+                          borderRadius="2rem"
+                        >
+                          <Text
+                            fontSize={"1.3rem"}
+                            fontFamily="Gilroy-SemiBold"
+                          >
+                            In Progress
+                          </Text>
+                        </Box>
+                      </Box>
+                    </ListItem>
+                  );
+                })
+              ) : (
+                <Box
+                  h="100%"
+                  w="100%"
+                  display={"flex"}
+                  alignItems="center"
+                  justifyContent={"center"}
+                >
+                  <ColorRing
+                    visible={true}
+                    height="80"
+                    width="80"
+                    ariaLabel="blocks-loading"
+                    wrapperStyle={{}}
+                    wrapperClass="blocks-wrapper"
+                    colors={[
+                      "#F6540E",
+                      "#F6540E",
+                      "#F6540E",
+                      "#F6540E",
+                      "#F6540E",
+                    ]}
+                  />
+                </Box>
+              )}
             </List>
             <Box
               display={"flex"}

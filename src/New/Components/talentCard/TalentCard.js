@@ -7,7 +7,6 @@ import { ReactComponent as GenreIcon } from "../../../Assets/Icons/VectorGen.svg
 import { useNavigate } from "react-router-dom";
 import { none } from "@cloudinary/url-gen/qualifiers/progressive";
 
-
 const TalentCard = ({ data }) => {
   const navigate = useNavigate("");
   console.log({ data });
@@ -15,13 +14,7 @@ const TalentCard = ({ data }) => {
     height: ".93vw",
     width: ".72vw",
     fill: "rgba(8, 32, 50, 1)",
-    // Adding media query..
-    '@media (max-width: 500px)': {
-      // height:"1.2rem",
-      // width:"1.2rem",
-      display:"none"
-    }
-  }
+  };
   return (
     <Box
       h={{ base: "", lg: "" }}
@@ -90,23 +83,27 @@ const TalentCard = ({ data }) => {
       >
         {data.tag}
       </Box>
-      <Box display={"flex"} flexWrap={"wrap"} gap={{base:"1.5rem",lg:".41vw"}} mt={{ lg: "1.48vh" }}>
+      <Box
+        display={"flex"}
+        flexWrap={"wrap"}
+        gap={{ base: "1.5rem", lg: ".41vw" }}
+        mt={{ lg: "1.48vh" }}
+      >
         {data.genres?.map((val, index) => {
           return (
             <Box
               h="4.07vh"
               pl=".70vw"
               pr=".62vw"
-              borderRadius={{base:"1.3rem",lg:".833vw"}}
+              borderRadius={{ base: "1.3rem", lg: ".833vw" }}
               display="flex"
               alignItems={"center"}
               justifyContent="center"
               bg={val.type === "genere" ? "rgba(247, 215, 22, .1)" : "#FEFBE8"}
               gap=".41vw"
+              key={val._id}
             >
-              <GenreIcon
-                style={Iconstyle}
-              />
+              <GenreIcon style={Iconstyle} />
               <Text
                 fontFamily={"Gilroy-SemiBold"}
                 fontSize={{ base: "1.4rem", lg: ".72vw" }}
@@ -122,7 +119,7 @@ const TalentCard = ({ data }) => {
               h={"4.07vh"}
               pl=".70vw"
               pr=".62vw"
-              borderRadius={{base:"1.4rem",lg:".833vw"}}
+              borderRadius={{ base: "1.4rem", lg: ".833vw" }}
               display="flex"
               alignItems={"center"}
               justifyContent="center"
@@ -132,10 +129,9 @@ const TalentCard = ({ data }) => {
                   : "rgba(192, 226, 24, .1)"
               }
               gap=".41vw"
+              key={val._id}
             >
-              <CategoryIcon
-                style={Iconstyle}
-              />
+              <CategoryIcon style={Iconstyle} />
               <Text
                 fontFamily={"Gilroy-SemiBold"}
                 fontSize={{ base: "1.2rem", lg: ".72vw" }}
@@ -148,13 +144,25 @@ const TalentCard = ({ data }) => {
       </Box>
 
       {/* section four description section */}
-      <Text fontFamily={"Gilroy-Medium"} fontSize={{base:"1.4rem",lg:".833vw"}} mt={{base:"1rem",lg:"1rem"}}>
+      <Text
+        fontFamily={"Gilroy-Medium"}
+        fontSize={{ base: "1.4rem", lg: ".833vw" }}
+        mt={{ base: "1rem", lg: "1rem" }}
+      >
         Jobs Completed: {data.jobsCompleted}
       </Text>
-      <Text fontFamily={"Gilroy-Medium"} fontSize={{base:"1.4rem",lg:".833vw"}} mt={{base:"1rem",lg:"2.22vh"}}>
+      <Text
+        fontFamily={"Gilroy-Medium"}
+        fontSize={{ base: "1.4rem", lg: ".833vw" }}
+        mt={{ base: "1rem", lg: "2.22vh" }}
+      >
         {data.email}
       </Text>
-      <Text fontFamily={"Gilroy-Medium"} fontSize={{base:"1.4rem",lg:".833vw"}} mt={{base:"1rem",lg:"2.22vh"}}>
+      <Text
+        fontFamily={"Gilroy-Medium"}
+        fontSize={{ base: "1.4rem", lg: ".833vw" }}
+        mt={{ base: "1rem", lg: "2.22vh" }}
+      >
         {data.description}
       </Text>
       {data.workSample && (
@@ -168,7 +176,11 @@ const TalentCard = ({ data }) => {
       {/* push everything away */}
       <Box flexGrow={1}></Box>
 
-      <Text fontFamily={"Gilroy-Bold"} fontSize={{base:"2.3rem",lg:"1.45vw"}} mt={{lg:"2.96vh"}}>
+      <Text
+        fontFamily={"Gilroy-Bold"}
+        fontSize={{ base: "2.3rem", lg: "1.45vw" }}
+        mt={{ lg: "2.96vh" }}
+      >
         From ₹{data.startingPrice[0]}
       </Text>
     </Box>

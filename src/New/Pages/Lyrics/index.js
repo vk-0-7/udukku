@@ -9,7 +9,7 @@ import {
 } from "@chakra-ui/react";
 import Footer from "../../Components/Footer/Footer";
 import NavBar from "../../Components/NavBar/NavBar";
-
+import { ColorRing } from "react-loader-spinner";
 // icon
 import { ReactComponent as CategoryIcon } from "../../../Assets/Icons/element-4.svg";
 import { ReactComponent as GenreIcon } from "../../../Assets/Icons/VectorGen.svg";
@@ -24,11 +24,14 @@ const Lyrics = () => {
   const [d_data, setDData] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [page, setPage] = useState(1);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   useEffect(() => {
     (async () => {
+      setLoading(true);
       // console.log("UseEffect", page);
       getSongs(page, 10).then((songs) => {
+        setLoading(false);
         setDData(songs.message);
       });
     })();
@@ -122,7 +125,9 @@ const Lyrics = () => {
               h="100%"
               p="6px"
               children={
-                <SearchIcon style={{ h:"1rem",stroke: "rgba(43, 43, 43, .3)" }} />
+                <SearchIcon
+                  style={{ h: "1rem", stroke: "rgba(43, 43, 43, .3)" }}
+                />
               }
             />
             <Input
@@ -138,7 +143,7 @@ const Lyrics = () => {
               onChange={(e) => {
                 setSearchTerm(e.target.value);
               }}
-            
+
               // onFocus={() => {
               // 	console.log('in focus');
               // 	set_search_color('rgba(246, 84, 14, 1)');
@@ -184,55 +189,79 @@ const Lyrics = () => {
           rowGap={"5.55vh"}
           mb="7.40vh"
         >
-          {d_data
-            .filter((data) => {
-              if (searchTerm === "") {
-                return data;
-              } else if (
-                data.songName?.toLowerCase().includes(searchTerm.toLowerCase())
-              ) {
-                return data;
-              }
-            })
-            .map((data, index) => {
-              return (
-                <Box
-                  key={index}
-                  w="100%"
-                  h="auto"
-                  cursor={"pointer"}
-                  borderRadius={"10px"}
-                  backgroundColor={"#e0d3d366"}
-                  //padding={"1px"}
-                  onClick={() => {
-                    navigate(`/lyrics-details/${data._id}`);
-                  }}
-                >
-                  <Image
-                    src={data.coverPhoto}
+          {loading === false ? (
+            d_data
+              .filter((data) => {
+                if (searchTerm === "") {
+                  return data;
+                } else if (
+                  data.songName
+                    ?.toLowerCase()
+                    .includes(searchTerm.toLowerCase())
+                ) {
+                  return data;
+                }
+              })
+              .map((data, index) => {
+                return (
+                  <Box
+                    key={index}
                     w="100%"
-                    h="31.29vh"
-                    borderTopLeftRadius={"10px"}
-                    borderTopRightRadius={"10px"}
-                    objectFit={"cover"}
-                    objectPosition="50% 50%"
-                  />
-                  <Box pl=".41vw" pt="1.48vh">
-                    <Text fontFamily={"Gilroy-SemiBold"} fontSize="1.45vw">
-                      {data.songName}
-                    </Text>
-                    <Text
-                      fontFamily={"Gilroy-SemiBold"}
-                      fontSize="1.04vw"
-                      color="rgba(43, 43, 43, .5)"
-                      mb={".5vh"}
-                    >
-                      {data.artistName}
-                    </Text>
+                    h="auto"
+                    cursor={"pointer"}
+                    borderRadius={"10px"}
+                    backgroundColor={"#e0d3d366"}
+                    //padding={"1px"}
+                    onClick={() => {
+                      navigate(`/lyrics-details/${data._id}`);
+                    }}
+                  >
+                    <Image
+                      src={data.coverPhoto}
+                      w="100%"
+                      h="31.29vh"
+                      borderTopLeftRadius={"10px"}
+                      borderTopRightRadius={"10px"}
+                      objectFit={"cover"}
+                      objectPosition="50% 50%"
+                    />
+                    <Box pl=".41vw" pt="1.48vh">
+                      <Text fontFamily={"Gilroy-SemiBold"} fontSize="1.45vw">
+                        {data.songName}
+                      </Text>
+                      <Text
+                        fontFamily={"Gilroy-SemiBold"}
+                        fontSize="1.04vw"
+                        color="rgba(43, 43, 43, .5)"
+                        mb={".5vh"}
+                      >
+                        {data.artistName}
+                      </Text>
+                    </Box>
                   </Box>
-                </Box>
-              );
-            })}
+                );
+              })
+          ) : (
+            <Box
+              w="70vw"
+              h="50vh"
+              display="flex"
+              flexDir="row"
+              alignItems="center"
+              justifyContent="center"
+            >
+              {" "}
+              <ColorRing
+                visible={true}
+                height="80"
+                width="80"
+                ariaLabel="blocks-loading"
+                wrapperStyle={{}}
+                wrapperClass="blocks-wrapper"
+                colors={["#F6540E", "#F6540E", "#F6540E", "#F6540E", "#F6540E"]}
+              />
+            </Box>
+          )}
         </Box>
       </Box>
       <Footer />

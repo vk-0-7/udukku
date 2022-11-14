@@ -86,7 +86,7 @@ const GenreFilter = ({ Main, setMainGenre, talents }) => {
             <Stack>
               {genres.map((g) => {
                 return (
-                  <Radio value={g} colorScheme="blackAlpha">
+                  <Radio key={g} value={g} colorScheme="blackAlpha">
                     <Text fontFamily={"Gilroy-SemiBold"} fontSize={".833vw"}>
                       {g}
                     </Text>

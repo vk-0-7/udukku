@@ -5,14 +5,14 @@ import { ReactComponent as Man } from "../../../Assets/Icons/man.svg";
 
 const TalentRegistrationPersonalInfo = ({ data }) => {
   const image_input_ref = useRef();
-  const [image_blob_link, set_image_blob_link] = useState(null);
+  const [image_blob_link, set_image_blob_link] = useState(data.avatar);
 
   const handleImageSubmit = (e) => {
     console.log(e.target.files[0]);
     data.set_avatar(e.target.files[0]);
     set_image_blob_link(URL.createObjectURL(e.target.files[0]));
   };
-
+console.log({data});
   return (
     <Box mt={{base:"2rem",lg:"4.444vh"}} w={{base:"100%",lg:"36.04vw"}}>
       <Text fontFamily={"Gilroy-SemiBold"} fontSize={{base:"2rem",lg:"1.45vw"}}>
@@ -156,7 +156,7 @@ const TalentRegistrationPersonalInfo = ({ data }) => {
             <Input
               h="6.48vh"
               type="text"
-              value={data.state}
+              value={data.ustate}
               onChange={(e) => {
                 data.set_state(e.target.value);
               }}

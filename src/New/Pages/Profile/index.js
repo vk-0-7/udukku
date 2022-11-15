@@ -106,7 +106,7 @@ const Profile = () => {
                     position="absolute"
                     bottom="3rem"
                     left="4rem"
-                    onClick={() => navigate("/talent-registration")}
+                    onClick={() => navigate('/talent-registration',{state:{data:user}})}
                   >
                     Edit Profile
                   </Button>:<></>}

@@ -1,6 +1,6 @@
 import { Box, Button, Text } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import registerTalentApi from "../../../Api/Registration/registerTalentApi";
 import Footer from "../../Components/Footer/Footer";
 import NavBar from "../../Components/NavBar/NavBar";
@@ -10,26 +10,26 @@ import TalentRegistrationProfessionalInfo from "./TalentRegistrationProfessional
 
 const TalentRegistration = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  console.log(location.state.data)
   // for personal info
-  const [fname, set_fname] = useState("");
-  const [username, set_username] = useState("");
+  const [fname, set_fname] = useState(location.state.data.name);
+  const [username, set_username] = useState(location.state.data.userName);
   const [check_username_availability, set_check_username_availability] =
     useState(false);
-  const [wa_number, set_wa_number] = useState("");
-  const [city, set_city] = useState("");
-  const [state, set_state] = useState("");
-  const [description, set_description] = useState("");
-  const [avatar, set_avatar] = useState(null);
+  const [wa_number, set_wa_number] = useState(location.state.data.mobile);
+  const [city, set_city] = useState(location.state.data.city);
+  const [ustate, set_state] = useState(location.state.data.state);
+  const [description, set_description] = useState(location.state.data.description);
+  const [avatar, set_avatar] = useState(location.state.data.avatar);
 
   // for professioinal info
-  const [categories, set_categories] = useState([
-    { category: "", subCategory: "", serviceStargingPrice: "" },
-  ]);
-  const [genre, set_genre] = useState([{ genre: "", subGenre: "" }]);
-  const [gear, set_gear] = useState([{ gear: "", gearHighlight: "" }]);
-  const [social_media, set_social_media] = useState([{ plat: "", link: "" }]);
-  const [work, set_work] = useState([{ workSample: "", link: "", role: "" }]);
-  const [term, set_term] = useState([{ termsAndServices: "" }]);
+  const [categories, set_categories] = useState(location.state.data.services);
+  const [genre, set_genre] = useState(location.state.data.genres);
+  const [gear, set_gear] = useState(location.state.data.gearHighLights);
+  const [social_media, set_social_media] = useState(location.state.data.socialMedia);
+  const [work, set_work] = useState(location.state.data.socialMedia);
+  const [term, set_term] = useState(location.state.data.terms);
 
   const [loading, set_loading] = useState(false);
 
@@ -50,7 +50,7 @@ const TalentRegistration = () => {
           username,
           wa_number,
           city,
-          state,
+          ustate,
           description,
           categories,
           genre,
@@ -87,7 +87,7 @@ const TalentRegistration = () => {
             set_wa_number,
             city,
             set_city,
-            state,
+            ustate,
             set_state,
             description,
             set_description,

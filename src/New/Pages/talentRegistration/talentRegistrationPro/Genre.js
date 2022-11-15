@@ -2,7 +2,7 @@ import { Box, Input, Select, Text } from '@chakra-ui/react';
 import { ReactComponent as DeleteIcon } from '../../../../Assets/Icons/Delete.svg';
 
 const Genre = ({ showDelete, changeState, currentIndex, fullState }) => {
-	console.log(fullState);
+	console.log({fullState});
 	const handleDelete = () => {
 		changeState((prev) => {
 			console.log('previous state was : ', prev);

@@ -1,6 +1,6 @@
 import { Box, Button, Image, Text } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import Footer from "../../Components/Footer/Footer";
 import NavBar from "../../Components/NavBar/NavBar";
 import profileImg from "../../../Assets/Dummy/Ellipse 6.png";
@@ -59,7 +59,8 @@ const d_data = [
 const Profile = () => {
   const { id } = useParams();
   console.log("Here is Id", id);
-   const {userId} = AccessAuthContext();
+const location=useLocation();
+  const {userId} = AccessAuthContext();
    console.log({userId})
   const [user, setUser] = useState({});
   const navigate = useNavigate();
@@ -106,7 +107,7 @@ const Profile = () => {
                     position="absolute"
                     bottom="3rem"
                     left="4rem"
-                    onClick={() => navigate('/talent-registration',{state:{data:user}})}
+                    onClick={() => navigate('/talent-registration',{state:{data:user,prevPath:location.pathname}})}
                   >
                     Edit Profile
                   </Button>:<></>}

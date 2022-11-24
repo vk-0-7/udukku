@@ -2,12 +2,22 @@ import { Box, Button, Input, Text, Textarea } from "@chakra-ui/react";
 import NavBar from "../../Components/NavBar/NavBar";
 import Footer from "../../Components/Footer/Footer.js";
 import { useEffect, useState } from "react";
+import jobResponse from "../../../Api/Jobs/jobResponseApi";
 
 const RespondToJob = () => {
   const [price, set_price] = useState(0);
   const [udukku_price, set_udukku_price] = useState(0);
   const [total_price, set_total_price] = useState(0);
-
+  const [youProvide, setYouProvide] = useState("");
+  const [description, setDescription] = useState("");
+  const replyHandler = async () => {
+    try {
+      const res = await jobResponse(youProvide, description, total_price);
+      console.log({res});
+    } catch (e) {
+      console.log(e);
+    }
+  };
   return (
     <Box mt="7.40vh">
       <NavBar />
@@ -29,6 +39,8 @@ const RespondToJob = () => {
               type="text"
               borderRadius={"1.04vw"}
               placeholder="Studio Recorded Female Vocals for your project"
+              value={youProvide}
+              onChange={(e) => setYouProvide(e.target.value)}
             />
           </Box>
 
@@ -42,6 +54,8 @@ const RespondToJob = () => {
               borderRadius={"1.04vw"}
               placeholder="I’d like to know all the things about the vacancy."
               h="19.44vh"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
             />
           </Box>
 
@@ -173,6 +187,7 @@ const RespondToJob = () => {
             bg="rgba(246, 84, 14, 1)"
             _hover={{ background: "rgba(246, 84, 14, 1)" }}
             mt="3.70vh"
+            onClick={replyHandler}
           >
             Reply To The Job
           </Button>

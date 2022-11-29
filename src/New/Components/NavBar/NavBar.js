@@ -33,7 +33,7 @@ const NavBar = () => {
   const [positon, setPosition] = useState(0);
   const navigate = useNavigate();
   const [howItWorksState, setHowItWorksState] = useState(false);
-  const { loginState, avatar, username } = AccessAuthContext();
+  const { loginState, avatar, username, isMusician } = AccessAuthContext();
   const [hamMenu, setHamMenu] = useState(false);
   useEffect(() => {
     const getit = () => {
@@ -286,7 +286,7 @@ const NavBar = () => {
                     <MenuItem
                       fontSize={"1.4rem"}
                       onClick={() => {
-                        navigate("/dashboard");
+                       isMusician==="recruter"?navigate("/client-dashboard"):navigate("/dashboard");
                       }}
                       icon={
                         <GenreIcon
@@ -300,21 +300,25 @@ const NavBar = () => {
                     >
                       Dashboard
                     </MenuItem>
-                    <MenuItem
-                      fontSize={"1.4rem"}
-                      onClick={() => navigate("/myjobs")}
-                      icon={
-                        <JobIcon
-                          style={{
-                            fill: "#F6540E",
-                            width: "1.25vw",
-                            height: "1.25vw",
-                          }}
-                        />
-                      }
-                    >
-                      My Jobs
-                    </MenuItem>
+                    {isMusician === "recruter" ? (
+                      <MenuItem
+                        fontSize={"1.4rem"}
+                        onClick={() => navigate("/myjobs")}
+                        icon={
+                          <JobIcon
+                            style={{
+                              fill: "#F6540E",
+                              width: "1.25vw",
+                              height: "1.25vw",
+                            }}
+                          />
+                        }
+                      >
+                        My Jobs
+                      </MenuItem>
+                    ) : (
+                      <></>
+                    )}
                     <MenuDivider
                       borderWidth={"2px"}
                       borderStyle="rgba(8, 32, 50, 1)"

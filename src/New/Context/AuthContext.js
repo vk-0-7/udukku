@@ -11,7 +11,7 @@ const AuthContextProvider = ({ children }) => {
   const [userId, setUserId] = useState("");
   const [email, setEmail] = useState("");
   const [username, set_username] = useState("");
-
+  const [isMusician,setIsMusician]=useState("");
   const set_other_details_using_api = async () => {
     try {
       const res = await getUserInfo();
@@ -20,6 +20,7 @@ const AuthContextProvider = ({ children }) => {
       setName(res.data.name);
       setUserId(res.data._id);
       setEmail(res.data.email);
+      setIsMusician(res.data.isMusician);
     } catch (error) {}
   };
 
@@ -50,6 +51,7 @@ const AuthContextProvider = ({ children }) => {
     userId: userId,
     email: email,
     username: username,
+    isMusician: isMusician,
     setUserEmail: (val) => {
       setEmail(val);
       localStorage.setItem("email",val)

@@ -37,6 +37,7 @@ const SignInModal = ({ state, changeState }) => {
     setUserId,
     setUserEmail,
     setUsername,
+    isMusician,
   } = AccessAuthContext();
 
   // email and password
@@ -76,7 +77,7 @@ const SignInModal = ({ state, changeState }) => {
       });
     }
   }, []);
-const navigate= useNavigate();
+  const navigate = useNavigate();
   const handleCallbackResponse = async (response) => {
     console.log("google response is : ", response);
     var userObj = jwt_decode(response.credential);
@@ -88,11 +89,11 @@ const navigate= useNavigate();
       console.log("server se ye aaya : ", res);
       setLoginState(true);
       setToken(res.data.refresh_token);
-      setUserId(res.data.user._id)
+      setUserId(res.data.user._id);
       // setUsed('google');
       // setOpen(false);
       onClose();
-      
+
       // setProfileurl(res.data.msg.avatar);
     } catch (error) {
       // toast({
@@ -143,7 +144,9 @@ const navigate= useNavigate();
         onClose();
         sessionStorage.setItem("id", res.data.user._id);
         console.log("setting the value here");
-        navigate('/dashboard')
+        isMusician === "recruter"
+          ? navigate("/client-dashboard")
+          : navigate("/dashboard");
       } else {
         set_show_registration_modal(false);
         setLoginState(true);
@@ -154,7 +157,9 @@ const navigate= useNavigate();
         setName(res.data.user.name);
         setUsername(res.data.user.userName);
         onClose();
-        navigate('/dashboard')
+        isMusician === "recruter"
+          ? navigate("/client-dashboard")
+          : navigate("/dashboard");
       }
     } catch (error) {
       if (error.response.data.message === "This email does not exist.") {
@@ -189,7 +194,7 @@ const navigate= useNavigate();
         >
           <Box
             h="fit-content"
-            w={{ base: "90%",md:"70%", lg: "36.04vw" }}
+            w={{ base: "90%", md: "70%", lg: "36.04vw" }}
             bg="#fff"
             borderRadius={"32px"}
             py="3.70vh"

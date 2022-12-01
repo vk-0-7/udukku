@@ -135,7 +135,7 @@ const Lyrics = () => {
               h={{ base: "6.48vh", "3xl": "5vh" }}
               type="text"
               fontSize=".93vw"
-              placeholder="Enter talent name, category or genre"
+              placeholder="Enter artist or song name"
               _focus={{
                 border: "2px solid rgba(246, 84, 14, 1)",
               }}

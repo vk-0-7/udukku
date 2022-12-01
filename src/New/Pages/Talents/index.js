@@ -136,12 +136,13 @@ const Talents = () => {
     setLoading(true);
     try {
       const res = await getAllUsers();
-      const res2 = await getAllTalents();
       setLoading(false);
       setTalents(res.user);
-      setAllTalents(res.data.talents);
     } catch (err) {
-      console.log(err);
+      const res2 = await getAllTalents();
+      setLoading(false);
+      setAllTalents(res2.data.talents);
+      console.log("error", err);
     }
   }, []);
 

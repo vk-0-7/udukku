@@ -54,7 +54,7 @@ const ExploreTheMarketplace = () => {
         alignItems={{base:"flex-start",lg:"center"}}
         gap={{base:"3rem"}}
       >
-        <Box w={{base:"100%",lg:"50%"}}>
+        <Box w={{base:"100%",lg:"90%"}}>
           <Text fontSize={{base:"4.7rem",lg:"2.29vw"}}fontFamily={"Gilroy-Bold"}>
             Explore The Marketplace For A Job
           </Text>

@@ -8,6 +8,7 @@ const ShowCaseYourSkills = () => {
     <Box
       bg="rgba(8, 32, 50,.05)"
       pt="7.40vh"
+      pb="7.40vh"
     //   h={{ lg: "43.03vh" }}
       display={"flex"}
       flexDir="column"

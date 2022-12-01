@@ -51,7 +51,7 @@ const Dashboard = () => {
           py="10rem"
           minH="calc(100vh - 7.40vh)"
         >
-          <Text fontSize={"2.29vw"} fontFamily="Gilroy-Bold">
+          <Text fontSize={{base:"2.5rem",md:"4rem",lg:"2.29vw"}} fontFamily="Gilroy-Bold">
             Welcome back, {localStorage.getItem("username")}
           </Text>
 
@@ -60,31 +60,31 @@ const Dashboard = () => {
             h="fit-content"
             mt="3.70vh"
             display={"grid"}
-            gridTemplateColumns="1fr 1fr 1fr"
+            gridTemplateColumns={"1fr 1fr 1fr"}
             columnGap={".8333vw"}
           >
             <Box
               w="100%"
-              h="16.29vh"
+              h={{lg:"16.29vh"}}
               border={"2px solid #f0f0f0"}
               borderRadius="1.66vw"
               px="1.66vw"
-              py="2.96vh"
+              py={{lg:"2.96vh"}}
               display={"flex"}
               alignItems="center"
               justifyContent={"space-between"}
             >
               <Box>
-                <Text fontFamily={"Gilroy-Bold"} fontSize="2.29vw">
+                <Text fontFamily={"Gilroy-Bold"} fontSize={{base:"2rem",md:"3rem",lg:"2.29vw"}}>
                   5
                 </Text>
-                <Text fontFamily={"Gilroy-SemiBold"} fontSize="1.04vw">
+                <Text fontFamily={"Gilroy-SemiBold"} fontSize={{base:"6px",md:"1.5rem",lg:"1.04vw"}}>
                   Jobs Completed
                 </Text>
               </Box>
               <Box
                 w="3.54vw"
-                h="3.54vw"
+                h={"3.54vw"}
                 bg="rgba(246, 84, 14, .1)"
                 borderRadius={"1.04vw"}
                 display="flex"
@@ -111,10 +111,10 @@ const Dashboard = () => {
               justifyContent={"space-between"}
             >
               <Box>
-                <Text fontFamily={"Gilroy-Bold"} fontSize="2.29vw">
+                <Text fontFamily={"Gilroy-Bold"} fontSize={{base:"2rem",md:"3rem",lg:"2.29vw"}}>
                   1
                 </Text>
-                <Text fontFamily={"Gilroy-SemiBold"} fontSize="1.04vw">
+                <Text fontFamily={"Gilroy-SemiBold"} fontSize={{base:"6px",md:"1.5rem",lg:"1.04vw"}}>
                   Repeatitive Buyers
                 </Text>
               </Box>
@@ -147,10 +147,10 @@ const Dashboard = () => {
               justifyContent={"space-between"}
             >
               <Box>
-                <Text fontFamily={"Gilroy-Bold"} fontSize="2.29vw">
+                <Text fontFamily={"Gilroy-Bold"} fontSize={{base:"2rem",md:"3rem",lg:"2.29vw"}}>
                   ₹28,000
                 </Text>
-                <Text fontFamily={"Gilroy-SemiBold"} fontSize="1.04vw">
+                <Text fontFamily={"Gilroy-SemiBold"} fontSize={{base:"6px",md:"1.5rem",lg:"1.04vw"}}>
                   Total Earn
                 </Text>
               </Box>
@@ -178,7 +178,7 @@ const Dashboard = () => {
           <Box
             mt="2.22vh"
             w="100%"
-            h="24.81vh"
+            h={{lg:"24.81vh"}}
             border="2px solid #F0F0F0"
             borderRadius={"1.66vw"}
             px="1.25vw"
@@ -195,10 +195,11 @@ const Dashboard = () => {
               objectPosition={"50% 50%"}
             />
             <Box ml="1.14vw">
-              <Text fontFamily={"Gilroy-Bold"} fontSize="1.45vw">
+              <Text fontFamily={"Gilroy-Bold"} fontSize={{base:"2rem",md:"3rem",lg:"1.45vw"}}>
                 Hire me on Udukku
               </Text>
-              <Text fontFamily={"Gilroy-Medium"} fontSize=".833vw" w="47.9vw">
+             
+              <Text fontFamily={"Gilroy-Medium"} fontSize={{base:"1rem",md:"1.5rem",lg:".833vw"}} w="47.9vw">
                 I am a rock, pop and RnB singer/songwriter with an experience of
                 over 12 years. I have worked on various Western pop originals,
                 and collaborated on covers with Universal Music India. My
@@ -218,7 +219,7 @@ const Dashboard = () => {
             >
               <ExportIcon style={{ width: "1.45vw", height: "1.45vw" }} />
               <Text
-                fontSize={".833vw"}
+                fontSize={{base:"1rem",md:"1.5rem",lg:".833vw"}}
                 fontFamily="Gilroy-SemiBold"
                 color="rgba(246, 84, 14, 1)"
               >
@@ -229,7 +230,7 @@ const Dashboard = () => {
 
           {/* jobs suggestion section */}
           <Box mt="5.55vh">
-            <Text fontFamily={"Gilroy-Bold"} fontSize="2.29vw">
+            <Text fontFamily={"Gilroy-Bold"} fontSize={{base:"1rem",md:"2rem",lg:"2.29vw"}}>
               Jobs You May Like
             </Text>
             <Box mt="2.22vh">

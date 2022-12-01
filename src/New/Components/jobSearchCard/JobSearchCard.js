@@ -42,8 +42,8 @@ const JobSearchCard = ({ data }) => {
         <Box display={"flex"} gap=".26vw" alignItems={"center"}>
           <Box>
             <Box
-              h="3.15vw"
-              w="3.15vw"
+              h={{base:"1.5rem",md:"2.5rem",lg:"3.15vw"}}
+              w={{base:"1.5rem",md:"2.5rem",lg:"3.15vw"}}
               borderRadius="full"
               bgImage={data.jobPostedBy.avatar}
               bgPos="50% 50%"
@@ -51,21 +51,21 @@ const JobSearchCard = ({ data }) => {
             ></Box>
           </Box>
           <Box lineHeight={"1.2"}>
-            <Text fontSize={"1.04vw"} fontFamily="Gilroy-Bold">
+            <Text fontSize={{base:"1rem",md:"2rem",lg:"1.04vw"}} fontFamily="Gilroy-Bold">
               {data.jobPostedBy.name}
             </Text>
-            <Text fontSize={".833vw"} fontFamily="Gilroy-Medium">
+            <Text fontSize={{base:"6px",md:"1.5rem",lg:".833vw"}} fontFamily="Gilroy-Medium">
               {data.jobPostedBy.city}
             </Text>
           </Box>
         </Box>
-        <Text fontFamily={"Gilroy-SemiBold"} fontSize=".833vw">
+        <Text fontFamily={"Gilroy-SemiBold"} fontSize={{base:"6px",md:"1.5rem",lg:".833vw"}} >
           {formatDate(data.createdAt)}
         </Text>
       </Box>
       {/* title with badge */}
       <Box display={"flex"} gap=".52vw" alignItems={"center"} mt="10px">
-        <Text fontSize={"1.45vw"} fontFamily="Gilroy-Bold">
+        <Text fontSize={{base:"1rem",md:"2rem",lg:"1.45vw"}} fontFamily="Gilroy-Bold">
           {data.jobTitle}
         </Text>
         <Text
@@ -74,7 +74,7 @@ const JobSearchCard = ({ data }) => {
           px=".52vw"
           py=".46vh"
           borderRadius={"10px"}
-          fontSize=".729vw"
+          fontSize={{base:"1.5rem",lg:".729vw"}}
           fontFamily={"Gilroy-SemiBold"}
         >
           Live
@@ -107,7 +107,7 @@ const JobSearchCard = ({ data }) => {
           h="4.07vh"
           borderRadius={"16px"}
           flexShrink={0}
-          fontSize=".729vw"
+          fontSize={{base:"1rem",md:"1.5rem",lg:".729vw"}}
           fontFamily={"Gilroy-SemiBold"}
           gap={".41vw"}
         >
@@ -138,7 +138,7 @@ const JobSearchCard = ({ data }) => {
       </Box>
       {/* description */}
       <Box mt="20px" w="80%">
-        <Text fontSize={".833vw"} fontFamily="Gilroy-Medium">
+        <Text fontSize={{base:"1rem",md:"1.5rem",lg:".833vw"}} fontFamily="Gilroy-Medium">
           {data.description}
         </Text>
       </Box>
@@ -150,7 +150,7 @@ const JobSearchCard = ({ data }) => {
           py="8px"
           borderRadius={"16px"}
           flexShrink={0}
-          fontSize=".833vw"
+          fontSize={{base:"1rem",md:"1.5rem",lg:".833vw"}}
           fontFamily={"Gilroy-Medium"}
           alignItems="center"
           gap=".52vw"
@@ -170,7 +170,7 @@ const JobSearchCard = ({ data }) => {
           py="8px"
           borderRadius={"16px"}
           flexShrink={0}
-          fontSize=".833vw"
+          fontSize={{base:"1rem",md:"1.5rem",lg:".833vw"}}
           fontFamily={"Gilroy-Medium"}
           alignItems="center"
           gap=".52vw"
@@ -190,7 +190,7 @@ const JobSearchCard = ({ data }) => {
           py="8px"
           borderRadius={"16px"}
           flexShrink={0}
-          fontSize=".833vw"
+          fontSize={{base:"1rem",md:"1.5rem",lg:".833vw"}}
           fontFamily={"Gilroy-Medium"}
           alignItems="center"
           gap=".52vw"
@@ -206,7 +206,7 @@ const JobSearchCard = ({ data }) => {
         </Box>
       </Box>
       {/* price */}
-      <Text fontSize={"1.45vw"} fontFamily="Gilroy-Bold" mt="1.85vh">
+      <Text fontSize={{base:"1rem",md:"1.5rem",lg:"1.45vw"}} fontFamily="Gilroy-Bold" mt="1.85vh">
         ₹{data.budget[0]}
       </Text>
     </Box>

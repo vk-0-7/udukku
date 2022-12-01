@@ -33,7 +33,7 @@ const ClientDashboard = ({ state }) => {
         gap="2rem"
       >
         <Box display={"flex"} flexDir="row" alignItems={"center"}>
-          <Text fontSize={"2.29vw"} fontFamily="Gilroy-Bold">
+          <Text fontSize={{base:"2.5rem",md:"4rem",lg:"2.29vw"}} fontFamily="Gilroy-Bold">
             Welcome back, Ishita!
           </Text>
           <Button
@@ -60,11 +60,11 @@ const ClientDashboard = ({ state }) => {
           borderRadius={"1.5rem"}
         >
           <AlertIcon style={{ height: "1.5rem", width: "1.5rem" }} />
-          <Text fontSize={"1.3rem"} fontFamily="Gilroy-SemiBold">
+          <Text fontSize={{base:"8px",md:"1.5rem",lg:"1.3rem"}} fontFamily="Gilroy-SemiBold">
             You have to connect your Bank Details, otherwise Job posting and
             connections with talents can’t be done
           </Text>
-          <Link fontSize={"1.3rem"} ml="auto">
+          <Link fontSize={{base:"8px",md:"1.5rem",lg:"1.3rem"}} ml="auto">
             Connect
           </Link>
         </Box>

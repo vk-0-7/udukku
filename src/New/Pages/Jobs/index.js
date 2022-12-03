@@ -19,7 +19,7 @@ import card from "../../../Assets/Images/icos/card-tick.png";
 import profile from "../../../Assets/Images/icos/frame.png";
 import clipboardTick from "../../../Assets/Images/icos/clipboard-tick.png";
 import coin from "../../../Assets/Images/icos/coin.png";
-
+import { ReactComponent as Searchicon } from "../../../Assets/Icons/search-normal.svg";
 import NavBar from "../../Components/NavBar/NavBar";
 import Footer from "../../Components/Footer/Footer";
 import Sidebar from "./sidebar/Sidebar";
@@ -27,7 +27,6 @@ import { GrClose } from "react-icons/gr";
 import { useEffect, useState } from "react";
 import getJobs from "../../../Api/Jobs/getJobsApi";
 import { ColorRing } from "react-loader-spinner";
-
 
 const Jobs = () => {
   const [jobs, setJobs] = useState([]);
@@ -130,13 +129,29 @@ const Jobs = () => {
           <Text fontSize={"2.29vw"} fontFamily={"Gilroy-Bold"}>
             Find your next projects
           </Text>
-          <Input
-            type="text"
-            w="23.43vw"
-            h={{ base: "6.48vh", "3xl": "5vh" }}
-            fontSize=".93vw"
-            placeholder="Enter company name, job title, category or genre"
+          <Box
+          w="40%"
+          p="1rem"
+          backgroundColor={"#F0F0F0"}
+          borderRadius=".5rem"
+          display={"flex"}
+          flexDirection="row"
+          gap="1rem"
+        >
+          <Searchicon
+            style={{
+              width: "1.25vw",
+              height: "1.25vw",
+            }}
           />
+          <Text
+            fontSize={"1.2rem"}
+            fontFamily={"Gilroy-SemiBold"}
+            opacity={"50%"}
+          >
+            Enter company name, job title, category or genre
+          </Text>
+          </Box>
         </Box>
         <Box
           h="fit-content"

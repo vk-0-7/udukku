@@ -55,7 +55,9 @@ const Sidebar = ({
 			return [...prev];
 		});
 	};
-
+    const handlePerformance=()=>{
+		// write code
+	}
 	const handleBudget = () => {
 		setBudgetStart(bs);
 		setBudgetEnd(be);
@@ -228,6 +230,27 @@ const Sidebar = ({
 					</Checkbox>
 					<Checkbox value='International' size={'lg'}>
 						<Text fontSize={'.833vw'}>International</Text>
+					</Checkbox>
+				</Box>
+
+				<Text fontFamily={'Gilroy-Bold'} fontSize={'1.25vw'} mt='30px'>
+					Performance Type
+				</Text>
+				<Box
+					pl='10px'
+					display={'flex'}
+					flexDir='column'
+					mt='10px'
+					gap='5px'
+					fontFamily={'Gilroy-SemiBold'}
+					fontSize='16px'
+					onChange={handlePerformance}
+				>
+					<Checkbox value='Production' size={'lg'}>
+						<Text fontSize={'.833vw'}>Production</Text>
+					</Checkbox>
+					<Checkbox value='LiveShow' size={'lg'}>
+						<Text fontSize={'.833vw'}>Live Show</Text>
 					</Checkbox>
 				</Box>
 			</Box>

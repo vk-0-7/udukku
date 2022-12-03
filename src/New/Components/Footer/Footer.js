@@ -34,7 +34,7 @@ const Footer = () => {
         display={"grid"}
         gridTemplateColumns={{ base: "1fr", lg: ".7fr 1.3fr .7fr" }}
         gap={{ base: "20px", lg: "0" }}
-        py="2.77vh "
+        py="6.77vh "
         color="#fff"
         px={{ base: "7vw", lg: "13.54vw" }}
       >

@@ -1,5 +1,5 @@
 import { Box, Image, Text } from "@chakra-ui/react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Footer from "../../Components/Footer/Footer";
 import NavBar from "../../Components/NavBar/NavBar";
@@ -10,7 +10,8 @@ import { ReactComponent as PeopleIcon } from "../../../Assets/Icons/profile-2use
 import { ReactComponent as MoneyIcon } from "../../../Assets/Icons/dollar-circle-transparent.svg";
 import { ReactComponent as ExportIcon } from "../../../Assets/Icons/export.svg";
 import JobSearchCard from "../../Components/jobSearchCard/JobSearchCard";
-
+import { AccessAuthContext } from "../../Context/AuthContext";
+import getAllUsers from "../../../Api/User/getAllUsers";
 
 // dummy
 const d_data = [
@@ -34,25 +35,37 @@ const d_data = [
 
 const Dashboard = () => {
   const navigate = useNavigate();
-
+  const { userId } = AccessAuthContext();
+  console.log(userId);
+  const [user, setUser] = useState({});
   useEffect(() => {
     if (localStorage.getItem("token")) {
+      getAllUsers().then((res) => {
+        console.log({ res });
+        const filteredUser = res.user.filter((user) => user._id === userId);
+        console.log({ filteredUser });
+        setUser(filteredUser[0]);
+      });
     } else {
       navigate("/");
     }
   }, []);
 
+  console.log({ user });
   return (
     <>
       <Box mt="7.40vh">
-        <NavBar/>
+        <NavBar />
         <Box
           px={{ base: "7vw", lg: "13.54vw" }}
           py="10rem"
           minH="calc(100vh - 7.40vh)"
         >
-          <Text fontSize={{base:"2.5rem",md:"4rem",lg:"2.29vw"}} fontFamily="Gilroy-Bold">
-            Welcome back, {localStorage.getItem("username")}
+          <Text
+            fontSize={{ base: "2.5rem", md: "4rem", lg: "2.29vw" }}
+            fontFamily="Gilroy-Bold"
+          >
+            Welcome back, {user.name}
           </Text>
 
           <Box
@@ -65,20 +78,26 @@ const Dashboard = () => {
           >
             <Box
               w="100%"
-              h={{lg:"16.29vh"}}
+              h={{ lg: "16.29vh" }}
               border={"2px solid #f0f0f0"}
               borderRadius="1.66vw"
               px="1.66vw"
-              py={{lg:"2.96vh"}}
+              py={{ lg: "2.96vh" }}
               display={"flex"}
               alignItems="center"
               justifyContent={"space-between"}
             >
               <Box>
-                <Text fontFamily={"Gilroy-Bold"} fontSize={{base:"2rem",md:"3rem",lg:"2.29vw"}}>
-                  5
+                <Text
+                  fontFamily={"Gilroy-Bold"}
+                  fontSize={{ base: "2rem", md: "3rem", lg: "2.29vw" }}
+                >
+                  {user.jobsCompleted}
                 </Text>
-                <Text fontFamily={"Gilroy-SemiBold"} fontSize={{base:"6px",md:"1.5rem",lg:"1.04vw"}}>
+                <Text
+                  fontFamily={"Gilroy-SemiBold"}
+                  fontSize={{ base: "6px", md: "1.5rem", lg: "1.04vw" }}
+                >
                   Jobs Completed
                 </Text>
               </Box>
@@ -111,10 +130,16 @@ const Dashboard = () => {
               justifyContent={"space-between"}
             >
               <Box>
-                <Text fontFamily={"Gilroy-Bold"} fontSize={{base:"2rem",md:"3rem",lg:"2.29vw"}}>
-                  1
+                <Text
+                  fontFamily={"Gilroy-Bold"}
+                  fontSize={{ base: "2rem", md: "3rem", lg: "2.29vw" }}
+                >
+                  {user.repeatedBuyer}
                 </Text>
-                <Text fontFamily={"Gilroy-SemiBold"} fontSize={{base:"6px",md:"1.5rem",lg:"1.04vw"}}>
+                <Text
+                  fontFamily={"Gilroy-SemiBold"}
+                  fontSize={{ base: "6px", md: "1.5rem", lg: "1.04vw" }}
+                >
                   Repeatitive Buyers
                 </Text>
               </Box>
@@ -147,10 +172,16 @@ const Dashboard = () => {
               justifyContent={"space-between"}
             >
               <Box>
-                <Text fontFamily={"Gilroy-Bold"} fontSize={{base:"2rem",md:"3rem",lg:"2.29vw"}}>
-                  ₹28,000
+                <Text
+                  fontFamily={"Gilroy-Bold"}
+                  fontSize={{ base: "2rem", md: "3rem", lg: "2.29vw" }}
+                >
+                  ₹{user.totalEarn}
                 </Text>
-                <Text fontFamily={"Gilroy-SemiBold"} fontSize={{base:"6px",md:"1.5rem",lg:"1.04vw"}}>
+                <Text
+                  fontFamily={"Gilroy-SemiBold"}
+                  fontSize={{ base: "6px", md: "1.5rem", lg: "1.04vw" }}
+                >
                   Total Earn
                 </Text>
               </Box>
@@ -178,7 +209,7 @@ const Dashboard = () => {
           <Box
             mt="2.22vh"
             w="100%"
-            h={{lg:"24.81vh"}}
+            h={{ lg: "24.81vh" }}
             border="2px solid #F0F0F0"
             borderRadius={"1.66vw"}
             px="1.25vw"
@@ -187,7 +218,7 @@ const Dashboard = () => {
             alignItems="center"
           >
             <Image
-              src={localStorage.getItem("avatar")}
+              src={user.avatar}
               h="11.45vw"
               w="11.45vw"
               borderRadius={"1.66vw"}
@@ -195,19 +226,19 @@ const Dashboard = () => {
               objectPosition={"50% 50%"}
             />
             <Box ml="1.14vw">
-              <Text fontFamily={"Gilroy-Bold"} fontSize={{base:"2rem",md:"3rem",lg:"1.45vw"}}>
+              <Text
+                fontFamily={"Gilroy-Bold"}
+                fontSize={{ base: "2rem", md: "3rem", lg: "1.45vw" }}
+              >
                 Hire me on Udukku
               </Text>
-             
-              <Text fontFamily={"Gilroy-Medium"} fontSize={{base:"1rem",md:"1.5rem",lg:".833vw"}} w="47.9vw">
-                I am a rock, pop and RnB singer/songwriter with an experience of
-                over 12 years. I have worked on various Western pop originals,
-                and collaborated on covers with Universal Music India. My
-                inspirations are various Indie musicians like Asees Kaur, Hasan
-                Raheem, Jonita Gandhi and more. I aim to blend the western and
-                Indian musical styles into one in my songs. I have a calm bassy
-                voice and texture, and work well with songs having a western
-                touch.
+
+              <Text
+                fontFamily={"Gilroy-Medium"}
+                fontSize={{ base: "1rem", md: "1.5rem", lg: ".833vw" }}
+                w="47.9vw"
+              >
+                {user.description}
               </Text>
             </Box>
             <Box flexGrow={1}></Box>
@@ -219,7 +250,7 @@ const Dashboard = () => {
             >
               <ExportIcon style={{ width: "1.45vw", height: "1.45vw" }} />
               <Text
-                fontSize={{base:"1rem",md:"1.5rem",lg:".833vw"}}
+                fontSize={{ base: "1rem", md: "1.5rem", lg: ".833vw" }}
                 fontFamily="Gilroy-SemiBold"
                 color="rgba(246, 84, 14, 1)"
               >
@@ -230,7 +261,10 @@ const Dashboard = () => {
 
           {/* jobs suggestion section */}
           <Box mt="5.55vh">
-            <Text fontFamily={"Gilroy-Bold"} fontSize={{base:"1rem",md:"2rem",lg:"2.29vw"}}>
+            <Text
+              fontFamily={"Gilroy-Bold"}
+              fontSize={{ base: "1rem", md: "2rem", lg: "2.29vw" }}
+            >
               Jobs You May Like
             </Text>
             <Box mt="2.22vh">

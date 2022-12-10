@@ -4,7 +4,7 @@ const getAllUsers = async () => {
 
   var config = {
     method: "get",
-    url: "https://udukku.herokuapp.com/admin/get-all-user",
+    url: `${process.env.REACT_APP_BASE_URL}/admin/get-all-user`,
     headers: {
       Authorization: token,
     },

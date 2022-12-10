@@ -21,7 +21,7 @@ export default async function createJob(
 
   var config = {
     method: "post",
-    url: "https://udukku-test.herokuapp.com/jobs/create-jobs",
+    url: `${process.env.REACT_APP_BASE_URL}jobs/create-jobs`,
     headers: {
       Authorization: localStorage.getItem("token"),
       "Content-Type": "application/json",

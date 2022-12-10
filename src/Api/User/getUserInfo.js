@@ -9,7 +9,7 @@ const getUserInfo = () => {
 		},
 	});
 
-	return req.get('https://udukku-test.herokuapp.com/user/infor');
+	return req.get(`${process.env.REACT_APP_BASE_URL}/user/infor`);
 };
 
 export default getUserInfo;

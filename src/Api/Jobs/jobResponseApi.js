@@ -8,7 +8,7 @@ const jobResponse = async (youProvide, description, quotation) => {
   };
   var config = {
     method: "post",
-    url: "https://udukku.herokuapp.com/jobs/job-response",
+    url: `${process.env.REACT_APP_BASE_URL}/jobs/job-response`,
     headers: {
       Authorization: token,
     },

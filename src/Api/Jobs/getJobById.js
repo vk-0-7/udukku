@@ -3,7 +3,7 @@ var axios = require("axios");
 const getJobById = (id) => {
   var config = {
     method: "get",
-    url: "https://udukku-test.herokuapp.com/jobs/get-job/" + id,
+    url: `${process.env.REACT_APP_BASE_URL}/jobs/get-job/` + id,
     headers: {},
   };
 

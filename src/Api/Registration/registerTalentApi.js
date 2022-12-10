@@ -12,7 +12,7 @@ const registerTalentApi = async (data) => {
 		console.log('user id is ', userId);
 
 		return axios.patch(
-			process.env.REACT_APP_APIS_LINK +
+			process.env.REACT_APP_BASE_URL +
 				`/user/update-user-by-id/${userId}`,
 			{
 				name: data.name,

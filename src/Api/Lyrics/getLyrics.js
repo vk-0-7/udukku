@@ -2,7 +2,7 @@ var axios = require("axios");
 const getLyrics = async (id) => {
   var config = {
     method: "get",
-    url: `https://udukku-test.herokuapp.com/lyrics/get-lyrics-by-id/${id}`,
+    url: `${process.env.REACT_APP_BASE_URL}/lyrics/get-lyrics-by-id/${id}`,
     headers: {},
   };
 

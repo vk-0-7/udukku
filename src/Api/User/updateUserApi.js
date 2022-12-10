@@ -21,7 +21,7 @@ const updateUserApi = async (
   };
   var config = {
     method: "patch",
-    url: "https://udukku.herokuapp.com/user/update-profile",
+    url: `${process.env.REACT_APP_BASE_URL}/user/update-profile`,
     headers: {
       Authorization: token,
     },

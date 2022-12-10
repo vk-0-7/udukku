@@ -3,7 +3,7 @@ const getSongs = (page, count) => {
   var data = JSON.stringify({ page: page, count: count });
   var config = {
     method: "post",
-    url: "https://udukku-test.herokuapp.com/lyrics/get-lyrics",
+    url: `${process.env.REACT_APP_BASE_URL}/lyrics/get-lyrics`,
     headers: {},
     data: data,
   };

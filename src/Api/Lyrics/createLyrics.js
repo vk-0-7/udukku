@@ -27,7 +27,7 @@ const createLyrics = async (
 
   var config = {
     method: "post",
-    url: "https://udukku-test.herokuapp.com/lyrics/create-lyrics",
+    url: `${process.env.REACT_APP_BASE_URL}/lyrics/create-lyrics`,
     headers: {
       "Content-Type": "application/json",
     },

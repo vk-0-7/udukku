@@ -2,7 +2,7 @@ import axios from "axios";
 
 const getAllTalents = async () => {
   return await axios.get(
-    "https://udukku.herokuapp.com/user/get-talented-users"
+    `${process.env.REACT_APP_BASE_URL}user/get-talented-users`
   );
 };
 

@@ -7,10 +7,21 @@ import OutgoingTextMessage from "./OutgoingTextMessage";
 import OutgoingSongMessage from "./OutgoingSongMessage";
 import TypeMessageBox from "./TypeMessageBox";
 import MessagingPageDetails from "./MessagingPageDetails";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import MediaMessageDetail from "./MediaMessageDetails";
 import { useNavigate } from "react-router-dom";
-const IndividualMessageBox = ({ state }) => {
+import getMyResponses from "../../../Api/Jobs/getMusicianResponses";
+
+
+
+
+
+
+
+
+const IndividualMessageBox = ({ data }) => {
+
+
   // to display or hide the message details box
   function infoHandler() {
     setInfoToggle(!infoToggle);

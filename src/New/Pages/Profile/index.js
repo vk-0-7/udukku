@@ -26,6 +26,7 @@ import ReviewCard from "../../Components/ReviewCard/ReviewCard";
 import d_audio from "../../../Assets/Dummy/allthat.mp3";
 import getAllUsers from "../../../Api/User/getAllUsers";
 import { AccessAuthContext } from "../../Context/AuthContext";
+import { useSelector } from "react-redux";
 const d_data = [
   {
     profile_link: "https://source.unsplash.com/random?face?girl",
@@ -62,15 +63,9 @@ const Profile = () => {
 const location=useLocation();
   const {userId} = AccessAuthContext();
    console.log({userId})
-  const [user, setUser] = useState({});
   const navigate = useNavigate();
 
-  useEffect(() => {
-    getAllUsers().then((res) => {
-      const filteredUser = res.user.filter((user) => user._id === id);
-      setUser(filteredUser[0]);
-    });
-  }, []);
+ const {user} = useSelector((state) => ({...state}));
 
   console.log({ user });
 

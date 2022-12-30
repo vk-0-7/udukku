@@ -9,7 +9,7 @@ import IndividualMessage from "../Dashboard/Messages/IndividualMessage";
 import MessageList from "../Dashboard/Messages/MessageList";
 import IndividualMessageBox from "./IndividualMessageBox";
 
-const ContactMessages = ({socket}) => {
+const CreatorContactMessages = ({socket}) => {
 
   const [messages, setMessages] = useState([]);
 
@@ -62,7 +62,7 @@ const ContactMessages = ({socket}) => {
           flexDir="row"
         >
           <MessageList />
-          <IndividualMessageBox data={messages}/>
+          <IndividualMessageBox />
         </Box>
       </Box>
       <Footer />
@@ -70,4 +70,4 @@ const ContactMessages = ({socket}) => {
   );
 };
 
-export default ContactMessages;
+export default CreatorContactMessages;

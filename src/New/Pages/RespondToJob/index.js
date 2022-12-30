@@ -3,17 +3,41 @@ import NavBar from "../../Components/NavBar/NavBar";
 import Footer from "../../Components/Footer/Footer.js";
 import { useEffect, useState } from "react";
 import jobResponse from "../../../Api/Jobs/jobResponseApi";
+import { useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
+import createChatroom from "../../../Api/Chatroom/createChatroom";
 
-const RespondToJob = () => {
+const RespondToJob = ({socket}) => {
   const [price, set_price] = useState(0);
   const [udukku_price, set_udukku_price] = useState(0);
   const [total_price, set_total_price] = useState(0);
   const [youProvide, setYouProvide] = useState("");
   const [description, setDescription] = useState("");
+  const { user } = useSelector((state) => ({ ...state }));
+
+  const {id} = useParams();
+  const navigate = useNavigate();
+
+  const userID = id.split('-');
   const replyHandler = async () => {
     try {
-      const res = await jobResponse(youProvide, description, total_price);
-      console.log({res});
+      await jobResponse(userID[0],youProvide, description, total_price).then((res)=>{
+        const userId = [userID[1], user.userId];
+        createChatroom(userId,userID[0]).then((res)=>{
+          console.log(res.data.chatroom._id);
+          socket.emit("joinRoom", {
+            chatroomId: res.data.chatroom._id
+          });
+          socket.emit("chatroomMessage",{
+            chatroomId:res.data.chatroom._id,
+            message:description,
+          });
+          socket.emit("joinRoom", {
+            chatroomId: res.data.chatroom._id
+          });
+        });
+        navigate("/jobs");
+      })
     } catch (e) {
       console.log(e);
     }

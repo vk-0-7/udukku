@@ -234,7 +234,7 @@ const NavBar = () => {
                     width: "1.5rem",
                     cursor: "pointer",
                   }}
-                  onClick={() => navigate("/contactMessage")}
+                  onClick={() => navigate("/messages")}
                 />
                 <Menu>
                   <MenuButton

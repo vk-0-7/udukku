@@ -7,4 +7,12 @@ const activateUser = (code) => {
 	});
 };
 
+export const currentUser = async (Authorization) =>{
+    return await axios.get(`${process.env.REACT_APP_BASE_URL}/user/infor`,{
+        headers:{
+            Authorization,
+        },
+    });
+}
+
 export default activateUser;

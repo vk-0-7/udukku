@@ -1,6 +1,21 @@
 import { Box, Avatar, AvatarBadge, Text } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { getChatroomsById } from "../../../Api/Chatroom/chatroom";
 import profileIcon from "../../../Assets/Images/dummyProfile/Ellipse 8.png";
-const MessageChatBox = ({ state }) => {
+const MessageChatBox = ({ data }) => {
+  const [chatrooms, setChatrooms] = useState([]);
+  const {user} = useSelector((state)=>({...state}));
+  console.log(data)
+  useEffect(()=>{
+    getChatroomsById(user.userId).then((res)=>{
+      setChatrooms(res.data);
+    }).catch((err)=>{
+      console.log(err);
+    })
+  },[user]);
+  const navigate = useNavigate();
   return (
     <Box
       pl="2rem"
@@ -10,19 +25,36 @@ const MessageChatBox = ({ state }) => {
       display={"flex"}
       flexDir={"row"}
       gap="1rem"
+      _hover={{
+        background: "#e5e5e5",
+        cursor: "pointer"
+      }}
+      onClick={() => {
+        chatrooms.map((item,index)=> {
+          if(item.userId.includes(data.JobDetails[0].jobPostedBy._id) & item.jobId === data.jobId){
+            navigate(`/contactMessage/${chatrooms[index]._id}`);
+          }
+        })
+      }}
     >
-      <Avatar size={"xl"} src={profileIcon}>
-        <AvatarBadge
-          boxSize="0.6em"
-          bg="#38C222"
-          borderColor={"#38C222"}
-          transform="translate(-23%, 9%)"
-        />
+      <Avatar size={"xl"} src={data.JobDetails[0]?.jobPostedBy.avatar}>
+        {data.status === "active" ?
+         <AvatarBadge
+         boxSize="0.6em"
+         bg="#38C222"
+         borderColor={"#38C222"}
+         transform="translate(-23%, 9%)"
+       />
+       :
+       ""
+        
+      }
+       
       </Avatar>
       <Box display={"flex"} flexDir="column" p="7px" w="100%" gap="5px">
         <Box  display={"flex"} flexDir={"row"} w="100%">
           <Text fontFamily={"Gilroy-Bold"} fontSize="1.3rem">
-            Ishita Parathkar
+            {data.JobDetails[0]?.jobTitle}
           </Text>
           <Text
             fontFamily={"Gilroy-SemiBold"}

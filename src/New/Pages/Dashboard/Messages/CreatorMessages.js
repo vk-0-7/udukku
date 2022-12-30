@@ -4,7 +4,7 @@ import NavBar from "../../../Components/NavBar/NavBar";
 import IndividualMessage from "./IndividualMessage";
 import MessageList from "./MessageList";
 
-const Messages = () => {
+const CreatorMessages = () => {
   return (
     <Box display={"flex"} flexDir="column" overflow={"hidden"} w="100%">
       <NavBar/>
@@ -27,4 +27,4 @@ const Messages = () => {
   );
 };
 
-export default Messages;
+export default CreatorMessages;

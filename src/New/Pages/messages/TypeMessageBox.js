@@ -3,7 +3,7 @@ import { ReactComponent as LinkIcon } from "../../../Assets/Icons/link-2.svg";
 import { ReactComponent as SendIcon } from "../../../Assets/Icons/send.svg";
 import { useRef } from "react";
 
-const TypeMessageBox = ({ state }) => {
+const TypeMessageBox = ({ message, setMessage, sendMessage }) => {
   const ref = useRef();
   const handleClick = (e) => {
     ref.current.click();
@@ -28,6 +28,7 @@ const TypeMessageBox = ({ state }) => {
         fontSize={"1.2rem"}
         border="none"
         w="80%"
+        onChange={(e) => setMessage(e.target.value)}
       />
       <Box
         ml="auto"
@@ -45,7 +46,7 @@ const TypeMessageBox = ({ state }) => {
           onClick={handleClick}
         />
         <input ref={ref} type="file" style={{ display: "none" }} />
-        <Button p="1rem" backgroundColor={"#F6540E"} borderRadius="1rem">
+        <Button p="1rem" backgroundColor={"#F6540E"} borderRadius="1rem" onClick={sendMessage}>
           <SendIcon
             style={{
               height: "1.5rem",

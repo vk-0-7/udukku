@@ -3,13 +3,10 @@ import { AccessAuthContext } from '../../New/Context/AuthContext';
 import uploadToCloud from '../../New/Utility/uploadToCloud';
 
 const registerTalentApi = async (data) => {
-	console.log(data);
 	try {
 		const res = await uploadToCloud(data.avatar);
-		console.log('res is : ', res);
 
 		const userId = sessionStorage.getItem('id');
-		console.log('user id is ', userId);
 
 		return axios.patch(
 			process.env.REACT_APP_BASE_URL +

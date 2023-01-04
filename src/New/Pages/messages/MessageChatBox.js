@@ -1,19 +1,22 @@
 import { Box, Avatar, AvatarBadge, Text } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { currentUser } from "../../../Api/Auth/activateUser";
 import { getChatroomsById } from "../../../Api/Chatroom/chatroom";
 import profileIcon from "../../../Assets/Images/dummyProfile/Ellipse 8.png";
 const MessageChatBox = ({ data }) => {
   const [chatrooms, setChatrooms] = useState([]);
   const {user} = useSelector((state)=>({...state}));
-  console.log(data)
+
+  const dispatch = useDispatch();
   useEffect(()=>{
-    getChatroomsById(user.userId).then((res)=>{
-      setChatrooms(res.data);
-    }).catch((err)=>{
-      console.log(err);
-    })
+      getChatroomsById(localStorage.getItem("userId")).then((res)=>{
+        console.log(res.data);
+        setChatrooms(res.data);
+      }).catch((err)=>{
+        console.log(err);
+      })
   },[user]);
   const navigate = useNavigate();
   return (
@@ -67,7 +70,7 @@ const MessageChatBox = ({ data }) => {
         </Box>
         <Text   fontFamily={"Gilroy-SemiBold"}
             fontSize="1rem"
-            color="#ACADAF">Hello Ishita, Hope you are well, I’d like tal...</Text>
+            color="#ACADAF">{data.description}</Text>
       </Box>
     </Box>
   );

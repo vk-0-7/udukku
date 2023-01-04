@@ -10,44 +10,9 @@ import MessageList from "../Dashboard/Messages/MessageList";
 import IndividualMessageBox from "./IndividualMessageBox";
 
 const ContactMessages = ({socket}) => {
-
-  const [messages, setMessages] = useState([]);
-
+  
   const {id} = useParams();
 
-  useEffect(() => {
-    if (socket !== undefined) {
-      socket.emit("joinRoom", {
-        id,
-      });
-      socket.on("newMessage", (message) => {
-        console.log(message);
-        setMessages([...messages, message]);
-      });
-    }
-    return () => {
-      if (socket !== undefined) {
-        socket.emit("leaveRoom", {
-          id,
-        });
-      }
-    };
-  });
-
-
-  useEffect(() => {
-    // fetching chatroom
-    getChatroomById(id).then((res) => {
-      console.log(res.data);
-      }).catch((err) => { console.log(err) });
-
-      // fetching messages for chatroom
-      getAllMessages(id)
-      .then((res) => {
-      console.log(res.data);
-        setMessages(res.data.messages);
-      })
-    }, []);
   return (
     <Box display={"flex"} flexDir="column" overflow={"hidden"} w="100%">
       <NavBar />
@@ -62,7 +27,7 @@ const ContactMessages = ({socket}) => {
           flexDir="row"
         >
           <MessageList />
-          <IndividualMessageBox data={messages}/>
+          <IndividualMessageBox socket={socket} id={id}/>
         </Box>
       </Box>
       <Footer />

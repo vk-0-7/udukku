@@ -11,7 +11,7 @@ const MessageList = ({ state }) => {
   const [status, setStatus] = useState("");
   const { user } = useSelector((state) => ({ ...state }));
   useEffect(() => {
-    if (user != null) {
+    if (user != null && localStorage.getItem("token") != undefined) {
       getMyResponses(localStorage.getItem("token")).then((res) => {
         setResponses(res.data.response);
       })

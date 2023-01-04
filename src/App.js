@@ -65,8 +65,13 @@ const App = () => {
 
   const setupSocket = () => {
     if (user !== null && !socket) {
-      const newSocket = io(`${process.env.REACT_APP_BASE_URL}`, {
-        query: {
+      const newSocket = io(`${process.env.REACT_APP_BASE_URL}`,
+      {
+        transports: ['polling',]
+      }, 
+
+      {
+        query: { 
           userId: user.userId,
         },
       });

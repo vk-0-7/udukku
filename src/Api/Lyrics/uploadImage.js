@@ -12,7 +12,6 @@ const uploadImage = async (image) => {
     }
   );
   const file = await res.json();
-  console.log(file.url);
   return file.url;
 };
 

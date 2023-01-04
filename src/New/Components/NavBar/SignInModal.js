@@ -90,7 +90,8 @@ const SignInModal = ({ state, changeState }) => {
     try {
       const res = await googleLogin(response.credential);
       console.log("server se ye aaya : ", res);
-      localStorage.setItem("token",res.data.user.token)
+      localStorage.setItem("token",res.data.refresh_token)
+      localStorage.setItem("userId",res.data.user._id)
       dispatch({
         type:"LOGGED_IN_USER",
         payload:res.data.user

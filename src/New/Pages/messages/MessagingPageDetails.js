@@ -17,6 +17,7 @@ const MessagingPageDetails = ({
   setInfoToggle,
   goToMedia,
   setGoToMedia,
+  data,
 }) => {
   const navigate= useNavigate();
   return (
@@ -35,17 +36,17 @@ const MessagingPageDetails = ({
     >
       {/* profile section */}
       <Box display={"flex"} flexDir="row" w="100%" gap="1rem">
-        <Avatar size={"xl"} src={profileIcon}></Avatar>
+        <Avatar size={"xl"} src={data?.jobPostedBy?.avatar}></Avatar>
         <Box>
           <Text
             fontFamily={"Gilroy-Bold"}
             fontSize="1.3rem"
             alignSelf={"center"}
           >
-            Ishita Parakht...
+            {data?.jobPostedBy?.name}
           </Text>
           <Text fontFamily={"Gilroy-Medium"} fontSize="1rem" color={"#acadaf"}>
-            Rajasthan
+          {data?.jobPostedBy?.city}
           </Text>
           <Box display={"fkex"} flexDir="row" gap="2px">
             <RatingIcon />
@@ -79,25 +80,25 @@ const MessagingPageDetails = ({
           Job Details
         </Text>
         <Text fontFamily={"Gilroy-Medium"} fontSize="1.2rem">
-          Looking for an experienced Beat Maker
+          {data?.jobTitle}
         </Text>
         <Box display={"flex"} flexDir="column" gap="5px">
           <Box display={"flex"} flexDir="row" gap="5px" alignItems={"center"}>
             <DollarIcon />
             <Text fontFamily={"Gilroy-Medium"} fontSize="1.2rem">
-            ₹5000
+            {data?.budget[0]} - {data?.budget[1]}
             </Text>
           </Box>
           <Box display={"flex"} flexDir="row" gap="5px" alignItems={"center"}>
             <ClockIcon />
             <Text fontFamily={"Gilroy-Medium"} fontSize="1.2rem">
-              24 days
+              {data?.deadLine}
             </Text>
           </Box>
           <Box display={"flex"} flexDir="row" gap="5px" alignItems={"center"}>
             <AttachIcon />
             <Text fontFamily={"Gilroy-Medium"} fontSize="1.2rem">
-              2 references
+              {data?.referenceLinks} references
             </Text>
           </Box>
         </Box>

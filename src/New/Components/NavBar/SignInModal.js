@@ -25,6 +25,7 @@ import jwt_decode from "jwt-decode";
 import gLogo from "../../../Assets/Icons/Group.svg";
 import BecomeOurMember from "../../Pages/Homepage/becomeOurMember/BecomeOurMember";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 const SignInModal = ({ state, changeState }) => {
   const [show, setShow] = useState(false);
@@ -78,6 +79,8 @@ const SignInModal = ({ state, changeState }) => {
     }
   }, []);
   const navigate = useNavigate();
+
+  const dispatch = useDispatch();
   const handleCallbackResponse = async (response) => {
     console.log("google response is : ", response);
     var userObj = jwt_decode(response.credential);
@@ -87,6 +90,12 @@ const SignInModal = ({ state, changeState }) => {
     try {
       const res = await googleLogin(response.credential);
       console.log("server se ye aaya : ", res);
+      localStorage.setItem("token",res.data.refresh_token)
+      localStorage.setItem("userId",res.data.user._id)
+      dispatch({
+        type:"LOGGED_IN_USER",
+        payload:res.data.user
+      })
       setLoginState(true);
       setToken(res.data.refresh_token);
       setUserId(res.data.user._id);

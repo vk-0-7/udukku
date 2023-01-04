@@ -30,6 +30,10 @@ import { ChakraProvider } from "@chakra-ui/react";
 import { AuthContextProvider } from "./New/Context/AuthContext";
 import { extendTheme } from "@chakra-ui/react";
 import { CategoryProvider } from "./New/Context/CategoryContext";
+import {createStore} from 'redux'
+import {composeWithDevTools} from 'redux-devtools-extension'
+import { Provider } from 'react-redux';
+import rootReducer from './Reducers'
 
 const breakpoints = {
   sm: "30em",
@@ -42,9 +46,11 @@ const breakpoints = {
 
 const theme = extendTheme({ breakpoints });
 
+const store = createStore(rootReducer,composeWithDevTools()); 
 // fonts
 
 ReactDOM.render(
+  <Provider store={store}>
   <AuthContextProvider>
     <>
       <ChakraProvider theme={theme}>
@@ -55,7 +61,8 @@ ReactDOM.render(
         </CategoryProvider>
       </ChakraProvider>
     </>
-  </AuthContextProvider>,
+  </AuthContextProvider>
+  </Provider>,
   document.getElementById("root")
 );
 

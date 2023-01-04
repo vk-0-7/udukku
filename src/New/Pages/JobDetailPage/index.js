@@ -370,7 +370,7 @@ const JobDetailPage = () => {
                 display="flex"
                 justifyContent={"center"}
                 alignItems="center"
-				onClick={()=>navigate("/respond-to-job")}
+				onClick={()=>navigate(`/respond-to-job/${currentJob[0]?._id}-${currentJob[0].jobPostedBy._id}`)}
               >
                 <ClipboardTick
                   style={{

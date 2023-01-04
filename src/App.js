@@ -20,12 +20,73 @@ import Lyrics from "./New/Pages/Lyrics";
 import LyricsDetails from "./New/Pages/LyricsDetails";
 import CreateNewLyrics from "./New/Pages/CreateNewLyrics";
 import Messages from "./New/Pages/Dashboard/Messages/Messages";
+import CreatorMessages from "./New/Pages/Dashboard/Messages/CreatorMessages";
 import ContactMessages from "./New/Pages/messages/contactsMessages";
+import CreatorContactMessages from "./New/Pages/messages/creatorContactsMessages";
 import ViewProposal from "./New/Pages/messages/ViewProposalPage";
 import MyJobs from "./New/Pages/MyJobs";
 import ClientDashboard from "./New/Pages/ClientDashboard/clientDashboard";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { io } from "socket.io-client";
+import { currentUser } from "./Api/Auth/activateUser";
 
 const App = () => {
+
+  const { user } = useSelector((state) => ({ ...state }));
+  const [socket, setSocket] = useState();
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    var auth = localStorage.getItem("token");
+    if (user == null && auth != null) {
+      currentUser(auth)
+        .then((res) => {
+          console.log(res);
+          dispatch({
+            type: "LOGGED_IN_USER",
+            payload: {
+              userId: res.data._id,
+              name: res.data.name,
+              email: res.data.email,
+              token: auth,
+              isMusician: res.data.isMusician,
+              isProfileCompleted: res.data.isProfileCompleted,
+              qr: res.data.profileUrl,
+            },
+          });
+          if (res.data.isMusician === "") {
+            window.$("#staticBackdrop1").modal("show");
+          }
+        })
+        .catch((err) => console.log(err));
+    }
+  });
+
+  const setupSocket = () => {
+    if (user !== null && !socket) {
+      const newSocket = io(`${process.env.REACT_APP_BASE_URL}`,
+      {
+        transports: ['polling',]
+      }, 
+
+      {
+        query: { 
+          userId: user.userId,
+        },
+      });
+
+      newSocket.on("disconnect", () => {
+        setSocket(null);
+      });
+      newSocket.on("connect", () => {
+        console.log("connected");
+      });
+      setSocket(newSocket);
+    }
+  };
+  setupSocket();
+
   return (
     <div className="App">
       <div style={{ overflowY: "hidden" }}>
@@ -56,17 +117,19 @@ const App = () => {
             element={<JobCreatorRegistration />}
           />
           <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/respond-to-job" element={<RespondToJob />} />
+          <Route path="/respond-to-job/:id" element={<RespondToJob socket={socket} />} />
           <Route path="/post-a-job" element={<PostAJob />} />
           <Route path="/job-detail-page/:id" element={<JobDetailPage />} />
           <Route path="/lyrics" element={<Lyrics />} />
           <Route path="/lyrics-details/:id" element={<LyricsDetails />} />
           <Route path="/create-new-lyrics" element={<CreateNewLyrics />} />
           <Route path="/messages" element={<Messages />} />
-          <Route path="/contactMessage" element={<ContactMessages />} />
+          <Route path="/creator-messages" element={<CreatorMessages />} />
+          <Route path="/contactMessage/:id" element={<ContactMessages socket={socket}/>} />
+          <Route path="/creatorContactMessage/:id" element={<CreatorContactMessages socket={socket}/>} />
           <Route path="/view-proposal" element={<ViewProposal />} />
           <Route path="/myjobs" element={<MyJobs />} />
-          <Route path="/client-dashboard" element={<ClientDashboard/> }/>
+          <Route path="/client-dashboard" element={<ClientDashboard />} />
           {/* *********************** End *************************** */}
         </Routes>
       </div>

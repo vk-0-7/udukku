@@ -1,7 +1,8 @@
 var axios = require("axios");
-const jobResponse = async (youProvide, description, quotation) => {
+const jobResponse = async (jobId,youProvide, description, quotation) => {
   const token = localStorage.getItem("token");
   var data = {
+    jobId,
     youProvide,
     description,
     quotation,

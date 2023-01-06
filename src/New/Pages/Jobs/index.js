@@ -11,6 +11,8 @@ import {
   Icon,
   useDisclosure,
   Spinner,
+  InputGroup,
+  InputLeftElement,
 } from "@chakra-ui/react";
 import JobSearchCard from "../../Components/jobSearchCard/JobSearchCard";
 import clipBoard from "../../../Assets/Images/icos/clipboard-text.png";
@@ -27,6 +29,7 @@ import { GrClose } from "react-icons/gr";
 import { useEffect, useState } from "react";
 import getJobs from "../../../Api/Jobs/getJobsApi";
 import { ColorRing } from "react-loader-spinner";
+import { ReactComponent as SearchIcon } from "../../../Assets/Icons/search-normal.svg";
 
 const Jobs = () => {
   const [jobs, setJobs] = useState([]);
@@ -36,6 +39,8 @@ const Jobs = () => {
   const [budgetEnd, setBudgetEnd] = useState("");
   const [deadline, setDeadline] = useState([]);
   const [genre, setGenre] = useState([]);
+  const [search_color, set_search_color] = useState("rgba(43, 43, 43, .3)");
+  const [search, set_search] = useState("");
 
   // get jobs list
   const getData = async () => {
@@ -121,7 +126,7 @@ const Jobs = () => {
         <NavBar />
         <Box
           display={"flex"}
-          px="5.7vw"
+          px="14vw"
           mt="70px"
           justifyContent={"space-between"}
           alignItems="center"
@@ -129,28 +134,75 @@ const Jobs = () => {
           <Text fontSize={"2.29vw"} fontFamily={"Gilroy-Bold"}>
             Find your next projects
           </Text>
-          <Box
-          w="40%"
-          p="1rem"
-          backgroundColor={"#F0F0F0"}
-          borderRadius=".5rem"
-          display={"flex"}
-          flexDirection="row"
-          gap="1rem"
-        >
-          <Searchicon
-            style={{
-              width: "1.25vw",
-              height: "1.25vw",
-            }}
-          />
-          <Text
-            fontSize={"1.2rem"}
-            fontFamily={"Gilroy-SemiBold"}
-            opacity={"50%"}
+          {/* <Box
+            w="40%"
+            p="1rem"
+            backgroundColor={"#F0F0F0"}
+            borderRadius=".5rem"
+            display={"flex"}
+            flexDirection="row"
+            gap="1rem"
           >
-            Enter company name, job title, category or genre
-          </Text>
+            <Searchicon
+              style={{
+                width: "1.25vw",
+                height: "1.25vw",
+              }}
+            />
+            <Text
+              fontSize={"1.2rem"}
+              fontFamily={"Gilroy-SemiBold"}
+              opacity={"50%"}
+            >
+              Enter company name, job title, category or genre
+            </Text>
+          </Box> */}
+
+          <Box display={"flex"} w="100%" gap={{ base: "2rem", lg: "" }}>
+            <InputGroup
+              w={{ base: "80%", lg: "100%" }}
+              _focus={{
+                svg: { stroke: "rgba(246, 84, 14, 1) !important" },
+              }}
+            >
+              <InputLeftElement
+                pointerEvents="none"
+                h="100%"
+                p="6px"
+                children={<SearchIcon style={{ stroke: search_color }} />}
+              />
+              <Input
+                borderRadius={"1.04vw"}
+                h={{ base: "4rem", lg: "5rem" }}
+                type="text"
+                fontSize={{ base: "1.2rem", lg: ".93vw" }}
+                placeholder="Enter talent name, category or genre"
+                _focus={{
+                  border: "2px solid rgba(246, 84, 14, 1)",
+                }}
+                onFocus={() => {
+                  console.log("in focus");
+                  set_search_color("rgba(246, 84, 14, 1)");
+                }}
+                onBlur={() => {
+                  set_search_color("rgba(43, 43, 43, .3)");
+                }}
+                value={search}
+                onChange={(e) => {
+                  set_search(e.target.value);
+                }}
+              />
+            </InputGroup>
+            <Box
+              display={{ base: "flex", lg: "none" }}
+              borderRadius={"1.2rem"}
+              border="1.5px solid #F0F0F0"
+              px="2rem"
+              alignItems={"center"}
+              justifyContent="center"
+            >
+              <Text fontSize={"1.2rem"}>Filters</Text>
+            </Box>
           </Box>
         </Box>
         <Box

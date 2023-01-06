@@ -174,7 +174,7 @@ const ContactUs = () => {
                 bg="#F6540E"
                 color="#fff"
                 h={{ base: "6.48vh", "3xl": "5vh" }}
-                borderRadius="20px"
+                borderRadius="12px"
                 _hover={{ background: "#F6540E" }}
                 isDisabled={disable}
                 onClick={handleSubmit}

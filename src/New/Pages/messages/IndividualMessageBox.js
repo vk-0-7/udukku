@@ -40,6 +40,7 @@ const IndividualMessageBox = ({ socket, id }) => {
         id,
       });
       socket.on("newMessage", (message) => {
+        console.log(message);
         setMessages([...messages, message]);
       });
     }
@@ -86,7 +87,7 @@ const IndividualMessageBox = ({ socket, id }) => {
   }, [messages]);
 
   const sendMessage = () => {
-    if (socket) {
+    if (socket) { 
       console.log(socket)
       if (message === "") {
         console.warn("can not send empty message");
@@ -94,7 +95,7 @@ const IndividualMessageBox = ({ socket, id }) => {
         socket.emit("chatroomMessage", {
           id,
           message,
-        });
+        }); 
         if(chatroom.userId[1] == user.userId){
           setOutgoingMessages(oldArr => [...oldArr, {message}]);
         }else{

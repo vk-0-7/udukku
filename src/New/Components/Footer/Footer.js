@@ -184,16 +184,7 @@ const Footer = () => {
               >
                 Privacy Policy
               </Text>
-              <Text
-                fontFamily={"Gilroy-Medium"}
-                fontSize={{ base: "1.7rem", lg: ".833vw" }}
-                cursor={"pointer"}
-                onClick={() => {
-                  navigate("/about-us");
-                }}
-              >
-                About
-              </Text>
+              
               <Text
                 fontFamily={"Gilroy-Medium"}
                 fontSize={{ base: "1.7rem", lg: ".833vw" }}
@@ -213,6 +204,16 @@ const Footer = () => {
                 }}
               >
                 Terms & Conditions
+              </Text>
+              <Text
+                fontFamily={"Gilroy-Medium"}
+                fontSize={{ base: "1.7rem", lg: ".833vw" }}
+                cursor={"pointer"}
+                onClick={() => {
+                  navigate("/about-us");
+                }}
+              >
+                About us
               </Text>
               <Text
                 fontFamily={"Gilroy-Medium"}

@@ -12,8 +12,8 @@ const OurValues = () => {
 			pb='7.40vh'
 			mb='50px'
 		>
-			<Box w='33.75vw' h='73.70'>
-				<Image src={img2} h='100%' />
+			<Box w='33.75vw' h='60vh'>
+				<Image src={img2} h='100%' w='90%' />
 			</Box>
 			<Box flexGrow={1}></Box>
 			<Box w='50%'>

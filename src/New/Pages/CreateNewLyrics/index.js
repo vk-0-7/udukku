@@ -1,4 +1,4 @@
-import { Box, Button, Input, Text, Textarea } from "@chakra-ui/react";
+import { Box, Button, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Text, Textarea, useDisclosure } from "@chakra-ui/react";
 import Footer from "../../Components/Footer/Footer";
 import NavBar from "../../Components/NavBar/NavBar";
 import React, { useRef } from "react";
@@ -13,7 +13,8 @@ import SocialMedia from "./SocialMedia";
 import { useNavigate } from "react-router-dom";
 import uploadImage from "../../../Api/Lyrics/uploadImage";
 import createLyrics from "../../../Api/Lyrics/createLyrics";
-
+import { Icon, CheckCircleIcon } from '@chakra-ui/react'
+import { AiFillCheckCircle } from "react-icons/ai";
 const CreateNewLyrics = () => {
   const navigate = useNavigate();
   const [image, setImage] = useState(null);
@@ -22,12 +23,16 @@ const CreateNewLyrics = () => {
     { peopleInvolved: "", role: "" },
   ]);
   const [social_media, set_social_media] = useState([{ plat: "", link: "" }]);
-
+  const { isOpen, onOpen, onClose } = useDisclosure()
   const inputFile = useRef(null);
   const form = useRef(null);
   const handleClick = async (e) => {
     inputFile.current.click();
   };
+
+  function CheckCircleIcon() {
+    return <Icon as={CheckCircleIcon} />
+  }
 
   const createLyricsForm = async (e) => {
     console.log(e.target.form.songName);
@@ -52,7 +57,9 @@ const CreateNewLyrics = () => {
       peopleInvolved,
       social_media,
       youtubeVideoLink
-    );
+    ).then(()=> {
+      onOpen(true) 
+    })
     console.log(status);
     //console.log(new FormData(e.target.form));
   };
@@ -79,7 +86,7 @@ const CreateNewLyrics = () => {
               }}
             />
             <Text fontFamily={"Gilroy-Bold"} fontSize="2.29vw">
-              Create New Lyric
+              Add New Song Lyrics
             </Text>
           </Box>
 
@@ -304,6 +311,7 @@ The mandem celebrate Eid, the trap still runnin' on Christmas day"
             </Box>
 
             {/* Submit button */}
+
             <Button
               mt="3.70vh"
               mb="7.40vh"
@@ -317,6 +325,31 @@ The mandem celebrate Eid, the trap still runnin' on Christmas day"
             >
               Create New Lyric
             </Button>
+            <Modal isOpen={isOpen} onClose={onClose}
+           
+            >
+              <ModalOverlay />
+              <ModalContent  mt="auto" mb="auto" height="30vh">
+                <ModalCloseButton />
+                <ModalBody textAlign="center"  pt="25%">
+                <Icon as={AiFillCheckCircle} color="green" fontSize="3rem"/>
+                  <Text  fontSize="2rem">Send for Admin Aproval</Text>
+                </ModalBody>
+
+                <ModalFooter>
+                  <Button 
+                   bg="rgba(246, 84, 14, 1)"
+                   color="#fff"
+                   mr="auto" 
+                   ml="auto"
+                   px="10"
+                    onClick={onClose}>
+                    OK
+                  </Button>
+                  
+                </ModalFooter>
+              </ModalContent>
+            </Modal>
           </form>
         </Box>
       </Box>

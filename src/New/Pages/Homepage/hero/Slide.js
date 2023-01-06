@@ -64,11 +64,11 @@ const Slide = () => {
             return (
               <SplideSlide key={index}>
                 <Box
-                  bgImage={data.avatar}
-                  bgSize="contain"
                   w={{ base: "100vw", lg: "27.60vw" }}
                   h="51.85vh"
-                ></Box>
+                >
+                  <Image src={data.avatar} height="100%" width="100%" />
+                </Box>
               </SplideSlide>
             );
           })}

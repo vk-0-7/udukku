@@ -279,6 +279,8 @@ const NavBar = () => {
                         <Text
                           fontSize={{ base: "1.5rem", lg: ".8333vw" }}
                           fontFamily={"Gilroy-SemiBold"}
+                          display={"flex"}
+                          verticalAlign={"middle"}
                         >
                           Hello {user?.name}
                         </Text>

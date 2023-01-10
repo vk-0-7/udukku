@@ -1,4 +1,4 @@
-import { Box, Avatar, AvatarBadge, Text, Button } from "@chakra-ui/react";
+import { Box, Avatar, AvatarBadge, Text, Button, Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalBody, Icon, ModalFooter, useDisclosure } from "@chakra-ui/react";
 import profileIcon from "../../../Assets/Images/dummyProfile/Ellipse 8.png";
 import { ReactComponent as InfoIcon } from "../../../Assets/Icons/info-circle.svg";
 import IncomingMessage from "./IncomingMessage";
@@ -12,8 +12,11 @@ import MediaMessageDetail from "./MediaMessageDetails";
 import { useNavigate } from "react-router-dom";
 import getMyResponses from "../../../Api/Jobs/getMusicianResponses";
 import { useSelector } from "react-redux";
-import { getAllMessages, getChatroomById } from "../../../Api/Chatroom/chatroom";
+import { addAttachmentToChatroom, getAllMessages, getChatroomAttachmentsById, getChatroomById, updateChatroomById } from "../../../Api/Chatroom/chatroom";
 import getJobById from "../../../Api/Jobs/getJobById";
+import axios from "axios";
+import { updateResponseById } from "../../../Api/Responses";
+import { getJobResponseByJob } from "../../../Api/Jobs";
 
 
 
@@ -29,7 +32,31 @@ const IndividualMessageBox = ({ socket, id }) => {
   const [messages, setMessages] = useState([]);
   const [chatroom, setChatroom] = useState();
   const [message, setMessage] = useState("");
-  
+  const [attachments, setAttachments] = useState([]);
+  const [media, setMedia] = useState([]);
+  const [file, setFile] = useState("");
+  const [response, setResponse] = useState();
+  const [deliverables, setDeliverables] = useState();
+  const [documentation, setDocumentation] = useState();
+  const { isOpen, onOpen, onClose } = useDisclosure()
+
+
+  const sendAttachment = (e) => {
+    const file = e.target.files[0];
+    const formData = new FormData();
+    formData.append("file", file);
+    const fileName = e.target.files[0].name;
+    axios.post(`${process.env.REACT_APP_BASE_URL}/api/upload_attachment`, formData)
+      .then((res) => {
+        const url = res.data.url;
+        console.log(url);
+        setFile(oldArr => [...oldArr, fileName]);
+        setAttachments(oldArr => [...oldArr, url]);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 
   const { user } = useSelector((state) => ({ ...state }));
 
@@ -37,7 +64,7 @@ const IndividualMessageBox = ({ socket, id }) => {
   useEffect(() => {
     if (socket !== undefined) {
       socket.emit("joinRoom", {
-        id,
+        chatroomId: id,
       });
       socket.on("newMessage", (message) => {
         console.log(message);
@@ -47,32 +74,46 @@ const IndividualMessageBox = ({ socket, id }) => {
     return () => {
       if (socket !== undefined) {
         socket.emit("leaveRoom", {
-          id,
+          chatroomId: id,
         });
       }
     };
   });
 
+
+
   const [job, setJob] = useState()
   useEffect(() => {
     // fetching chatroom
     getChatroomById(id).then((res) => {
+      console.log("chatroom", res.data)
       setChatroom(res.data);
-      getJobById(res.data.jobId).then((res)=>{
+      getJobById(res.data.jobId).then((res) => {
         console.log(res.data);
         setJob(res.data);
-      }).catch((err)=> console.log(err));
-      }).catch((err) => { console.log(err) });
-
-      // fetching messages for chatroom
-      getAllMessages(id)
+      }).catch((err) => console.log(err));
+    }).catch((err) => { console.log(err) });
+    // fetching messages for chatroom
+    getAllMessages(id)
       .then((res) => {
         console.log(res);
         setMessages(res.data.messages);
       })
 
-      //get job posted by details
-    }, []);
+    //get job posted by details
+  }, []);
+
+  useEffect(() => {
+    getChatroomAttachmentsById(id).then((res) => {
+      setMedia(res.data)
+    })
+
+    // get response
+    getJobResponseByJob(job?._id, chatroom?.userId[1]).then((res) => {
+      setResponse(res.data.filter((item) => item.responseBy == user.userId)[0]);
+    }).catch(err => console.log(err));
+  }, [id]);
+  console.log(media)
 
   useEffect(() => {
     if (messages != undefined && messages != null && user != null) {
@@ -87,20 +128,28 @@ const IndividualMessageBox = ({ socket, id }) => {
   }, [messages]);
 
   const sendMessage = () => {
-    if (socket) { 
-      console.log(socket)
-      if (message === "") {
-        console.warn("can not send empty message");
-      } else {
+    if (socket) {
+      if (message === "" && attachments.length === 0) {
+      } else if (attachments.length === "") {
         socket.emit("chatroomMessage", {
-          id,
+          chatroomId: id,
           message,
-        }); 
-        if(chatroom.userId[1] == user.userId){
-          setOutgoingMessages(oldArr => [...oldArr, {message}]);
-        }else{
-          setOutgoingMessages(oldArr => [...oldArr, {message}]);
-        }
+        });
+        setMessage("");
+      } else {
+        attachments.map((url, index) => {
+          addAttachmentToChatroom(id, url, file[index]).then((res) => {
+            console.log(res);
+            setAttachments([]);
+            setFile([]);
+          }).catch((err) => {
+            console.log(err);
+          });
+        });
+        socket.emit("chatroomMessage", {
+          chatroomId: id,
+          message,
+        });
         setMessage("");
       }
     }
@@ -114,6 +163,43 @@ const IndividualMessageBox = ({ socket, id }) => {
   const [goToMedia, setGoToMedia] = useState(true);
   // to navigate to view-proposal screen
   const navigate = useNavigate();
+
+  const handleAcceptJob = () => {
+    updateResponseById(job?._id, "pending", user.userId).then((res) => {
+      navigate("/messages");
+    })
+  }
+
+  const handleMarkJobAsCompleted = () => {
+    updateResponseById(job?._id, "completed", user.userId).then((res) => {
+      navigate("/messages");
+    })
+  }
+
+  const handleDenyJob = () => {
+    updateResponseById(job?._id, "completed", user.userId).then((res) => {
+      navigate("/messages");
+    });
+  }
+
+  const handleSendDeliverables = () => {
+    onOpen(true);
+    if (deliverables?.length === 0) {
+      console.warn("please attach atleast one attachment");
+    } else {
+      const reqBody = {
+        id,
+        documentation,
+        deliverables,
+        deliverablesStatus: true,
+      }
+      updateChatroomById(reqBody).then((res) => {
+        console.log(res);
+      }).catch((err) => {
+        console.log(err)
+      })
+    }
+  }
   return (
     // contains both i button box and message box
     <Box display={"flex"} flexDir="row" w="65%">
@@ -154,17 +240,92 @@ const IndividualMessageBox = ({ socket, id }) => {
             alignItems={"center"}
             ml="auto"
           >
-            {/* Job Completion button */}
-            <Button
-              backgroundColor="#F6540E"
-              color="white"
-              pt="1.7rem"
-              pb="1.7rem"
-              size="lg"
-              borderRadius={"2rem"}
-            >
-              Mark Job as Completed
-            </Button>
+            {response?.status == "completed"
+              ?
+              <Button
+                backgroundColor={"#F6540E"}
+                color={"White"}
+                pt={"1.75rem"}
+                pb={"1.75rem"}
+                borderRadius={"2rem"}
+                disabled
+              >Job is completed</Button>
+              :
+              <>
+                {response?.status == "exploring"
+                  ?
+                  <>
+                    <Button
+                      backgroundColor={"#F6540E"}
+                      color={"White"}
+                      pt={"1.75rem"}
+                      pb={"1.75rem"}
+                      borderRadius={"2rem"}
+                      onClick={handleSendDeliverables}
+                    >Send deliverables
+                    </Button>
+                    <Modal isOpen={isOpen} onClose={onClose}>
+                      <ModalOverlay />
+                      <ModalContent mt="auto" mb="auto" height="30vh">
+                        <ModalCloseButton />
+                        <ModalBody textAlign="center" pt="25%">
+                          <Text fontSize="2rem">Modal</Text>
+                        </ModalBody>
+
+                        <ModalFooter>
+                          <Button
+                            bg="rgba(246, 84, 14, 1)"
+                            color="#fff"
+                            mr="auto"
+                            ml="auto"
+                            px="10"
+                            onClick={onClose}>
+                            OK
+                          </Button>
+
+                        </ModalFooter>
+                      </ModalContent>
+                    </Modal>
+                    <Button
+                      backgroundColor={"#F6540E"}
+                      color={"White"}
+                      pt={"1.75rem"}
+                      pb={"1.75rem"}
+                      borderRadius={"2rem"}
+                      onClick={handleDenyJob}
+                      disabled
+                    >Deny Job</Button>
+                  </>
+                  :
+                  <>
+                    <Button
+                      backgroundColor={"#F6540E"}
+                      color={"White"}
+                      pt={"1.75rem"}
+                      pb={"1.75rem"}
+                      borderRadius={"2rem"}
+                      onClick={handleAcceptJob}
+                    >Accept Job</Button>
+                    
+                    <Button
+                      backgroundColor={"#F6540E"}
+                      color={"White"}
+                      pt={"1.75rem"}
+                      pb={"1.75rem"}
+                      borderRadius={"2rem"}
+                      onClick={handleDenyJob}
+                    >Deny Job</Button>
+                  </>
+                }
+                {/* <Button
+                  backgroundColor={"#F6540E"}
+                  color={"White"}
+                  pt={"1.75rem"}
+                  pb={"1.75rem"}
+                  borderRadius={"2rem"}
+                  onClick={handleMarkJobAsCompleted}
+                >Mark job as completed</Button> */}
+              </>}
             {/* on click , should show the message details box */}
             <InfoIcon
               style={{ fontSize: "5px", cursor: "pointer" }}
@@ -229,7 +390,10 @@ const IndividualMessageBox = ({ socket, id }) => {
           ))}
         </Box>
         <Box p="1rem" pos={"sticky"}>
-          <TypeMessageBox sendMessage={sendMessage} message={message} setMessage={setMessage}/>
+          <TypeMessageBox sendAttachment={sendAttachment} sendMessage={sendMessage} message={message} setMessage={setMessage} />
+          {attachments.map((item) => (
+            <img src={item} height="50px" width="50px" style={{ borderRadius: "5px" }} />
+          ))}
         </Box>
       </Box>
       {/* if go to media is true-> display message detail box
@@ -241,9 +405,10 @@ const IndividualMessageBox = ({ socket, id }) => {
           goToMedia={goToMedia}
           setGoToMedia={setGoToMedia}
           data={job}
+          media={media}
         />
       ) : (
-        <MediaMessageDetail goToMedia={goToMedia} setGoToMedia={setGoToMedia} />
+        <MediaMessageDetail data={media} goToMedia={goToMedia} setGoToMedia={setGoToMedia} />
       )}
     </Box>
   );

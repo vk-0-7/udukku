@@ -20,7 +20,7 @@ const Slide = () => {
       set_slides(res.data.user);
     } catch (error) {}
   };
-  console.log({ slides });
+  console.log(slides);
   //console.log(slides);
   useEffect(() => {
     getSlideData();
@@ -60,7 +60,7 @@ const Slide = () => {
         }}
       >
         <SplideTrack>
-          {slides.map((data, index) => {
+          {slides?.map((data, index) => {
             return (
               <SplideSlide key={index}>
                 <Box
@@ -100,7 +100,7 @@ const Slide = () => {
               textAlign="end"
               fontFamily="Gilroy-Medium"
             >
-              {slides.length === 0 ? "" : slides[index].name}
+              {slides?.length === 0 ? "" : slides[index].name}
             </Text>
             <Text
               mt=".74vh"

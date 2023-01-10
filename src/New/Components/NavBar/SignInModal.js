@@ -93,9 +93,18 @@ const SignInModal = ({ state, changeState }) => {
       localStorage.setItem("token",res.data.refresh_token)
       localStorage.setItem("userId",res.data.user._id)
       dispatch({
-        type:"LOGGED_IN_USER",
-        payload:res.data.user
-      })
+        type: "LOGGED_IN_USER",
+        payload: {
+          userId: res.data._id,
+          name: res.data.name,
+          email: res.data.email,
+          token: res.data.refresh_token,
+          isMusician: res.data.isMusician,
+          isProfileCompleted: res.data.isProfileCompleted,
+          qr: res.data.profileUrl,
+          avatar: res.data.avatar,
+        },
+      });
       setLoginState(true);
       setToken(res.data.refresh_token);
       setUserId(res.data.user._id);

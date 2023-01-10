@@ -18,8 +18,10 @@ const MessagingPageDetails = ({
   goToMedia,
   setGoToMedia,
   data,
+  media,
 }) => {
-  const navigate= useNavigate();
+  const navigate = useNavigate();
+  console.log(media)
   return (
     // whole rightmost messagedetails
 
@@ -46,7 +48,7 @@ const MessagingPageDetails = ({
             {data?.jobPostedBy?.name}
           </Text>
           <Text fontFamily={"Gilroy-Medium"} fontSize="1rem" color={"#acadaf"}>
-          {data?.jobPostedBy?.city}
+            {data?.jobPostedBy?.city}
           </Text>
           <Box display={"fkex"} flexDir="row" gap="2px">
             <RatingIcon />
@@ -73,7 +75,7 @@ const MessagingPageDetails = ({
           <CrossIcon style={{ width: "2rem", height: "2rem" }} />
         </Box>
       </Box>
-     
+
       {/* JobDetails */}
       <Box display={"flex"} flexDir="column" gap="1.2rem">
         <Text fontFamily={"Gilroy-Bold"} fontSize="1.7rem">
@@ -86,7 +88,7 @@ const MessagingPageDetails = ({
           <Box display={"flex"} flexDir="row" gap="5px" alignItems={"center"}>
             <DollarIcon />
             <Text fontFamily={"Gilroy-Medium"} fontSize="1.2rem">
-            {data?.budget[0]} - {data?.budget[1]}
+              {data?.budget[0]} - {data?.budget[1]}
             </Text>
           </Box>
           <Box display={"flex"} flexDir="row" gap="5px" alignItems={"center"}>
@@ -131,11 +133,13 @@ const MessagingPageDetails = ({
             />
           </Box>
         </Box>
-        <Box display={"flex"} flexDir="row" gap="1rem">
-          <Image src={Media1} h="7rem" w="7rem" borderRadius={"1rem"}></Image>
-          <Image src={Media2} h="7rem" w="7rem" borderRadius={"1rem"}></Image>
-          <Image src={Media3} h="7rem" w="7rem" borderRadius={"1rem"}></Image>
-        </Box>
+
+        {media.map((index,item) => {
+          <Box key={index} display={"flex"} flexDir="row" gap="1rem">
+            <Image src={item.attachmentUrl} h="7rem" w="7rem" borderRadius={"1rem"}/>
+          </Box>
+        })}
+    
       </Box>
     </Box>
   );

@@ -1,13 +1,14 @@
 import { Box, Text, Button, Input } from "@chakra-ui/react";
 import { ReactComponent as LinkIcon } from "../../../Assets/Icons/link-2.svg";
 import { ReactComponent as SendIcon } from "../../../Assets/Icons/send.svg";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
-const TypeMessageBox = ({ message, setMessage, sendMessage }) => {
+const TypeMessageBox = ({ message, setMessage, sendMessage, sendAttachment }) => {
   const ref = useRef();
   const handleClick = (e) => {
     ref.current.click();
   };
+  const [attachments, setAttachments] = useState([]);
 
   return (
     <Box
@@ -45,7 +46,10 @@ const TypeMessageBox = ({ message, setMessage, sendMessage }) => {
           }}
           onClick={handleClick}
         />
-        <input ref={ref} type="file" style={{ display: "none" }} />
+        <input ref={ref} type="file" style={{ display: "none" }} onChange={sendAttachment}/>
+        {attachments.map((item)=>(
+            <img src={item} height="50px" width="50px" style={{borderRadius:"5px"}}/>
+          ))}
         <Button p="1rem" backgroundColor={"#F6540E"} borderRadius="1rem" onClick={sendMessage}>
           <SendIcon
             style={{

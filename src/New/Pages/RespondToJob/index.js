@@ -23,6 +23,7 @@ const RespondToJob = ({socket}) => {
     try {
       await jobResponse(userID[0],youProvide, description, total_price).then((res)=>{
         const userId = [userID[1], user.userId];
+        console.log(userId)
         createChatroom(userId,userID[0]).then((res)=>{
           console.log(res.data.chatroom._id);
           socket.emit("joinRoom", {

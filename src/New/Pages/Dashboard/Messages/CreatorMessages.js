@@ -1,10 +1,16 @@
 import { Box } from "@chakra-ui/react";
+import { useParams } from "react-router-dom";
 import Footer from "../../../Components/Footer/Footer";
 import NavBar from "../../../Components/NavBar/NavBar";
+import CreatorIndividualMessageBox from "../../messages/CreatorIndividualMessageBox";
+import CreatorMessageList from "./CreatorMessageList";
 import IndividualMessage from "./IndividualMessage";
 import MessageList from "./MessageList";
 
-const CreatorMessages = () => {
+const CreatorMessages = ({socket}) => {
+
+  const {id} = useParams();
+
   return (
     <Box display={"flex"} flexDir="column" overflow={"hidden"} w="100%">
       <NavBar/>
@@ -18,8 +24,8 @@ const CreatorMessages = () => {
           display={"flex"}
           flexDir="row"
         >
-          <MessageList />
-          <IndividualMessage />
+          <CreatorMessageList />
+          {/* <CreatorIndividualMessageBox socket={socket} id={id}/> */}
         </Box>
       </Box>
       <Footer />

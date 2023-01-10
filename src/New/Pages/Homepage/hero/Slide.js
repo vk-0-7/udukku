@@ -65,7 +65,6 @@ const Slide = () => {
               <SplideSlide key={index}>
                 <Box
                   w={{ base: "100vw", lg: "27.60vw" }}
-                  h="51.85vh"
                 >
                   <Image src={data.avatar} height="100%" width="100%" />
                 </Box>

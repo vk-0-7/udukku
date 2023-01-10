@@ -67,7 +67,6 @@ const NavBar = () => {
     }
   };
 
-  console.log(user?.avatar)
 
   return (
     <>
@@ -240,7 +239,7 @@ const NavBar = () => {
                     width: "1.5rem",
                     cursor: "pointer",
                   }}
-                  onClick={() => navigate("/messages")}
+                  onClick={() =>  user.isMusician === "Musician" ? navigate("/messages") : navigate("/creator-messages")}
                 />
                 <Menu>
                   <MenuButton

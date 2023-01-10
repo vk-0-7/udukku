@@ -1,23 +1,35 @@
 import { Box, Text } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import getMyResponses from "../../../../Api/Jobs/getMusicianResponses";
+import getMyResponses, { getMyJobResponses } from "../../../../Api/Jobs/getMusicianResponses";
 import { ReactComponent as Searchicon } from "../../../../Assets/Icons/search-normal.svg";
 import MessageChatBox from "../../messages/MessageChatBox";
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react'
-const MessageList = ({ state }) => {
+import CreatorMessageChatBox from "../../messages/CreatorMessageChatBox";
+import { getUserInfoById } from "../../../../Api/Chatroom/chatroom";
+const CreatorMessageList = ({ state }) => {
   const [responses, setResponses] = useState([]);
+  const [responseBy, setResponseBy] = useState([]);
   const [activeTab, setActiveTab] = useState(1);
   const [status, setStatus] = useState("");
   const { user } = useSelector((state) => ({ ...state }));
   useEffect(() => {
-    if (user != null && localStorage.getItem("token") != undefined) {
-      getMyResponses(localStorage.getItem("token")).then((res) => {
-        setResponses(res.data.response);
+    if (localStorage.getItem("token") != undefined) {
+      console.log("here",localStorage.getItem("token"))
+      getMyJobResponses(localStorage.getItem("token")).then((res) => {
+        setResponses(oldArr => [...oldArr,res.data.sendJobs])
+        res.data.sendJobs.map((item) => {
+          getUserInfoById(item.responseBy).then((response) => {
+            console.log(item)
+            setResponseBy(oldArr => [...oldArr,response.data])
+          })
+        })
       })
     }
-  }, [user]);
+  }, []);
 
+console.log(responses)
+console.log(responseBy)
   /**
    * This function will be used to handle the currrent active tab and response type
    * @param {*} currentTab will be used to handle active tab
@@ -141,24 +153,24 @@ const MessageList = ({ state }) => {
           </Box>
         </Box>
       </Box>
-      <Box w="100%">
+      {/* <Box w="100%">
         {responses.map((item, index) => (
           <div key={index}>
             {status === ""
               ?
-              <MessageChatBox data={item} />
+              <CreatorMessageChatBox data={item} responseBy={responseBy[index]}/>
               :
               item.status === status
                 ?
-                <MessageChatBox data={item} />
+                <CreatorMessageChatBox data={item} responseBy={responseBy[index]}/>
                 :
                 ""
             }
           </div>
         ))}
-      </Box>
+      </Box> */}
     </Box>
   );
 };
 
-export default MessageList;
+export default CreatorMessageList;

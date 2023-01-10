@@ -25,7 +25,7 @@ import { Textarea } from '@chakra-ui/react'
 
 
 
-const IndividualMessageBox = ({ socket, id }) => {
+const CreatorIndividualMessageBox = ({ socket, id }) => {
 
   const [incomingMessages, setIncomingMessages] = useState([]);
   const [outgoingMessages, setOutgoingMessages] = useState([]);
@@ -494,4 +494,4 @@ const IndividualMessageBox = ({ socket, id }) => {
     </Box>
   );
 };
-export default IndividualMessageBox;
+export default CreatorIndividualMessageBox;

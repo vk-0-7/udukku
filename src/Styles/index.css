@@ -170,3 +170,10 @@ html {
 .hero .splide__arrows--ltr {
   display: none;
 }
+
+.proposal-modal-input {
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+}
+
+

@@ -21,12 +21,17 @@ import { ReactComponent as PlayIcon } from "../../../Assets/Icons/play.svg";
 import { ReactComponent as Sms } from "../../../Assets/Icons/sms.svg";
 import { ReactComponent as Category } from "../../../Assets/Icons/category.svg";
 import ReviewCard from "../../Components/ReviewCard/ReviewCard";
+import getAllTalents from "../../../Api/AllTalents/allTalents";
 
 // dummy data
 import d_audio from "../../../Assets/Dummy/allthat.mp3";
 import getAllUsers from "../../../Api/User/getAllUsers";
 import { AccessAuthContext } from "../../Context/AuthContext";
 import { useSelector } from "react-redux";
+
+
+
+
 const d_data = [
   {
     profile_link: "https://source.unsplash.com/random?face?girl",
@@ -66,8 +71,25 @@ const location=useLocation();
   const navigate = useNavigate();
 
  const {user} = useSelector((state) => ({...state}));
+ const [loading, setLoading] = useState(false);
+ const [allTalents, setAllTalents] = useState([]);
+ const [talents, setTalents] = useState([]);
 
-  console.log({ user });
+ useEffect(async () => {
+  //window.scrollTo(0, 0);
+  setLoading(true);
+  try {
+    const res = await getAllUsers();
+    setLoading(false);
+    setTalents(res.user);
+  } catch (err) {
+    const res2 = await getAllTalents();
+    setLoading(false);
+    setAllTalents(res2.data.talents);
+  }
+}, []);
+
+  console.log({ talents });
 
   return (
     <>
@@ -89,7 +111,7 @@ const location=useLocation();
                     width={"100%"}
                     objectFit="cover"
                     // objectPosition={"50% 50%"}
-                    src={user.avatar}
+                    src={user?.avatar}
                   />
                   {userId===user._id?<Button
                     size="lg"

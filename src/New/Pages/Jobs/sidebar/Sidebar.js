@@ -73,7 +73,7 @@ const Sidebar = ({
 
 	return (
 		<>
-			<Box w={{ base: '25vw' }} h='100%'>
+			<Box w={{ base: '25vw' }} h='100%'  pl="8vw">
 				<Text fontFamily={'Gilroy-Bold'} fontSize={'1.25vw'}>
 					Category
 				</Text>

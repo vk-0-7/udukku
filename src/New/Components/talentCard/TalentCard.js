@@ -15,6 +15,7 @@ const TalentCard = ({ data }) => {
     width: ".72vw",
     fill: "rgba(8, 32, 50, 1)",
   };
+  console.log(data)
   return (
     <Box
       h={{ base: "", lg: "" }}
@@ -79,7 +80,7 @@ const TalentCard = ({ data }) => {
         mt={{ base: "0rem", lg: "0rem" }}
         fontFamily={"Gilroy-Bold"}
         fontSize={{ base: "3rem", lg: "1.45vw" }}
-        // lineHeight={"3.5vh"}
+      // lineHeight={"3.5vh"}
       >
         {data.tag}
       </Box>
@@ -163,8 +164,11 @@ const TalentCard = ({ data }) => {
         fontSize={{ base: "1.4rem", lg: ".833vw" }}
         mt={{ base: "1rem", lg: "2.22vh" }}
       >
-        {data.description}
+        {/* {typeof(data.description)} */}
+        {data?.description?.length > 100 ? `${data.description.slice(0,100) }...read more` : data.description} 
       </Text>
+
+
       {data.workSample && (
         <audio
           src={data.workSample}

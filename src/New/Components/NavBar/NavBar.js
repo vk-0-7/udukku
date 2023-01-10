@@ -26,6 +26,8 @@ import { ReactComponent as JobIcon } from "../../../Assets/Icons/Vector(1).svg";
 import { ReactComponent as LogOutIcon } from "../../../Assets/Icons/logout.svg";
 import { ReactComponent as SwitchIcon } from "../../../Assets/Icons/repeat.svg";
 import { ReactComponent as HamIcon } from "../../../Assets/Icons/Group 519.svg";
+import PersonIcon from '@mui/icons-material/Person';
+import { useSelector } from "react-redux";
 const NavBar = () => {
   const [signInState, setSignInState] = useState(false);
   const [signUpState, setSignUpState] = useState(false);
@@ -35,6 +37,8 @@ const NavBar = () => {
   const [howItWorksState, setHowItWorksState] = useState(false);
   const { loginState, avatar, username, isMusician } = AccessAuthContext();
   const [hamMenu, setHamMenu] = useState(false);
+  const { user } = useSelector((state) => ({ ...state }));
+
   useEffect(() => {
     const getit = () => {
       const winScroll =
@@ -63,6 +67,8 @@ const NavBar = () => {
     }
   };
 
+  console.log(user?.avatar)
+
   return (
     <>
       <SignInModal state={signInState} changeState={setSignInState} />
@@ -88,8 +94,8 @@ const NavBar = () => {
           path.length >= 2
             ? "rgba(8, 32, 50,1)"
             : positon > 10
-            ? "rgba(8, 32, 50,1)"
-            : "transparent"
+              ? "rgba(8, 32, 50,1)"
+              : "transparent"
         }
         boxShadow={
           positon > 10
@@ -246,7 +252,7 @@ const NavBar = () => {
                       background: "rgba(255,255,255,.1)",
                     }}
                     _expanded={{ bg: "rgba(255,255,255,.1)" }}
-                    // _focus={{ boxShadow: 'outline' }}
+                  // _focus={{ boxShadow: 'outline' }}
                   >
                     <Box
                       h="fit-content"
@@ -257,12 +263,13 @@ const NavBar = () => {
                       cursor="pointer"
                     >
                       <Box
-                        bgImage={avatar}
+                        bgImage={user?.avatar}
                         bgSize="cover"
                         borderRadius={"full"}
                         h="30px"
                         w="30px"
-                      ></Box>
+                      >
+                      </Box>
                       <Box
                         display={"flex"}
                         gap=".26vw"
@@ -272,8 +279,10 @@ const NavBar = () => {
                         <Text
                           fontSize={{ base: "1.5rem", lg: ".8333vw" }}
                           fontFamily={"Gilroy-SemiBold"}
+                          display={"flex"}
+                          verticalAlign={"middle"}
                         >
-                          Hello {username}
+                          Hello {user?.name}
                         </Text>
                         <Icon
                           as={BsChevronDown}
@@ -286,7 +295,7 @@ const NavBar = () => {
                     <MenuItem
                       fontSize={"1.4rem"}
                       onClick={() => {
-                       isMusician==="recruter"?navigate("/client-dashboard"):navigate("/dashboard");
+                        isMusician === "recruter" ? navigate("/client-dashboard") : navigate("/dashboard");
                       }}
                       icon={
                         <GenreIcon
@@ -329,12 +338,11 @@ const NavBar = () => {
                         navigate(`/${localStorage.getItem("userId")}`);
                       }}
                       icon={
-                        <Man
+                        <PersonIcon
                           style={{
                             fill: "#F6540E",
                             width: "1.25vw",
                             height: "1.25vw",
-                            background: "#F6540E",
                           }}
                         />
                       }

@@ -28,7 +28,7 @@ import MyJobs from "./New/Pages/MyJobs";
 import ClientDashboard from "./New/Pages/ClientDashboard/clientDashboard";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { io } from "socket.io-client";
+import io from "socket.io-client";
 import { currentUser } from "./Api/Auth/activateUser";
 
 const App = () => {
@@ -53,6 +53,7 @@ const App = () => {
               isMusician: res.data.isMusician,
               isProfileCompleted: res.data.isProfileCompleted,
               qr: res.data.profileUrl,
+              avatar: res.data.avatar,
             },
           });
           if (res.data.isMusician === "") {
@@ -66,10 +67,6 @@ const App = () => {
   const setupSocket = () => {
     if (user !== null && !socket) {
       const newSocket = io(`${process.env.REACT_APP_BASE_URL}`,
-      {
-        transports: ['polling',]
-      }, 
-
       {
         query: { 
           userId: user.userId,

@@ -8,7 +8,7 @@ import profileIcon from "../../../Assets/Images/dummyProfile/Ellipse 8.png";
 const MessageChatBox = ({ data }) => {
   const [chatrooms, setChatrooms] = useState([]);
   const {user} = useSelector((state)=>({...state}));
-
+console.log(data)
   const dispatch = useDispatch();
   useEffect(()=>{
       getChatroomsById(localStorage.getItem("userId")).then((res)=>{
@@ -57,7 +57,7 @@ const MessageChatBox = ({ data }) => {
       <Box display={"flex"} flexDir="column" p="7px" w="100%" gap="5px">
         <Box  display={"flex"} flexDir={"row"} w="100%">
           <Text fontFamily={"Gilroy-Bold"} fontSize="1.3rem">
-            {data.JobDetails[0]?.jobTitle}
+            {data.JobDetails[0]?.jobPostedBy.name}
           </Text>
           <Text
             fontFamily={"Gilroy-SemiBold"}

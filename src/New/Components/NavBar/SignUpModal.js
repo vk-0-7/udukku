@@ -16,9 +16,13 @@ import {
 } from "@chakra-ui/react";
 import { GrClose } from "react-icons/gr";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import signup from "../../../Api/Auth/signup";
 import { AccessAuthContext } from "../../Context/AuthContext";
+import { useDispatch } from "react-redux";
+import googleLogin from "../../../Api/Auth/googleLogin";
+import jwt_decode from "jwt-decode";
+import BecomeOurMember from "../../Pages/Homepage/becomeOurMember/BecomeOurMember";
 
 const SignUpModal = ({ state, changeState }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -30,6 +34,7 @@ const SignUpModal = ({ state, changeState }) => {
   const [checkPasswordCase, setCheckPasswordCase] = useState(true);
   const [checkPasswordNumber, setCheckPasswordNumber] = useState(true);
   const [disable, setDisable] = useState(true);
+  const [show_registration_modal, set_show_registration_modal] = useState(null);
   const [loading, setLoading] = useState(false);
   const { setLoginState, setToken, setAvatar } = AccessAuthContext();
   const toast = useToast();
@@ -37,6 +42,71 @@ const SignUpModal = ({ state, changeState }) => {
   const exp2 = new RegExp("(?=.*[A-Z])");
   const exp3 = new RegExp("(?=.*\\d)");
   const exp4 = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
+  const {
+    setUserId,
+  } = AccessAuthContext();
+  const dispatch = useDispatch();
+  const gLoginButton = useCallback((node) => {
+    if (node !== null) {
+      /* global google */
+      google.accounts.id.initialize({
+        client_id: process.env.REACT_APP_CLIENT_ID,
+        callback: handleCallbackResponse,
+      });
+
+      google.accounts.id.renderButton(node, {
+        theme: "outline",
+        size: "large",
+        background: "#082032",
+      });
+    }
+  }, []);
+
+  const handleCallbackResponse = async (response) => {
+    console.log("google response is : ", response);
+    var userObj = jwt_decode(response.credential);
+    console.log(userObj);
+
+    // this is what we do when user login
+    try {
+      const res = await googleLogin(response.credential);
+      console.log("server se ye aaya : ", res);
+      localStorage.setItem("token", res.data.refresh_token)
+      localStorage.setItem("userId", res.data.user._id)
+      if (!res.data.user.isProfileCompleted) {
+        set_show_registration_modal(true);
+      }
+      dispatch({
+        type: "LOGGED_IN_USER",
+        payload: {
+          userId: res.data.user._id,
+          name: res.data.user.name,
+          email: res.data.user.email,
+          token: res.data.user.refresh_token,
+          isMusician: res.data.user.isMusician,
+          isProfileCompleted: res.data.user.isProfileCompleted,
+          qr: res.data.user.profileUrl,
+          avatar: res.data.user.avatar,
+        },
+      });
+      setLoginState(true);
+      setToken(res.data.refresh_token);
+      setUserId(res.data.user._id);
+      // setUsed('google');
+      // setOpen(false);
+      onClose();
+
+      // setProfileurl(res.data.msg.avatar);
+    } catch (error) {
+      // toast({
+      // 	title: 'Error',
+      // 	description: error.response.data.msg,
+      // 	status: 'error',
+      // 	isClosable: true,
+      // 	duration: 3000,
+      // });
+    }
+  };
 
   const handleClick = () => {
     setShow(!show);
@@ -113,6 +183,11 @@ const SignUpModal = ({ state, changeState }) => {
 
   return (
     <>
+      {show_registration_modal === true ? (
+        <BecomeOurMember state={true} />
+      ) : (
+        <></>
+      )}
       <Modal size="full" isOpen={isOpen}>
         <ModalOverlay />
         <ModalContent
@@ -286,8 +361,8 @@ const SignUpModal = ({ state, changeState }) => {
                           password === ""
                             ? "black"
                             : checkPasswordLength
-                            ? "red"
-                            : "green"
+                              ? "red"
+                              : "green"
                         }
                       >
                         contains at least 8 characters
@@ -297,8 +372,8 @@ const SignUpModal = ({ state, changeState }) => {
                           password === ""
                             ? "black"
                             : checkPasswordCase
-                            ? "red"
-                            : "green"
+                              ? "red"
+                              : "green"
                         }
                       >
                         contains both lower (a-z) and upper case letters (A-Z)
@@ -308,8 +383,8 @@ const SignUpModal = ({ state, changeState }) => {
                           password === ""
                             ? "black"
                             : checkPasswordNumber
-                            ? "red"
-                            : "green"
+                              ? "red"
+                              : "green"
                         }
                       >
                         contains at least one number (0-9) or a symbol
@@ -364,16 +439,31 @@ const SignUpModal = ({ state, changeState }) => {
               </Text>
             </Box>
             <Button
+              display={"flex"}
+              alignItems="center"
+              justifyContent={"center"}
+              gap="10px"
               w="100%"
               bg="#082032"
               color="#fff"
               borderRadius={"1.04vw"}
-              fontSize={{ base: "2rem", lg: ".833vw" }}
               h={{ base: "6.48vh", "3xl": "5vh" }}
               _hover={{ background: "#082032" }}
+              fontSize={{ base: "2rem", lg: ".833vw" }}
+              onClick={() => {
+                const a = document.getElementById("google_login_button");
+                console.log(
+                  a.childNodes[0].childNodes[0].childNodes[0].click()
+                );
+              }}
             >
-              Sign in with Google
+              <Text>Sign in with Google</Text>
             </Button>
+            <Box
+              display={"none"}
+              id="google_login_button"
+              ref={gLoginButton}
+            ></Box>
             <Box mt="1.85vh" fontSize={{ base: "2rem", lg: ".833vw" }}>
               <Text textAlign={"center"}>
                 Already registered?{" "}

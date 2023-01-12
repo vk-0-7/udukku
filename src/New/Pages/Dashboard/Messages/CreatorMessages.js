@@ -26,6 +26,7 @@ const CreatorMessages = ({socket}) => {
         >
           <CreatorMessageList />
           {/* <CreatorIndividualMessageBox socket={socket} id={id}/> */}
+          <IndividualMessage/>
         </Box>
       </Box>
       <Footer />

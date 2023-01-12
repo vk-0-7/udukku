@@ -16,7 +16,7 @@ const Hero = () => {
       bg="#082032"
       display={"flex"}
       alignItems="center"
-      px={{ base: "2rem", lg: "13.54vw" }}
+      px={{ base: "2rem", lg: "12.54vw" }}
       gap={"100px"}
       pt={{
         base: "7rem", // 0-48em
@@ -46,7 +46,7 @@ const Hero = () => {
         px={{base:"2rem"}}
       >
         {/* text section on left */}
-        <Box display={"flex"} flexDir="column" gap={{base:"2rem",xl:"30px"}}  justifyContent={{base:"center"}} px={{base:"4rem"}}>
+        <Box display={"flex"} flexDir="column" gap={{base:"2rem",xl:"30px"}}  justifyContent={{base:"center"}} >
           <Text
             as="h1"
             fontSize={{base:"6rem", lg:"3.75vw"}}

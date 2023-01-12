@@ -379,7 +379,7 @@ const CreatorIndividualMessageBox = ({ socket, id }) => {
                       borderRadius={"2rem"}
                       onClick={handleAcceptJob}
                       disabled={response?.status == "exploring"}
-                    >Accept Job</Button>
+                    >Select this musician</Button>
                     {/* {sizes.map((size) => (
                       
                     ))} */}
@@ -388,14 +388,14 @@ const CreatorIndividualMessageBox = ({ socket, id }) => {
 
 
 
-                    <Button
+                    {/* <Button
                       backgroundColor={"#F6540E"}
                       color={"White"}
                       pt={"1.75rem"}
                       pb={"1.75rem"}
                       borderRadius={"2rem"}
                       onClick={handleDenyJob}
-                    >Deny Job</Button>
+                    >Deny Job</Button> */}
                   </>
                 }
                 {/* <Button

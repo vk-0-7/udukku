@@ -42,7 +42,7 @@ const Slide = () => {
       overflow="hidden"
       position={"relative"}
       className="hero"
-      px={{ base: "3.5rem" }}
+      // px={{ base: "3.5rem" }}
     >
       <Splide
         aria-label="images"

@@ -18,7 +18,8 @@ console.log(responseBy)
       }).catch((err)=>{
         console.log(err);
       })
-  },[user]);
+  },[]);
+  console.log(chatrooms)
   const navigate = useNavigate();
   return (
     <Box
@@ -35,13 +36,13 @@ console.log(responseBy)
       }}
       onClick={() => {
         chatrooms.map((item,index)=> {
-          if(item.userId.includes(data.JobDetails[0].jobPostedBy._id) & item.jobId === data.jobId){
+          if(item.userId.includes(responseBy._id) & item.jobId === data[0].jobId){
             navigate(`/creatorContactMessage/${chatrooms[index]._id}`);
           }
         })
       }}
     >
-      <Avatar size={"xl"} src={data.JobDetails[0]?.jobPostedBy.avatar}>
+      <Avatar size={"xl"} src={responseBy?.avatar}>
         {data.status === "active" ?
          <AvatarBadge
          boxSize="0.6em"
@@ -58,7 +59,7 @@ console.log(responseBy)
       <Box display={"flex"} flexDir="column" p="7px" w="100%" gap="5px">
         <Box  display={"flex"} flexDir={"row"} w="100%">
           <Text fontFamily={"Gilroy-Bold"} fontSize="1.3rem">
-            {data.JobDetails[0]?.jobPostedBy.name}
+            {responseBy?.name}
           </Text>
           <Text
             fontFamily={"Gilroy-SemiBold"}
@@ -71,7 +72,9 @@ console.log(responseBy)
         </Box>
         <Text   fontFamily={"Gilroy-SemiBold"}
             fontSize="1rem"
-            color="#ACADAF">{data.description}</Text>
+            color="#ACADAF">
+              {data[0].description}
+            </Text>
       </Box>
     </Box>
   );

@@ -153,7 +153,7 @@ console.log(responseBy)
           </Box>
         </Box>
       </Box>
-      {/* <Box w="100%">
+      <Box w="100%">
         {responses.map((item, index) => (
           <div key={index}>
             {status === ""
@@ -168,7 +168,7 @@ console.log(responseBy)
             }
           </div>
         ))}
-      </Box> */}
+      </Box>
     </Box>
   );
 };

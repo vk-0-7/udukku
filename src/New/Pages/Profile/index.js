@@ -28,7 +28,7 @@ import d_audio from "../../../Assets/Dummy/allthat.mp3";
 import getAllUsers from "../../../Api/User/getAllUsers";
 import { AccessAuthContext } from "../../Context/AuthContext";
 import { useSelector } from "react-redux";
-
+import { getUserInfoById } from "../../../Api/User/getUserById";
 
 
 
@@ -65,31 +65,43 @@ const d_data = [
 const Profile = () => {
   const { id } = useParams();
   console.log("Here is Id", id);
-const location=useLocation();
-  const {userId} = AccessAuthContext();
-   console.log({userId})
+  const location = useLocation();
+  const { userId } = AccessAuthContext();
+  console.log({ userId })
   const navigate = useNavigate();
 
- const {user} = useSelector((state) => ({...state}));
- const [loading, setLoading] = useState(false);
- const [allTalents, setAllTalents] = useState([]);
- const [talents, setTalents] = useState([]);
+  const { user } = useSelector((state) => ({ ...state }));
+  const [loading, setLoading] = useState(false);
+  const [allTalents, setAllTalents] = useState([]);
+  const [talents, setTalents] = useState([]);
+  const [userData, setUserData] = useState("");
 
- useEffect(async () => {
-  //window.scrollTo(0, 0);
-  setLoading(true);
-  try {
-    const res = await getAllUsers();
+  useEffect(async () => {
+    //window.scrollTo(0, 0);
+    setLoading(true);
+    try {
+      const res = await getAllUsers();
+      setLoading(false);
+      setTalents(res.user);
+    } catch (err) {
+      const res2 = await getAllTalents();
+      setLoading(false);
+      setAllTalents(res2.data.talents);
+    }
+  }, []);
+
+
+  useEffect(() => {
+    setLoading(true);
+    getUserInfoById(id).then((res) => {
+      console.log(res);
+      setUserData(res.data)
+    })
     setLoading(false);
-    setTalents(res.user);
-  } catch (err) {
-    const res2 = await getAllTalents();
-    setLoading(false);
-    setAllTalents(res2.data.talents);
-  }
-}, []);
+  }, []);
 
   console.log({ talents });
+  console.log(userData);
 
   return (
     <>
@@ -111,9 +123,9 @@ const location=useLocation();
                     width={"100%"}
                     objectFit="cover"
                     // objectPosition={"50% 50%"}
-                    src={user?.avatar}
+                    src={userData?.avatar}
                   />
-                  {userId===user._id?<Button
+                  {userId === user._id ? <Button
                     size="lg"
                     backgroundColor={"#F6540E"}
                     color="white"
@@ -124,22 +136,22 @@ const location=useLocation();
                     position="absolute"
                     bottom="3rem"
                     left="4rem"
-                    onClick={() => navigate('/talent-registration',{state:{data:user,prevPath:location.pathname}})}
+                    onClick={() => navigate('/talent-registration', { state: { data: user, prevPath: location.pathname } })}
                   >
                     Edit Profile
-                  </Button>:<></>}
+                  </Button> : <></>}
                 </Box>
                 <Box display={"flex"} flexDir="row">
                   <Box>
                     <Text fontFamily={"Gilroy-Bold"} fontSize="1.66vw">
-                      {user.name}
+                      {userData.name}
                     </Text>
                     <Text
                       fontFamily={"Gilroy-SemiBold"}
                       fontSize="1.04vw"
                       color="rgba(43, 43, 43, .5)"
                     >
-                      {user.city}
+                      {userData.city}
                     </Text>
 
                     {/* stars */}
@@ -262,35 +274,13 @@ const location=useLocation();
               <Box w="100%" mt="2.96vh">
                 {/* heading */}
                 <Text fontFamily="Gilroy-Bold" fontSize={"1.45vw"}>
-                  {user.tag}
+                  {userData.tag}
                 </Text>
 
                 {/* Tags */}
                 <Box display={"flex"} gap=".416vw">
-                  {user.generes?.map((g) => (
+                  {userData?.genres?.map((g) => (
                     <>
-                      <Box
-                        h="4.07vh"
-                        display={"inline-flex"}
-                        alignItems="center"
-                        gap={".55vw"}
-                        bg="rgba(247, 215, 22, .1)"
-                        py="1.20vh"
-                        pl=".75vw"
-                        pr=".62vw"
-                        borderRadius={".833vw"}
-                      >
-                        <MusicIcon
-                          style={{
-                            fill: "black",
-                            height: "1.49vh",
-                            width: ".722vw",
-                          }}
-                        />
-                        <Text fontFamily={"Gilroy-SemiBold"} fontSize=".729vw">
-                          {g.genere}
-                        </Text>
-                      </Box>
                       <Box
                         h="4.07vh"
                         display={"inline-flex"}
@@ -314,7 +304,8 @@ const location=useLocation();
                         </Text>
                       </Box>
                     </>
-                  ))}
+                  ))
+                  }
                 </Box>
 
                 {/* audio player */}
@@ -336,7 +327,7 @@ const location=useLocation();
                   fontFamily={"Gilroy-Medium"}
                   fontSize="1.2rem"
                 >
-                  {user.description}
+                  {userData.description}
                 </Text>
 
                 {/* Terms of Services */}
@@ -345,7 +336,7 @@ const location=useLocation();
                     Terms of Services
                   </Text>
                   <Text fontFamily={"Gilroy-Medium"} fontSize=".833vw">
-                    {user.terms}
+                    {userData.terms}
                   </Text>
                   {/* {user.terms?.map((t, index) => (
                     <Text
@@ -371,7 +362,7 @@ const location=useLocation();
                     mt="2.40vh"
                   >
                     {/* icon */}
-                    {user.gearHighLights?.map((g, index) => (
+                    {userData.gearHighLights?.map((g, index) => (
                       <>
                         <Box display={"flex"} alignItems="center" gap=".52vw">
                           {g.input1 === "Laptop" && (
@@ -439,9 +430,9 @@ const location=useLocation();
               {user.socialMedia?.size === 0 ? (
                 <Box></Box>
               ) : user.socialMedia?.filter(
-                  (vid) => vid.plat === "youtube" 
-                ).map(vid=>{
-                  return <Box
+                (vid) => vid.plat === "youtube"
+              ).map(vid => {
+                return <Box
                   width={"100%"}
                   h="23rem"
                   borderRadius={"1.66vw"}
@@ -457,12 +448,12 @@ const location=useLocation();
                     height="100%"
                     width={"100%"}
                     url={
-                     vid.link
+                      vid.link
                     }
                   />
                 </Box>
-                })
-                
+              })
+
               }
 
               {/* starting price section */}
@@ -480,7 +471,7 @@ const location=useLocation();
                     Starting Price:
                   </Text>
                   <Text fontFamily={"Gilroy-Bold"} fontSize="1.45vw">
-                    ₹{user.startingPrice}
+                    ₹{userData.startingPrice}
                   </Text>
                 </Box>
                 <a href={`mailto:${user.email}`}>
@@ -519,35 +510,39 @@ const location=useLocation();
                   mt="2.22vh"
                 >
                   {/* card-1  */}
-                  <Box
-                    w="100%"
-                    h="8rem"
-                    bg="rgba(192, 226, 24, .1)"
-                    borderRadius={"1.66vw"}
-                    px="1.34vw"
-                    py={"2.22vh"}
-                    display="flex"
-                    flexDir={"column"}
-                  >
-                    <Box display={"flex"} gap=".511vw">
-                      <Category
-                        style={{
-                          height: "1.14vw",
-                          width: "1.14vw",
-                        }}
-                      />
-                      <Text fontFamily={"Gilroy-SemiBold"} fontSize=".93vw">
-                        Songwriter Music or Melody
+                  {userData?.services?.map((item, index) => (
+                    <Box
+                      w="100%"
+                      h="8rem"
+                      bg="rgba(192, 226, 24, .1)"
+                      borderRadius={"1.66vw"}
+                      px="1.34vw"
+                      py={"2.22vh"}
+                      display="flex"
+                      flexDir={"column"}
+                      key={index}
+                    >
+                      <Box display={"flex"} gap=".511vw">
+                        <Category
+                          style={{
+                            height: "1.14vw",
+                            width: "1.14vw",
+                          }}
+                        />
+                        <Text fontFamily={"Gilroy-SemiBold"} fontSize=".93vw">
+                          {item.service}
+                        </Text>
+                      </Box>
+                      <Box flexGrow={1}></Box>
+                      <Text fontFamily={"Gilroy-Bold"} fontSize="1.6rem">
+                        Starting Price: ₹{userData.startingPrice}
                       </Text>
                     </Box>
-                    <Box flexGrow={1}></Box>
-                    <Text fontFamily={"Gilroy-Bold"} fontSize="1.6rem">
-                      Starting Price: ₹300
-                    </Text>
-                  </Box>
+                  ))}
+
 
                   {/* card-2  */}
-                  <Box
+                  {/* <Box
                     w="100%"
                     h="8rem"
                     bg="rgba(192, 226, 24, .1)"
@@ -572,10 +567,10 @@ const location=useLocation();
                     <Text fontFamily={"Gilroy-Bold"} fontSize="1.6rem">
                       Starting Price: ₹250
                     </Text>
-                  </Box>
+                  </Box> */}
 
                   {/* card-3  */}
-                  <Box
+                  {/* <Box
                     w="100%"
                     h="8rem"
                     bg="rgba(192, 226, 24, .1)"
@@ -600,7 +595,7 @@ const location=useLocation();
                     <Text fontFamily={"Gilroy-Bold"} fontSize="1.6rem">
                       Starting Price: ₹500
                     </Text>
-                  </Box>
+                  </Box> */}
                 </Box>
               </Box>
             </Box>

@@ -5,15 +5,17 @@ import { getAllMessages, getChatroomById } from "../../../Api/Chatroom/chatroom"
 import Footer from "../../Components/Footer/Footer";
 import NavBar from "../../Components/NavBar/NavBar";
 import SignInNavbar from "../../Components/NavBar/SignInNavbar";
+import CreatorMessageList from "../Dashboard/Messages/CreatorMessageList";
 import IndividualMessage from "../Dashboard/Messages/IndividualMessage";
 import MessageList from "../Dashboard/Messages/MessageList";
+import CreatorIndividualMessageBox from "./CreatorIndividualMessageBox";
 import IndividualMessageBox from "./IndividualMessageBox";
 
-const CreatorContactMessages = ({socket}) => {
+const CreatorContactMessages = ({ socket }) => {
 
   const [messages, setMessages] = useState([]);
 
-  const {id} = useParams();
+  const { id } = useParams();
 
   useEffect(() => {
     if (socket !== undefined) {
@@ -39,15 +41,15 @@ const CreatorContactMessages = ({socket}) => {
     // fetching chatroom
     getChatroomById(id).then((res) => {
       console.log(res.data);
-      }).catch((err) => { console.log(err) });
+    }).catch((err) => { console.log(err) });
 
-      // fetching messages for chatroom
-      getAllMessages(id)
+    // fetching messages for chatroom
+    getAllMessages(id)
       .then((res) => {
-      console.log(res.data);
+        console.log(res.data);
         setMessages(res.data.messages);
       })
-    }, []);
+  }, []);
   return (
     <Box display={"flex"} flexDir="column" overflow={"hidden"} w="100%">
       <NavBar />
@@ -61,8 +63,9 @@ const CreatorContactMessages = ({socket}) => {
           display={"flex"}
           flexDir="row"
         >
-          <MessageList />
-          <IndividualMessageBox />
+          <CreatorMessageList />
+          <CreatorIndividualMessageBox socket={socket} id={id} />
+
         </Box>
       </Box>
       <Footer />

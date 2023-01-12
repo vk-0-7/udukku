@@ -14,52 +14,52 @@ const TalentRegistration = () => {
   const location = useLocation();
   // for personal info
  
-  console.log(location.state.prevPath);
-  console.log(location.state.data);
+  console.log("");
+  console.log(location.state);
  const toast = useToast();
-  const [editPage, setEditPage] = useState(location.state.prevPath===`/${location.state.data._id}`?true:false);
+  const [editPage, setEditPage] = useState(""===`/${""._id}`?true:false);
   const [fname, set_fname] = useState(
-    editPage === true ? location.state.data.name : ""
+    editPage === true ? "".name : ""
   );
   const [username, set_username] = useState(
-    editPage === true ? location.state.data.userName : ""
+    editPage === true ? "".userName : ""
   );
   const [check_username_availability, set_check_username_availability] =
     useState(false);
   const [wa_number, set_wa_number] = useState(
-    editPage === true ? location.state.data.mobile : ""
+    editPage === true ? "".mobile : ""
   );
   const [city, set_city] = useState(
-    editPage === true ? location.state.data.city : ""
+    editPage === true ? "".city : ""
   );
   const [ustate, set_state] = useState(
-    editPage === true ? location.state.data.state : ""
+    editPage === true ? "".state : ""
   );
   const [description, set_description] = useState(
-    editPage === true ? location.state.data.description : ""
+    editPage === true ? "".description : ""
   );
   const [avatar, set_avatar] = useState(
-    editPage === true ? location.state.data.avatar : ""
+    editPage === true ? "".avatar : ""
   );
 
   // for professioinal info
   const [categories, set_categories] = useState(
-    editPage === true ? location.state.data.services : []
+    editPage === true ? "".services : []
   );
   const [genre, set_genre] = useState(
-    editPage === true ? location.state.data.genres : []
+    editPage === true ? "".genres : []
   );
   const [gear, set_gear] = useState(
-    editPage === true ? location.state.data.gearHighLights : []
+    editPage === true ? "".gearHighLights : []
   );
   const [social_media, set_social_media] = useState(
-    editPage === true ? location.state.data.socialMedia : []
+    editPage === true ? "".socialMedia : []
   );
   const [work, set_work] = useState(
-    editPage === true ? location.state.data.socialMedia : []
+    editPage === true ? "".socialMedia : []
   );
   const [term, set_term] = useState(
-    editPage === true ? location.state.data.terms : []
+    editPage === true ? "".terms : []
   );
 
   const [loading, set_loading] = useState(false);

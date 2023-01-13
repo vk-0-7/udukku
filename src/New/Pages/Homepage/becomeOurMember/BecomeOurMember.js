@@ -18,6 +18,7 @@ const BecomeOurMember = ({ state }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const navigate = useNavigate();
 
+  
   useEffect(() => {
     if (state) {
       onOpen();

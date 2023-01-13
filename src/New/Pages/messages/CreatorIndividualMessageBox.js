@@ -25,7 +25,7 @@ import { Textarea } from '@chakra-ui/react'
 
 
 
-const IndividualMessageBox = ({ socket, id }) => {
+const CreatorIndividualMessageBox = ({ socket, id }) => {
 
   const [incomingMessages, setIncomingMessages] = useState([]);
   const [outgoingMessages, setOutgoingMessages] = useState([]);
@@ -379,7 +379,7 @@ const IndividualMessageBox = ({ socket, id }) => {
                       borderRadius={"2rem"}
                       onClick={handleAcceptJob}
                       disabled={response?.status == "exploring"}
-                    >Accept Job</Button>
+                    >Select this musician</Button>
                     {/* {sizes.map((size) => (
                       
                     ))} */}
@@ -388,14 +388,14 @@ const IndividualMessageBox = ({ socket, id }) => {
 
 
 
-                    <Button
+                    {/* <Button
                       backgroundColor={"#F6540E"}
                       color={"White"}
                       pt={"1.75rem"}
                       pb={"1.75rem"}
                       borderRadius={"2rem"}
                       onClick={handleDenyJob}
-                    >Deny Job</Button>
+                    >Deny Job</Button> */}
                   </>
                 }
                 {/* <Button
@@ -494,4 +494,4 @@ const IndividualMessageBox = ({ socket, id }) => {
     </Box>
   );
 };
-export default IndividualMessageBox;
+export default CreatorIndividualMessageBox;

@@ -95,14 +95,14 @@ const SignInModal = ({ state, changeState }) => {
       dispatch({
         type: "LOGGED_IN_USER",
         payload: {
-          userId: res.data._id,
-          name: res.data.name,
-          email: res.data.email,
-          token: res.data.refresh_token,
-          isMusician: res.data.isMusician,
-          isProfileCompleted: res.data.isProfileCompleted,
-          qr: res.data.profileUrl,
-          avatar: res.data.avatar,
+          userId: res.data.user._id,
+          name: res.data.user.name,
+          email: res.data.user.email,
+          token: res.data.user.refresh_token,
+          isMusician: res.data.user.isMusician,
+          isProfileCompleted: res.data.user.isProfileCompleted,
+          qr: res.data.user.profileUrl,
+          avatar: res.data.user.avatar,
         },
       });
       setLoginState(true);

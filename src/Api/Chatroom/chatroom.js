@@ -45,3 +45,7 @@ export const getChatroomAttachmentsById = async(id) =>{
 export const updateChatroomById = async (reqBody) => {
     return await axios.patch(`${process.env.REACT_APP_BASE_URL}/chatroom/update-chatroom-by-id`,{...reqBody});
 }
+
+export const getUserInfoById = (id) =>{
+    return axios.get(`${process.env.REACT_APP_BASE_URL}/user/get-user-by-id/${id}`)
+}

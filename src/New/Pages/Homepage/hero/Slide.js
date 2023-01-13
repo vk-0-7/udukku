@@ -42,7 +42,7 @@ const Slide = () => {
       overflow="hidden"
       position={"relative"}
       className="hero"
-      px={{ base: "3.5rem" }}
+      // px={{ base: "3.5rem" }}
     >
       <Splide
         aria-label="images"
@@ -65,7 +65,6 @@ const Slide = () => {
               <SplideSlide key={index}>
                 <Box
                   w={{ base: "100vw", lg: "27.60vw" }}
-                  h="51.85vh"
                 >
                   <Image src={data.avatar} height="100%" width="100%" />
                 </Box>

@@ -92,30 +92,33 @@ const TalentCard = ({ data }) => {
       >
         {data.genres?.map((val, index) => {
           return (
-            <Box
-              h="4.07vh"
-              pl=".70vw"
-              pr=".62vw"
-              borderRadius={{ base: "1.3rem", lg: ".833vw" }}
-              display="flex"
-              alignItems={"center"}
-              justifyContent="center"
-              bg={val.type === "genere" ? "rgba(247, 215, 22, .1)" : "#FEFBE8"}
-              gap=".41vw"
-              key={val._id}
-            >
-              <GenreIcon style={Iconstyle} />
-              <Text
-                fontFamily={"Gilroy-SemiBold"}
-                fontSize={{ base: "1.4rem", lg: ".72vw" }}
+            index <= 3 ?
+              <Box
+                h="4.07vh"
+                pl=".70vw"
+                pr=".62vw"
+                borderRadius={{ base: "1.3rem", lg: ".833vw" }}
+                display="flex"
+                alignItems={"center"}
+                justifyContent="center"
+                bg={val.type === "genere" ? "rgba(247, 215, 22, .1)" : "#FEFBE8"}
+                gap=".41vw"
+                key={index}
               >
-                {val.genere}
-              </Text>
-            </Box>
+                <GenreIcon style={Iconstyle} />
+                <Text
+                  fontFamily={"Gilroy-SemiBold"}
+                  fontSize={{ base: "1.4rem", lg: ".72vw" }}
+                >
+                  {val.genere}
+                </Text>
+              </Box>
+              : ""
           );
         })}
         {data.services?.map((val, index) => {
           return (
+            index <= 3 ?
             <Box
               h={"4.07vh"}
               pl=".70vw"
@@ -140,6 +143,7 @@ const TalentCard = ({ data }) => {
                 {val.service}
               </Text>
             </Box>
+            :""
           );
         })}
       </Box>
@@ -165,7 +169,7 @@ const TalentCard = ({ data }) => {
         mt={{ base: "1rem", lg: "2.22vh" }}
       >
         {/* {typeof(data.description)} */}
-        {data?.description?.length > 100 ? `${data.description.slice(0,100) }...read more` : data.description} 
+        {data?.description && data?.description?.length > 100 ? `${data.description.slice(0, 100)}` : data.description}  {<span style={{ color: "#f6540e" }}>...Read More</span>}
       </Text>
 
 

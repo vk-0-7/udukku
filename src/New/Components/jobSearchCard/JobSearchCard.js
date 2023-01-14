@@ -209,7 +209,7 @@ const JobSearchCard = ({ data }) => {
       </Box>
       {/* price */}
       <Text fontSize={{base:"1rem",md:"1.5rem",lg:"1.45vw"}} fontFamily="Gilroy-Bold" mt="1.85vh">
-        ₹{data?.budget[0]} - {data?.budget[1]} 
+        ₹ {data?.budget[0] == data?.budget[1] ? data?.budget[0]  : `${data?.budget[0]} - ${data?.budget[1]}`}
       </Text>
     </Box>
   );

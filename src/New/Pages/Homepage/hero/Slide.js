@@ -38,11 +38,13 @@ const Slide = () => {
     <Box
       flexShrink={0}
       w={{ base: "100vw", lg: "27.60vw" }}
+      h={"49vh"}
       borderRadius={"1.666vw"}
       overflow="hidden"
       position={"relative"}
       className="hero"
-      // px={{ base: "3.5rem" }}
+      mx={{ base: "3.5rem" }}
+      my={{ base: "3.5rem" }}
     >
       <Splide
         aria-label="images"

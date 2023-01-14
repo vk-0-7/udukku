@@ -39,6 +39,7 @@ const NavBar = () => {
   const [hamMenu, setHamMenu] = useState(false);
   const { user } = useSelector((state) => ({ ...state }));
 
+  console.log(user?.isMusician)
   useEffect(() => {
     const getit = () => {
       const winScroll =
@@ -113,8 +114,8 @@ const NavBar = () => {
           <HamIcon onClick={() => setHamMenu(!hamMenu)} />
         </Box>
         <Box flexGrow={{ base: hamMenu ? "" : "1", lg: "1" }}>
-          {loginState === true ? (
-            <Link to="/dashboard">
+          { loginState === true && user?.isMusician === "Recruter" ? (
+            <Link to="/client-dashboard">
               <Image
                 display={{
                   base:
@@ -127,21 +128,38 @@ const NavBar = () => {
                 src={logo}
               />
             </Link>
-          ) : (
-            <Link to="/">
-              <Image
-                display={{
-                  base:
-                    hamMenu === false && loginState === false
-                      ? "none"
-                      : "block",
-                  lg: "inline-block",
-                }}
-                onClick={() => setHamMenu(false)}
-                src={logo}
-              />
-            </Link>
-          )}
+          ) :
+            loginState === true && user?.isMusician === "Musician" ? (
+              <Link to="/dashboard">
+                <Image
+                  display={{
+                    base:
+                      hamMenu === false && loginState === false
+                        ? "none"
+                        : "block",
+                    lg: "inline-block",
+                  }}
+                  onClick={() => setHamMenu(false)}
+                  src={logo}
+                />
+              </Link>
+            )
+              : (
+                <Link to="/">
+                  <Image
+                    display={{
+                      base:
+                        hamMenu === false && loginState === false
+                          ? "none"
+                          : "block",
+                      lg: "inline-block",
+                    }}
+                    onClick={() => setHamMenu(false)}
+                    src={logo}
+                  />
+                </Link>
+              )
+            }
         </Box>
         <Box
           display={"flex"}
@@ -239,7 +257,7 @@ const NavBar = () => {
                     width: "1.5rem",
                     cursor: "pointer",
                   }}
-                  onClick={() =>  user.isMusician === "Musician" ? navigate("/messages") : navigate("/creator-messages")}
+                  onClick={() => user.isMusician === "Musician" ? navigate("/messages") : navigate("/creator-messages")}
                 />
                 <Menu>
                   <MenuButton
@@ -294,7 +312,7 @@ const NavBar = () => {
                     <MenuItem
                       fontSize={"1.4rem"}
                       onClick={() => {
-                        isMusician === "recruter" ? navigate("/client-dashboard") : navigate("/dashboard");
+                        isMusician === "Recruter" ? navigate("/client-dashboard") : navigate("/dashboard");
                       }}
                       icon={
                         <GenreIcon
@@ -363,7 +381,7 @@ const NavBar = () => {
                     >
                       Logout
                     </MenuItem>
-                    <MenuItem
+                    {/* <MenuItem
                       fontSize={"1.4rem"}
                       icon={
                         <SwitchIcon
@@ -376,7 +394,7 @@ const NavBar = () => {
                       }
                     >
                       Switch to Job creator
-                    </MenuItem>
+                    </MenuItem> */}
                   </MenuList>
                 </Menu>
               </Box>

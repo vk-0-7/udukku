@@ -49,7 +49,7 @@ const ClientDashboard = ({ state }) => {
             Post a Job
           </Button>
         </Box>
-        <Box
+        {/* <Box
           display={"flex"}
           flexDir="row"
           gap="1.2rem"
@@ -67,7 +67,7 @@ const ClientDashboard = ({ state }) => {
           <Link fontSize={{base:"8px",md:"1.5rem",lg:"1.3rem"}} ml="auto">
             Connect
           </Link>
-        </Box>
+        </Box> */}
         <Box
           w="100%"
           h="fit-content"

@@ -114,7 +114,7 @@ import { AccessAuthContext } from "../../Context/AuthContext";
 //   },
 // ];
 
-const Talents = () => {
+const   Talents = () => {
   const [talents, setTalents] = useState([]);
   const [search, set_search] = useState("");
   const { categoryF, setCategoryF } = useCategoryContext();

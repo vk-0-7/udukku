@@ -23,6 +23,8 @@ const PostAJob = () => {
   const [ref_link, set_ref_link] = useState("");
   const [budget, set_budget] = useState([]);
   const [deadline, set_deadline] = useState("");
+  const [liveShow, setLiveShow] = useState("");
+  const [budgetRange, setBudgetRange] = useState("");
 
   const addJob = async () => {
     const res = await createJob(
@@ -32,7 +34,8 @@ const PostAJob = () => {
       genres,
       ref_link,
       budget,
-      deadline
+      deadline,
+      liveShow
     );
     //console.log(res);
     //console.log(job);
@@ -45,6 +48,7 @@ const PostAJob = () => {
       set_ref_link("");
       set_budget([]);
       set_deadline("");
+      setLiveShow("")
     }
     //set_modal_state(true);
   };
@@ -206,47 +210,107 @@ const PostAJob = () => {
             </Box>
 
             {/* budget */}
-            <Box
-              fontFamily={"Gilroy-SemiBold"}
-              fontSize=".833vw"
-              display={"grid"}
-              gridTemplateColumns="1fr .46vw 1fr"
-              columnGap={".833vw"}
-            >
-              <Box>
-                <Text>Start Range*</Text>
-                <Input
-                  h="6.48vh"
-                  borderRadius={"1.04vw"}
-                  type="number"
-                  placeholder="Min (₹)"
-                  value={budget[0]}
-                  onChange={(e) => {
-                    set_budget([e.target.value, budget[1]]);
-                  }}
-                />
-              </Box>
-              <Box position={"relative"}>
-                <Text
-                  pos="absolute"
-                  bottom="3.24vh"
-                  transform={"translateY(50%)"}
-                >
-                  -
-                </Text>
-              </Box>
-              <Box>
-                <Text>End Range*</Text>
-                <Input
-                  h="6.48vh"
-                  borderRadius={"1.04vw"}
-                  type="number"
-                  placeholder="Max (₹)"
-                  value={budget[1]}
-                  onChange={(e) => set_budget([budget[0], e.target.value])}
-                />
-              </Box>
+
+            <Box fontFamily={"Gilroy-SemiBold"} fontSize=".833vw" w="100%">
+              <Text> Budget</Text>
+              <Select
+                h="6.48vh"
+                borderRadius={"1.04vw"}
+                value={deadline}
+                onChange={(e) => setBudgetRange(e.target.value)}
+              >
+                <option default value={"None"}>
+                  Select
+                </option>
+                <option value={"Fixed"}>Fixed  
+                </option>
+                <option value={"Negotiable"}>Negotiable</option>
+              </Select>
             </Box>
+
+            { budgetRange === "Negotiable" ? 
+             <Box
+             fontFamily={"Gilroy-SemiBold"}
+             fontSize=".833vw"
+             display={"grid"}
+             gridTemplateColumns="1fr .46vw 1fr"
+             columnGap={".833vw"}
+           >
+             <Box>
+               <Text>Price</Text>
+               <Input
+                 h="6.48vh"
+                 borderRadius={"1.04vw"}
+                 type="number"
+                 placeholder="Min (₹)"
+                 value={budget[0]}
+                 onChange={(e) => {
+                   set_budget([e.target.value, budget[1]]);
+                 }}
+               />
+             </Box>
+             <Box position={"relative"}>
+               <Text
+                 pos="absolute"
+                 bottom="3.24vh"
+                 transform={"translateY(50%)"}
+               >
+                 -
+               </Text>
+             </Box>
+             <Box>
+               <Text>End Range*</Text>
+               <Input
+                 h="6.48vh"
+                 borderRadius={"1.04vw"}
+                 type="number"
+                 placeholder="Max (₹)"
+                 value={budget[1]}
+                 onChange={(e) => set_budget([budget[0], e.target.value])}
+               />
+             </Box>
+           </Box>
+           : 
+           budgetRange ==="Fixed" ?
+           <Box
+           fontFamily={"Gilroy-SemiBold"}
+           fontSize=".833vw"
+           display={"grid"}
+         >
+           <Box>
+               <Text>Start Range*</Text>
+               <Input
+                 h="6.48vh"
+                 borderRadius={"1.04vw"}
+                 type="number"
+                 placeholder="Min (₹)"
+                 value={budget[0]}
+                 onChange={(e) => {
+                   set_budget([e.target.value, budget[1]]);
+                 }}
+               />
+             </Box>
+             </Box>
+             :""
+            }
+
+            <Box fontFamily={"Gilroy-SemiBold"} fontSize=".833vw" w="100%">
+              <Text>Performance Type*</Text>
+              <Select
+                h="6.48vh"
+                borderRadius={"1.04vw"}
+                value={deadline}
+                onChange={(e) => setLiveShow(e.target.value)}
+              >
+                <option default value={"None"}>
+                  Select
+                </option>
+                <option value={true}>Live</option>
+                <option value={false}>Production</option>
+
+              </Select>
+            </Box>
+
 
             {/* upload mp3 */}
             {/* <Box fontFamily={"Gilroy-SemiBold"} fontSize=".833vw" w="100%">
@@ -283,9 +347,13 @@ const PostAJob = () => {
                 <option default value={"None"}>
                   Select
                 </option>
-                <option value={"10-20days"}>10-20 Days</option>
-                <option value={"21-30days"}>21-30 Days</option>
+                <option value={"10-20days"}>0-7 Days</option>
+                <option value={"21-30days"}>8-14 Days</option>
+                <option value={"31-40days"}>15-21 Days</option>
+                <option value={"31-40days"}>22-30 Days</option>
                 <option value={"31-40days"}>31-40 Days</option>
+                <option value={"31-40days"}>41-60 Days</option>
+                <option value={"31-40days"}>more than 60 Days</option>
               </Select>
             </Box>
           </Box>

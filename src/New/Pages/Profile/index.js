@@ -125,7 +125,7 @@ const Profile = () => {
                     // objectPosition={"50% 50%"}
                     src={userData?.avatar}
                   />
-                  {userId === user._id ? <Button
+                  {userId === user?._id ? <Button
                     size="lg"
                     backgroundColor={"#F6540E"}
                     color="white"
@@ -316,7 +316,7 @@ const Profile = () => {
                       color: "orange",
                       fill: "orange",
                     }}
-                    src={user.workSample}
+                    src={user?.workSample}
                     controls
                   />
                 </Box>
@@ -427,7 +427,7 @@ const Profile = () => {
             <Box w="35vw" h="10px">
               {/* video section */}
 
-              {user.socialMedia?.size === 0 ? (
+              {/* {userData?.socialMedia?.size === 0 ? (
                 <Box></Box>
               ) : user.socialMedia?.filter(
                 (vid) => vid.plat === "youtube"
@@ -454,7 +454,7 @@ const Profile = () => {
                 </Box>
               })
 
-              }
+              } */}
 
               {/* starting price section */}
               <Box
@@ -474,7 +474,7 @@ const Profile = () => {
                     ₹{userData.startingPrice}
                   </Text>
                 </Box>
-                <a href={`mailto:${user.email}`}>
+                <a href={`mailto:${userData.email}`}>
                   <Button
                     mt="3.70vh"
                     h="6.48vh"

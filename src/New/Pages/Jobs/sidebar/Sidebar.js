@@ -116,7 +116,9 @@ const Sidebar = ({
 					<Input
 						type='number'
 						value={bs}
+						placeholder={"100"}
 						fontSize='.92vw'
+						borderRadius={"10px"}
 						h={{ base: '6.48vh', '3xl': '4vh' }}
 						onChange={(e) => {
 							setBs(e.target.value);
@@ -125,7 +127,9 @@ const Sidebar = ({
 					<Input
 						type='number'
 						value={be}
+						placeholder={"100000"}
 						fontSize='.92vw'
+						borderRadius={"10px"}
 						h={{ base: '6.48vh', '3xl': '4vh' }}
 						onChange={(e) => {
 							setBe(e.target.value);

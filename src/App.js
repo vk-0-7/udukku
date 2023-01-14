@@ -108,7 +108,7 @@ const App = () => {
           />
           <Route path="/user/reset/:id" element={<ResetPassword />} />
           <Route path="/user/activate/:id" element={<ActivateUser />} />
-          <Route path="/talent-registration" element={<TalentRegistration />} />
+          <Route path="/ " element={<TalentRegistration />} />
           <Route
             path="/job-creator-registration"
             element={<JobCreatorRegistration />}

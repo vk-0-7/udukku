@@ -457,7 +457,7 @@ const SignUpModal = ({ state, changeState }) => {
                 );
               }}
             >
-              <Text>Sign in with Google</Text>
+              <Text>Sign up with Google</Text>
             </Button>
             <Box
               display={"none"}

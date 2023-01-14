@@ -126,7 +126,8 @@ const Jobs = () => {
         <NavBar />
         <Box
           display={"flex"}
-          px="14vw"
+          pl="20rem"
+          pr="18rem"
           mt="70px"
           justifyContent={"space-between"}
           alignItems="center"
@@ -158,7 +159,7 @@ const Jobs = () => {
             </Text>
           </Box> */}
 
-          <Box display={"flex"} w="100%" gap={{ base: "2rem", lg: "" }}>
+          <Box display={"flex"} w="50%" gap={{ base: "2rem", lg: "" }}>
             <InputGroup
               w={{ base: "80%", lg: "100%" }}
               _focus={{
@@ -169,7 +170,8 @@ const Jobs = () => {
                 pointerEvents="none"
                 h="100%"
                 p="6px"
-                children={<SearchIcon style={{ stroke: search_color }} />}
+                children={<SearchIcon style={{ stroke: search_color, }} />}
+                pl={"10px"}
               />
               <Input
                 borderRadius={"1.04vw"}
@@ -227,7 +229,7 @@ const Jobs = () => {
           {/* result card */}
 
           <Box
-            w="75%"
+            w="65%"
             h="fit-content"
             px="1.04vw"
             display={"flex"}

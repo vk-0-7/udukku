@@ -7,7 +7,8 @@ export default async function createJob(
   genres,
   referenceLinks,
   budget,
-  deadLine
+  deadLine,
+  liveShow
 ) {
   var data = JSON.stringify({
     jobTitle: job_title,
@@ -17,11 +18,12 @@ export default async function createJob(
     referenceLinks: referenceLinks,
     budget: budget,
     deadLine: deadLine,
+    liveShow: liveShow,
   });
 
   var config = {
     method: "post",
-    url: `${process.env.REACT_APP_BASE_URL}jobs/create-jobs`,
+    url: `${process.env.REACT_APP_BASE_URL}/jobs/create-jobs`,
     headers: {
       Authorization: localStorage.getItem("token"),
       "Content-Type": "application/json",

@@ -68,17 +68,19 @@ const JobSearchCard = ({ data }) => {
         <Text fontSize={{base:"1rem",md:"2rem",lg:"1.45vw"}} fontFamily="Gilroy-Bold">
           {data.jobTitle}
         </Text>
-        <Text
-          bg="red"
-          color="#fff"
-          px=".52vw"
-          py=".46vh"
-          borderRadius={"10px"}
-          fontSize={{base:"1.5rem",lg:".729vw"}}
-          fontFamily={"Gilroy-SemiBold"}
-        >
-          Live
-        </Text>
+        {data.liveShow == true ? 
+              <Text
+              bg="red"
+              color="#fff"
+              px=".52vw"
+              py=".46vh"
+              borderRadius={"10px"}
+              fontSize={{base:"1.5rem",lg:".729vw"}}
+              fontFamily={"Gilroy-SemiBold"}
+            >
+              Live
+            </Text> : ""}
+  
       </Box>
       {/* list of different tags */}
       <Box display={"flex"} gap=".52vw" flexWrap={"wrap"} mt=".92vh">
@@ -162,7 +164,7 @@ const JobSearchCard = ({ data }) => {
               fill: "rgba(8, 32, 50, .5)",
             }}
           />
-          Fixed Price
+          {data?.budget[0] == data?.budget[1] ? "fixed Price" : "Negotiable"}
         </Box>
         <Box
           display={"inline-flex"}
@@ -202,12 +204,12 @@ const JobSearchCard = ({ data }) => {
               fill: "rgba(8, 32, 50, .5)",
             }}
           />
-          2 references
+          {data.referenceLinks}
         </Box>
       </Box>
       {/* price */}
       <Text fontSize={{base:"1rem",md:"1.5rem",lg:"1.45vw"}} fontFamily="Gilroy-Bold" mt="1.85vh">
-        ₹{data.budget[0]}
+        ₹{data?.budget[0]} - {data?.budget[1]} 
       </Text>
     </Box>
   );

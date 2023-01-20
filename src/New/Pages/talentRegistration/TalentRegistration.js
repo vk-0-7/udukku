@@ -8,58 +8,74 @@ import NavBar from "../../Components/NavBar/NavBar";
 import checkForUserName from "../../Utility/checkForUserName";
 import TalentRegistrationPersonalInfo from "./TalentRegistrationPersonalInfo";
 import TalentRegistrationProfessionalInfo from "./TalentRegistrationProfessionalInfo";
-import { useToast } from '@chakra-ui/react';
+import { useToast } from "@chakra-ui/react";
 const TalentRegistration = () => {
   const navigate = useNavigate();
   const location = useLocation();
   // for personal info
- 
-  console.log("");
   console.log(location.state);
- const toast = useToast();
-  const [editPage, setEditPage] = useState(""===`/${""._id}`?true:false);
+  console.log(
+    "/" +
+      location.state.data.name.substring(
+        0,
+        location.state.data.name.indexOf(" ")
+      ) +
+      "/"
+  );
+
+  const toast = useToast();
+  const [editPage, setEditPage] = useState(
+    location.state.prevPath ===
+      `/${location.state.data.name.substring(
+        0,
+        location.state.data.name.indexOf(" ")
+      )}/${location.state.data.userId}`
+      ? true
+      : false
+  );
+  console.log({ editPage });
   const [fname, set_fname] = useState(
-    editPage === true ? "".name : ""
+    editPage === true ? location.state.data.name : ""
   );
   const [username, set_username] = useState(
-    editPage === true ? "".userName : ""
+    editPage === true ? location.state.data.userName : ""
   );
   const [check_username_availability, set_check_username_availability] =
     useState(false);
   const [wa_number, set_wa_number] = useState(
-    editPage === true ? "".mobile : ""
+    editPage === true ? location.state.data.mobile : ""
   );
   const [city, set_city] = useState(
-    editPage === true ? "".city : ""
+    editPage === true ? location.state.data.city : ""
   );
   const [ustate, set_state] = useState(
-    editPage === true ? "".state : ""
+    editPage === true ? location.state.data.state : ""
   );
   const [description, set_description] = useState(
-    editPage === true ? "".description : ""
+    editPage === true ? location.state.data.description : ""
   );
   const [avatar, set_avatar] = useState(
-    editPage === true ? "".avatar : ""
+    editPage === true ? location.state.data.avatar : ""
   );
 
   // for professioinal info
   const [categories, set_categories] = useState(
-    editPage === true ? "".services : []
+    editPage === true ? location.state.data.services : []
   );
   const [genre, set_genre] = useState(
-    editPage === true ? "".genres : []
+    editPage === true ? location.state.data.genres : []
   );
   const [gear, set_gear] = useState(
-    editPage === true ? "".gearHighLights : []
+    editPage === true ? location.state.data.gearHighLights : []
   );
   const [social_media, set_social_media] = useState(
-    editPage === true ? "".socialMedia : []
+    editPage === true ? location.state.data.socialMedia : []
   );
   const [work, set_work] = useState(
-    editPage === true ? "".socialMedia : []
+    editPage === true ? location.state.data.socialMedia : []
   );
   const [term, set_term] = useState(
-    editPage === true ? "".terms : []
+    editPage === true ? location.state.data.terms : []
   );
 
   const [loading, set_loading] = useState(false);
@@ -74,17 +90,16 @@ const TalentRegistration = () => {
         genre,
         term,
         gear
-      )
+      );
       toast({
         title: "success",
         description: "Your Profile has been successfully updated",
         position: "top",
         status: "success",
         duration: 5000,
-        isClosable: true
-      })
-      navigate('/dashboard')
-      
+        isClosable: true,
+      });
+      navigate("/dashboard");
     } catch (e) {
       console.log("updateerror", e);
       toast({
@@ -93,8 +108,8 @@ const TalentRegistration = () => {
         position: "top",
         status: "error",
         duration: 5000,
-        isClosable: true
-      })
+        isClosable: true,
+      });
     }
   };
   // functions to handle submissions

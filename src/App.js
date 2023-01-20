@@ -32,7 +32,6 @@ import io from "socket.io-client";
 import { currentUser } from "./Api/Auth/activateUser";
 
 const App = () => {
-
   const { user } = useSelector((state) => ({ ...state }));
   const [socket, setSocket] = useState();
 
@@ -66,9 +65,8 @@ const App = () => {
 
   const setupSocket = () => {
     if (user !== null && !socket) {
-      const newSocket = io(`${process.env.REACT_APP_BASE_URL}`,
-      {
-        query: { 
+      const newSocket = io(`${process.env.REACT_APP_BASE_URL}`, {
+        query: {
           userId: user.userId,
         },
       });
@@ -91,7 +89,7 @@ const App = () => {
           {/* *********************** NEW *************************** */}
           <Route path={"/"}>
             <Route index element={<HomePage />} />
-            <Route path={"/:id"} element={<Profile />} />
+            <Route path={"/:username/:id"} element={<Profile />} />
           </Route>
           <Route path="/jobs" element={<Jobs />} />
           <Route path="/talents" element={<Talents />} />
@@ -108,13 +106,16 @@ const App = () => {
           />
           <Route path="/user/reset/:id" element={<ResetPassword />} />
           <Route path="/user/activate/:id" element={<ActivateUser />} />
-          <Route path="/ " element={<TalentRegistration />} />
+          <Route path="/talent-registration" element={<TalentRegistration />} />
           <Route
             path="/job-creator-registration"
             element={<JobCreatorRegistration />}
           />
           <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/respond-to-job/:id" element={<RespondToJob socket={socket} />} />
+          <Route
+            path="/respond-to-job/:id"
+            element={<RespondToJob socket={socket} />}
+          />
           <Route path="/post-a-job" element={<PostAJob />} />
           <Route path="/job-detail-page/:id" element={<JobDetailPage />} />
           <Route path="/lyrics" element={<Lyrics />} />
@@ -122,8 +123,14 @@ const App = () => {
           <Route path="/create-new-lyrics" element={<CreateNewLyrics />} />
           <Route path="/messages" element={<Messages />} />
           <Route path="/creator-messages" element={<CreatorMessages />} />
-          <Route path="/contactMessage/:id" element={<ContactMessages socket={socket}/>} />
-          <Route path="/creatorContactMessage/:id" element={<CreatorContactMessages socket={socket}/>} />
+          <Route
+            path="/contactMessage/:id"
+            element={<ContactMessages socket={socket} />}
+          />
+          <Route
+            path="/creatorContactMessage/:id"
+            element={<CreatorContactMessages socket={socket} />}
+          />
           <Route path="/view-proposal" element={<ViewProposal />} />
           <Route path="/myjobs" element={<MyJobs />} />
           <Route path="/client-dashboard" element={<ClientDashboard />} />

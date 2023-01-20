@@ -26,7 +26,7 @@ import { ReactComponent as JobIcon } from "../../../Assets/Icons/Vector(1).svg";
 import { ReactComponent as LogOutIcon } from "../../../Assets/Icons/logout.svg";
 import { ReactComponent as SwitchIcon } from "../../../Assets/Icons/repeat.svg";
 import { ReactComponent as HamIcon } from "../../../Assets/Icons/Group 519.svg";
-import PersonIcon from '@mui/icons-material/Person';
+import PersonIcon from "@mui/icons-material/Person";
 import { useSelector } from "react-redux";
 const NavBar = () => {
   const [signInState, setSignInState] = useState(false);
@@ -39,7 +39,8 @@ const NavBar = () => {
   const [hamMenu, setHamMenu] = useState(false);
   const { user } = useSelector((state) => ({ ...state }));
 
-  console.log(user?.isMusician)
+  console.log(user?.isMusician);
+
   useEffect(() => {
     const getit = () => {
       const winScroll =
@@ -68,7 +69,6 @@ const NavBar = () => {
     }
   };
 
-
   return (
     <>
       <SignInModal state={signInState} changeState={setSignInState} />
@@ -94,8 +94,8 @@ const NavBar = () => {
           path.length >= 2
             ? "rgba(8, 32, 50,1)"
             : positon > 10
-              ? "rgba(8, 32, 50,1)"
-              : "transparent"
+            ? "rgba(8, 32, 50,1)"
+            : "transparent"
         }
         boxShadow={
           positon > 10
@@ -114,7 +114,7 @@ const NavBar = () => {
           <HamIcon onClick={() => setHamMenu(!hamMenu)} />
         </Box>
         <Box flexGrow={{ base: hamMenu ? "" : "1", lg: "1" }}>
-          { loginState === true && user?.isMusician === "Recruter" ? (
+          {loginState === true && user?.isMusician === "Recruter" ? (
             <Link to="/client-dashboard">
               <Image
                 display={{
@@ -128,38 +128,35 @@ const NavBar = () => {
                 src={logo}
               />
             </Link>
-          ) :
-            loginState === true && user?.isMusician === "Musician" ? (
-              <Link to="/dashboard">
-                <Image
-                  display={{
-                    base:
-                      hamMenu === false && loginState === false
-                        ? "none"
-                        : "block",
-                    lg: "inline-block",
-                  }}
-                  onClick={() => setHamMenu(false)}
-                  src={logo}
-                />
-              </Link>
-            )
-              : (
-                <Link to="/">
-                  <Image
-                    display={{
-                      base:
-                        hamMenu === false && loginState === false
-                          ? "none"
-                          : "block",
-                      lg: "inline-block",
-                    }}
-                    onClick={() => setHamMenu(false)}
-                    src={logo}
-                  />
-                </Link>
-              )
-            }
+          ) : loginState === true && user?.isMusician === "Musician" ? (
+            <Link to="/dashboard">
+              <Image
+                display={{
+                  base:
+                    hamMenu === false && loginState === false
+                      ? "none"
+                      : "block",
+                  lg: "inline-block",
+                }}
+                onClick={() => setHamMenu(false)}
+                src={logo}
+              />
+            </Link>
+          ) : (
+            <Link to="/">
+              <Image
+                display={{
+                  base:
+                    hamMenu === false && loginState === false
+                      ? "none"
+                      : "block",
+                  lg: "inline-block",
+                }}
+                onClick={() => setHamMenu(false)}
+                src={logo}
+              />
+            </Link>
+          )}
         </Box>
         <Box
           display={"flex"}
@@ -257,7 +254,11 @@ const NavBar = () => {
                     width: "1.5rem",
                     cursor: "pointer",
                   }}
-                  onClick={() => user.isMusician === "Musician" ? navigate("/messages") : navigate("/creator-messages")}
+                  onClick={() =>
+                    user.isMusician === "Musician"
+                      ? navigate("/messages")
+                      : navigate("/creator-messages")
+                  }
                 />
                 <Menu>
                   <MenuButton
@@ -269,7 +270,7 @@ const NavBar = () => {
                       background: "rgba(255,255,255,.1)",
                     }}
                     _expanded={{ bg: "rgba(255,255,255,.1)" }}
-                  // _focus={{ boxShadow: 'outline' }}
+                    // _focus={{ boxShadow: 'outline' }}
                   >
                     <Box
                       h="fit-content"
@@ -285,8 +286,7 @@ const NavBar = () => {
                         borderRadius={"full"}
                         h="30px"
                         w="30px"
-                      >
-                      </Box>
+                      ></Box>
                       <Box
                         display={"flex"}
                         gap=".26vw"
@@ -312,7 +312,9 @@ const NavBar = () => {
                     <MenuItem
                       fontSize={"1.4rem"}
                       onClick={() => {
-                        isMusician === "Recruter" ? navigate("/client-dashboard") : navigate("/dashboard");
+                        isMusician === "Recruter"
+                          ? navigate("/client-dashboard")
+                          : navigate("/dashboard");
                       }}
                       icon={
                         <GenreIcon
@@ -352,7 +354,13 @@ const NavBar = () => {
                     <MenuItem
                       fontSize={"1.4rem"}
                       onClick={() => {
-                        navigate(`/${localStorage.getItem("userId")}`);
+                        navigate(
+                          `/${user?.name.substring(
+                            0,
+                            user?.name.indexOf(" ")
+                          )}/${localStorage.getItem("userId")}`
+                        );
+                        
                       }}
                       icon={
                         <PersonIcon

@@ -15,7 +15,7 @@ const TalentCard = ({ data }) => {
     width: ".72vw",
     fill: "rgba(8, 32, 50, 1)",
   };
-  console.log(data)
+  console.log(data);
   return (
     <Box
       h={{ base: "", lg: "" }}
@@ -30,7 +30,9 @@ const TalentCard = ({ data }) => {
       cursor={"pointer"}
       overflow="hidden"
       onClick={() => {
-        navigate("/" + data._id);
+        navigate(
+          `/${data.name.substring(0, data.name.indexOf(" "))}/${data._id}`
+        );
       }}
     >
       {/* section one with profile image, name, city and star */}
@@ -80,7 +82,7 @@ const TalentCard = ({ data }) => {
         mt={{ base: "0rem", lg: "0rem" }}
         fontFamily={"Gilroy-Bold"}
         fontSize={{ base: "3rem", lg: "1.45vw" }}
-      // lineHeight={"3.5vh"}
+        // lineHeight={"3.5vh"}
       >
         {data.tag}
       </Box>
@@ -91,34 +93,33 @@ const TalentCard = ({ data }) => {
         mt={{ lg: "1.48vh" }}
       >
         {data.genres?.map((val, index) => {
-          return (
-            index <= 3 ?
-              <Box
-                h="4.07vh"
-                pl=".70vw"
-                pr=".62vw"
-                borderRadius={{ base: "1.3rem", lg: ".833vw" }}
-                display="flex"
-                alignItems={"center"}
-                justifyContent="center"
-                bg={val.type === "genere" ? "rgba(247, 215, 22, .1)" : "#FEFBE8"}
-                gap=".41vw"
-                key={index}
+          return index <= 3 ? (
+            <Box
+              h="4.07vh"
+              pl=".70vw"
+              pr=".62vw"
+              borderRadius={{ base: "1.3rem", lg: ".833vw" }}
+              display="flex"
+              alignItems={"center"}
+              justifyContent="center"
+              bg={val.type === "genere" ? "rgba(247, 215, 22, .1)" : "#FEFBE8"}
+              gap=".41vw"
+              key={index}
+            >
+              <GenreIcon style={Iconstyle} />
+              <Text
+                fontFamily={"Gilroy-SemiBold"}
+                fontSize={{ base: "1.4rem", lg: ".72vw" }}
               >
-                <GenreIcon style={Iconstyle} />
-                <Text
-                  fontFamily={"Gilroy-SemiBold"}
-                  fontSize={{ base: "1.4rem", lg: ".72vw" }}
-                >
-                  {val.genere}
-                </Text>
-              </Box>
-              : ""
+                {val.genere}
+              </Text>
+            </Box>
+          ) : (
+            ""
           );
         })}
         {data.services?.map((val, index) => {
-          return (
-            index <= 3 ?
+          return index <= 3 ? (
             <Box
               h={"4.07vh"}
               pl=".70vw"
@@ -143,7 +144,8 @@ const TalentCard = ({ data }) => {
                 {val.service}
               </Text>
             </Box>
-            :""
+          ) : (
+            ""
           );
         })}
       </Box>
@@ -169,9 +171,11 @@ const TalentCard = ({ data }) => {
         mt={{ base: "1rem", lg: "2.22vh" }}
       >
         {/* {typeof(data.description)} */}
-        {data?.description && data?.description?.length > 100 ? `${data.description.slice(0, 100)}` : data.description}  {<span style={{ color: "#f6540e" }}>...Read More</span>}
+        {data?.description && data?.description?.length > 100
+          ? `${data.description.slice(0, 100)}`
+          : data.description}{" "}
+        {<span style={{ color: "#f6540e" }}>...Read More</span>}
       </Text>
-
 
       {data.workSample && (
         <audio

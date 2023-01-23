@@ -26,6 +26,8 @@ import gLogo from "../../../Assets/Icons/Group.svg";
 import BecomeOurMember from "../../Pages/Homepage/becomeOurMember/BecomeOurMember";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import GoogleLogin from "react-google-login";
+import { googleSignIn } from "../../../Api/Auth";
 
 const SignInModal = ({ state, changeState }) => {
   const [show, setShow] = useState(false);
@@ -90,8 +92,8 @@ const SignInModal = ({ state, changeState }) => {
     try {
       const res = await googleLogin(response.credential);
       console.log("server se ye aaya : ", res);
-      localStorage.setItem("token",res.data.refresh_token)
-      localStorage.setItem("userId",res.data.user._id)
+      localStorage.setItem("token", res.data.refresh_token)
+      localStorage.setItem("userId", res.data.user._id)
       dispatch({
         type: "LOGGED_IN_USER",
         payload: {
@@ -190,6 +192,43 @@ const SignInModal = ({ state, changeState }) => {
     }
   };
 
+  const handleGoogleSignUp = (data) => {
+    console.log(data);
+    setLoading(true);
+    googleSignIn(data.tokenId)
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: "LOGGED_IN_USER",
+          payload: {
+            userId: res.data.user._id,
+            name: res.data.user.name,
+            email: res.data.user.email,
+            token: res.data.refresh_token,
+            isMusician: res.data.user.isMusician,
+            isProfileCompleted: res.data.user.isProfileCompleted,
+          },
+        });
+        setLoading(false);
+        localStorage.setItem("token", res.data.refresh_token);
+        setLoginState(true);
+        setToken(res.data.refresh_token);
+        setUserId(res.data.user._id);
+        // setUsed('google');
+        // setOpen(false);
+        onClose();
+        // if (res.data.user.isProfileCompleted) {
+        //   history.push("/user/dashboard");
+        // } else {
+        //   history.push("/user/complete-profile");
+        // }
+      })
+      .catch((err) => {
+        console.log(err);
+        setLoading(false);
+      });
+  };
+
   return (
     <>
       {show_registration_modal === true ? (
@@ -201,6 +240,7 @@ const SignInModal = ({ state, changeState }) => {
         state={forgotPasswordModalState}
         changeState={setForgotPasswordModalState}
       />
+
       <Modal size="full" isOpen={isOpen}>
         <ModalOverlay />
         <ModalContent
@@ -248,6 +288,7 @@ const SignInModal = ({ state, changeState }) => {
             >
               Join India's First Music Marketplace
             </Text>
+           
             {/* form */}
             <form>
               <Box display="flex" flexDir={"column"} gap="2.222vh" pt="2.96vh">
@@ -423,7 +464,37 @@ const SignInModal = ({ state, changeState }) => {
                 or
               </Text>
             </Box>
-            <Button
+
+            <GoogleLogin
+              clientId="268210576018-mlvmmnn1ll18rjatc0k2r5ldgvsmkjjr.apps.googleusercontent.com"
+              buttonText=""
+              onSuccess={handleGoogleSignUp}
+              onFailure={handleGoogleSignUp}
+              cookiePolicy={"single_host_origin"}
+              render={(renderProps) => (
+                <Button
+                  onClick={renderProps.onClick}
+                  display={"flex"}
+                  alignItems="center"
+                  justifyContent={"center"}
+                  gap="10px"
+                  w="100%"
+                  bg="#082032"
+                  color="#fff"
+                  borderRadius={"1.04vw"}
+                  h={{ base: "6.48vh", "3xl": "5vh" }}
+                  _hover={{ background: "#082032" }}
+                  fontSize={{ base: "2rem", lg: ".833vw" }}
+                  className="w-100"
+                >
+                   <Image src={gLogo} h="2rem" />
+                  <span style={{ color: '#fff' }}>Sign in with Google
+                  </span>
+                </Button>
+              )}
+            />
+            
+            {/* <Button
               display={"flex"}
               alignItems="center"
               justifyContent={"center"}
@@ -443,7 +514,7 @@ const SignInModal = ({ state, changeState }) => {
               }}
             >
               <Image src={gLogo} h="2rem" /> <Text>Sign in with Google</Text>
-            </Button>
+            </Button> */}
             <Box
               display={"none"}
               id="google_login_button"

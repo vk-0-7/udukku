@@ -30,8 +30,6 @@ import { AccessAuthContext } from "../../Context/AuthContext";
 import { useSelector } from "react-redux";
 import { getUserInfoById } from "../../../Api/User/getUserById";
 
-
-
 const d_data = [
   {
     profile_link: "https://source.unsplash.com/random?face?girl",
@@ -67,7 +65,7 @@ const Profile = () => {
   console.log("Here is Id", id);
   const location = useLocation();
   const { userId } = AccessAuthContext();
-  console.log({ userId })
+  console.log({ userId });
   const navigate = useNavigate();
 
   const { user } = useSelector((state) => ({ ...state }));
@@ -90,18 +88,17 @@ const Profile = () => {
     }
   }, []);
 
-
   useEffect(() => {
     setLoading(true);
     getUserInfoById(id).then((res) => {
       console.log(res);
-      setUserData(res.data)
-    })
+      setUserData(res.data);
+    });
     setLoading(false);
   }, []);
 
   console.log({ talents });
-  console.log(userData);
+  console.log({user});
 
   return (
     <>
@@ -125,21 +122,29 @@ const Profile = () => {
                     // objectPosition={"50% 50%"}
                     src={userData?.avatar}
                   />
-                  {userId === user?._id ? <Button
-                    size="lg"
-                    backgroundColor={"#F6540E"}
-                    color="white"
-                    pt="2rem"
-                    pb="2rem"
-                    w="80%"
-                    borderRadius={"1rem"}
-                    position="absolute"
-                    bottom="3rem"
-                    left="4rem"
-                    onClick={() => navigate('/talent-registration', { state: { data: user, prevPath: location.pathname } })}
-                  >
-                    Edit Profile
-                  </Button> : <></>}
+                  {userId === user?._id ? (
+                    <Button
+                      size="lg"
+                      backgroundColor={"#F6540E"}
+                      color="white"
+                      pt="2rem"
+                      pb="2rem"
+                      w="80%"
+                      borderRadius={"1rem"}
+                      position="absolute"
+                      bottom="3rem"
+                      left="4rem"
+                      onClick={() =>
+                        navigate("/talent-registration", {
+                          state: { data: user, prevPath: location.pathname },
+                        })
+                      }
+                    >
+                      Edit Profile
+                    </Button>
+                  ) : (
+                    <></>
+                  )}
                 </Box>
                 <Box display={"flex"} flexDir="row">
                   <Box>
@@ -304,8 +309,7 @@ const Profile = () => {
                         </Text>
                       </Box>
                     </>
-                  ))
-                  }
+                  ))}
                 </Box>
 
                 {/* audio player */}
@@ -482,6 +486,11 @@ const Profile = () => {
                     borderRadius={"1.04vw"}
                     bg="#F6540E"
                     _hover={{ background: "#F6540E" }}
+                    onClick={() =>
+                      navigate("/talent-registration", {
+                        state: { data: user, prevPath: location.pathname },
+                      })
+                    }
                   >
                     <Sms
                       style={{
@@ -495,7 +504,7 @@ const Profile = () => {
                       fontFamily={"Gilroy-SemiBold"}
                       fontSize=".833vw"
                     >
-                      Contact me
+                      Edit Profile
                     </Text>
                   </Button>
                 </a>
@@ -539,7 +548,6 @@ const Profile = () => {
                       </Text>
                     </Box>
                   ))}
-
 
                   {/* card-2  */}
                   {/* <Box

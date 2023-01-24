@@ -20,11 +20,6 @@ import { getJobResponseByJob } from "../../../Api/Jobs";
 import { Textarea } from '@chakra-ui/react'
 
 
-
-
-
-
-
 const CreatorIndividualMessageBox = ({ socket, id }) => {
 
   const [incomingMessages, setIncomingMessages] = useState([]);
@@ -127,13 +122,18 @@ const CreatorIndividualMessageBox = ({ socket, id }) => {
 
   useEffect(() => {
     if (messages != undefined && messages != null && user != null) {
+      let incomingMessagesArray = [];
+      let outgoingMessagesArray = [];
       messages.map((item) => {
         if (item.user != user.userId) {
-          setIncomingMessages(oldArr => [...oldArr, item]);
+          incomingMessagesArray.push(item)
         } else {
-          setOutgoingMessages(oldArr => [...oldArr, item]);
+          outgoingMessagesArray.push(item);
         }
       });
+      console.log("abcd", incomingMessages)
+      setIncomingMessages(incomingMessagesArray)
+      setOutgoingMessages(outgoingMessagesArray)
     }
   }, [messages]);
 

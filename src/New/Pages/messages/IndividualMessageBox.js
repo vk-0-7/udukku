@@ -77,10 +77,11 @@ const IndividualMessageBox = ({ socket, id }) => {
         chatroomId: id,
       });
       socket.on("newMessage", (message) => {
-        console.log(message);
         setMessages([...messages, message]);
-      });
+      })
     }
+    console.log("message array", messages);
+
     return () => {
       if (socket !== undefined) {
         socket.emit("leaveRoom", {
@@ -127,13 +128,18 @@ const IndividualMessageBox = ({ socket, id }) => {
 
   useEffect(() => {
     if (messages != undefined && messages != null && user != null) {
+      let incomingMessagesArray = [];
+      let outgoingMessagesArray = [];
       messages.map((item) => {
         if (item.user != user.userId) {
-          setIncomingMessages(oldArr => [...oldArr, item]);
+          incomingMessagesArray.push(item)
         } else {
-          setOutgoingMessages(oldArr => [...oldArr, item]);
+          outgoingMessagesArray.push(item);
         }
       });
+      console.log("abcd", incomingMessages)
+      setIncomingMessages(incomingMessagesArray)
+      setOutgoingMessages(outgoingMessagesArray)
     }
   }, [messages]);
 
@@ -434,8 +440,8 @@ const IndividualMessageBox = ({ socket, id }) => {
           }}
         >
           {incomingMessages.map((item, index) => (
-            <Box display={"flex"} flexDir="row" gap="1rem">
-              <Avatar size={"lg"} src={profileIcon}></Avatar>
+            <Box display={"flex"} flexDir="row" gap="1rem" >
+              <Avatar size={"lg"} src={item.avatar}></Avatar>
               <Box display={"flex"} flexDir="column" gap="1rem" w="auto">
                 <Box
                   display={"flex"}
@@ -443,7 +449,7 @@ const IndividualMessageBox = ({ socket, id }) => {
                   gap="1rem"
                   alignItems={"center"}
                 >
-                  <IncomingMessage />
+                  <IncomingMessage data={item} />
                   <Text
                     fontFamily={"Gilroy-SemiBold"}
                     fontSize="1rem"

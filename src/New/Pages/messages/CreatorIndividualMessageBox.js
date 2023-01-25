@@ -85,7 +85,7 @@ const CreatorIndividualMessageBox = ({ socket, id }) => {
     };
   });
 
-
+  console.log(messages)
 
   const [job, setJob] = useState()
   useEffect(() => {
@@ -119,7 +119,7 @@ const CreatorIndividualMessageBox = ({ socket, id }) => {
     }).catch(err => console.log(err));
   }, [id]);
   console.log(media)
-
+  console.log("ccc", messages)
   useEffect(() => {
     if (messages != undefined && messages != null && user != null) {
       let incomingMessagesArray = [];
@@ -433,9 +433,11 @@ const CreatorIndividualMessageBox = ({ socket, id }) => {
             },
           }}
         >
-          {incomingMessages.map((item, index) => (
-            <Box display={"flex"} flexDir="row" gap="1rem">
-              <Avatar size={"lg"} src={profileIcon}></Avatar>
+          {user ? messages.map((item) => {
+            if (item.user != user.userId) {
+              return (
+                <Box display={"flex"} flexDir="row" gap="1rem" >
+              <Avatar size={"lg"} src={item.avatar}></Avatar>
               <Box display={"flex"} flexDir="column" gap="1rem" w="auto">
                 <Box
                   display={"flex"}
@@ -443,7 +445,7 @@ const CreatorIndividualMessageBox = ({ socket, id }) => {
                   gap="1rem"
                   alignItems={"center"}
                 >
-                  <IncomingMessage />
+                  <IncomingMessage data={item} />
                   <Text
                     fontFamily={"Gilroy-SemiBold"}
                     fontSize="1rem"
@@ -456,10 +458,11 @@ const CreatorIndividualMessageBox = ({ socket, id }) => {
                 {/* <IncomingImageMessage /> */}
               </Box>
             </Box>
-          ))}
-
-          {outgoingMessages.map((item, index) => (
-            <Box
+              )
+            }
+            else {
+              return (
+                <Box
               ml="auto"
               display={"flex"}
               flexDir="column"
@@ -468,7 +471,9 @@ const CreatorIndividualMessageBox = ({ socket, id }) => {
             >
               <OutgoingTextMessage data={item} />
             </Box>
-          ))}
+              )
+            }
+          }) : ""}
         </Box>
         <Box p="1rem" pos={"sticky"}>
           <TypeMessageBox sendAttachment={sendAttachment} sendMessage={sendMessage} message={message} setMessage={setMessage} />

@@ -439,8 +439,10 @@ const IndividualMessageBox = ({ socket, id }) => {
             },
           }}
         >
-          {incomingMessages.map((item, index) => (
-            <Box display={"flex"} flexDir="row" gap="1rem" >
+          {user ? messages.map((item) => {
+            if (item.user != user.userId) {
+              return (
+                <Box display={"flex"} flexDir="row" gap="1rem" >
               <Avatar size={"lg"} src={item.avatar}></Avatar>
               <Box display={"flex"} flexDir="column" gap="1rem" w="auto">
                 <Box
@@ -462,10 +464,11 @@ const IndividualMessageBox = ({ socket, id }) => {
                 {/* <IncomingImageMessage /> */}
               </Box>
             </Box>
-          ))}
-
-          {outgoingMessages.map((item, index) => (
-            <Box
+              )
+            }
+            else {
+              return (
+                <Box
               ml="auto"
               display={"flex"}
               flexDir="column"
@@ -474,7 +477,9 @@ const IndividualMessageBox = ({ socket, id }) => {
             >
               <OutgoingTextMessage data={item} />
             </Box>
-          ))}
+              )
+            }
+          }) : ""}
         </Box>
         <Box p="1rem" pos={"sticky"}>
           <TypeMessageBox sendAttachment={sendAttachment} sendMessage={sendMessage} message={message} setMessage={setMessage} />

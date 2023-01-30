@@ -484,16 +484,16 @@ const IndividualMessageBox = ({ socket, id }) => {
                       :
                       response?.status == "exploring" && chatroom.jobAccepted == "accepted" && chatroom.paymentStatus == false && chatroom.proposalDetails ?
                         <>
-                     <Button
-                          backgroundColor={"#F6540E"}
-                          color={"White"}
-                          pt={"1.75rem"}
-                          pb={"1.75rem"}
-                          borderRadius={"2rem"}
-                          key={size}
-                          disabled
-                        >Send Proposal
-                        </Button>
+                          <Button
+                            backgroundColor={"#F6540E"}
+                            color={"White"}
+                            pt={"1.75rem"}
+                            pb={"1.75rem"}
+                            borderRadius={"2rem"}
+                            key={size}
+                            disabled
+                          >Send Proposal
+                          </Button>
 
                           <Button
                             backgroundColor={"#F6540E"}
@@ -505,7 +505,7 @@ const IndividualMessageBox = ({ socket, id }) => {
                           >Deny Job</Button>
                         </>
                         :
-                        response?.status == "exploring" && chatroom.jobAccepted == "accepted" && chatroom.paymentStatus == true && !chatroom.deliverables  ?
+                        response?.status == "exploring" && chatroom.jobAccepted == "accepted" && chatroom.paymentStatus == true && !chatroom.deliverables ?
                           <>
                             <Button
                               backgroundColor={"#F6540E"}
@@ -543,7 +543,7 @@ const IndividualMessageBox = ({ socket, id }) => {
                                           :
                                           <p>{attach.secure_url}</p>
                                     ))
-                                    :""
+                                    : ""
 
                                   }
                                 </ModalBody>
@@ -566,16 +566,26 @@ const IndividualMessageBox = ({ socket, id }) => {
                               </ModalContent>
                             </Modal>
                           </>
-                          : 
-                          <Button
-                          backgroundColor={"#F6540E"}
-                          color={"White"}
-                          pt={"1.75rem"}
-                          pb={"1.75rem"}
-                          borderRadius={"2rem"}
-                          onClick={handleMarkJobAsCompleted}
-                          disabled={response?.status == "completed"}
-                        >Mark job as Completed</Button>
+                          :
+                          response?.status == "completed" && chatroom.jobAccepted == "accepted" && chatroom.paymentStatus == true && chatroom.deliverables ?
+                            <Button
+                              backgroundColor={"#F6540E"}
+                              color={"White"}
+                              pt={"1.75rem"}
+                              pb={"1.75rem"}
+                              borderRadius={"2rem"}
+                              disabled
+                            >Job is Completed</Button>
+                            :
+                            <Button
+                              backgroundColor={"#F6540E"}
+                              color={"White"}
+                              pt={"1.75rem"}
+                              pb={"1.75rem"}
+                              borderRadius={"2rem"}
+                              onClick={handleMarkJobAsCompleted}
+                              disabled={response?.status == "completed"}
+                            >Mark job as Completed</Button>
                   }
 
 

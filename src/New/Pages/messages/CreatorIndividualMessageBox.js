@@ -485,6 +485,7 @@ const CreatorIndividualMessageBox = ({ socket, id }) => {
                   flexDir="column"
                   gap="1rem"
                   alignItems={"flex-end"}
+                  float={"right"}
                 >
                   <OutgoingTextMessage data={item} />
                 </Box>

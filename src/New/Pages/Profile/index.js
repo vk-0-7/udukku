@@ -478,34 +478,66 @@ const Profile = () => {
                     ₹{userData.startingPrice}
                   </Text>
                 </Box>
-                  <Button
-                    mt="3.70vh"
-                    h="6.48vh"
-                    w="100%"
-                    borderRadius={"1.04vw"}
-                    bg="#F6540E"
-                    _hover={{ background: "#F6540E" }}
-                    onClick={() =>
-                      navigate("/talent-registration", {
-                        state: { data: user, prevPath: location.pathname },
-                      })
-                    }
-                  >
-                    <Sms
-                      style={{
-                        width: "1.25vw",
-                        height: "1.25vw",
-                      }}
-                    />
-                    <Text
-                      ml=".36vw"
-                      color="white"
-                      fontFamily={"Gilroy-SemiBold"}
-                      fontSize=".833vw"
-                    >
-                      Edit Profile
-                    </Text>
-                  </Button>
+                {user?.isMusician === "Musician" ?
+                 <Button
+                 mt="3.70vh"
+                 h="6.48vh"
+                 w="100%"
+                 borderRadius={"1.04vw"}
+                 bg="#F6540E"
+                 _hover={{ background: "#F6540E" }}
+                 onClick={() =>
+                   navigate("/talent-registration", {
+                     state: { data: user, prevPath: location.pathname },
+                   })
+                 }
+               >
+                 <Sms
+                   style={{
+                     width: "1.25vw",
+                     height: "1.25vw",
+                   }}
+                 />
+                 <Text
+                   ml=".36vw"
+                   color="white"
+                   fontFamily={"Gilroy-SemiBold"}
+                   fontSize=".833vw"
+                 >
+                   Edit Profile
+                 </Text>
+               </Button>
+               :
+               <Button
+               mt="3.70vh"
+               h="6.48vh"
+               w="100%"
+               borderRadius={"1.04vw"}
+               bg="#F6540E"
+               _hover={{ background: "#F6540E" }}
+               onClick={() =>
+                 navigate("/job-creator-registration", {
+                   state: { data: user, prevPath: location.pathname },
+                 })
+               }
+             >
+               <Sms
+                 style={{
+                   width: "1.25vw",
+                   height: "1.25vw",
+                 }}
+               />
+               <Text
+                 ml=".36vw"
+                 color="white"
+                 fontFamily={"Gilroy-SemiBold"}
+                 fontSize=".833vw"
+               >
+                 Edit Profile
+               </Text>
+             </Button>
+              }
+                 
               </Box>
 
               <Box>

@@ -62,8 +62,8 @@ const NavBar = () => {
     try {
       const res = logout();
       localStorage.clear();
-      window.location.reload();
       navigate("/");
+      window.location.reload();
     } catch (error) {
       console.log("error ", error);
     }

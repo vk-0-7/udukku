@@ -49,3 +49,15 @@ export const updateChatroomById = async (reqBody) => {
 export const getUserInfoById = (id) =>{
     return axios.get(`${process.env.REACT_APP_BASE_URL}/user/get-user-by-id/${id}`)
 }
+
+export const deleteAttachment = async(public_id,resource_type) =>{
+    return await axios.post(`${process.env.REACT_APP_BASE_URL}/api/delete-attachment`,{public_id,resource_type});
+}
+
+export const getOrderId = async(userId,chatroomId,amount,currency,receipt,notes) =>{
+    return await axios.post(`${process.env.REACT_APP_BASE_URL}/payment/create-order`,{userId,chatroomId,amount,currency,receipt,notes});
+}
+
+export const saveOrder = async(userId,chatroomId,paymentIntent,jobId) =>{
+    return await axios.post(`${process.env.REACT_APP_BASE_URL}/payment/save-order`,{userId,chatroomId,paymentIntent,jobId});
+}

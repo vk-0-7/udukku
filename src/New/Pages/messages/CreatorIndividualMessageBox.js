@@ -12,7 +12,7 @@ import MediaMessageDetail from "./MediaMessageDetails";
 import { useNavigate } from "react-router-dom";
 import getMyResponses from "../../../Api/Jobs/getMusicianResponses";
 import { useSelector } from "react-redux";
-import { addAttachmentToChatroom, getAllMessages, getChatroomAttachmentsById, getChatroomById, getChatroomsById, updateChatroomById } from "../../../Api/Chatroom/chatroom";
+import { addAttachmentToChatroom, getAllMessages, getChatroomAttachmentsById, getChatroomById, getChatroomsById, getOrderId, saveOrder, updateChatroomById } from "../../../Api/Chatroom/chatroom";
 import getJobById from "../../../Api/Jobs/getJobById";
 import axios from "axios";
 import { updateResponseById } from "../../../Api/Responses";
@@ -85,7 +85,7 @@ const CreatorIndividualMessageBox = ({ socket, id }) => {
     };
   });
 
-  console.log(messages)
+  console.log("idd", id)
 
   const [job, setJob] = useState()
   useEffect(() => {
@@ -104,22 +104,26 @@ const CreatorIndividualMessageBox = ({ socket, id }) => {
         console.log(res);
         setMessages(res.data.messages);
       })
-
     //get job posted by details
   }, []);
-
+  console.log("jobsd", job);
+  console.log("chatroomsd", chatroom);
   useEffect(() => {
     getChatroomAttachmentsById(id).then((res) => {
       setMedia(res.data)
     })
 
     // get response
-    getJobResponseByJob(job?._id, chatroom?.userId[1]).then((res) => {
-      setResponse(res.data.filter((item) => item.responseBy == user.userId)[0]);
-    }).catch(err => console.log(err));
-  }, [id]);
-  console.log(media)
-  console.log("ccc", messages)
+    if (job !== undefined && chatroom !== undefined) {
+      getJobResponseByJob(job?._id, chatroom?.userId[1]).then((res) => {
+        console.log("responseddd", res)
+        setResponse(res.data)
+        // setResponse(res.data.filter((item) => item.responseBy == user.userId)[0]);
+      }).catch(err => console.log(err));
+    }
+  }, [job]);
+  console.log("responsed", response)
+  console.log("messagesss", messages)
   useEffect(() => {
     if (messages != undefined && messages != null && user != null) {
       let incomingMessagesArray = [];
@@ -171,6 +175,7 @@ const CreatorIndividualMessageBox = ({ socket, id }) => {
   }
   const [infoToggle, setInfoToggle] = useState(false);
   const [goToMedia, setGoToMedia] = useState(true);
+
   // to navigate to view-proposal screen
   const navigate = useNavigate();
 
@@ -190,13 +195,13 @@ const CreatorIndividualMessageBox = ({ socket, id }) => {
 
   const handleMarkJobAsCompleted = () => {
     updateResponseById(job?._id, "completed", user.userId).then((res) => {
-      navigate("/messages");
+      navigate("/creator-messages");
     })
   }
 
   const handleChoose = (id) => {
-    updateResponseById(job?._id, "exploring", user.userId).then((res) => {
-      document.location.reload(true);
+    updateResponseById(job?._id, "exploring", chatroom.userId[1]).then((res) => {
+      // document.location.reload(true);
     }).catch((err) => {
       console.log(err);
     });
@@ -226,6 +231,74 @@ const CreatorIndividualMessageBox = ({ socket, id }) => {
       })
     }
   }
+
+  const componentDidMount = () => {
+    const script = document.createElement("script");
+    script.src = "https://checkout.razorpay.com/v1/checkout.js";
+    script.async = true;
+    document.body.appendChild(script);
+  };
+  componentDidMount();
+
+  const openPayModal = () => {
+    const amt = chatroom.cost;
+    var amount = amt;
+    var options = {
+      key: "rzp_live_5olF9jC5a7vicu",
+      amount: amt * 100, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+      "currency": "INR",
+      name: "Udukku",
+      description: "Test Transaction",
+      order_id: "", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+      singnature: "",
+      payment_id: "",
+      handler: function (response) {
+        var values = {
+          razorpay_signature: response.razorpay_signature,
+          razorpay_order_id: response.razorpay_order_id,
+          razorpay_payment_id: response.razorpay_payment_id,
+        };
+        options.singnature = response.razorpay_signature;
+        options.payment_id = response.razorpay_payment_id;
+        saveOrder(user.userId, chatroom._id, options, job._id).then((res) => {
+          console.log(res);
+          navigate("/messages");
+        }).catch((err) => {
+          console.log(err);
+        });
+
+        const reqBody = {
+          id: chatroom._id,
+          paymentStatus: true,
+        }
+        updateChatroomById(reqBody).then((res) => {
+          console.log(res);
+        }).catch((err) => {
+          console.log(err);
+        });
+      },
+      prefill: {
+        name: "",
+        email: "",
+        contact: "",
+        jobId: id[1],
+      },
+    };
+
+    getOrderId(user.userId, chatroom._id, amount, "INR", "Test", 1).then((res) => {
+      console.log(res);
+      options.order_id = res.id;
+      var rzp1 = new window.Razorpay(options);
+      rzp1.on('payment.failed', function (response) {
+        console.log(response);
+      });
+      rzp1.open();
+    }).catch((err) => { console.log(err) });
+  };
+
+  console.log("chatroomUpdated", chatroom)
+  console.log("responseUpdated", response)
+  console.log("jobdd", job)
   return (
     // contains both i button box and message box
     <Box display={"flex"} flexDir="row" w="65%">
@@ -244,7 +317,7 @@ const CreatorIndividualMessageBox = ({ socket, id }) => {
           borderColor={"#F0F0F0"}
           alignItems="center"
         >
-          <Avatar size={"lg"} src={job?.jobPostedBy?.avatar}>
+          <Avatar size={"lg"} src={messages[0]?.avatar}>
             <AvatarBadge
               boxSize="0.6em"
               bg="#38C222"
@@ -257,7 +330,7 @@ const CreatorIndividualMessageBox = ({ socket, id }) => {
             fontSize="1.3rem"
             alignSelf={"center"}
           >
-            {job?.jobPostedBy?.name}
+            {messages[0]?.name}
           </Text>
           <Box
             display={"flex"}
@@ -266,7 +339,19 @@ const CreatorIndividualMessageBox = ({ socket, id }) => {
             alignItems={"center"}
             ml="auto"
           >
-            {response?.status == "completed"
+            {/* {response?.status == "active" ?
+             <Button
+             backgroundColor={"#F6540E"}
+             color={"White"}
+             pt={"1.75rem"}
+             pb={"1.75rem"}
+             borderRadius={"2rem"}
+             onClick={handleChoose}
+           // disabled={response?.status == "exploring"}
+           >Select this musician</Button>
+:""
+            } */}
+            {chatroom?.paymentStatus == true && chatroom.deliverables && response?.status == "exploring "
               ?
               <Button
                 backgroundColor={"#F6540E"}
@@ -274,139 +359,71 @@ const CreatorIndividualMessageBox = ({ socket, id }) => {
                 pt={"1.75rem"}
                 pb={"1.75rem"}
                 borderRadius={"2rem"}
-                disabled
-              >Job is completed</Button>
+                onClick={handleMarkJobAsCompleted}
+              // disabled={response?.status == "completed"}
+              >Mark job as Completed</Button>
               :
-              <>
-                {response?.status == "exploring"
-                  ?
-                  <>
-                    {/* <Modal isOpen={isOpen} onClose={onClose}>
-                      <ModalOverlay />
-                      <ModalContent mt="auto" mb="auto" height="30vh">
-                        <ModalCloseButton />
-                        <ModalBody textAlign="center" pt="25%">
-                          <Text fontSize="2rem">Modal</Text>
-                        </ModalBody>
-
-                        <ModalFooter>
-                          <Button
-                            bg="rgba(246, 84, 14, 1)"
-                            color="#fff"
-                            mr="auto"
-                            ml="auto"
-                            px="10"
-                            onClick={onClose}>
-                            OK
-                          </Button>
-
-                        </ModalFooter>
-                      </ModalContent>
-                    </Modal> */}
-                    <Button
-                      backgroundColor={"#F6540E"}
-                      color={"White"}
-                      pt={"1.75rem"}
-                      pb={"1.75rem"}
-                      borderRadius={"2rem"}
-                      onClick={() => handleSizeClick(size)}
-                      key={size}
-                    >Send Proposal
-                    </Button>
-                    <Modal isOpen={isOpen} size={size} onClose={onClose}>
-                      <ModalOverlay />
-                      <ModalContent mt="auto" mb="auto">
-                        <ModalHeader>Proposal</ModalHeader>
-                        <ModalCloseButton />
-                        <ModalBody >
-                          {/* <label className="mt-3">Proposal Details</label> */}
-                          {/* <textarea style={{ resize: 'none' }} rows="3" className="form-control" /> */}
-                          {/* <Textarea className="proposal-modal-input" size='sm' style={{ height: '10px' }} onChange={(e) => setProposal(e.target.value)} placeholder='Proposal Details' /> */}
-
-                          {/* <label className="mt-3" >Documentation (optional)</label> */}
-                          {/* <textarea style={{ resize: 'none' }} rows="3" className="form-control" onChange={(e) => setDocumentation(e.target.value)} /> */}
-                          <Textarea className="proposal-modal-input" onChange={(e) => setDocumentation(e.target.value)} placeholder='Documentation (optional)' />
-
-                          {/* <label className="mt-3">Deliverables</label> */}
-                          {/* <textarea style={{ resize: 'none' }} rows="3" className="form-control" onChange={(e) => setDeliverableFiles(e.target.value)} /> */}
-                          <Textarea className="proposal-modal-input" onChange={(e) => setDeliverableFiles(e.target.value)} placeholder='Deliverables' />
-                          <label className="mt-3" >Delivery Date</label>
-                          <Input
-                            placeholder="Select Date and Time"
-                            size="md"
-                            type="datetime-local"
-                            onChange={(e) => setDelievery(e.target.value)}
-                          />
-                          {/* <label className="mt-3">Final proposal cost</label> */}
-                          {/* <input className="form-control"  /> */}
-                          <Input className="proposal-modal-input" variant='outline' placeholder='Final Proposal Cost' onChange={(e) => setCost(e.target.value)} />
-                        </ModalBody>
-
-                        <ModalFooter>
-                          {/* <Button colorScheme='blue' mr={3} onClick={onClose}>
-                            Close
-                          </Button> */}
-                          <Button
-                            backgroundColor={"#F6540E"}
-                            color={"White"}
-                            pt={"1rem"}
-                            pb={"1rem"}
-                            mx={"auto"}
-                            borderRadius={"2rem"}
-                          >Send Proposal
-                          </Button>
-
-                        </ModalFooter>
-                      </ModalContent>
-                    </Modal>
-                    <Button
-                      backgroundColor={"#F6540E"}
-                      color={"White"}
-                      pt={"1.75rem"}
-                      pb={"1.75rem"}
-                      borderRadius={"2rem"}
-                      onClick={handleDenyJob}
-                      disabled
-                    >Deny Job</Button>
-                  </>
-                  :
-                  <>
-                    <Button
-                      backgroundColor={"#F6540E"}
-                      color={"White"}
-                      pt={"1.75rem"}
-                      pb={"1.75rem"}
-                      borderRadius={"2rem"}
-                      onClick={handleAcceptJob}
-                      disabled={response?.status == "exploring"}
-                    >Select this musician</Button>
-                    {/* {sizes.map((size) => (
-                      
-                    ))} */}
-
-
-
-
-
-                    {/* <Button
-                      backgroundColor={"#F6540E"}
-                      color={"White"}
-                      pt={"1.75rem"}
-                      pb={"1.75rem"}
-                      borderRadius={"2rem"}
-                      onClick={handleDenyJob}
-                    >Deny Job</Button> */}
-                  </>
-                }
-                {/* <Button
+              chatroom?.paymentStatus == true && chatroom.deliverables && response?.status == "completed" ?
+                <Button
                   backgroundColor={"#F6540E"}
                   color={"White"}
                   pt={"1.75rem"}
                   pb={"1.75rem"}
                   borderRadius={"2rem"}
-                  onClick={handleMarkJobAsCompleted}
-                >Mark job as completed</Button> */}
-              </>}
+                  disabled
+                >Job is Completed</Button>
+                :
+                <>
+                  {response && response[0]?.status == "active"
+                    ?
+
+                    <Button
+                      backgroundColor={"#F6540E"}
+                      color={"White"}
+                      pt={"1.75rem"}
+                      pb={"1.75rem"}
+                      borderRadius={"2rem"}
+                      onClick={handleChoose}
+                      disabled={response && response[0]?.status == "exploring"}
+                    >Select this musician</Button>
+
+                    :
+
+                     chatroom?.jobAccepted !== "accepted" && !chatroom?.proposalDetails ?
+                     <Button
+                     backgroundColor={"#F6540E"}
+                     color={"White"}
+                     pt={"1.75rem"}
+                     pb={"1.75rem"}
+                     borderRadius={"2rem"}
+                     onClick={openPayModal}
+                   // disabled={response?.status == "exploring"}
+                   >Fund this job</Button>
+                      :
+                      chatroom?.jobAccepted == "accepted" && chatroom?.deliverables && response?.status == "exploring " ?
+                      <Button
+                      backgroundColor={"#F6540E"}
+                      color={"White"}
+                      pt={"1.75rem"}
+                      pb={"1.75rem"}
+                      borderRadius={"2rem"}
+                      onClick={handleMarkJobAsCompleted}
+                    // disabled={response?.status == "completed"}
+                    >Mark job as Completed</Button>
+                    :
+                    <Button
+                    backgroundColor={"#F6540E"}
+                    color={"White"}
+                    pt={"1.75rem"}
+                    pb={"1.75rem"}
+                    borderRadius={"2rem"}
+                    disabled
+                  >Job is Completed</Button>
+
+
+                  }
+
+                </>}
             {/* on click , should show the message details box */}
             <InfoIcon
               style={{ fontSize: "5px", cursor: "pointer" }}
@@ -437,40 +454,40 @@ const CreatorIndividualMessageBox = ({ socket, id }) => {
             if (item.user != user.userId) {
               return (
                 <Box display={"flex"} flexDir="row" gap="1rem" >
-              <Avatar size={"lg"} src={item.avatar}></Avatar>
-              <Box display={"flex"} flexDir="column" gap="1rem" w="auto">
-                <Box
-                  display={"flex"}
-                  flexDir="row"
-                  gap="1rem"
-                  alignItems={"center"}
-                >
-                  <IncomingMessage data={item} />
-                  <Text
-                    fontFamily={"Gilroy-SemiBold"}
-                    fontSize="1rem"
-                    color="#ACADAF"
-                    ml="auto"
-                  >
-                    30min
-                  </Text>
+                  <Avatar size={"lg"} src={item.avatar}></Avatar>
+                  <Box display={"flex"} flexDir="column" gap="1rem" w="auto">
+                    <Box
+                      display={"flex"}
+                      flexDir="row"
+                      gap="1rem"
+                      alignItems={"center"}
+                    >
+                      <IncomingMessage data={item} />
+                      <Text
+                        fontFamily={"Gilroy-SemiBold"}
+                        fontSize="1rem"
+                        color="#ACADAF"
+                        ml="auto"
+                      >
+                        30min
+                      </Text>
+                    </Box>
+                    {/* <IncomingImageMessage /> */}
+                  </Box>
                 </Box>
-                {/* <IncomingImageMessage /> */}
-              </Box>
-            </Box>
               )
             }
             else {
               return (
                 <Box
-              ml="auto"
-              display={"flex"}
-              flexDir="column"
-              gap="1rem"
-              alignItems={"flex-end"}
-            >
-              <OutgoingTextMessage data={item} />
-            </Box>
+                  ml="auto"
+                  display={"flex"}
+                  flexDir="column"
+                  gap="1rem"
+                  alignItems={"flex-end"}
+                >
+                  <OutgoingTextMessage data={item} />
+                </Box>
               )
             }
           }) : ""}
@@ -492,6 +509,7 @@ const CreatorIndividualMessageBox = ({ socket, id }) => {
           setGoToMedia={setGoToMedia}
           data={job}
           media={media}
+          chatroom={chatroom}
         />
       ) : (
         <MediaMessageDetail data={media} goToMedia={goToMedia} setGoToMedia={setGoToMedia} />

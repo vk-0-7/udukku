@@ -478,7 +478,6 @@ const Profile = () => {
                     ₹{userData.startingPrice}
                   </Text>
                 </Box>
-                <a href={`mailto:${userData.email}`}>
                   <Button
                     mt="3.70vh"
                     h="6.48vh"
@@ -507,7 +506,6 @@ const Profile = () => {
                       Edit Profile
                     </Text>
                   </Button>
-                </a>
               </Box>
 
               <Box>

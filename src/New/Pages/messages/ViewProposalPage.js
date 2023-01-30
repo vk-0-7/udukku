@@ -21,9 +21,37 @@ import { ReactComponent as LinkIcon } from "../../../Assets/Icons/link-2.svg";
 import { ReactComponent as RatingIcon } from "../../../Assets/Images/icos/star.svg";
 import CompanyLogo from "../../../Assets/Images/dummyProfile/Ellipse 5.png";
 import NavBar from "../../Components/NavBar/NavBar";
+import { getChatroomById } from "../../../Api/Chatroom/chatroom";
+import getJobById from "../../../Api/Jobs/getJobById";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
 // the main view propsal screen
 const ViewProposal = ({ state }) => {
+  const { id } = useParams();
+  const [chatroom, setChatroom] = useState();
+  const [job, setJob] = useState()
+
+  useEffect(() => {
+    // fetching chatroom
+    getChatroomById(id).then((res) => {
+      console.log("chatroom", res.data)
+      setChatroom(res.data);
+      getJobById(res.data.jobId).then((res) => {
+        console.log(res.data);
+        setJob(res.data);
+      }).catch((err) => console.log(err));
+    }).catch((err) => { console.log(err) });
+    // fetching messages for chatroom
+    // getAllMessages(id)
+    //   .then((res) => {
+    //     console.log(res);
+    //     setMessages(res.data.messages);
+    //   })
+    //get job posted by details
+  }, []);
+  console.log("jobsd", job);
+  console.log("chatroomsd", chatroom);
   return (
     <Box w="100%" overflowX={"hidden"}>
       <NavBar />
@@ -40,7 +68,7 @@ const ViewProposal = ({ state }) => {
       >
         <Box display={"flex"} flexDir="column" gap="2rem" w="55%" p="2rem">
           <Text fontFamily={"Gilroy-Bold"} fontSize="2.5rem">
-            Looking for an experienced Beat Maker
+            {job?.description}
           </Text>
           <Text
             fontFamily={"Gilroy-SemiBold"}
@@ -59,14 +87,22 @@ const ViewProposal = ({ state }) => {
             <Box display={"flex"} flexDir="row" gap="5px" alignItems={"center"}>
               <ClockIcon />
               <Text fontFamily={"Gilroy-Medium"} fontSize="1.2rem">
-                1-7 Days
+                {job?.deadLine}
               </Text>
             </Box>
             <Box display={"flex"} flexDir="row" gap="5px" alignItems={"center"}>
               <AttachIcon />
-              <Text fontFamily={"Gilroy-Medium"} fontSize="1.2rem">
-                2 References
-              </Text>
+              {job?.referenceLinks == "" ?
+                <Text fontFamily={"Gilroy-Medium"} fontSize="1.2rem">
+                  No Reference Links
+                </Text>
+                :
+                <Text fontFamily={"Gilroy-Medium"} fontSize="1.2rem">
+                  {job?.referenceLinks}
+
+                </Text>
+              }
+
             </Box>
           </Box>
           <Box display={"flex"} flexDir="row" gap="7px" flexWrap={"wrap"}>
@@ -79,6 +115,7 @@ const ViewProposal = ({ state }) => {
               backgroundColor="#F9FCE8"
             >
               <CategoryIcon style={{ height: "1.3rem", width: "1.3rem" }} />
+              
               <Text fontFamily={"Gilroy-SemiBold"} fontSize="1rem">
                 Female Vocalist or Singer
               </Text>

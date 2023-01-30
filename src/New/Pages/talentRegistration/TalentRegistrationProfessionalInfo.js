@@ -7,6 +7,7 @@ import SocialMedia from "./talentRegistrationPro/SocialMedia";
 import WorkSample from "./talentRegistrationPro/WorkSample";
 
 const TalentRegistrationProfessionalInfo = ({ data }) => {
+  console.log(data)
   return (
     <Box mt="5.555vh" w={{ base: "100%", lg: "36.04vw" }}>
       <Text
@@ -25,7 +26,7 @@ const TalentRegistrationProfessionalInfo = ({ data }) => {
       </Text>
       <Box mt="2.96vh" alignItems="center" gap="1.25vw">
         <Box>
-          {data.categories.map((_data, index) => {
+          {data?.categories?.map((_data, index) => {
             return (
               <Category
                 key={index}
@@ -41,7 +42,7 @@ const TalentRegistrationProfessionalInfo = ({ data }) => {
             color="rgba(246, 84, 14, 1)"
             fontSize={{ base: "1rem", md: "1.2rem", lg: ".833vw" }}
             onClick={() => {
-              data.set_categories((prev) => {
+              data?.set_categories((prev) => {
                 prev.push({
                   category: "",
                   subCategory: "",
@@ -56,7 +57,7 @@ const TalentRegistrationProfessionalInfo = ({ data }) => {
           </Text>
         </Box>
         <Box mt="2.22vh">
-          {data.genre.map((_data, index) => {
+          {data?.genre?.map((_data, index) => {
             return (
               <Genre
                 key={index}
@@ -73,7 +74,7 @@ const TalentRegistrationProfessionalInfo = ({ data }) => {
             color="rgba(246, 84, 14, 1)"
             fontSize={{ base: "1rem", md: "1.2rem", lg: ".833vw" }}
             onClick={() => {
-              data.set_genre((prev) => {
+              data?.set_genre((prev) => {
                 prev.push({
                   genre: "",
                   subGenre: "",
@@ -87,7 +88,7 @@ const TalentRegistrationProfessionalInfo = ({ data }) => {
           </Text>
         </Box>
         <Box mt="2.22vh">
-          {data.gear.map((_data, index) => {
+          {data?.gear?.map((_data, index) => {
             return (
               <Gear
                 key={index}
@@ -104,7 +105,7 @@ const TalentRegistrationProfessionalInfo = ({ data }) => {
             color="rgba(246, 84, 14, 1)"
             fontSize={{ base: "1rem", md: "1.2rem", lg: ".833vw" }}
             onClick={() => {
-              data.set_gear((prev) => {
+              data?.set_gear((prev) => {
                 prev.push({
                   gear: "",
                   gearHighlight: "",
@@ -118,7 +119,7 @@ const TalentRegistrationProfessionalInfo = ({ data }) => {
           </Text>
         </Box>
         <Box mt="2.22vh">
-          {data.social_media.map((_data, index) => (
+          {data?.social_media?.map((_data, index) => (
             <SocialMedia
               key={index}
               currentIndex={index}
@@ -132,7 +133,7 @@ const TalentRegistrationProfessionalInfo = ({ data }) => {
             color="rgba(246, 84, 14, 1)"
             fontSize={{ base: "1rem", md: "1.2rem", lg: ".833vw" }}
             onClick={() => {
-              data.set_social_media((prev) => {
+              data?.set_social_media((prev) => {
                 prev.push({
                   plat: "",
                   link: "",
@@ -146,7 +147,7 @@ const TalentRegistrationProfessionalInfo = ({ data }) => {
           </Text>
         </Box>
         <Box mt="2.22vh">
-          {data.work.map((_data, index) => {
+          {data?.work?.map((_data, index) => {
             return (
               <WorkSample
                 key={index}
@@ -162,7 +163,7 @@ const TalentRegistrationProfessionalInfo = ({ data }) => {
             color="rgba(246, 84, 14, 1)"
             fontSize={{ base: "1rem", md: "1.2rem", lg: ".833vw" }}
             onClick={() => {
-              data.set_work((prev) => {
+              data?.set_work((prev) => {
                 prev.push({
                   workSample: "",
                   link: "",

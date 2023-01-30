@@ -73,7 +73,7 @@ console.log(responseBy)
         <Text   fontFamily={"Gilroy-SemiBold"}
             fontSize="1rem"
             color="#ACADAF">
-              {data[0].description}
+              {data[0]?.description}
             </Text>
       </Box>
     </Box>

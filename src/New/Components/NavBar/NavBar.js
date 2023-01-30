@@ -39,7 +39,7 @@ const NavBar = () => {
   const [hamMenu, setHamMenu] = useState(false);
   const { user } = useSelector((state) => ({ ...state }));
 
-  console.log(user?.isMusician);
+  console.log(user);
 
   useEffect(() => {
     const getit = () => {
@@ -94,8 +94,8 @@ const NavBar = () => {
           path.length >= 2
             ? "rgba(8, 32, 50,1)"
             : positon > 10
-            ? "rgba(8, 32, 50,1)"
-            : "transparent"
+              ? "rgba(8, 32, 50,1)"
+              : "transparent"
         }
         boxShadow={
           positon > 10
@@ -270,7 +270,7 @@ const NavBar = () => {
                       background: "rgba(255,255,255,.1)",
                     }}
                     _expanded={{ bg: "rgba(255,255,255,.1)" }}
-                    // _focus={{ boxShadow: 'outline' }}
+                  // _focus={{ boxShadow: 'outline' }}
                   >
                     <Box
                       h="fit-content"
@@ -351,29 +351,53 @@ const NavBar = () => {
                       borderWidth={"2px"}
                       borderStyle="rgba(8, 32, 50, 1)"
                     />
-                    <MenuItem
-                      fontSize={"1.4rem"}
-                      onClick={() => {
-                        navigate(
-                          `/${user?.name.substring(
-                            0,
-                            user?.name.indexOf(" ")
-                          )}/${localStorage.getItem("userId")}`
-                        );
-                        
-                      }}
-                      icon={
-                        <PersonIcon
-                          style={{
-                            fill: "#F6540E",
-                            width: "1.25vw",
-                            height: "1.25vw",
-                          }}
-                        />
-                      }
-                    >
-                      My Profile
-                    </MenuItem>
+                    {user?.isMusician === "Musician" ?
+                      <MenuItem
+                        fontSize={"1.4rem"}
+                        onClick={() => {
+                          navigate(
+                            `/${user?.name.substring(
+                              0,
+                              user?.name.indexOf(" ")
+                            )}/${localStorage.getItem("userId")}`
+                          );
+
+                        }}
+                        icon={
+                          <PersonIcon
+                            style={{
+                              fill: "#F6540E",
+                              width: "1.25vw",
+                              height: "1.25vw",
+                            }}
+                          />
+                        }
+                      >
+                        My Profile
+                      </MenuItem>
+                      :
+                      <MenuItem
+                        fontSize={"1.4rem"}
+                        onClick={() => {
+                          navigate(
+                            `/${user?.name}/${localStorage.getItem("userId")}`
+                          );
+
+                        }}
+                        icon={
+                          <PersonIcon
+                            style={{
+                              fill: "#F6540E",
+                              width: "1.25vw",
+                              height: "1.25vw",
+                            }}
+                          />
+                        }
+                      >
+                        My Profile
+                      </MenuItem>
+                    }
+                   
                     <MenuItem
                       fontSize={"1.4rem"}
                       icon={

@@ -12,7 +12,7 @@ const TalentRegistrationPersonalInfo = ({ data }) => {
     data.set_avatar(e.target.files[0]);
     set_image_blob_link(URL.createObjectURL(e.target.files[0]));
   };
-console.log({data});
+  console.log(data)
   return (
     <Box mt={{base:"2rem",lg:"4.444vh"}} w={{base:"100%",lg:"36.04vw"}}>
       <Text fontFamily={"Gilroy-SemiBold"} fontSize={{base:"2rem",lg:"1.45vw"}}>
@@ -183,7 +183,7 @@ console.log({data});
             justifyContent="space-between"
           >
             <Text>Min 150 Characters</Text>
-            <Text>{data.description.length}/500</Text>
+            <Text>{data.description?.length}/500</Text>
           </Box>
         </Box>
       </Box>

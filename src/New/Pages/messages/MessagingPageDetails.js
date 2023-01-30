@@ -19,9 +19,11 @@ const MessagingPageDetails = ({
   setGoToMedia,
   data,
   media,
+  chatroom
 }) => {
   const navigate = useNavigate();
   console.log(media)
+  console.log(chatroom)
   return (
     // whole rightmost messagedetails
 
@@ -104,17 +106,34 @@ const MessagingPageDetails = ({
             </Text>
           </Box>
         </Box>
+        {chatroom?.proposalDetails ?
         <Button
-          backgroundColor="#FEEEE7"
-          color="#F6540E"
-          pt="1.7rem"
-          pb="1.7rem"
-          size="lg"
-          borderRadius={"2rem"}
-          onClick={() => navigate("/view-proposal")}
-        >
-          View Proposal
-        </Button>
+        backgroundColor="#FEEEE7"
+        color="#F6540E"
+        pt="1.7rem"
+        pb="1.7rem"
+        size="lg"
+        borderRadius={"2rem"}
+        onClick={() => navigate(`/view-proposal/${chatroom._id}`)}
+      >
+        View Proposal
+      </Button>
+      :
+      <Button
+      backgroundColor="#FEEEE7"
+      color="#F6540E"
+      pt="1.7rem"
+      pb="1.7rem"
+      size="lg"
+      borderRadius={"2rem"}
+      onClick={() => navigate("/view-proposal")}
+      disabled
+    >
+      View Proposal
+    </Button>
+    
+      }
+        
         {/* Media and content */}
         <Box
           display={"flex"}

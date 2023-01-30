@@ -37,7 +37,7 @@ const RespondToJob = ({socket}) => {
             chatroomId: res.data.chatroom._id
           });
         });
-        navigate("/jobs");
+        navigate("/messages");
       })
     } catch (e) {
       console.log(e);

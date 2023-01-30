@@ -9,20 +9,27 @@ import checkForUserName from "../../Utility/checkForUserName";
 import TalentRegistrationPersonalInfo from "./TalentRegistrationPersonalInfo";
 import TalentRegistrationProfessionalInfo from "./TalentRegistrationProfessionalInfo";
 import { useToast } from "@chakra-ui/react";
+import { getUserInfoById } from "../../../Api/User/getUserById";
 const TalentRegistration = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const [loading, set_loading] = useState(false);
+  const [userData, setUserData] = useState("");
+
+
   // for personal info
-  console.log(location.state);
+  console.log(location);
   console.log(
     "/" +
-      location.state.data.name.substring(
-        0,
-        location.state.data.name.indexOf(" ")
-      ) +
-      "/"
+    location.state.data.name.substring(
+      0,
+      location.state.data.name.indexOf(" ")
+    ) +
+    "/"
   );
 
+  const id = location.state.data.userId;
+  console.log(id)
   const toast = useToast();
   const [editPage, setEditPage] = useState(
     location.state.prevPath ===
@@ -34,6 +41,22 @@ const TalentRegistration = () => {
       : false
   );
   console.log({ editPage });
+
+  useEffect(() => {
+    set_loading(true);
+    getUserInfoById(id).then((res) => {
+      console.log("info",res.data)
+      set_fname(res.data.name);
+      set_username(res.data.name);
+      set_wa_number(res.data);
+      set_city(res.data.city);
+      set_state(res.data.state);
+      set_description(res.data.description);
+      set_avatar(res.data.avatar);
+    });
+    set_loading(false);
+  }, []);
+
   const [fname, set_fname] = useState(
     editPage === true ? location.state.data.name : ""
   );
@@ -78,7 +101,6 @@ const TalentRegistration = () => {
     editPage === true ? location.state.data.terms : []
   );
 
-  const [loading, set_loading] = useState(false);
 
   const handleEdit = async () => {
     try {
@@ -151,9 +173,16 @@ const TalentRegistration = () => {
     <Box pt="8.5vh" overflowX={"hidden"}>
       <NavBar />
       <Box px={{ base: "7vw", lg: "13.54vw" }} pt="6.01vh" pb="100px">
-        <Text display={"block"} fontSize={"2.29vw"} fontFamily={"Gilroy-Bold"}>
-          Talent Registration
-        </Text>
+        {editPage == false ?
+          <Text display={"block"} fontSize={"2.29vw"} fontFamily={"Gilroy-Bold"}>
+            Talent Registration
+          </Text>
+          :
+          <Text display={"block"} fontSize={"2.29vw"} fontFamily={"Gilroy-Bold"}>
+            Edit Profile
+          </Text>
+        }
+
 
         {/* personal info */}
         <TalentRegistrationPersonalInfo

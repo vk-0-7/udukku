@@ -18,6 +18,7 @@ const MessageList = ({ state }) => {
     }
   }, [user]);
 
+
   /**
    * This function will be used to handle the currrent active tab and response type
    * @param {*} currentTab will be used to handle active tab

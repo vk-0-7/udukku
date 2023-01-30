@@ -131,7 +131,7 @@ const App = () => {
             path="/creatorContactMessage/:id"
             element={<CreatorContactMessages socket={socket} />}
           />
-          <Route path="/view-proposal" element={<ViewProposal />} />
+          <Route path="/view-proposal/:id" element={<ViewProposal />} />
           <Route path="/myjobs" element={<MyJobs />} />
           <Route path="/client-dashboard" element={<ClientDashboard />} />
           {/* *********************** End *************************** */}

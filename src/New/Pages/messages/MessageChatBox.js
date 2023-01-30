@@ -18,6 +18,9 @@ console.log(data)
         console.log(err);
       })
   },[user]);
+  console.log(chatrooms)
+  console.log(data.JobDetails[0].jobPostedBy._id)
+  console.log(data.jobId)
   const navigate = useNavigate();
   return (
     <Box
@@ -36,6 +39,7 @@ console.log(data)
         chatrooms.map((item,index)=> {
           if(item.userId.includes(data.JobDetails[0].jobPostedBy._id) & item.jobId === data.jobId){
             navigate(`/contactMessage/${chatrooms[index]._id}`);
+        document.location.reload(true);
           }
         })
       }}

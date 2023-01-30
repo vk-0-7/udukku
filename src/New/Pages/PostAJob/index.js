@@ -347,13 +347,13 @@ const PostAJob = () => {
                 <option default value={"None"}>
                   Select
                 </option>
-                <option value={"10-20days"}>0-7 Days</option>
-                <option value={"21-30days"}>8-14 Days</option>
-                <option value={"31-40days"}>15-21 Days</option>
-                <option value={"31-40days"}>22-30 Days</option>
-                <option value={"31-40days"}>31-40 Days</option>
-                <option value={"31-40days"}>41-60 Days</option>
-                <option value={"31-40days"}>more than 60 Days</option>
+                <option value={"0-7 Days"}>0-7 Days</option>
+                <option value={"8-14 Days"}>8-14 Days</option>
+                <option value={"15-21 Days"}>15-21 Days</option>
+                <option value={"22-30 Days"}>22-30 Days</option>
+                <option value={"31-40 Days"}>31-40 Days</option>
+                <option value={"41-60 Days"}>41-60 Days</option>
+                <option value={"more than 60 Days"}>more than 60 Days</option>
               </Select>
             </Box>
           </Box>

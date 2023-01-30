@@ -12,13 +12,13 @@ import MediaMessageDetail from "./MediaMessageDetails";
 import { useNavigate } from "react-router-dom";
 import getMyResponses from "../../../Api/Jobs/getMusicianResponses";
 import { useSelector } from "react-redux";
-import { addAttachmentToChatroom, getAllMessages, getChatroomAttachmentsById, getChatroomById, getChatroomsById, updateChatroomById } from "../../../Api/Chatroom/chatroom";
+import { addAttachmentToChatroom, deleteAttachment, getAllMessages, getChatroomAttachmentsById, getChatroomById, getChatroomsById, updateChatroomById } from "../../../Api/Chatroom/chatroom";
 import getJobById from "../../../Api/Jobs/getJobById";
 import axios from "axios";
 import { updateResponseById } from "../../../Api/Responses";
 import { getJobResponseByJob } from "../../../Api/Jobs";
 import { Textarea } from '@chakra-ui/react'
-
+import ReactAudioPlayer from "react-audio-player";
 
 
 
@@ -36,19 +36,28 @@ const IndividualMessageBox = ({ socket, id }) => {
   const [media, setMedia] = useState([]);
   const [file, setFile] = useState("");
   const [response, setResponse] = useState();
-  const [deliverables, setDeliverables] = useState();
+  const [deliverables, setDeliverables] = useState([]);
   const [documentation, setDocumentation] = useState();
-  const { isOpen, onOpen, onClose } = useDisclosure()
+  const { isOpen: isProposalOpen, onOpen: onProposalOpen, onClose: onProposalClose } = useDisclosure()
+  const { isOpen: isDeliverablesOpen, onOpen: onDeliverablesOpen, onClose: onDeliverablesClose } = useDisclosure()
   const [size, setSize] = useState('md')
+  const [size1, setSize1] = useState('md')
   const [proposal, setProposal] = useState("");
   const [delievery, setDelievery] = useState("");
   const [cost, setCost] = useState("");
+  const [proposalStatus, setProposalStatus] = useState();
   const [deliverableFiles, setDeliverableFiles] = useState("");
 
   const sizes = ['xl']
   const handleSizeClick = (newSize) => {
-    setSize(newSize)
-    onOpen()
+    setSize1(newSize)
+    onProposalOpen()
+  }
+
+  const sizes1 = ['xl']
+  const handleSizeClick1 = (newSize1) => {
+    setSize(newSize1)
+    onDeliverablesOpen()
   }
 
   const sendAttachment = (e) => {
@@ -100,7 +109,7 @@ const IndividualMessageBox = ({ socket, id }) => {
       console.log("chatroom", res.data)
       setChatroom(res.data);
       getJobById(res.data.jobId).then((res) => {
-        console.log(res.data);
+        console.log("iii", res.data);
         setJob(res.data);
       }).catch((err) => console.log(err));
     }).catch((err) => { console.log(err) });
@@ -114,17 +123,26 @@ const IndividualMessageBox = ({ socket, id }) => {
     //get job posted by details
   }, []);
 
+  console.log("jobsd", job);
+  console.log("chatroomsd", chatroom);
+
   useEffect(() => {
     getChatroomAttachmentsById(id).then((res) => {
       setMedia(res.data)
     })
 
     // get response
-    getJobResponseByJob(job?._id, chatroom?.userId[1]).then((res) => {
-      setResponse(res.data.filter((item) => item.responseBy == user.userId)[0]);
-    }).catch(err => console.log(err));
-  }, [id]);
-  console.log(media)
+    if (job !== undefined && chatroom !== undefined) {
+      getJobResponseByJob(job?._id, chatroom?.userId[1]).then((res) => {
+        console.log("responseddd", res)
+        setResponse(res.data.filter((item) => item.responseBy == user.userId)[0]);
+        // setResponse(res.data)
+      }).catch(err => console.log(err));
+    }
+  }, [job]);
+
+  console.log("responsed", response)
+
 
   useEffect(() => {
     if (messages != undefined && messages != null && user != null) {
@@ -189,7 +207,7 @@ const IndividualMessageBox = ({ socket, id }) => {
       console.log(res);
       getChatroomsById(id).then((res) => {
         console.log(res);
-        document.location.reload(true);
+        // document.location.reload(true);
       }).catch((err) => { console.log(err) });
     }).catch((err) => { console.log(err) });
   }
@@ -215,7 +233,7 @@ const IndividualMessageBox = ({ socket, id }) => {
   }
 
   const handleSendDeliverables = () => {
-    onOpen(true);
+    onProposalOpen(true);
     if (deliverables?.length === 0) {
       console.warn("please attach atleast one attachment");
     } else {
@@ -229,9 +247,92 @@ const IndividualMessageBox = ({ socket, id }) => {
         console.log(res);
       }).catch((err) => {
         console.log(err)
-      })
+      }).then(() => { onDeliverablesClose() })
     }
   }
+  const chatroomId = id[0];
+
+  const handleSubmit = () => {
+    if (delievery === "" || cost === "") {
+      alert("please fill all the fields");
+    } else {
+      const reqBody = {
+        id,
+        status: "accepted",
+        deliverables,
+        documentation,
+        jobAccepted: "accepted",
+        deliveryDate: delievery,
+        proposalDetails: proposal,
+        // proposal,
+        cost: parseInt(cost)
+      }
+      updateChatroomById(reqBody).then((res) => {
+        setProposalStatus(res.status);
+        document.location.reload(true);
+      }).catch((err) => { console.log(err) })
+    }
+    // window.$("#exampleModal1").modal("hide");
+  }
+
+  const handleSubmitDeliverables = () => {
+    if (deliverables.length === 0) {
+      alert("please attach atleast one attachment");
+    } else {
+      const reqBody = {
+        id: chatroomId,
+        documentation,
+        deliverables,
+        deliverablesStatus: true,
+      }
+      updateChatroomById(reqBody).then((res) => {
+        console.log(res);
+        // window.$("#exampleModal2").modal("hide");
+      }).catch((err) => {
+        console.log(err)
+        // window.$("#exampleModal2").modal("hide");
+      });
+    }
+  }
+
+
+  const handleDeliverables = (e) => {
+    const file = e.target.files[0];
+    const formData = new FormData();
+    formData.append("file", file);
+    const fileName = e.target.files[0].name;
+    axios.post(`${process.env.REACT_APP_BASE_URL}/api/upload_attachment`, formData)
+      .then((res) => {
+        setFile(oldArr => [...oldArr, fileName]);
+        setDeliverables(oldArr => [...oldArr, res.data]);
+        alert("your document has has been uploaded");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  const handleRemove = (id, index) => {
+    let resourceType = "";
+    if (deliverables[index].secure_url.search("png") || deliverables[index].secure_url.includes("jpg") || deliverables[index].secure_url.includes("jpeg")) {
+      resourceType = "image";
+    } else if (deliverables[index].secure_url.includes("mp3") || deliverables[index].secure_url.includes("mp4") || deliverables[index].secure_url.includes("aac") || deliverables[index].secure_url.includes("wav")) {
+      resourceType = "video";
+    } else {
+      resourceType = "raw";
+    }
+    console.log(resourceType);
+    console.log(deliverables);
+    const filter = deliverables.filter((item) => { return item.public_id != id });
+    deleteAttachment(id, resourceType).then((res) => {
+      console.log(res);
+    }).catch((err) => console.log(err));
+    setDeliverables(filter);
+  }
+
+
+
+  console.log("frd", chatroom)
   return (
     // contains both i button box and message box
     <Box display={"flex"} flexDir="row" w="65%">
@@ -272,7 +373,7 @@ const IndividualMessageBox = ({ socket, id }) => {
             alignItems={"center"}
             ml="auto"
           >
-            {response?.status == "completed"
+            {chatroom?.paymentStatus == true && chatroom.deliverables && response?.status == "exploring "
               ?
               <Button
                 backgroundColor={"#F6540E"}
@@ -280,131 +381,206 @@ const IndividualMessageBox = ({ socket, id }) => {
                 pt={"1.75rem"}
                 pb={"1.75rem"}
                 borderRadius={"2rem"}
-                disabled
-              >Job is completed</Button>
+                onClick={handleMarkJobAsCompleted}
+                disabled={response?.status == "completed"}
+              >Mark job as Completed</Button>
               :
-              <>
-                {response?.status == "exploring"
-                  ?
-                  <>
-                    {/* <Modal isOpen={isOpen} onClose={onClose}>
-                      <ModalOverlay />
-                      <ModalContent mt="auto" mb="auto" height="30vh">
-                        <ModalCloseButton />
-                        <ModalBody textAlign="center" pt="25%">
-                          <Text fontSize="2rem">Modal</Text>
-                        </ModalBody>
+              chatroom?.paymentStatus == true && chatroom.deliverables && response?.status == "completed" ?
+                <Button
+                  backgroundColor={"#F6540E"}
+                  color={"White"}
+                  pt={"1.75rem"}
+                  pb={"1.75rem"}
+                  borderRadius={"2rem"}
+                  disabled
+                >Job is Completed</Button>
+                :
+                <>
+                  {response?.status == "exploring" && chatroom.jobAccepted !== "accepted"
+                    ?
+                    <>
+                      <Button
+                        backgroundColor={"#F6540E"}
+                        color={"White"}
+                        pt={"1.75rem"}
+                        pb={"1.75rem"}
+                        borderRadius={"2rem"}
+                        onClick={handleAcceptJob}
+                      // disabled={response?.status == "exploring"}
+                      >Accept Job</Button>
+                      <Button
+                        backgroundColor={"#F6540E"}
+                        color={"White"}
+                        pt={"1.75rem"}
+                        pb={"1.75rem"}
+                        borderRadius={"2rem"}
+                        onClick={handleDenyJob}
+                      >Deny Job</Button>
+                    </>
+                    :
+                    response?.status == "exploring" && chatroom.jobAccepted == "accepted" && chatroom.paymentStatus == false && !chatroom.proposalDetails ?
+                      <>
+                        <Button
+                          backgroundColor={"#F6540E"}
+                          color={"White"}
+                          pt={"1.75rem"}
+                          pb={"1.75rem"}
+                          borderRadius={"2rem"}
+                          onClick={() => handleSizeClick(size)}
+                          key={size}
+                        // disabled={chatroom?.paymentStatus== false}
+                        >Send Proposal
+                        </Button>
 
-                        <ModalFooter>
-                          <Button
-                            bg="rgba(246, 84, 14, 1)"
-                            color="#fff"
-                            mr="auto"
-                            ml="auto"
-                            px="10"
-                            onClick={onClose}>
-                            OK
-                          </Button>
+                        <Button
+                          backgroundColor={"#F6540E"}
+                          color={"White"}
+                          pt={"1.75rem"}
+                          pb={"1.75rem"}
+                          borderRadius={"2rem"}
+                          onClick={handleDenyJob}
+                        >Deny Job</Button>
 
-                        </ModalFooter>
-                      </ModalContent>
-                    </Modal> */}
-                    <Button
-                      backgroundColor={"#F6540E"}
-                      color={"White"}
-                      pt={"1.75rem"}
-                      pb={"1.75rem"}
-                      borderRadius={"2rem"}
-                      onClick={() => handleSizeClick(size)}
-                      key={size}
-                    >Send Proposal
-                    </Button>
-                    <Modal isOpen={isOpen} size={size} onClose={onClose}>
-                      <ModalOverlay />
-                      <ModalContent mt="auto" mb="auto">
-                        <ModalHeader>Proposal</ModalHeader>
-                        <ModalCloseButton />
-                        <ModalBody >
-                          {/* <label className="mt-3">Proposal Details</label> */}
-                          {/* <textarea style={{ resize: 'none' }} rows="3" className="form-control" /> */}
-                          {/* <Textarea className="proposal-modal-input" size='sm' style={{ height: '10px' }} onChange={(e) => setProposal(e.target.value)} placeholder='Proposal Details' /> */}
+                        <Modal style={{ width: "80vw" }} isOpen={isProposalOpen} size={sizes} onClose={onProposalClose}>
+                          <ModalOverlay />
+                          <ModalContent mt="auto" mb="auto">
+                            <ModalHeader>Proposal</ModalHeader>
+                            <ModalCloseButton />
+                            <ModalBody >
 
-                          {/* <label className="mt-3" >Documentation (optional)</label> */}
-                          {/* <textarea style={{ resize: 'none' }} rows="3" className="form-control" onChange={(e) => setDocumentation(e.target.value)} /> */}
-                          <Textarea className="proposal-modal-input" onChange={(e) => setDocumentation(e.target.value)} placeholder='Documentation (optional)' />
+                              <Textarea className="proposal-modal-input" onChange={(e) => setDocumentation(e.target.value)} placeholder='Documentation (optional)' />
 
-                          {/* <label className="mt-3">Deliverables</label> */}
-                          {/* <textarea style={{ resize: 'none' }} rows="3" className="form-control" onChange={(e) => setDeliverableFiles(e.target.value)} /> */}
-                          <Textarea className="proposal-modal-input" onChange={(e) => setDeliverableFiles(e.target.value)} placeholder='Deliverables' />
-                          <label className="mt-3" >Delivery Date</label>
-                          <Input
-                            placeholder="Select Date and Time"
-                            size="md"
-                            type="datetime-local"
-                            onChange={(e) => setDelievery(e.target.value)}
-                          />
-                          {/* <label className="mt-3">Final proposal cost</label> */}
-                          {/* <input className="form-control"  /> */}
-                          <Input className="proposal-modal-input" variant='outline' placeholder='Final Proposal Cost' onChange={(e) => setCost(e.target.value)} />
-                        </ModalBody>
 
-                        <ModalFooter>
-                          {/* <Button colorScheme='blue' mr={3} onClick={onClose}>
-                            Close
-                          </Button> */}
+                              <Textarea className="proposal-modal-input" onChange={(e) => setProposal(e.target.value)} placeholder='Deliverables' />
+                              <label className="mt-3" >Delivery Date</label>
+                              <Input
+                                placeholder="Select Date and Time"
+                                size="md"
+                                type="datetime-local"
+                                onChange={(e) => setDelievery(e.target.value)}
+                              />
+
+                              <Input className="proposal-modal-input" variant='outline' placeholder='Final Proposal Cost' onChange={(e) => setCost(e.target.value)} />
+                            </ModalBody>
+
+                            <ModalFooter>
+
+                              <Button
+                                backgroundColor={"#F6540E"}
+                                color={"White"}
+                                pt={"1rem"}
+                                pb={"1rem"}
+                                mx={"auto"}
+                                borderRadius={"2rem"}
+                                onClick={handleSubmit}
+
+                              >Send Proposal
+                              </Button>
+
+                            </ModalFooter>
+                          </ModalContent>
+                        </Modal>
+                      </>
+                      :
+                      response?.status == "exploring" && chatroom.jobAccepted == "accepted" && chatroom.paymentStatus == false && chatroom.proposalDetails ?
+                        <>
+                     <Button
+                          backgroundColor={"#F6540E"}
+                          color={"White"}
+                          pt={"1.75rem"}
+                          pb={"1.75rem"}
+                          borderRadius={"2rem"}
+                          key={size}
+                          disabled
+                        >Send Proposal
+                        </Button>
+
                           <Button
                             backgroundColor={"#F6540E"}
                             color={"White"}
-                            pt={"1rem"}
-                            pb={"1rem"}
-                            mx={"auto"}
+                            pt={"1.75rem"}
+                            pb={"1.75rem"}
                             borderRadius={"2rem"}
-                          >Send Proposal
-                          </Button>
+                            onClick={handleDenyJob}
+                          >Deny Job</Button>
+                        </>
+                        :
+                        response?.status == "exploring" && chatroom.jobAccepted == "accepted" && chatroom.paymentStatus == true && !chatroom.deliverables  ?
+                          <>
+                            <Button
+                              backgroundColor={"#F6540E"}
+                              color={"White"}
+                              pt={"1rem"}
+                              pb={"1rem"}
+                              mx={"auto"}
+                              borderRadius={"2rem"}
+                              onClick={handleSizeClick1}
 
-                        </ModalFooter>
-                      </ModalContent>
-                    </Modal>
-                    <Button
-                      backgroundColor={"#F6540E"}
-                      color={"White"}
-                      pt={"1.75rem"}
-                      pb={"1.75rem"}
-                      borderRadius={"2rem"}
-                      onClick={handleDenyJob}
-                      disabled
-                    >Deny Job</Button>
-                  </>
-                  :
-                  <>
-                    <Button
-                      backgroundColor={"#F6540E"}
-                      color={"White"}
-                      pt={"1.75rem"}
-                      pb={"1.75rem"}
-                      borderRadius={"2rem"}
-                      onClick={handleAcceptJob}
-                      disabled={response?.status == "exploring"}
-                    >Accept Job</Button>
-                    {/* {sizes.map((size) => (
-                      
-                    ))} */}
+                            >Send Deliverables
+                            </Button>
+                            <Modal style={{ width: "80vw" }} isOpen={isDeliverablesOpen} size={sizes1} onClose={onDeliverablesClose}>
+                              <ModalOverlay />
+                              <ModalContent mt="auto" mb="auto">
+                                <ModalHeader>Deliverables</ModalHeader>
+                                <ModalCloseButton />
+                                <ModalBody >
+                                  <label for="document" className="btn btn-outline-primary w-100">Choose files</label>
+                                  <input multiple className="form-control" style={{ display: 'none' }} type="file" name="document" id="document" onChange={handleDeliverables} />
+
+                                  {chatroom !== undefined
+                                    ?
+                                    deliverables.map((attach, index) => (
+                                      attach.secure_url.search("png") !== -1 || attach.secure_url.search("jpg") !== -1 || attach.secure_url.search("jpeg") !== -1
+                                        ?
+                                        <AvatarBadge key={index} style={{ cursor: 'pointer' }} onClick={() => handleRemove(attach.public_id, index)}>
+                                          <Avatar shape="square" className="mb-3" src={attach.secure_url} size={60} style={{ marginLeft: '1rem' }} />
+                                        </AvatarBadge>
+                                        :
+                                        attach.secure_url.search("mp3") !== -1 || attach.secure_url.search("mp4") !== -1 || attach.secure_url.search("wav") !== -1
+                                          || attach.secure_url.search("aac") !== -1
+                                          ?
+                                          <ReactAudioPlayer key={index} src={attach.secure_url} controls controlsList="nodownload" style={{ width: '90%', height: "25px" }} />
+                                          :
+                                          <p>{attach.secure_url}</p>
+                                    ))
+                                    :""
+
+                                  }
+                                </ModalBody>
+
+                                <ModalFooter>
+
+                                  <Button
+                                    backgroundColor={"#F6540E"}
+                                    color={"White"}
+                                    pt={"1rem"}
+                                    pb={"1rem"}
+                                    mx={"auto"}
+                                    borderRadius={"2rem"}
+                                    onClick={handleSendDeliverables}
+
+                                  >Send Deliverables
+                                  </Button>
+
+                                </ModalFooter>
+                              </ModalContent>
+                            </Modal>
+                          </>
+                          : 
+                          <Button
+                          backgroundColor={"#F6540E"}
+                          color={"White"}
+                          pt={"1.75rem"}
+                          pb={"1.75rem"}
+                          borderRadius={"2rem"}
+                          onClick={handleMarkJobAsCompleted}
+                          disabled={response?.status == "completed"}
+                        >Mark job as Completed</Button>
+                  }
 
 
 
-
-
-                    <Button
-                      backgroundColor={"#F6540E"}
-                      color={"White"}
-                      pt={"1.75rem"}
-                      pb={"1.75rem"}
-                      borderRadius={"2rem"}
-                      onClick={handleDenyJob}
-                    >Deny Job</Button>
-                  </>
-                }
-                {/* <Button
+                  {/* <Button
                   backgroundColor={"#F6540E"}
                   color={"White"}
                   pt={"1.75rem"}
@@ -412,7 +588,7 @@ const IndividualMessageBox = ({ socket, id }) => {
                   borderRadius={"2rem"}
                   onClick={handleMarkJobAsCompleted}
                 >Mark job as completed</Button> */}
-              </>}
+                </>}
             {/* on click , should show the message details box */}
             <InfoIcon
               style={{ fontSize: "5px", cursor: "pointer" }}
@@ -443,40 +619,40 @@ const IndividualMessageBox = ({ socket, id }) => {
             if (item.user != user.userId) {
               return (
                 <Box display={"flex"} flexDir="row" gap="1rem" >
-              <Avatar size={"lg"} src={item.avatar}></Avatar>
-              <Box display={"flex"} flexDir="column" gap="1rem" w="auto">
-                <Box
-                  display={"flex"}
-                  flexDir="row"
-                  gap="1rem"
-                  alignItems={"center"}
-                >
-                  <IncomingMessage data={item} />
-                  <Text
-                    fontFamily={"Gilroy-SemiBold"}
-                    fontSize="1rem"
-                    color="#ACADAF"
-                    ml="auto"
-                  >
-                    30min
-                  </Text>
+                  <Avatar size={"lg"} src={item.avatar}></Avatar>
+                  <Box display={"flex"} flexDir="column" gap="1rem" w="auto">
+                    <Box
+                      display={"flex"}
+                      flexDir="row"
+                      gap="1rem"
+                      alignItems={"center"}
+                    >
+                      <IncomingMessage data={item} />
+                      <Text
+                        fontFamily={"Gilroy-SemiBold"}
+                        fontSize="1rem"
+                        color="#ACADAF"
+                        ml="auto"
+                      >
+                        30min
+                      </Text>
+                    </Box>
+                    {/* <IncomingImageMessage /> */}
+                  </Box>
                 </Box>
-                {/* <IncomingImageMessage /> */}
-              </Box>
-            </Box>
               )
             }
             else {
               return (
                 <Box
-              ml="auto"
-              display={"flex"}
-              flexDir="column"
-              gap="1rem"
-              alignItems={"flex-end"}
-            >
-              <OutgoingTextMessage data={item} />
-            </Box>
+                  ml="auto"
+                  display={"flex"}
+                  flexDir="column"
+                  gap="1rem"
+                  alignItems={"flex-end"}
+                >
+                  <OutgoingTextMessage data={item} />
+                </Box>
               )
             }
           }) : ""}

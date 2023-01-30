@@ -255,7 +255,7 @@ const NavBar = () => {
                     cursor: "pointer",
                   }}
                   onClick={() =>
-                    user.isMusician === "Musician"
+                    user?.isMusician === "Musician"
                       ? navigate("/messages")
                       : navigate("/creator-messages")
                   }

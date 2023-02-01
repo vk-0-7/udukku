@@ -352,7 +352,57 @@ const CreatorIndividualMessageBox = ({ socket, id }) => {
            >Select this musician</Button>
 :""
             } */}
-            {chatroom?.paymentStatus == true && chatroom.deliverables && response?.status == "exploring "
+
+            {response && response[0]?.status == "active"
+                    ?
+
+                    <Button
+                      backgroundColor={"#F6540E"}
+                      color={"White"}
+                      pt={"1.75rem"}
+                      pb={"1.75rem"}
+                      borderRadius={"2rem"}
+                      onClick={handleChoose}
+                      // disabled={response && response[0]?.status == "exploring"}
+                    >Select this musician</Button>
+                  :
+                  chatroom?.jobAccepted == "accepted" && chatroom?.proposalDetails && chatroom?.paymentStatus == false ?
+                  <Button
+                  backgroundColor={"#F6540E"}
+                  color={"White"}
+                  pt={"1.75rem"}
+                  pb={"1.75rem"}
+                  borderRadius={"2rem"}
+                  onClick={openPayModal}
+                disabled={chatroom?.jobAccepted !== "accepted" || !chatroom?.proposalDetails}
+                >Fund this job</Button>
+
+                  :
+                  chatroom?.paymentStatus == true && chatroom.deliverables && response[0]?.status !== "completed" ?
+                  <Button
+                  backgroundColor={"#F6540E"}
+                  color={"White"}
+                  pt={"1.75rem"}
+                  pb={"1.75rem"}
+                  borderRadius={"2rem"}
+                  onClick={handleMarkJobAsCompleted}
+                disabled={response?.status == "completed" || !chatroom.deliverables}
+                >Mark job as Completed</Button>
+                :
+                chatroom?.paymentStatus == true && chatroom.deliverables && response[0]?.status == "completed" ?
+                <Button
+                backgroundColor={"#F6540E"}
+                color={"White"}
+                pt={"1.75rem"}
+                pb={"1.75rem"}
+                borderRadius={"2rem"}
+                disabled
+              >Job is Completed</Button>
+              :""
+                  }
+
+
+            {/* {chatroom?.paymentStatus == true && chatroom.deliverables && response?.status == "exploring "
               ?
               <Button
                 backgroundColor={"#F6540E"}
@@ -425,7 +475,7 @@ const CreatorIndividualMessageBox = ({ socket, id }) => {
 
                   }
 
-                </>}
+                </>} */}
             {/* on click , should show the message details box */}
             <InfoIcon
               style={{ fontSize: "5px", cursor: "pointer" }}

@@ -19,6 +19,8 @@ const ShowCaseYourSkills = () => {
         fontSize={{ base: "5rem", lg: "2.29vw" }}
         fontFamily={"Gilroy-Bold"}
         textAlign="center"
+        className="hero-font-class1"
+
       >
         Want To Showcase Your Skills?
       </Text>
@@ -56,6 +58,8 @@ const ShowCaseYourSkills = () => {
           <Text
             fontSize={{ base: "3.3rem", lg: "1.45vw" }}
             fontFamily={"Gilroy-Bold"}
+            className="hero-font-class1"
+
           >
             Create Your Profile
           </Text>
@@ -63,6 +67,8 @@ const ShowCaseYourSkills = () => {
             textAlign={"center"}
             fontFamily={"Gilroy-Medium"}
             fontSize={{ base: "2rem", lg: ".833vw" }}
+            className="hero-font-class2"
+
           >
             Sign up and create an Udukku Artist profile by adding your bio,
             description, genres, service rates, gear, and conditions.
@@ -93,6 +99,8 @@ const ShowCaseYourSkills = () => {
           <Text
             fontSize={{ base: "3.3rem", lg: "1.45vw" }}
             fontFamily={"Gilroy-Bold"}
+            className="hero-font-class1"
+
           >
             Browse & Apply
           </Text>
@@ -100,6 +108,8 @@ const ShowCaseYourSkills = () => {
             textAlign={"center"}
             fontFamily={"Gilroy-Medium"}
             fontSize={{ base: "2rem", lg: ".833vw" }}
+            className="hero-font-class2"
+
           >
             Apply to posted jobs by filtering your category, genre and pay, and
             begin working together with your client on mutually agreed terms
@@ -130,6 +140,8 @@ const ShowCaseYourSkills = () => {
           <Text
             fontSize={{ base: "3.3rem", lg: "1.45vw" }}
             fontFamily={"Gilroy-Bold"}
+            className="hero-font-class1"
+
           >
             Get Paid Securely
           </Text>
@@ -137,6 +149,8 @@ const ShowCaseYourSkills = () => {
             textAlign={"center"}
             fontFamily={"Gilroy-Medium"}
             fontSize={{ base: "2rem", lg: ".833vw" }}
+            className="hero-font-class2"
+
           >
             Complete the assigned project and receive your payment as soon as
             the work is approved and marked complete by the client

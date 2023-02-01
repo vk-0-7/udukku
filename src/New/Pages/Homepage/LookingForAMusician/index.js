@@ -103,6 +103,7 @@ const LookingForAMusician = () => {
             textAlign={"center"}
             fontFamily={"Gilroy-Medium"}
             fontSize={{ base: "2rem", lg: ".833vw" }}
+            className="hero-font-class2"
           >
             Browse through a listing of providers, chat with him, and choose the
             one you would like to work with.
@@ -133,6 +134,7 @@ const LookingForAMusician = () => {
           <Text
             fontSize={{ base: "3.3rem", lg: "1.45vw" }}
             fontFamily={"Gilroy-Bold"}
+            className="hero-font-class1"
           >
             Pay Securely
           </Text>
@@ -140,6 +142,8 @@ const LookingForAMusician = () => {
             textAlign={"center"}
             fontFamily={"Gilroy-Medium"}
             fontSize={{ base: "2rem", lg: ".833vw" }}
+            className="hero-font-class2"
+
           >
             Pay securely with Udukku and release funds to the musician only when
             the job is done and you are 100% satisfied with the result

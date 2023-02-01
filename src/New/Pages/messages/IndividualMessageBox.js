@@ -374,56 +374,180 @@ const IndividualMessageBox = ({ socket, id }) => {
             alignItems={"center"}
             ml="auto"
           >
-            {/* {response?.status === "active " ?
-              <>
-                <Button
-                  backgroundColor={"#F6540E"}
-                  color={"White"}
-                  pt={"1.75rem"}
-                  pb={"1.75rem"}
-                  borderRadius={"2rem"}
-                  onClick={() => handleSizeClick(size)}
-                  key={size}
-                  disabled
-                >Send Proposal
-                </Button>
+            {response?.status === "exploring " ?
+               <>
+               <Button
+                 backgroundColor={"#F6540E"}
+                 color={"White"}
+                 pt={"1.75rem"}
+                 pb={"1.75rem"}
+                 borderRadius={"2rem"}
+                 onClick={handleAcceptJob}
+               disabled={response?.status == "active"}
+               >Accept Job</Button>
+               <Button
+                 backgroundColor={"#F6540E"}
+                 color={"White"}
+                 pt={"1.75rem"}
+                 pb={"1.75rem"}
+                 borderRadius={"2rem"}
+                 onClick={handleDenyJob}
+               disabled={response?.status == "active"}
+               >Deny Job</Button>
+             </>
+             :
+               response?.status == "exploring" && chatroom.jobAccepted == "accepted" && !chatroom.proposalDetails ?
+               <>
+                 <Button
+                   backgroundColor={"#F6540E"}
+                   color={"White"}
+                   pt={"1.75rem"}
+                   pb={"1.75rem"}
+                   borderRadius={"2rem"}
+                   onClick={() => handleSizeClick(size)}
+                   key={size}
+                 disabled={chatroom?.jobAccepted !== "accepted" || chatroom.proposalDetails }
+                 >Send Proposal
+                 </Button>
 
-                <Button
-                  backgroundColor={"#F6540E"}
-                  color={"White"}
-                  pt={"1.75rem"}
-                  pb={"1.75rem"}
-                  borderRadius={"2rem"}
-                  onClick={handleDenyJob}
-                  disabled
-                >Deny Job</Button></>
+                 <Button
+                   backgroundColor={"#F6540E"}
+                   color={"White"}
+                   pt={"1.75rem"}
+                   pb={"1.75rem"}
+                   borderRadius={"2rem"}
+                   onClick={handleDenyJob}
+                 >Deny Job</Button>
+
+                 <Modal style={{ width: "80vw" }} isOpen={isProposalOpen} size={sizes} onClose={onProposalClose}>
+                   <ModalOverlay />
+                   <ModalContent mt="auto" mb="auto">
+                     <ModalHeader>Proposal</ModalHeader>
+                     <ModalCloseButton />
+                     <ModalBody >
+                       <Textarea className="proposal-modal-input" onChange={(e) => setProposal(e.target.value)} placeholder='Deliverables' />
+                       <Textarea className="proposal-modal-input" onChange={(e) => setDocumentation(e.target.value)} placeholder='Terms  of Services' />
+                       <label className="mt-3" >Delivery Date</label>
+                       <Input
+                         placeholder="Select Date and Time"
+                         size="md"
+                         type="datetime-local"
+                         onChange={(e) => setDelievery(e.target.value)}
+                       />
+
+                       <Input className="proposal-modal-input" variant='outline' placeholder='Final Proposal Cost' onChange={(e) => setCost(e.target.value)} />
+                     </ModalBody>
+
+                     <ModalFooter>
+
+                       <Button
+                         backgroundColor={"#F6540E"}
+                         color={"White"}
+                         pt={"1rem"}
+                         pb={"1rem"}
+                         mx={"auto"}
+                         borderRadius={"2rem"}
+                         onClick={handleSubmit}
+
+                       >Send Proposal
+                       </Button>
+
+                     </ModalFooter>
+                   </ModalContent>
+                 </Modal>
+               </>
+               :
+               response?.status == "exploring" && chatroom?.jobAccepted == "accepted" && chatroom?.paymentStatus == true && !chatroom?.deliverables ?
+               <>
+               <Button
+                 backgroundColor={"#F6540E"}
+                 color={"White"}
+                 pt={"1rem"}
+                 pb={"1rem"}
+                 mx={"auto"}
+                 borderRadius={"2rem"}
+                 onClick={handleSizeClick1}
+                 disabled={ chatroom?.paymentStatus == false || chatroom?.deliverables }
+
+               >Send Deliverables
+               </Button>
+               <Modal style={{ width: "80vw" }} isOpen={isDeliverablesOpen} size={sizes1} onClose={onDeliverablesClose}>
+                 <ModalOverlay />
+                 <ModalContent mt="auto" mb="auto">
+                   <ModalHeader>Deliverables</ModalHeader>
+                   <ModalCloseButton />
+                   <ModalBody >
+                     <label for="document" className="btn btn-outline-primary w-100">Choose files</label>
+                     <input multiple className="form-control" style={{ display: 'none' }} type="file" name="document" id="document" onChange={handleDeliverables} />
+
+                     {chatroom !== undefined
+                       ?
+                       deliverables.map((attach, index) => (
+                         attach.secure_url.search("png") !== -1 || attach.secure_url.search("jpg") !== -1 || attach.secure_url.search("jpeg") !== -1
+                           ?
+                           <AvatarBadge key={index} style={{ cursor: 'pointer' }} onClick={() => handleRemove(attach.public_id, index)}>
+                             <Avatar shape="square" className="mb-3" src={attach.secure_url} size={60} style={{ marginLeft: '1rem' }} />
+                           </AvatarBadge>
+                           :
+                           attach.secure_url.search("mp3") !== -1 || attach.secure_url.search("mp4") !== -1 || attach.secure_url.search("wav") !== -1
+                             || attach.secure_url.search("aac") !== -1
+                             ?
+                             <ReactAudioPlayer key={index} src={attach.secure_url} controls controlsList="nodownload" style={{ width: '90%', height: "25px" }} />
+                             :
+                             <p>{attach.secure_url}</p>
+                       ))
+                       : ""
+
+                     }
+                   </ModalBody>
+
+                   <ModalFooter>
+
+                     <Button
+                       backgroundColor={"#F6540E"}
+                       color={"White"}
+                       pt={"1rem"}
+                       pb={"1rem"}
+                       mx={"auto"}
+                       borderRadius={"2rem"}
+                       onClick={handleSendDeliverables}
+
+                     >Send Deliverables
+                     </Button>
+
+                   </ModalFooter>
+                 </ModalContent>
+               </Modal>
+             </>
+             :
+             response?.status == "exploring" && chatroom?.jobAccepted == "accepted" && chatroom?.paymentStatus == true && chatroom?.deliverables  ?
+             
+             <Button
+                backgroundColor={"#F6540E"}
+                color={"White"}
+                pt={"1.75rem"}
+                pb={"1.75rem"}
+                borderRadius={"2rem"}
+                onClick={handleMarkJobAsCompleted}
+                disabled={response?.status == "completed"}
+              >Mark job as Completed</Button>
               :
-              response?.status === "exploring " ?
-                <>
-                  <Button
-                    backgroundColor={"#F6540E"}
-                    color={"White"}
-                    pt={"1.75rem"}
-                    pb={"1.75rem"}
-                    borderRadius={"2rem"}
-                    onClick={handleAcceptJob}
-                  // disabled={response?.status == "exploring"}
-                  >Accept Job</Button>
-                  <Button
-                    backgroundColor={"#F6540E"}
-                    color={"White"}
-                    pt={"1.75rem"}
-                    pb={"1.75rem"}
-                    borderRadius={"2rem"}
-                    onClick={handleDenyJob}
-                  >Deny Job</Button>
-                </>
-                : ""
-
-            } */}
+              response?.status == "completed" && chatroom?.jobAccepted == "accepted" && chatroom?.paymentStatus == true && chatroom?.deliverables 
+              ?
+              <Button
+              backgroundColor={"#F6540E"}
+              color={"White"}
+              pt={"1.75rem"}
+              pb={"1.75rem"}
+              borderRadius={"2rem"}
+              disabled
+            >Job is Completed</Button>
+            :
+            ""
+            }
 
 
-            {chatroom?.paymentStatus == true && chatroom.deliverables && response?.status == "exploring "
+            {/* {chatroom?.paymentStatus == true && chatroom.deliverables && response?.status == "exploring "
               ?
               <Button
                 backgroundColor={"#F6540E"}
@@ -686,7 +810,7 @@ const IndividualMessageBox = ({ socket, id }) => {
                           </>
                   }
 
-                </>}
+                </>} */}
             {/* on click , should show the message details box */}
             <InfoIcon
               style={{ fontSize: "5px", cursor: "pointer" }}

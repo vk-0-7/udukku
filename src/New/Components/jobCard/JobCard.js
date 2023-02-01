@@ -12,6 +12,7 @@ import { ReactComponent as AttachIcon } from "../../../Assets/Icons/attach-circl
 const JobCard = (props) => {
   const category = props.category;
   const navigate = useNavigate();
+  console.log("props", props)
   return (
     <Box
       w={{ base: "35rem", lg: "23.75vw" }}
@@ -141,7 +142,7 @@ const JobCard = (props) => {
               fill: "rgba(8, 32, 50, .5)",
             }}
           />
-          Fixed Price
+         {props?.budget[0] == props?.budget[1] ? "fixed Price" : "Negotiable"}
         </Box>
         <Box
           display={"inline-flex"}
@@ -181,12 +182,12 @@ const JobCard = (props) => {
               fill: "rgba(8, 32, 50, .5)",
             }}
           />
-          2 references
+          {props?.references ? props?.references : "No References"}
         </Box>
       </Box>
       {/* price */}
       <Text fontSize={{base:"2.3rem",lg:"1.45vw"}} fontFamily={"Gilroy-Bold"} py="1.5rem">
-        ₹{props.budget[0]} -₹{props.budget[1]}
+        ₹{props?.budget[0] == props?.budget[1] ? props?.budget[0]  : `${props?.budget[0]} - ${props?.budget[1]}`}
       </Text>
       {/* button */}
       <Box flexGrow={1}></Box>
@@ -202,10 +203,10 @@ const JobCard = (props) => {
           alignItems={"center"}
           transition=".5s"
           className="move-to-right"
-          onClick={() => navigate("/job-detail-page")}
+          onClick={() => navigate(`/job-detail-page/${props?.id}`)}
         >
           <Text fontFamily={"Gilroy-SemiBold"} fontSize={{base:"1.5rem",lg:".833vw"}}>
-            See Details
+            See Details 
           </Text>
 
           <Icon as={HiOutlineChevronRight} className="for-svg" h="1vh" />

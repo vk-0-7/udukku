@@ -46,14 +46,15 @@ const Hero = () => {
         px={{base:"2rem"}}
       >
         {/* text section on left */}
-        <Box display={"flex"} flexDir="column" gap={{base:"2rem",xl:"30px"}}  justifyContent={{base:"center"}} >
+        <Box className="hero-box" display={"flex"} flexDir="column" gap={{base:"2rem",xl:"30px"}}  justifyContent={{base:"center"}} >
           <Text
             as="h1"
-            fontSize={{base:"6rem", lg:"3.75vw"}}
+            fontSize={{base:"6rem", lg:"3.75vw", sm:"3rem"}}
             color="#fff"
             lineHeight={{ base: "1.2em" }}
             fontFamily={"Gilroy-Bold"}
             w="100%"
+            className="hero-font-class1"
           >
             Join India's leading Music Marketplace
           </Text>
@@ -62,11 +63,12 @@ const Hero = () => {
             color="#fff"
             fontSize={{base:"3rem",lg:"1.041vw"}}
             fontFamily={"Gilroy-Medium"}
+            className="hero-font-class2"
           >
             Get discovered for your music skills and explore India’s unique
             musical talents at Udukku
           </Text>
-          <Box display={"flex"} gap={{base:"3rem",lg:"50px"}} mt={{base:"1rem",lg:"40px"}}>
+          <Box className="hero-buttons" display={"flex"} gap={{base:"3rem",lg:"50px"}} mt={{base:"1rem",lg:"40px"}}>
             <Button
               boxSizing="border-box"
               bg="#f6540e"

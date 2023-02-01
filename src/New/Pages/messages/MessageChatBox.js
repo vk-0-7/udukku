@@ -7,19 +7,18 @@ import { getChatroomsById } from "../../../Api/Chatroom/chatroom";
 import profileIcon from "../../../Assets/Images/dummyProfile/Ellipse 8.png";
 const MessageChatBox = ({ data }) => {
   const [chatrooms, setChatrooms] = useState([]);
-  const {user} = useSelector((state)=>({...state}));
-console.log(data)
+  const { user } = useSelector((state) => ({ ...state }));
+  console.log(data)
   const dispatch = useDispatch();
-  useEffect(()=>{
-      getChatroomsById(localStorage.getItem("userId")).then((res)=>{
-        console.log(res.data);
-        setChatrooms(res.data);
-      }).catch((err)=>{
-        console.log(err);
-      })
-  },[user]);
+  useEffect(() => {
+    getChatroomsById(localStorage.getItem("userId")).then((res) => {
+      console.log(res.data);
+      setChatrooms(res.data);
+    }).catch((err) => {
+      console.log(err);
+    })
+  }, [user]);
   console.log(chatrooms)
-  console.log(data.JobDetails[0].jobPostedBy._id)
   console.log(data.jobId)
   const navigate = useNavigate();
   return (
@@ -36,32 +35,34 @@ console.log(data)
         cursor: "pointer"
       }}
       onClick={() => {
-        chatrooms.map((item,index)=> {
-          if(item.userId.includes(data.JobDetails[0].jobPostedBy._id) & item.jobId === data.jobId){
+        chatrooms.map((item, index) => {
+          if (item.userId.includes(data.JobDetails[0]?.jobPostedBy?._id) & item.jobId === data.jobId) {
             navigate(`/contactMessage/${chatrooms[index]._id}`);
-        document.location.reload(true);
+            document.location.reload(true);
           }
         })
       }}
-    >
-      <Avatar size={"xl"} src={data.JobDetails[0]?.jobPostedBy.avatar}>
-        {data.status === "active" ?
-         <AvatarBadge
-         boxSize="0.6em"
-         bg="#38C222"
-         borderColor={"#38C222"}
-         transform="translate(-23%, 9%)"
-       />
-       :
-       ""
-        
-      }
-       
-      </Avatar>
+    > 
+    { data ? 
+    <Avatar size={"xl"} src={data.JobDetails[0]?.jobPostedBy?.avatar}>
+    {data.status === "active" ?
+      <AvatarBadge
+        boxSize="0.6em"
+        bg="#38C222"
+        borderColor={"#38C222"}
+        transform="translate(-23%, 9%)"
+      />
+      :
+      ""
+    }
+
+  </Avatar>
+  :""}
+      
       <Box display={"flex"} flexDir="column" p="7px" w="100%" gap="5px">
-        <Box  display={"flex"} flexDir={"row"} w="100%">
+        <Box display={"flex"} flexDir={"row"} w="100%">
           <Text fontFamily={"Gilroy-Bold"} fontSize="1.3rem">
-            {data.JobDetails[0]?.jobPostedBy.name}
+            {data.JobDetails[0]?.jobPostedBy?.name}
           </Text>
           <Text
             fontFamily={"Gilroy-SemiBold"}
@@ -72,9 +73,9 @@ console.log(data)
             30min
           </Text>
         </Box>
-        <Text   fontFamily={"Gilroy-SemiBold"}
-            fontSize="1rem"
-            color="#ACADAF">{data.description}</Text>
+        <Text fontFamily={"Gilroy-SemiBold"}
+          fontSize="1rem"
+          color="#ACADAF">{data.description}</Text>
       </Box>
     </Box>
   );

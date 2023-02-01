@@ -30,6 +30,7 @@ const TypeMessageBox = ({ message, setMessage, sendMessage, sendAttachment }) =>
         border="none"
         w="80%"
         onChange={(e) => setMessage(e.target.value)}
+        value={message}
       />
       <Box
         ml="auto"

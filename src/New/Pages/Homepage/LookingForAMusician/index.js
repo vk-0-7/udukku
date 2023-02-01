@@ -18,6 +18,7 @@ const LookingForAMusician = () => {
         fontSize={{ base: "5.4rem", lg: "2.29vw" }}
         textAlign="center"
         fontFamily={"Gilroy-Bold"}
+        className="hero-font-class1"
       >
         Looking For A Musician?
       </Text>
@@ -55,6 +56,7 @@ const LookingForAMusician = () => {
           <Text
             fontSize={{ base: "3.3rem", lg: "1.45vw" }}
             fontFamily={"Gilroy-Bold"}
+            className="hero-font-class1"
           >
             Post a Job
           </Text>
@@ -62,6 +64,7 @@ const LookingForAMusician = () => {
             textAlign={"center"}
             fontFamily={"Gilroy-Medium"}
             fontSize={{ base: "2rem", lg: ".833vw" }}
+            className="hero-font-class2"
           >
             List your job by entering a title, detailed description, and some
             other information about the work you need completed
@@ -92,6 +95,7 @@ const LookingForAMusician = () => {
           <Text
             fontSize={{ base: "3.3rem", lg: "1.45vw" }}
             fontFamily={"Gilroy-Bold"}
+            className="hero-font-class1"
           >
             Chat & Choose
           </Text>

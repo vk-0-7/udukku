@@ -123,8 +123,7 @@ const IndividualMessageBox = ({ socket, id }) => {
     //get job posted by details
   }, []);
 
-  console.log("jobsd", job);
-  console.log("chatroomsd", chatroom);
+
 
   useEffect(() => {
     getChatroomAttachmentsById(id).then((res) => {
@@ -142,6 +141,8 @@ const IndividualMessageBox = ({ socket, id }) => {
   }, [job]);
 
   console.log("responsed", response)
+  console.log("jobsd", job);
+  console.log("chatroomsd", chatroom);
 
 
   useEffect(() => {
@@ -207,7 +208,7 @@ const IndividualMessageBox = ({ socket, id }) => {
       console.log(res);
       getChatroomsById(id).then((res) => {
         console.log(res);
-        // document.location.reload(true);
+        document.location.reload(true);
       }).catch((err) => { console.log(err) });
     }).catch((err) => { console.log(err) });
   }
@@ -373,6 +374,55 @@ const IndividualMessageBox = ({ socket, id }) => {
             alignItems={"center"}
             ml="auto"
           >
+            {/* {response?.status === "active " ?
+              <>
+                <Button
+                  backgroundColor={"#F6540E"}
+                  color={"White"}
+                  pt={"1.75rem"}
+                  pb={"1.75rem"}
+                  borderRadius={"2rem"}
+                  onClick={() => handleSizeClick(size)}
+                  key={size}
+                  disabled
+                >Send Proposal
+                </Button>
+
+                <Button
+                  backgroundColor={"#F6540E"}
+                  color={"White"}
+                  pt={"1.75rem"}
+                  pb={"1.75rem"}
+                  borderRadius={"2rem"}
+                  onClick={handleDenyJob}
+                  disabled
+                >Deny Job</Button></>
+              :
+              response?.status === "exploring " ?
+                <>
+                  <Button
+                    backgroundColor={"#F6540E"}
+                    color={"White"}
+                    pt={"1.75rem"}
+                    pb={"1.75rem"}
+                    borderRadius={"2rem"}
+                    onClick={handleAcceptJob}
+                  // disabled={response?.status == "exploring"}
+                  >Accept Job</Button>
+                  <Button
+                    backgroundColor={"#F6540E"}
+                    color={"White"}
+                    pt={"1.75rem"}
+                    pb={"1.75rem"}
+                    borderRadius={"2rem"}
+                    onClick={handleDenyJob}
+                  >Deny Job</Button>
+                </>
+                : ""
+
+            } */}
+
+
             {chatroom?.paymentStatus == true && chatroom.deliverables && response?.status == "exploring "
               ?
               <Button
@@ -447,11 +497,8 @@ const IndividualMessageBox = ({ socket, id }) => {
                             <ModalHeader>Proposal</ModalHeader>
                             <ModalCloseButton />
                             <ModalBody >
-
-                              <Textarea className="proposal-modal-input" onChange={(e) => setDocumentation(e.target.value)} placeholder='Documentation (optional)' />
-
-
                               <Textarea className="proposal-modal-input" onChange={(e) => setProposal(e.target.value)} placeholder='Deliverables' />
+                              <Textarea className="proposal-modal-input" onChange={(e) => setDocumentation(e.target.value)} placeholder='Terms  of Services' />
                               <label className="mt-3" >Delivery Date</label>
                               <Input
                                 placeholder="Select Date and Time"
@@ -577,27 +624,68 @@ const IndividualMessageBox = ({ socket, id }) => {
                               disabled
                             >Job is Completed</Button>
                             :
+                            <>
                             <Button
                               backgroundColor={"#F6540E"}
                               color={"White"}
-                              pt={"1.75rem"}
-                              pb={"1.75rem"}
+                              pt={"1rem"}
+                              pb={"1rem"}
+                              mx={"auto"}
                               borderRadius={"2rem"}
-                              onClick={handleMarkJobAsCompleted}
-                              disabled={response?.status == "completed"}
-                            >Mark job as Completed</Button>
+                              onClick={handleSizeClick1}
+
+                            >Send Deliverables
+                            </Button>
+                            <Modal style={{ width: "80vw" }} isOpen={isDeliverablesOpen} size={sizes1} onClose={onDeliverablesClose}>
+                              <ModalOverlay />
+                              <ModalContent mt="auto" mb="auto">
+                                <ModalHeader>Deliverables</ModalHeader>
+                                <ModalCloseButton />
+                                <ModalBody >
+                                  <label for="document" className="btn btn-outline-primary w-100">Choose files</label>
+                                  <input multiple className="form-control" style={{ display: 'none' }} type="file" name="document" id="document" onChange={handleDeliverables} />
+
+                                  {chatroom !== undefined
+                                    ?
+                                    deliverables.map((attach, index) => (
+                                      attach.secure_url.search("png") !== -1 || attach.secure_url.search("jpg") !== -1 || attach.secure_url.search("jpeg") !== -1
+                                        ?
+                                        <AvatarBadge key={index} style={{ cursor: 'pointer' }} onClick={() => handleRemove(attach.public_id, index)}>
+                                          <Avatar shape="square" className="mb-3" src={attach.secure_url} size={60} style={{ marginLeft: '1rem' }} />
+                                        </AvatarBadge>
+                                        :
+                                        attach.secure_url.search("mp3") !== -1 || attach.secure_url.search("mp4") !== -1 || attach.secure_url.search("wav") !== -1
+                                          || attach.secure_url.search("aac") !== -1
+                                          ?
+                                          <ReactAudioPlayer key={index} src={attach.secure_url} controls controlsList="nodownload" style={{ width: '90%', height: "25px" }} />
+                                          :
+                                          <p>{attach.secure_url}</p>
+                                    ))
+                                    : ""
+
+                                  }
+                                </ModalBody>
+
+                                <ModalFooter>
+
+                                  <Button
+                                    backgroundColor={"#F6540E"}
+                                    color={"White"}
+                                    pt={"1rem"}
+                                    pb={"1rem"}
+                                    mx={"auto"}
+                                    borderRadius={"2rem"}
+                                    onClick={handleSendDeliverables}
+
+                                  >Send Deliverables
+                                  </Button>
+
+                                </ModalFooter>
+                              </ModalContent>
+                            </Modal>
+                          </>
                   }
 
-
-
-                  {/* <Button
-                  backgroundColor={"#F6540E"}
-                  color={"White"}
-                  pt={"1.75rem"}
-                  pb={"1.75rem"}
-                  borderRadius={"2rem"}
-                  onClick={handleMarkJobAsCompleted}
-                >Mark job as completed</Button> */}
                 </>}
             {/* on click , should show the message details box */}
             <InfoIcon

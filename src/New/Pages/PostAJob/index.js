@@ -25,15 +25,17 @@ const PostAJob = () => {
   const [deadline, set_deadline] = useState("");
   const [liveShow, setLiveShow] = useState("");
   const [budgetRange, setBudgetRange] = useState("");
+  const [fixedPrice, setFixedPrice] = useState("");
 
   const addJob = async () => {
+    const final = budgetRange === "Fixed" ? [fixedPrice, fixedPrice] : budget;
     const res = await createJob(
       job_title,
       job_description,
       category,
       genres,
       ref_link,
-      budget,
+      final,
       deadline,
       liveShow
     );
@@ -216,7 +218,6 @@ const PostAJob = () => {
               <Select
                 h="6.48vh"
                 borderRadius={"1.04vw"}
-                value={deadline}
                 onChange={(e) => setBudgetRange(e.target.value)}
               >
                 <option default value={"None"}>
@@ -237,7 +238,7 @@ const PostAJob = () => {
              columnGap={".833vw"}
            >
              <Box>
-               <Text>Price</Text>
+               <Text>Start Range*</Text>
                <Input
                  h="6.48vh"
                  borderRadius={"1.04vw"}
@@ -278,16 +279,14 @@ const PostAJob = () => {
            display={"grid"}
          >
            <Box>
-               <Text>Start Range*</Text>
+               <Text>Price</Text>
                <Input
                  h="6.48vh"
                  borderRadius={"1.04vw"}
                  type="number"
-                 placeholder="Min (₹)"
+                 placeholder="Price (₹)"
                  value={budget[0]}
-                 onChange={(e) => {
-                   set_budget([e.target.value, budget[1]]);
-                 }}
+                 onChange={(e) => setFixedPrice(e.target.value)}
                />
              </Box>
              </Box>
@@ -299,7 +298,7 @@ const PostAJob = () => {
               <Select
                 h="6.48vh"
                 borderRadius={"1.04vw"}
-                value={deadline}
+                value={liveShow}
                 onChange={(e) => setLiveShow(e.target.value)}
               >
                 <option default value={"None"}>

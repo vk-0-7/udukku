@@ -24,13 +24,13 @@ import NavBar from "../../Components/NavBar/NavBar";
 import { getChatroomById } from "../../../Api/Chatroom/chatroom";
 import getJobById from "../../../Api/Jobs/getJobById";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-
+import {  useNavigate, useParams } from "react-router-dom";
 // the main view propsal screen
 const ViewProposal = ({ state }) => {
   const { id } = useParams();
   const [chatroom, setChatroom] = useState();
   const [job, setJob] = useState()
+  const navigate = useNavigate();
 
   useEffect(() => {
     // fetching chatroom
@@ -68,7 +68,7 @@ const ViewProposal = ({ state }) => {
       >
         <Box display={"flex"} flexDir="column" gap="2rem" w="55%" p="2rem">
           <Text fontFamily={"Gilroy-Bold"} fontSize="2.5rem">
-            {job?.description}
+            {job?.jobTitle}
           </Text>
           <Text
             fontFamily={"Gilroy-SemiBold"}
@@ -81,7 +81,7 @@ const ViewProposal = ({ state }) => {
             <Box display={"flex"} flexDir="row" gap="5px" alignItems={"center"}>
               <DollarIcon />
               <Text fontFamily={"Gilroy-Medium"} fontSize="1.2rem">
-                Fixed Price
+              {job?.budget[0] == job?.budget[1] ? "fixed Price" : "Negotiable"}
               </Text>
             </Box>
             <Box display={"flex"} flexDir="row" gap="5px" alignItems={"center"}>
@@ -222,7 +222,7 @@ const ViewProposal = ({ state }) => {
             Best Of Luck!
           </Text>
           <Text fontFamily={"Gilroy-Bold"} fontSize="2rem">
-            ₹5,000
+          ₹ {job?.budget[0] == job?.budget[1] ? job?.budget[0]  : `${job?.budget[0]} - ${job?.budget[1]}`}
           </Text>
           <Text fontFamily={"Gilroy-Bold"} fontSize="2rem">
             Terms of Services
@@ -262,21 +262,21 @@ const ViewProposal = ({ state }) => {
             gap="1rem"
           >
             <Box display={"flex"} flexDir="row" gap="1rem">
-              <Image src={CompanyLogo} h="7rem" w="7rem" />
+              <Image src={job?.jobPostedBy?.avatar} h="7rem" w="7rem" />
               <Box>
                 <Text
                   fontFamily={"Gilroy-Bold"}
                   fontSize="1.3rem"
                   alignSelf={"center"}
                 >
-                  CFT Labs
+                  {job?.jobPostedBy?.name}
                 </Text>
                 <Text
                   fontFamily={"Gilroy-Medium"}
                   fontSize="1rem"
                   color={"#acadaf"}
                 >
-                  Rajasthan
+                  {job?.jobPostedBy?.state}
                 </Text>
                 <Box display={"fkex"} flexDir="row" gap="2px">
                   <RatingIcon />
@@ -327,6 +327,14 @@ const ViewProposal = ({ state }) => {
               borderRadius="1rem"
               size="lg"
               variant="outline"
+              onClick={() => {
+                navigate(
+                  `/${job?.jobPostedBy.name.substring(
+                    0,
+                  )}/${job?.jobPostedBy?._id}`
+                );
+
+              }}
             >
               Button
             </Button>

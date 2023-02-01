@@ -176,4 +176,30 @@ html {
 	margin-bottom: 1rem;
 }
 
+@media only screen and (max-width: 600px) {
+	.hero-box {
+		padding-left: 12%;
+		padding-right: 12%;
+	}
 
+	.hero-font-class1 {
+		font-size: 3rem !important;
+	}
+
+	.hero-font-class2 {
+		font-size: 1.5rem !important;
+	}
+
+	.hero-buttons {
+		display: contents !important;
+	}
+	
+	.hero-buttons {
+		display: contents !important;
+	}
+
+	.hero {
+		padding-left: 5%;
+		padding-right: 5%;
+	  }
+  }

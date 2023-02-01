@@ -72,8 +72,9 @@ const CreatorIndividualMessageBox = ({ socket, id }) => {
         chatroomId: id,
       });
       socket.on("newMessage", (message) => {
-        console.log(message);
-        setMessages([...messages, message]);
+        console.log("this is the message",message);
+        setMessages([...messages, message])
+        setMessage("")
       });
     }
     return () => {
@@ -144,12 +145,13 @@ const CreatorIndividualMessageBox = ({ socket, id }) => {
   const sendMessage = () => {
     if (socket) {
       if (message === "" && attachments.length === 0) {
-      } else if (attachments.length === "") {
+
+      } else if (attachments.length === 0) {
+        console.log("this is message", message)
         socket.emit("chatroomMessage", {
           chatroomId: id,
           message,
         });
-        setMessage("");
       } else {
         attachments.map((url, index) => {
           addAttachmentToChatroom(id, url, file[index]).then((res) => {
@@ -164,7 +166,6 @@ const CreatorIndividualMessageBox = ({ socket, id }) => {
           chatroomId: id,
           message,
         });
-        setMessage("");
       }
     }
   };
@@ -201,7 +202,7 @@ const CreatorIndividualMessageBox = ({ socket, id }) => {
 
   const handleChoose = (id) => {
     updateResponseById(job?._id, "exploring", chatroom.userId[1]).then((res) => {
-      // document.location.reload(true);
+      document.location.reload(true);
     }).catch((err) => {
       console.log(err);
     });
@@ -389,36 +390,37 @@ const CreatorIndividualMessageBox = ({ socket, id }) => {
 
                     :
 
-                     chatroom?.jobAccepted !== "accepted" && !chatroom?.proposalDetails ?
-                     <Button
-                     backgroundColor={"#F6540E"}
-                     color={"White"}
-                     pt={"1.75rem"}
-                     pb={"1.75rem"}
-                     borderRadius={"2rem"}
-                     onClick={openPayModal}
-                   // disabled={response?.status == "exploring"}
-                   >Fund this job</Button>
+                    chatroom?.jobAccepted !== "accepted" && chatroom?.proposalDetails ?
+                      <Button
+                        backgroundColor={"#F6540E"}
+                        color={"White"}
+                        pt={"1.75rem"}
+                        pb={"1.75rem"}
+                        borderRadius={"2rem"}
+                        onClick={openPayModal}
+                      disabled={!chatroom?.proposalDetails}
+                      >Fund this job</Button>
                       :
                       chatroom?.jobAccepted == "accepted" && chatroom?.deliverables && response?.status == "exploring " ?
-                      <Button
-                      backgroundColor={"#F6540E"}
-                      color={"White"}
-                      pt={"1.75rem"}
-                      pb={"1.75rem"}
-                      borderRadius={"2rem"}
-                      onClick={handleMarkJobAsCompleted}
-                    // disabled={response?.status == "completed"}
-                    >Mark job as Completed</Button>
-                    :
-                    <Button
-                    backgroundColor={"#F6540E"}
-                    color={"White"}
-                    pt={"1.75rem"}
-                    pb={"1.75rem"}
-                    borderRadius={"2rem"}
-                    disabled
-                  >Job is Completed</Button>
+                        <Button
+                          backgroundColor={"#F6540E"}
+                          color={"White"}
+                          pt={"1.75rem"}
+                          pb={"1.75rem"}
+                          borderRadius={"2rem"}
+                          onClick={handleMarkJobAsCompleted}
+                        // disabled={response?.status == "completed"}
+                        >Mark job as Completed</Button>
+                        :
+                        <Button
+                        backgroundColor={"#F6540E"}
+                        color={"White"}
+                        pt={"1.75rem"}
+                        pb={"1.75rem"}
+                        borderRadius={"2rem"}
+                        onClick={openPayModal}
+                      disabled={!chatroom?.proposalDetails}
+                      >Fund this job</Button>
 
 
                   }
@@ -451,8 +453,9 @@ const CreatorIndividualMessageBox = ({ socket, id }) => {
           }}
         >
           {user ? messages.map((item) => {
-            if (item.user != user.userId) {
+            if (item?.user != user?.userId) {
               return (
+            
                 <Box display={"flex"} flexDir="row" gap="1rem" >
                   <Avatar size={"lg"} src={item.avatar}></Avatar>
                   <Box display={"flex"} flexDir="column" gap="1rem" w="auto">
@@ -479,6 +482,7 @@ const CreatorIndividualMessageBox = ({ socket, id }) => {
             }
             else {
               return (
+
                 <Box
                   ml="auto"
                   display={"flex"}

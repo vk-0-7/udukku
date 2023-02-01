@@ -42,7 +42,7 @@ console.log(responseBy)
         })
       }}
     >
-      <Avatar size={"xl"} src={responseBy?.avatar}>
+      {responseBy ?  <Avatar size={"xl"} src={responseBy?.avatar}>
         {data.status === "active" ?
          <AvatarBadge
          boxSize="0.6em"
@@ -55,7 +55,8 @@ console.log(responseBy)
         
       }
        
-      </Avatar>
+      </Avatar>:"" }
+     
       <Box display={"flex"} flexDir="column" p="7px" w="100%" gap="5px">
         <Box  display={"flex"} flexDir={"row"} w="100%">
           <Text fontFamily={"Gilroy-Bold"} fontSize="1.3rem">

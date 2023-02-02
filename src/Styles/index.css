@@ -1,85 +1,95 @@
 @font-face {
-  font-family: "Gilroy-Black";
-  src: url("../Assets/Fonts/Gilroy/Gilroy-Black.ttf") format("truetype");
+	font-family: "Gilroy-Black";
+	src: url("../Assets/Fonts/Gilroy/Gilroy-Black.ttf") format("truetype");
 }
+
 @font-face {
-  font-family: "Gilroy-Bold";
-  src: url("../Assets/Fonts/Gilroy/Gilroy-Bold.ttf") format("truetype");
+	font-family: "Gilroy-Bold";
+	src: url("../Assets/Fonts/Gilroy/Gilroy-Bold.ttf") format("truetype");
 }
+
 @font-face {
-  font-family: "Gilroy-ExtraBold";
-  src: url("../Assets/Fonts/Gilroy/Gilroy-ExtraBold.ttf") format("truetype");
+	font-family: "Gilroy-ExtraBold";
+	src: url("../Assets/Fonts/Gilroy/Gilroy-ExtraBold.ttf") format("truetype");
 }
+
 @font-face {
-  font-family: "Gilroy-Heavy";
-  src: url("../Assets/Fonts/Gilroy/Gilroy-Heavy.ttf") format("truetype");
+	font-family: "Gilroy-Heavy";
+	src: url("../Assets/Fonts/Gilroy/Gilroy-Heavy.ttf") format("truetype");
 }
+
 @font-face {
-  font-family: "Gilroy-Light";
-  src: url("../Assets/Fonts/Gilroy/Gilroy-Light.ttf") format("truetype");
+	font-family: "Gilroy-Light";
+	src: url("../Assets/Fonts/Gilroy/Gilroy-Light.ttf") format("truetype");
 }
+
 @font-face {
-  font-family: "Gilroy-Medium";
-  src: url("../Assets/Fonts/Gilroy/Gilroy-Medium.ttf") format("truetype");
+	font-family: "Gilroy-Medium";
+	src: url("../Assets/Fonts/Gilroy/Gilroy-Medium.ttf") format("truetype");
 }
+
 @font-face {
-  font-family: "Gilroy-Regular";
-  src: url("../Assets/Fonts/Gilroy/Gilroy-Regular.ttf") format("truetype");
+	font-family: "Gilroy-Regular";
+	src: url("../Assets/Fonts/Gilroy/Gilroy-Regular.ttf") format("truetype");
 }
+
 @font-face {
-  font-family: "Gilroy-SemiBold";
-  src: url("../Assets/Fonts/Gilroy/Gilroy-SemiBold.ttf") format("truetype");
+	font-family: "Gilroy-SemiBold";
+	src: url("../Assets/Fonts/Gilroy/Gilroy-SemiBold.ttf") format("truetype");
 }
+
 @font-face {
-  font-family: "Gilroy-Thin";
-  src: url("../Assets/Fonts/Gilroy/Gilroy-Thin.ttf") format("truetype");
+	font-family: "Gilroy-Thin";
+	src: url("../Assets/Fonts/Gilroy/Gilroy-Thin.ttf") format("truetype");
 }
+
 @font-face {
-  font-family: "Gilroy-UltraLight";
-  src: url("../Assets/Fonts/Gilroy/Gilroy-UltraLight.ttf") format("truetype");
+	font-family: "Gilroy-UltraLight";
+	src: url("../Assets/Fonts/Gilroy/Gilroy-UltraLight.ttf") format("truetype");
 }
 
 /* hide scroll bar */
 
 .hide-it::-webkit-scrollbar {
-  display: none;
+	display: none;
 }
+
 .hide-it {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+	-ms-overflow-style: none;
+	scrollbar-width: none;
 }
 
 /* --------------- */
 
 body,
 html {
-  overscroll-behavior: none;
-  box-sizing: border-box !important;
-  font-size: 62.5%;
+	overscroll-behavior: none;
+	box-sizing: border-box !important;
+	font-size: 62.5%;
 }
 
 #home_hero_be_discovered_btn svg {
-  margin-right: 0.416vw;
-  width: 1.85vh;
-  height: 1.85vh;
+	margin-right: 0.416vw;
+	width: 1.85vh;
+	height: 1.85vh;
 }
 
 #home_hero_discover_talent_btn svg {
-  margin-right: 0.416vw;
-  width: 1.85vh;
-  height: 1.85vh;
+	margin-right: 0.416vw;
+	width: 1.85vh;
+	height: 1.85vh;
 }
 
 #navbar_become_member_btn svg {
-  margin-right: 0.56vw;
-  height: 2.22vh;
-  width: 2.22vh;
+	margin-right: 0.56vw;
+	height: 2.22vh;
+	width: 2.22vh;
 }
 
 #our_mission_btn svg {
-  margin-right: 0.56vw;
-  height: 2.22vh;
-  width: 2.22vh;
+	margin-right: 0.56vw;
+	height: 2.22vh;
+	width: 2.22vh;
 }
 
 /* .splide__arrows {
@@ -168,7 +178,7 @@ html {
 } */
 .hero .splide__arrows,
 .hero .splide__arrows--ltr {
-  display: none;
+	display: none;
 }
 
 .proposal-modal-input {
@@ -184,7 +194,7 @@ html {
 
 	.hero-font-class1 {
 		font-size: 3rem !important;
-		text-align: center !important	;
+		text-align: center !important;
 	}
 
 	.hero-font-class2 {
@@ -194,7 +204,7 @@ html {
 	.hero-buttons {
 		display: contents !important;
 	}
-	
+
 	.hero-buttons {
 		display: contents !important;
 	}
@@ -202,5 +212,28 @@ html {
 	.hero {
 		padding-left: 5%;
 		padding-right: 5%;
-	  }
-  }
+	}
+
+	.lyrics-heading-1 {
+		font-size: 1.5rem !important;
+	}
+
+	.lyrics-heading-2 {
+		font-size: 1rem !important;
+	}
+
+	.genre-category-width {
+		width: 100% !important;
+		margin-top: 1%;
+		margin-bottom: 1%;
+		margin-left: 2%;
+		font-size: 1rem !important;
+
+	}
+
+	.genre-category-icons {
+		height: 2rem !important;
+		width: 2rem !important;
+	} 
+
+}

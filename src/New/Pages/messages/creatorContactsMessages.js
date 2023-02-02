@@ -36,6 +36,7 @@ const CreatorContactMessages = ({ socket }) => {
     };
   });
 
+  console.log("chatroomID",id)
 
   useEffect(() => {
     // fetching chatroom

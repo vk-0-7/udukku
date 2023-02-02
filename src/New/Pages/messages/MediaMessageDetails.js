@@ -4,9 +4,10 @@ import { ReactComponent as ArrowLeft } from "../../../Assets/Icons/arrow-left.sv
 import DocsMessageDetails from "./DocsMessageDetails";
 import LinksMessageDetails from "./LinksMessageDetails";
 import MediaMessageDetailsBox from "./MediaMessageDetailsBox";
-const   MediaMessageDetail = ({ goToMedia, setGoToMedia,data }) => {
+const   MediaMessageDetail = ({ goToMedia, setGoToMedia,data, getAttachments }) => {
   const [mediaState, setMediaState] = useState("media");
   console.log(data)
+  console.log(getAttachments)
   return (
     // media box
     <Box

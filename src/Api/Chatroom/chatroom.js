@@ -61,3 +61,4 @@ export const getOrderId = async(userId,chatroomId,amount,currency,receipt,notes)
 export const saveOrder = async(userId,chatroomId,paymentIntent,jobId) =>{
     return await axios.post(`${process.env.REACT_APP_BASE_URL}/payment/save-order`,{userId,chatroomId,paymentIntent,jobId});
 }
+

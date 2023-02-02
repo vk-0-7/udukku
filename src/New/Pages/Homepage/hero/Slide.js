@@ -69,7 +69,7 @@ const Slide = () => {
                   w={{ base: "100vw", lg: "27.60vw" }}
                   
                 >
-                  <Image src={data.avatar} height="100%" width="100%" />
+                  <Image src={data.avatar} height="100%" width="100%" borderRadius={"2rem"} />
                 </Box>
               </SplideSlide>
             );

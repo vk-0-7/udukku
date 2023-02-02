@@ -45,80 +45,89 @@ const Lyrics = () => {
         pt="7.40vh"
         minH="calc(100vh - 7.40vh)"
       >
-        <Box display={"flex"} alignItems="center" gap=".62vw">
-          <Text fontSize={"2.29vw"} fontFamily={"Gilroy-Bold"}>
+        <Box display={{ md: "flex", sm: "block" }} alignItems="center" gap=".62vw">
+          <Text className="hero-font-class1" fontSize={"2.29vw"} fontFamily={"Gilroy-Bold"}>
             Lyrics
           </Text>
 
-          <Box flexGrow={1}></Box>
-
-          <Box
-            fontFamily={"Gilroy-SemiBold"}
-            fontSize=".833vw"
-            w="fit-content"
-            h="6.48vh"
-            border="1.5px solid #F0F0F0"
-            display={"flex"}
-            alignItems="center"
-            justifyContent={"center"}
-            borderRadius="1.25vw"
-            gap=".31vw"
-            cursor={"pointer"}
-            _hover={{
-              background: "rgba(8, 32, 50, 1)",
-              color: "white !important",
-              svg: {
-                fill: "white !important",
-              },
-            }}
-            px="2.08vw"
-          >
-            <CategoryIcon
-              style={{
-                fill: "rgba(8, 32, 50, .5)",
-                width: "1.25vw",
-                height: "1.25vw",
+          <Box display={"flex"}>
+            <Box
+              fontFamily={"Gilroy-SemiBold"}
+              fontSize=".833vw"
+              className="genre-category-width"
+              width={{ md: "fit-content", sm: "50%" }}
+              h="6.48vh"
+              border="1.5px solid #F0F0F0"
+              display={"flex"}
+              alignItems="center"
+              justifyContent={"center"}
+              borderRadius="1.25vw"
+              gap=".31vw"
+              cursor={"pointer"}
+              _hover={{
+                background: "rgba(8, 32, 50, 1)",
+                color: "white !important",
+                svg: {
+                  fill: "white !important",
+                },
               }}
-            />
-            <Text>Category</Text>
+              px="2.08vw"
+            >
+              <CategoryIcon
+              className="genre-category-icons"
+                style={{
+                  fill: "rgba(8, 32, 50, .5)",
+                  width: "1.25vw",
+                  height: "1.25vw",
+                }}
+              />
+              <Text>Category</Text>
+            </Box>
+
+            <Box
+              className="genre-category-width"
+              fontFamily={"Gilroy-SemiBold"}
+              fontSize=".833vw"
+              w="fit-content"
+              h="6.48vh"
+              border="1.5px solid #F0F0F0"
+              display={"flex"}
+              alignItems="center"
+              justifyContent={"center"}
+              borderRadius="1.25vw"
+              gap=".31vw"
+              cursor={"pointer"}
+              _hover={{
+                background: "rgba(8, 32, 50, 1)",
+                color: "white !important",
+                svg: {
+                  fill: "white !important",
+                },
+              }}
+              px="2.08vw"
+            >
+              <GenreIcon
+              className="genre-category-icons"
+
+                style={{
+                  fill: "rgba(8, 32, 50, .5)",
+                  width: "1.25vw",
+                  height: "1.25vw",
+                }}
+              />
+              <Text>Genre</Text>
+            </Box>
           </Box>
 
-          <Box
-            fontFamily={"Gilroy-SemiBold"}
-            fontSize=".833vw"
-            w="fit-content"
-            h="6.48vh"
-            border="1.5px solid #F0F0F0"
-            display={"flex"}
-            alignItems="center"
-            justifyContent={"center"}
-            borderRadius="1.25vw"
-            gap=".31vw"
-            cursor={"pointer"}
-            _hover={{
-              background: "rgba(8, 32, 50, 1)",
-              color: "white !important",
-              svg: {
-                fill: "white !important",
-              },
-            }}
-            px="2.08vw"
-          >
-            <GenreIcon
-              style={{
-                fill: "rgba(8, 32, 50, .5)",
-                width: "1.25vw",
-                height: "1.25vw",
-              }}
-            />
-            <Text>Genre</Text>
-          </Box>
+
 
           <InputGroup
-            w="29.68vw"
+              className="genre-category-width"
+            w={{ md: "29.68vw", sm: "100%" }}
             _focus={{
               svg: { stroke: "rgba(246, 84, 14, 1) !important" },
             }}
+
           >
             <InputLeftElement
               pointerEvents="none"
@@ -144,18 +153,19 @@ const Lyrics = () => {
                 setSearchTerm(e.target.value);
               }}
 
-              // onFocus={() => {
-              // 	console.log('in focus');
-              // 	set_search_color('rgba(246, 84, 14, 1)');
-              // }}
-              // onBlur={() => {
-              // 	set_search_color('rgba(43, 43, 43, .3)');
-              // }}
+            // onFocus={() => {
+            // 	console.log('in focus');
+            // 	set_search_color('rgba(246, 84, 14, 1)');
+            // }}
+            // onBlur={() => {
+            // 	set_search_color('rgba(43, 43, 43, .3)');
+            // }}
             />
           </InputGroup>
 
           <Button
-            w="11.92vw"
+              className="genre-category-width"
+            w={{ md: "29.68vw", sm: "100%" }}
             h="6.48vh"
             bg="rgba(246, 84, 14, 1)"
             color="white"
@@ -184,7 +194,7 @@ const Lyrics = () => {
         <Box
           mt="3.70vh"
           display={"grid"}
-          gridTemplateColumns="1fr 1fr 1fr 1fr"
+          gridTemplateColumns={{ md: "1fr 1fr 1fr 1fr", sm: "1fr 1fr" }}
           columnGap={".833vw"}
           rowGap={"5.55vh"}
           mb="7.40vh"
@@ -226,10 +236,11 @@ const Lyrics = () => {
                       objectPosition="50% 50%"
                     />
                     <Box pl=".41vw" pt="1.48vh">
-                      <Text fontFamily={"Gilroy-SemiBold"} fontSize="1.45vw">
+                      <Text className="lyrics-heading-1" fontFamily={"Gilroy-SemiBold"} fontSize="1.45vw">
                         {data.songName}
                       </Text>
                       <Text
+                        className="lyrics-heading-2"
                         fontFamily={"Gilroy-SemiBold"}
                         fontSize="1.04vw"
                         color="rgba(43, 43, 43, .5)"

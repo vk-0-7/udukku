@@ -19,7 +19,8 @@ const MessagingPageDetails = ({
   setGoToMedia,
   data,
   media,
-  chatroom
+  chatroom,
+  getAttachments
 }) => {
   const navigate = useNavigate();
   console.log(media)

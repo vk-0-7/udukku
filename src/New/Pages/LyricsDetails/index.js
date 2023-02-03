@@ -62,8 +62,8 @@ const LyricsDetails = () => {
         <Image
           src={img1}
           w="100%"
-          h="24.07vh"
-          objectFit={"cover"}
+          h="100%"
+          objectFit={"contain"}
           objectPosition="50% 50%"
           borderRadius={"1.66vw"}
           overflow="hidden"
@@ -72,7 +72,7 @@ const LyricsDetails = () => {
         <Box
           width="100%"
           mt="5.55vh"
-          display={"grid"}
+          display={{md:"grid",sm:"block"}}
           gridTemplateColumns="1fr 1fr"
           columnGap={"1.87vw"}
         >
@@ -91,15 +91,16 @@ const LyricsDetails = () => {
             {/* heading section */}
             <Box
               mt="2.22vh"
-              display={"flex"}
+              display={{md:"flex", sm: "block"}}
               justifyContent="space-between"
               alignItems={"center"}
             >
               <Box>
-                <Text fontFamily={"Gilroy-Bold"} fontSize="1.66vw">
+                <Text className="hero-font-class2" fontFamily={"Gilroy-Bold"} fontSize="1.66vw">
                   {lyrics.songName}
                 </Text>
                 <Text
+                className="lyrics-heading-2"
                   fontFamily={"Gilroy-SemiBold"}
                   fontSize="1.04vw"
                   color="rgba(43, 43, 43, .5)"
@@ -123,8 +124,10 @@ const LyricsDetails = () => {
                       fill: "white !important",
                     },
                   }}
+                  className="genre-category-icons"
                 >
                   <FacebookIcon
+                  className="genre-category-icons"
                     style={{
                       fill: "rgba(246, 84, 14, 1)",
                       width: ".55vw",
@@ -133,6 +136,7 @@ const LyricsDetails = () => {
                   />
                 </Box>
                 <Box
+                  className="genre-category-icons"
                   w="2.70vw"
                   h="2.70vw"
                   border={"2px solid rgba(43, 43, 43, .1)"}
@@ -149,6 +153,7 @@ const LyricsDetails = () => {
                   }}
                 >
                   <InstaIcon
+                  className="genre-category-icons"
                     style={{
                       fill: "rgba(246, 84, 14, 1)",
                       width: ".91vw",
@@ -157,6 +162,7 @@ const LyricsDetails = () => {
                   />
                 </Box>
                 <Box
+                  className="genre-category-icons"
                   w="2.70vw"
                   h="2.70vw"
                   border={"2px solid rgba(43, 43, 43, .1)"}
@@ -173,6 +179,7 @@ const LyricsDetails = () => {
                   }}
                 >
                   <SoundCloudIcon
+                  className="genre-category-icons"
                     style={{
                       fill: "rgba(246, 84, 14, 1)",
                       width: "1.04vw",

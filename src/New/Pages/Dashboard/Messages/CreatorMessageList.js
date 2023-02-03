@@ -28,7 +28,7 @@ const CreatorMessageList = ({ state }) => {
     }
   }, []);
 
-  console.log("Creatorjobs", responses)
+  console.log("CreatorjobsResponses", responses)
 console.log(responseBy)
   /**
    * This function will be used to handle the currrent active tab and response type

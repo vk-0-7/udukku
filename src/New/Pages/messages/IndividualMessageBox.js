@@ -33,6 +33,7 @@ const IndividualMessageBox = ({ socket, id }) => {
   const [chatroom, setChatroom] = useState();
   const [message, setMessage] = useState("");
   const [attachments, setAttachments] = useState([]);
+  const [getAttachments, setGetAttachments] = useState([]);
   const [media, setMedia] = useState([]);
   const [file, setFile] = useState("");
   const [response, setResponse] = useState();
@@ -99,6 +100,13 @@ const IndividualMessageBox = ({ socket, id }) => {
       }
     };
   });
+
+  useEffect(() => {
+    getChatroomAttachmentsById(id).then((res) => {
+      console.log("attachment", res.data)
+      setGetAttachments(res.data)
+    })
+  },[id]);
 
 
 
@@ -896,9 +904,10 @@ const IndividualMessageBox = ({ socket, id }) => {
           setGoToMedia={setGoToMedia}
           data={job}
           media={media}
+          getAttachments={getAttachments}
         />
       ) : (
-        <MediaMessageDetail data={media} goToMedia={goToMedia} setGoToMedia={setGoToMedia} />
+        <MediaMessageDetail getAttachments={getAttachments} data={media} goToMedia={goToMedia} setGoToMedia={setGoToMedia} />
       )}
     </Box>
   );

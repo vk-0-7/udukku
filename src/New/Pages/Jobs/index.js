@@ -125,14 +125,15 @@ const Jobs = () => {
       <Box pt="8.5vh">
         <NavBar />
         <Box
-          display={"flex"}
-          pl="20rem"
-          pr="18rem"
+          display={{ md: "flex", sm: "block" }}
+          pl={{ md: "20rem" }}
+          pr={{ md: "18rem" }}
+
           mt="70px"
           justifyContent={"space-between"}
           alignItems="center"
         >
-          <Text fontSize={"2.29vw"} fontFamily={"Gilroy-Bold"}>
+          <Text className={"job-h1"} fontSize={"2.29vw"} fontFamily={"Gilroy-Bold"}>
             Find your next projects
           </Text>
           {/* <Box
@@ -159,8 +160,9 @@ const Jobs = () => {
             </Text>
           </Box> */}
 
-          <Box display={"flex"} w="50%" gap={{ base: "2rem", lg: "" }}>
+          <Box display="flex" w={{ md: "50%", sm: "100%" }} gap={{ base: "2rem", lg: "" }} className="hero">
             <InputGroup
+              width={{ sm: "100vw" }}
               w={{ base: "80%", lg: "100%" }}
               _focus={{
                 svg: { stroke: "rgba(246, 84, 14, 1) !important" },
@@ -168,7 +170,7 @@ const Jobs = () => {
             >
               <InputLeftElement
                 pointerEvents="none"
-                h="100%"
+                h="92%"
                 p="6px"
                 children={<SearchIcon style={{ stroke: search_color, }} />}
                 pl={"10px"}
@@ -217,22 +219,26 @@ const Jobs = () => {
           pb="9.25vh"
         >
           {/* filters */}
-          <Sidebar
-            setCategory={setCategory}
-            budgetStart={budgetStart}
-            budgetEnd={budgetEnd}
-            setBudgetStart={setBudgetStart}
-            setBudgetEnd={setBudgetEnd}
-            setDeadline={setDeadline}
-            setGenre={setGenre}
-          />
+          <Box className="job-sidebar">
+            <Sidebar
+              setCategory={setCategory}
+              budgetStart={budgetStart}
+              budgetEnd={budgetEnd}
+              setBudgetStart={setBudgetStart}
+              setBudgetEnd={setBudgetEnd}
+              setDeadline={setDeadline}
+              setGenre={setGenre}
+            />
+          </Box>
+
           {/* result card */}
 
           <Box
+            className="jobCard"
             w="65%"
             h="fit-content"
             px="1.04vw"
-            display={"flex"}
+            display={{ md: "flex", sm: "block" }}
             flexDir="column"
             gap="1.85vh"
           >

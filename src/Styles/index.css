@@ -236,4 +236,39 @@ html {
 		width: 2rem !important;
 	} 
 
+	.job-h1 {
+		margin-left: 2rem;
+		font-size: 3rem !important;
+	}
+
+	.job-sidebar {
+		display: none;
+	}
+
+	.jobCard {
+		width: 100% !important;
+	}
+
+	.jobCard-avatar {
+		width: 5rem !important;
+		height: 5rem !important;
+	}
+
+	.jobcard-genre {
+		width: 48%;
+	}
+
+	.single-Lyrics-page-avatar {
+		width: 8rem !important;
+		height: 8rem !important;
+	}
+
+	.single-Lyrics-page-button {
+		width: 50vw !important;
+	}
+
+	.single-Lyrics-page-heading1 {
+		font-size: 1rem !important;
+	}
+
 }

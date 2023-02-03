@@ -42,6 +42,7 @@ const JobSearchCard = ({ data }) => {
         <Box display={"flex"} gap=".26vw" alignItems={"center"}>
           <Box>
             <Box
+            className="jobCard-avatar"
               h={{base:"1.5rem",md:"2.5rem",lg:"3.15vw"}}
               w={{base:"1.5rem",md:"2.5rem",lg:"3.15vw"}}
               borderRadius="full"
@@ -51,21 +52,21 @@ const JobSearchCard = ({ data }) => {
             ></Box>
           </Box>
           <Box lineHeight={"1.2"}>
-            <Text fontSize={{base:"1rem",md:"2rem",lg:"1.04vw"}} fontFamily="Gilroy-Bold">
+            <Text fontSize={{base:"1rem",md:"2rem",lg:"1.04vw"}} className="hero-font-class2" fontFamily="Gilroy-Bold">
               {data.jobPostedBy.name}
             </Text>
-            <Text fontSize={{base:"6px",md:"1.5rem",lg:".833vw"}} fontFamily="Gilroy-Medium">
+            <Text fontSize={{base:"6px",md:"1.5rem",lg:".833vw"}} className="hero-font-class2"  fontFamily="Gilroy-Medium">
               {data.jobPostedBy.city}
             </Text>
           </Box>
         </Box>
-        <Text fontFamily={"Gilroy-SemiBold"} fontSize={{base:"6px",md:"1.5rem",lg:".833vw"}} >
+        <Text className="hero-font-class2" fontFamily={"Gilroy-SemiBold"} fontSize={{base:"6px",md:"1.5rem",lg:".833vw"}} >
           {formatDate(data.createdAt)}
         </Text>
       </Box>
       {/* title with badge */}
       <Box display={"flex"} gap=".52vw" alignItems={"center"} mt="10px">
-        <Text fontSize={{base:"1rem",md:"2rem",lg:"1.45vw"}} fontFamily="Gilroy-Bold">
+        <Text className="lyrics-heading-1 " fontSize={{base:"1rem",md:"2rem",lg:"1.45vw"}} fontFamily="Gilroy-Bold">
           {data.jobTitle}
         </Text>
         {data.liveShow == true ? 
@@ -96,8 +97,10 @@ const JobSearchCard = ({ data }) => {
           fontSize=".729vw"
           fontFamily={"Gilroy-SemiBold"}
           gap={".41vw"}
+          className="jobcard-genre lyrics-heading-1"
+
         >
-          <CategoryIcon style={{ width: ".93vw", height: ".93vw" }} />
+          <CategoryIcon className="genre-category-icons" style={{ width: ".93vw", height: ".93vw" }} />
           <Text>{data.category?.service}</Text>
         </Box>
         <Box
@@ -112,8 +115,9 @@ const JobSearchCard = ({ data }) => {
           fontSize={{base:"1rem",md:"1.5rem",lg:".729vw"}}
           fontFamily={"Gilroy-SemiBold"}
           gap={".41vw"}
+          className="jobcard-genre lyrics-heading-1"
         >
-          <CategoryIcon style={{ width: ".93vw", height: ".93vw" }} />
+          <CategoryIcon className="genre-category-icons" style={{ width: ".93vw", height: ".93vw" }} />
           <Text>{data.category?.subservice}</Text>
         </Box>
         {/* {data.service?.map((val, index) => {

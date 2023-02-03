@@ -58,7 +58,7 @@ const CreatorContactMessages = ({ socket }) => {
         <Box
           border="2px"
           borderColor={"#F0F0F0"}
-          h="70rem"
+          h="55rem"
           w="100%"
           borderRadius={"32px"}
           display={"flex"}

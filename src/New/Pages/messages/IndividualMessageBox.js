@@ -887,7 +887,7 @@ const IndividualMessageBox = ({ socket, id }) => {
             }
           }) : ""}
         </Box>
-        <Box p="1rem" pos={"sticky"}>
+        <Box p="1rem" pos={"sticky"} top={"80rem"}>
           <TypeMessageBox sendAttachment={sendAttachment} sendMessage={sendMessage} message={message} setMessage={setMessage} />
           {attachments.map((item) => (
             <img src={item} height="50px" width="50px" style={{ borderRadius: "5px" }} />

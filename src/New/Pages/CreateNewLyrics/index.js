@@ -72,7 +72,7 @@ const CreateNewLyrics = () => {
         pt="6.01vh"
         minH="calc(100vh - 7.40vh)"
       >
-        <Box width={"36.04vw"}>
+        <Box width={{md:"36.04vw",sm:"100vw"}}>
           {/* heading with back button */}
           <Box display={"flex"} gap={".833vw"} alignItems="center">
             <BackIcon
@@ -85,7 +85,7 @@ const CreateNewLyrics = () => {
                 navigate("/lyrics");
               }}
             />
-            <Text fontFamily={"Gilroy-Bold"} fontSize="2.29vw">
+            <Text className="hero-font-class1" fontFamily={"Gilroy-Bold"} fontSize="2.29vw">
               Add New Song Lyrics
             </Text>
           </Box>
@@ -99,6 +99,7 @@ const CreateNewLyrics = () => {
               gap={"1.25vw"}
             >
               <Box
+              className="single-Lyrics-page-avatar"
                 width={"7.29vw"}
                 height="7.29vw"
                 bg="rgba(8, 32, 50, .1)"
@@ -108,7 +109,7 @@ const CreateNewLyrics = () => {
                 justifyContent="center"
                 alignItems={"center"}
               >
-                <ManIcon style={{ width: "3.125vw", height: "3.125vw" }} />
+                <ManIcon className="genre-category-icons" style={{ width: "3.125vw", height: "3.125vw" }} />
               </Box>
               <input
                 type="file"
@@ -118,6 +119,7 @@ const CreateNewLyrics = () => {
                 style={{ display: "none" }}
               />
               <Button
+              className="single-Lyrics-page-button hero-font-class2"
                 bg="rgba(246, 84, 14, 1)"
                 onClick={handleClick}
                 color={"white"}
@@ -133,9 +135,10 @@ const CreateNewLyrics = () => {
             </Box>
 
             {/* song name */}
-            <Box mt="2.22vh" fontFamily={"Gilroy-SemiBold"}>
-              <Text fontSize=".833vw">Song Name*</Text>
+            <Box  mt="2.22vh" fontFamily={"Gilroy-SemiBold"}>
+              <Text className="single-Lyrics-page-heading1" fontSize=".833vw">Song Name*</Text>
               <Input
+              className="single-Lyrics-page-heading1"
                 name="songName"
                 fontSize="1vw"
                 mt=".37vh"
@@ -148,9 +151,10 @@ const CreateNewLyrics = () => {
             </Box>
 
             {/* artist name */}
-            <Box mt="2.22vh" fontFamily={"Gilroy-SemiBold"}>
-              <Text fontSize=".833vw">Artist Name*</Text>
+            <Box  mt="2.22vh" fontFamily={"Gilroy-SemiBold"}>
+              <Text className="single-Lyrics-page-heading1" fontSize=".833vw">Artist Name*</Text>
               <Input
+              className="single-Lyrics-page-heading1"
                 name="artistName"
                 fontSize="1vw"
                 mt=".37vh"
@@ -178,6 +182,7 @@ const CreateNewLyrics = () => {
               })}
             </Box>
             <Text
+            className="single-Lyrics-page-heading1"
               fontFamily={"Gilroy-SemiBold"}
               color="rgba(246, 84, 14, 1)"
               fontSize={".833vw"}
@@ -197,8 +202,9 @@ const CreateNewLyrics = () => {
 
             {/* Lyrics */}
             <Box mt="2.22vh" fontFamily={"Gilroy-SemiBold"}>
-              <Text fontSize=".833vw">Lyric*</Text>
+              <Text className="single-Lyrics-page-heading1" fontSize=".833vw">Lyric*</Text>
               <Textarea
+              className="single-Lyrics-page-heading1"
                 fontSize="1vw"
                 py="2.22vh"
                 mt=".37vh"
@@ -217,8 +223,9 @@ The mandem celebrate Eid, the trap still runnin' on Christmas day"
 
             {/* About Artist */}
             <Box mt="2.22vh" fontFamily={"Gilroy-SemiBold"}>
-              <Text fontSize=".833vw">About Artist*</Text>
+              <Text className="single-Lyrics-page-heading1" fontSize=".833vw">About Artist*</Text>
               <Textarea
+              className="single-Lyrics-page-heading1"
                 fontSize="1vw"
                 py="2.22vh"
                 mt=".37vh"
@@ -245,6 +252,7 @@ The mandem celebrate Eid, the trap still runnin' on Christmas day"
                 );
               })}
               <Text
+              className="single-Lyrics-page-heading1"
                 fontFamily={"Gilroy-SemiBold"}
                 color="rgba(246, 84, 14, 1)"
                 fontSize={".833vw"}
@@ -276,7 +284,8 @@ The mandem celebrate Eid, the trap still runnin' on Christmas day"
                   />
                 );
               })}
-              <Text
+              <Text 
+              className="single-Lyrics-page-heading1"
                 fontFamily={"Gilroy-SemiBold"}
                 color="rgba(246, 84, 14, 1)"
                 fontSize={".833vw"}
@@ -297,8 +306,9 @@ The mandem celebrate Eid, the trap still runnin' on Christmas day"
 
             {/* Youtube link */}
             <Box mt="2.22vh" fontFamily={"Gilroy-SemiBold"}>
-              <Text fontSize=".833vw">Youtube Video Link*</Text>
+              <Text className="single-Lyrics-page-heading1" fontSize=".833vw">Youtube Video Link*</Text>
               <Input
+              className="single-Lyrics-page-heading1"
                 name="youtubeVideoLink"
                 fontSize="1vw"
                 mt=".37vh"
@@ -313,6 +323,7 @@ The mandem celebrate Eid, the trap still runnin' on Christmas day"
             {/* Submit button */}
 
             <Button
+            className="single-Lyrics-page-heading1"
               mt="3.70vh"
               mb="7.40vh"
               h="6.48vh"

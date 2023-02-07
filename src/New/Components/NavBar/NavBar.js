@@ -39,7 +39,6 @@ const NavBar = () => {
   const [hamMenu, setHamMenu] = useState(false);
   const { user } = useSelector((state) => ({ ...state }));
 
-  console.log(user);
 
   useEffect(() => {
     const getit = () => {

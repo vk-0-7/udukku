@@ -54,6 +54,7 @@ const CategoryFilter = ({ Main, SetMainCat }) => {
           color={Main === "" ? "black" : "white"}
         >
           <CategoryIcon
+          className="genre-category-icons2"
             style={{
               fill: Main === "" ? "rgba(8, 32, 50, .5)" : "white",
               width: "1.25vw",

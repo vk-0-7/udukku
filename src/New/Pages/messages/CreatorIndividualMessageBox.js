@@ -305,7 +305,7 @@ const CreatorIndividualMessageBox = ({ socket, id }) => {
   console.log("jobdd", job)
   return (
     // contains both i button box and message box
-    <Box display={"flex"} flexDir="row" w="65%">
+    <Box display={"flex"} flexDir="row" w="65%" className="w100">
       <Box
         display={"flex"}
         flexDirection={"column"}

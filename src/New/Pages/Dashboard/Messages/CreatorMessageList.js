@@ -41,6 +41,7 @@ console.log(responseBy)
   }
   return (
     <Box
+    className="chatbox-messages-width"
       display={"flex"}
       flexDir="column"
       gap={"1rem"}

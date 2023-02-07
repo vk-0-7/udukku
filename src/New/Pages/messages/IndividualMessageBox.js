@@ -344,7 +344,7 @@ const IndividualMessageBox = ({ socket, id }) => {
   console.log("frd", chatroom)
   return (
     // contains both i button box and message box
-    <Box display={"flex"} flexDir="row" w="65%">
+    <Box display={"flex"} flexDir="row" w="65%" className="w100">
       <Box
         display={"flex"}
         flexDirection={"column"}

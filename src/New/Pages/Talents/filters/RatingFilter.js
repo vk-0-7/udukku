@@ -53,6 +53,7 @@ const RatingFilter = ({ Main, setMainStar }) => {
           color={Main === "" ? "black" : "white"}
         >
           <RatingIcon
+            className="genre-category-icons2"
             style={{
               fill: Main === "" ? "rgba(8, 32, 50, .5)" : "white",
               width: "1.04vw",

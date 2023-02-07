@@ -63,6 +63,7 @@ const BudgetFilter = ({ MainStart, MainEnd, setMainStart, setMainEnd }) => {
           color={done ? "white" : "black"}
         >
           <BudgetIcon
+          className="genre-category-icons2"
             style={{
               fill: done ? "white" : "rgba(8, 32, 50, .5)",
               width: "1.25vw",

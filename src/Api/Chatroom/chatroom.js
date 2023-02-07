@@ -62,3 +62,7 @@ export const saveOrder = async(userId,chatroomId,paymentIntent,jobId) =>{
     return await axios.post(`${process.env.REACT_APP_BASE_URL}/payment/save-order`,{userId,chatroomId,paymentIntent,jobId});
 }
 
+export const updateReview = async(id,reqbody)=>{
+    return await axios.patch(`${process.env.REACT_APP_BASE_URL}/user/update-review/${id}`,{review:reqbody});
+}
+

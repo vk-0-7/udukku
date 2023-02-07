@@ -7,6 +7,7 @@ const WhoWeWorkWith = () => {
 	return (
 		<Box px={{ base: '7vw', lg: '13.54vw' }}>
 			<Text
+				className='lyrics-heading-1'
 				fontFamily={'Gilroy-Bold'}
 				fontSize='2.29vw'
 				textAlign={'center'}
@@ -14,16 +15,17 @@ const WhoWeWorkWith = () => {
 				Who We Work With
 			</Text>
 			<Box
-				display={'grid'}
+				display={{ md: 'grid', sm: 'block' }}
 				gridTemplateColumns='1fr 1fr 1fr'
 				gap='.833vw'
 				mt='30px'
 			>
 				<Box>
-					<Box h='23.14vh' w='23.75vw'>
+					<Box className="about-us-width" h='23.14vh' w='23.75vw'>
 						<Image src={img1} h='100%' w='100%' />
 					</Box>
 					<Text
+						className='lyrics-heading-1'
 						fontFamily={'Gilroy-Bold'}
 						fontSize='1.45vw'
 						textAlign={'center'}
@@ -32,6 +34,7 @@ const WhoWeWorkWith = () => {
 						Musicians
 					</Text>
 					<Text
+						className='lyrics-heading-2'
 						fontFamily={'Gilroy-Medium'}
 						fontSize='.833vw'
 						textAlign={'center'}
@@ -42,10 +45,11 @@ const WhoWeWorkWith = () => {
 					</Text>
 				</Box>
 				<Box>
-					<Box h='23.14vh' w='23.75vw'>
+					<Box className="about-us-width" h='23.14vh' w='23.75vw'>
 						<Image src={img2} h='100%' w='100%' />
 					</Box>
 					<Text
+						className='lyrics-heading-1'
 						fontFamily={'Gilroy-Bold'}
 						fontSize='1.45vw'
 						textAlign={'center'}
@@ -54,6 +58,7 @@ const WhoWeWorkWith = () => {
 						Industry Professionals
 					</Text>
 					<Text
+						className='lyrics-heading-2'
 						fontFamily={'Gilroy-Medium'}
 						fontSize='.833vw'
 						textAlign={'center'}
@@ -64,10 +69,11 @@ const WhoWeWorkWith = () => {
 					</Text>
 				</Box>
 				<Box>
-					<Box h='23.14vh' w='23.75vw'>
+					<Box className="about-us-width" h='23.14vh' w='23.75vw'>
 						<Image src={img3} h='100%' w='100%' />
 					</Box>
 					<Text
+						className='lyrics-heading-1'
 						fontFamily={'Gilroy-Bold'}
 						fontSize='1.45vw'
 						textAlign={'center'}
@@ -76,6 +82,7 @@ const WhoWeWorkWith = () => {
 						Labels and Venues
 					</Text>
 					<Text
+						className='lyrics-heading-2'
 						fontFamily={'Gilroy-Medium'}
 						fontSize='.833vw'
 						textAlign={'center'}

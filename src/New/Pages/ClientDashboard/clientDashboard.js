@@ -11,8 +11,10 @@ import { useState, useEffect } from "react";
 import getAllUsers from "../../../Api/User/getAllUsers";
 import TalentCard from "../../Components/talentCard/TalentCard";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const ClientDashboard = ({ state }) => {
+  const { user } = useSelector((state) => ({ ...state }));
   const [talents, setTalents] = useState([]);
   useEffect(() => {
     //window.scrollTo(0, 0);
@@ -34,20 +36,25 @@ const ClientDashboard = ({ state }) => {
       >
         <Box display={"flex"} flexDir="row" alignItems={"center"}>
           <Text fontSize={{base:"2.5rem",md:"4rem",lg:"2.29vw"}} fontFamily="Gilroy-Bold">
-            Welcome back, Ishita!
+            {user?.name}
           </Text>
+          
+          {user?.isMusician !== "Musician" ?
           <Button
-            leftIcon={<PostIcon />}
-            py="2rem"
-            gap="7px"
-            borderRadius={"1.5rem"}
-            color="white"
-            backgroundColor={"#F6540E"}
-            ml="auto"
-            onClick={() => navigate("/post-a-job")}
-          >
-            Post a Job
-          </Button>
+          leftIcon={<PostIcon />}
+          py="2rem"
+          gap="7px"
+          borderRadius={"1.5rem"}
+          color="white"
+          backgroundColor={"#F6540E"}
+          ml="auto"
+          onClick={() => navigate("/post-a-job")}
+        >
+          Post a Job
+        </Button>
+        :
+        ""
+        }
         </Box>
         {/* <Box
           display={"flex"}

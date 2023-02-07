@@ -183,10 +183,28 @@ html {
 
 .proposal-modal-input {
 	margin-top: 1rem;
+
 	margin-bottom: 1rem;
 }
 
+.d-hide {
+	display: none;
+}
+
+.m-hide {
+	display: block;
+}
+
 @media only screen and (max-width: 600px) {
+	.w100 {
+		width: 100% !important;
+	}
+
+	.m-10 {
+		margin-left: 10% !important;
+		margin-right: 10% !important;
+	}
+
 	.hero-box {
 		padding-left: 12%;
 		padding-right: 12%;
@@ -234,7 +252,12 @@ html {
 	.genre-category-icons {
 		height: 2rem !important;
 		width: 2rem !important;
-	} 
+	}
+
+	.genre-category-icons2 {
+		height: 1rem !important;
+		width: 1rem !important;
+	}
 
 	.job-h1 {
 		margin-left: 2rem;
@@ -270,5 +293,48 @@ html {
 	.single-Lyrics-page-heading1 {
 		font-size: 1rem !important;
 	}
+
+	.profile-image {
+		border-radius: 8% !important;
+	}
+
+	.profile-rating-icons {
+		height: 1rem !important;
+		width: 1rem !important;
+	}
+
+	.d-hide {
+		display: block;
+	}
+
+	.m-hide {
+		display: none;
+	}
+
+	.review-card {
+		width: 80vw !important;
+	}
+
+	.about-us-width {
+		font-size: 1rem !important;
+		width: 100% !important;
+	}
+
+	.about-us-margin {
+		margin-top: 40px !important;
+		margin-bottom: 50px !important;
+	}
+
+	.dashboard-box {
+		height: 8vh !important;
+		margin-top: 5px !important; 
+		margin-bottom: 5px !important; 
+	}
+
+	.chatbox-messages-width {
+		width: 45% !important;
+		border-color: transparent !important;
+	}
+
 
 }

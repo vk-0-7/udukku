@@ -57,7 +57,7 @@ const RespondToJob = ({socket}) => {
           </Text>
           {/* input section one */}
           <Box fontFamily={"Gilroy-SemiBold"} fontSize="2rem" mt="2.96vh">
-            <Text>What will you Provide?*</Text>
+            <Text fontSize={".833em"}>What will you Provide?*</Text>
             <Input
               w="100%"
               h="4.5rem"
@@ -71,7 +71,7 @@ const RespondToJob = ({socket}) => {
 
           {/* input section two */}
           <Box fontFamily={"Gilroy-SemiBold"} fontSize="2rem" mt="2.22vh">
-            <Text>Message*</Text>
+            <Text fontSize={".833em"}>Message*</Text>
             <Textarea
               py="2.22vh"
               w="100%"

@@ -20,7 +20,7 @@ const OurMission = () => {
         gap="10px"
         h={{ base: "45rem", "3xl": "45vh" }}
       >
-      <Text fontSize={{base:"5rem",lg:"3.37vw"}} fontFamily="Gilroy-Bold">
+      <Text className="talent" fontSize={{base:"5rem",lg:"3.37vw"}} fontFamily="Gilroy-Bold">
           Our Mission
         </Text>
         <Text

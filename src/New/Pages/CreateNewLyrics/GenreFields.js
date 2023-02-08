@@ -32,6 +32,7 @@ const GenreFields = ({ showDelete, currentIndex, fullState, changeState }) => {
           fontFamily={"Gilroy-SemiBold"}
           fontSize=".833vw"
           display={currentIndex > 0 ? "none" : ""}
+          ml={"1%"}
         >
           Genre*
         </Text>
@@ -39,7 +40,7 @@ const GenreFields = ({ showDelete, currentIndex, fullState, changeState }) => {
         className="single-Lyrics-page-heading1"
           h="6.48vh"
           type={"text"}
-          fontSize="1vw"
+          fontSize="1.2rem"
           //   value={fullState[currentIndex].genre}
           onChange={updating_genre}
           borderRadius="1.04vw"
@@ -58,6 +59,7 @@ const GenreFields = ({ showDelete, currentIndex, fullState, changeState }) => {
           fontFamily={"Gilroy-SemiBold"}
           fontSize=".833vw"
           display={currentIndex > 0 ? "none" : ""}
+          ml={"1%"}
         >
           Subgenre*
         </Text>
@@ -65,7 +67,7 @@ const GenreFields = ({ showDelete, currentIndex, fullState, changeState }) => {
         className="single-Lyrics-page-heading1"
           h="6.48vh"
           type={"text"}
-          fontSize="1vw"
+          fontSize="1.2rem"
           borderRadius="1.04vw"
           //   value={fullState[currentIndex].subgenre}
           onChange={updating_sub_genre}

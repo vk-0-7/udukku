@@ -16,6 +16,7 @@ const WhyUdukku = () => {
     >
       <Box w={{ base: "80%", lg: "40%" }}>
         <Text
+        className="talent"
           fontSize={{ base: "5rem", lg: "2.291vw" }}
           fontFamily="Gilroy-Bold"
         >

@@ -164,9 +164,9 @@ const SignInModal = ({ state, changeState }) => {
         onClose();
         sessionStorage.setItem("id", res.data.user._id);
         console.log("setting the value here");
-        isMusician === "recruter"
-          ? navigate("/client-dashboard")
-          : navigate("/dashboard");
+        isMusician === "musician"
+          ?navigate("/dashboard")
+          :  navigate("/client-dashboard");
       } else {
         set_show_registration_modal(false);
         setLoginState(true);
@@ -177,9 +177,9 @@ const SignInModal = ({ state, changeState }) => {
         setName(res.data.user.name);
         setUsername(res.data.user.userName);
         onClose();
-        isMusician === "recruter"
-          ? navigate("/client-dashboard")
-          : navigate("/dashboard");
+        isMusician === "musician"
+        ?navigate("/dashboard")
+        :  navigate("/client-dashboard");
       }
     } catch (error) {
       if (error.response.data.message === "This email does not exist.") {

@@ -34,6 +34,7 @@ const Talents = () => {
       >
         <Box w={{ base: "80%", lg: "50%" }}>
           <Text
+          className="talent"
             fontSize={{ base: "5.2rem", lg: "2.29vw" }}
             fontFamily={"Gilroy-Bold"}
           >

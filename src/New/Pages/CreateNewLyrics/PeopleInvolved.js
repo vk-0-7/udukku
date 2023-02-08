@@ -37,6 +37,7 @@ const PeopleInvolved = ({
 				className="single-Lyrics-page-heading1"
 					fontFamily={'Gilroy-SemiBold'}
 					fontSize='.833vw'
+					ml={"1%"}
 					display={currentIndex > 0 ? 'none' : ''}
 				>
 					People Involved*
@@ -45,7 +46,7 @@ const PeopleInvolved = ({
 				className="single-Lyrics-page-heading1"
 					h='6.48vh'
 					type={'text'}
-					fontSize='1vw'
+					fontSize='1.2rem'
 					value={fullState[currentIndex].peopleInvolved}
 					onChange={updating_genre}
 					borderRadius='1.04vw'
@@ -57,6 +58,7 @@ const PeopleInvolved = ({
 				className="single-Lyrics-page-heading1"
 					fontFamily={'Gilroy-SemiBold'}
 					fontSize='.833vw'
+					ml={"1%"}
 					display={currentIndex > 0 ? 'none' : ''}
 				>
 					Role*
@@ -65,7 +67,7 @@ const PeopleInvolved = ({
 				className="single-Lyrics-page-heading1"
 					h='6.48vh'
 					type={'text'}
-					fontSize='1vw'
+					fontSize='1.2rem'
 					borderRadius='1.04vw'
 					value={fullState[currentIndex].role}
 					onChange={updating_sub_genre}

@@ -298,7 +298,7 @@ const NavBar = () => {
                           display={"flex"}
                           verticalAlign={"middle"}
                         >
-                          Hello {user?.name}
+                          {user?.name}
                         </Text>
                         <Icon
                           as={BsChevronDown}
@@ -310,6 +310,7 @@ const NavBar = () => {
                   <MenuList bg="white" color="black">
                     <MenuItem
                       fontSize={"1.4rem"}
+                      fontFamily={"Gilroy-SemiBold"}
                       onClick={() => {
                         isMusician === "Recruter"
                           ? navigate("/client-dashboard")
@@ -329,6 +330,7 @@ const NavBar = () => {
                     </MenuItem>
                     {isMusician === "recruter" ? (
                       <MenuItem
+                      fontFamily={"Gilroy-SemiBold"}
                         fontSize={"1.4rem"}
                         onClick={() => navigate("/myjobs")}
                         icon={
@@ -352,6 +354,7 @@ const NavBar = () => {
                     />
                     {user?.isMusician === "Musician" ?
                       <MenuItem
+                      fontFamily={"Gilroy-SemiBold"}
                         fontSize={"1.4rem"}
                         onClick={() => {
                           navigate(
@@ -376,6 +379,7 @@ const NavBar = () => {
                       </MenuItem>
                       :
                       <MenuItem
+                      fontFamily={"Gilroy-SemiBold"}
                         fontSize={"1.4rem"}
                         onClick={() => {
                           navigate(
@@ -398,6 +402,7 @@ const NavBar = () => {
                     }
                    
                     <MenuItem
+                          fontFamily={"Gilroy-SemiBold"}
                       fontSize={"1.4rem"}
                       icon={
                         <LogOutIcon

@@ -30,6 +30,7 @@ const SocialMedia = ({ showDelete, currentIndex, fullState, changeState }) => {
         <Text
         className="single-Lyrics-page-heading1"
           fontFamily={"Gilroy-SemiBold"}
+          ml={"1%"}
           fontSize={{ base: "1.2rem", md: "1.5rem", lg: ".833vw" }}
           display={currentIndex > 0 ? "none" : ""}
         >
@@ -39,7 +40,7 @@ const SocialMedia = ({ showDelete, currentIndex, fullState, changeState }) => {
         className="single-Lyrics-page-heading1"
           h="6.48vh"
           type={"text"}
-          fontSize="1vw"
+          fontSize="1.2rem"
           value={fullState[currentIndex].genre}
           onChange={updating_plat}
           borderRadius="1.04vw"
@@ -59,6 +60,7 @@ const SocialMedia = ({ showDelete, currentIndex, fullState, changeState }) => {
         <Text
         className="single-Lyrics-page-heading1"
           fontFamily={"Gilroy-SemiBold"}
+          ml={"1%"}
           fontSize={{ base: "1.2rem", md: "1.5rem", lg: ".833vw" }}
           display={currentIndex > 0 ? "none" : ""}
         >
@@ -68,7 +70,7 @@ const SocialMedia = ({ showDelete, currentIndex, fullState, changeState }) => {
         className="single-Lyrics-page-heading1"
           h="6.48vh"
           type={"link"}
-          fontSize="1vw"
+          fontSize="1.2rem"
           borderRadius="1.04vw"
           value={fullState[currentIndex].link}
           onChange={updating_link}

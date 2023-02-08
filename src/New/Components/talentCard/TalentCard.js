@@ -181,7 +181,7 @@ const TalentCard = ({ data }) => {
         <audio
           src={data.workSample}
           controls
-          style={{ height: "3.33vh", width: "100%", marginTop: "1.48vh" }}
+          style={{ height: "3.33vh", width: "100%", marginTop: "1.48vh", color:"#f6540e" }}
         />
       )}
 

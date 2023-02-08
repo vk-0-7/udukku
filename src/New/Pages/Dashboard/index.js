@@ -13,6 +13,7 @@ import JobSearchCard from "../../Components/jobSearchCard/JobSearchCard";
 import { AccessAuthContext } from "../../Context/AuthContext";
 import getAllUsers from "../../../Api/User/getAllUsers";
 import { useSelector } from "react-redux";
+import { getUserInfoById } from "../../../Api/User/getUserById";
 
 // dummy
 const d_data = [
@@ -39,6 +40,8 @@ const Dashboard = () => {
   const { userId } = AccessAuthContext();
   console.log(userId);
   const { user } = useSelector((state) => ({ ...state }));
+  const [loading, setLoading] = useState(false);
+  const [userData, setUserData] = useState({});
 
   const [allUser, setAllUser] = useState({});
   useEffect(() => {
@@ -52,6 +55,17 @@ const Dashboard = () => {
     } else {
       navigate("/");
     }
+  }, []);
+
+  const id = userId;
+console.log(id)
+  useEffect(() => {
+    setLoading(true);
+    getUserInfoById(id).then((res) => {
+      console.log(res);
+      setUserData(res.data);
+    });
+    setLoading(false);
   }, []);
 
   console.log({ user });
@@ -221,7 +235,7 @@ const Dashboard = () => {
           <Box
             mt="2.22vh"
             w="100%"
-            h={{ lg: "24.81vh" }}
+            h="100%"
             border="2px solid #F0F0F0"
             borderRadius={"1.66vw"}
             px="1.25vw"
@@ -230,12 +244,13 @@ const Dashboard = () => {
             alignItems="center"
           >
             <Image
+        
               src={user?.avatar}
-              h="11.45vw"
-              w="11.45vw"
-              borderRadius={"1.66vw"}
+              h="30vh"
+              w="30vh"
+              borderRadius={"10%"}
               objectFit="cover"
-              objectPosition={"50% 50%"}
+              // objectPosition={"50% 50%"}
             />
             <Box ml="1.14vw">
               <Text
@@ -250,7 +265,7 @@ const Dashboard = () => {
                 fontSize={{ base: "1rem", md: "1.5rem", lg: ".833vw" }}
                 w="47.9vw"
               >
-                {user?.description}
+                {userData?.description}
               </Text>
             </Box>
             <Box flexGrow={1}></Box>

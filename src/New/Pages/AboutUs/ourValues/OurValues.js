@@ -12,7 +12,7 @@ const OurValues = () => {
 			pb='7.40vh'
 			mb='50px'
 		>
-			<Box className='m-hide' w='33.75vw' h='60vh'>
+			<Box className='m-hide' w='33.75vw' h='50vh'>
 				<Image src={img2} h='100%' w='90%' />
 			</Box>
 			<Box flexGrow={1}></Box>

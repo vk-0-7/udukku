@@ -184,7 +184,7 @@ const Footer = () => {
               >
                 Privacy Policy
               </Text>
-              
+
               <Text
                 fontFamily={"Gilroy-Medium"}
                 fontSize={{ base: "1.7rem", lg: ".833vw" }}
@@ -252,22 +252,22 @@ const Footer = () => {
               color="#000"
             />
             <InputRightElement width="6.19vw" h="100%">
-              <Button
-                h={{ base: "5vh", lg: "5vh" }}
-                w="100%"
-                bg="rgba(246, 84, 14, 1)"
-                position={"relative"}
-                right="5px"
-                borderRadius={"1.25vw"}
-                _hover={{
-                  background: "#0E87F6",
-                }}
-                fontSize={{ base: "1.7rem", lg: ".833vw" }}
-              >
-                Send
-              </Button>
+
             </InputRightElement>
           </InputGroup>
+          <Button
+            mt="2%"
+            h={{ base: "5vh", lg: "5vh" }}
+            w="100%"
+            bg="rgba(246, 84, 14, 1)"
+            borderRadius={"1.25vw"}
+            _hover={{
+              background: "#0E87F6",
+            }}
+            fontSize={{ base: "1.7rem", lg: ".833vw" }}
+          >
+            Send
+          </Button>
           <Box display={"flex"} mt="2.77vh" gap="1.56vw">
             <Box
               as="a"

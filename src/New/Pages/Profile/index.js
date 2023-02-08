@@ -72,7 +72,7 @@ const Profile = () => {
   const [loading, setLoading] = useState(false);
   const [allTalents, setAllTalents] = useState([]);
   const [talents, setTalents] = useState([]);
-  const [userData, setUserData] = useState("");
+  const [userData, setUserData] = useState({});
 
   useEffect(async () => {
     //window.scrollTo(0, 0);
@@ -98,7 +98,7 @@ const Profile = () => {
   }, []);
 
   console.log({ talents });
-  console.log({user});
+  console.log({ userData });
 
   return (
     <>
@@ -112,11 +112,12 @@ const Profile = () => {
           <Text fontFamily={"Gilroy-Bold"} fontSize="3rem" pb="1rem">
             MY PROFILE
           </Text>
-          <Box display="grid" gridTemplateColumns={"1fr 1fr"} gap="1.85vw">
-            <Box w="36.04vw" h="fit-content">
+          <Box display={{ md: "grid", sm: "block" }} gridTemplateColumns={"1fr 1fr"} gap="1.85vw" mb={"5%"}>
+            <Box w={{ md: "36.04vw", sm: "100%" }} h="fit-content">
               <Box display={"flex"} flexDir="column" gap="1.04vw">
                 <Box position={"relative"}>
                   <Image
+                    className="profile-image"
                     width={"100%"}
                     objectFit="cover"
                     // objectPosition={"50% 50%"}
@@ -146,12 +147,13 @@ const Profile = () => {
                     <></>
                   )}
                 </Box>
-                <Box display={"flex"} flexDir="row">
+                <Box display={{ md: "flex", sm: "block" }} flexDir="row">
                   <Box>
-                    <Text fontFamily={"Gilroy-Bold"} fontSize="1.66vw">
+                    <Text className="lyrics-heading-1" fontFamily={"Gilroy-Bold"} fontSize="1.66vw">
                       {userData.name}
                     </Text>
                     <Text
+                      className="lyrics-heading-2"
                       fontFamily={"Gilroy-SemiBold"}
                       fontSize="1.04vw"
                       color="rgba(43, 43, 43, .5)"
@@ -162,30 +164,35 @@ const Profile = () => {
                     {/* stars */}
                     <Box display={"flex"} gap={".277vw"} alignItems="flex-end">
                       <Star
+                        className="profile-rating-icons"
                         style={{
                           fill: "rgba(247, 215, 22, 1)",
                           width: ".86vw",
                         }}
                       />
                       <Star
+                        className="profile-rating-icons"
                         style={{
                           fill: "rgba(247, 215, 22, 1)",
                           width: ".86vw",
                         }}
                       />
                       <Star
+                        className="profile-rating-icons"
                         style={{
                           fill: "rgba(247, 215, 22, 1)",
                           width: ".86vw",
                         }}
                       />
                       <Star
+                        className="profile-rating-icons"
                         style={{
                           fill: "rgba(247, 215, 22, 1)",
                           width: ".86vw",
                         }}
                       />
                       <Star
+                        className="profile-rating-icons"
                         style={{
                           fill: "rgba(247, 215, 22, 1)",
                           width: ".86vw",
@@ -200,11 +207,13 @@ const Profile = () => {
                   <Box
                     display={"flex"}
                     flexDir="row"
-                    justifyContent={"center"}
+                    justifyContent={{ md: "center", sm: "left" }}
                     gap="1.11vh"
                     ml="auto"
+                    mt="2%"
                   >
                     <Box
+                      className="genre-category-icons"
                       h="2.70vw"
                       w="2.70vw"
                       border="2px solid rgba(43, 43, 43, .1)"
@@ -221,6 +230,7 @@ const Profile = () => {
                       }}
                     >
                       <FbIcon
+                        className="profile-rating-icons"
                         style={{
                           fill: "rgba(246, 84, 14, 1)",
                           height: "1.85vh",
@@ -228,6 +238,7 @@ const Profile = () => {
                       />
                     </Box>
                     <Box
+                      className="genre-category-icons"
                       h="2.70vw"
                       w="2.70vw"
                       border="2px solid rgba(43, 43, 43, .1)"
@@ -244,6 +255,7 @@ const Profile = () => {
                       }}
                     >
                       <InstaIcon
+                        className="profile-rating-icons"
                         style={{
                           fill: "rgba(246, 84, 14, 1)",
                           width: "1.04vw",
@@ -251,6 +263,7 @@ const Profile = () => {
                       />
                     </Box>
                     <Box
+                      className="genre-category-icons"
                       h="2.70vw"
                       w="2.70vw"
                       border="2px solid rgba(43, 43, 43, .1)"
@@ -267,6 +280,7 @@ const Profile = () => {
                       }}
                     >
                       <SoundCouldIcon
+                        className="profile-rating-icons"
                         style={{
                           fill: "rgba(246, 84, 14, 1)",
                           width: "1.04vw",
@@ -276,14 +290,174 @@ const Profile = () => {
                   </Box>
                 </Box>
               </Box>
+
+              <Box className="d-hide" w="100%" >
+                {/* video section */}
+
+                {/* {userData?.socialMedia?.size === 0 ? (
+                <Box></Box>
+              ) : user.socialMedia?.filter(
+                (vid) => vid.plat === "youtube"
+              ).map(vid => {
+                return <Box
+                  width={"100%"}
+                  h="23rem"
+                  borderRadius={"1.66vw"}
+                  overflow="hidden"
+                  position="relative"
+                >
+                  <ReactPlayer
+                    style={{
+                      position: "absolute",
+                      width: "100%",
+                      height: "100%",
+                    }}
+                    height="100%"
+                    width={"100%"}
+                    url={
+                      vid.link
+                    }
+                  />
+                </Box>
+              })
+
+              } */}
+
+                {/* starting price section */}
+                <Box
+                  w="100%"
+                  mt="2.22vh"
+                  px="1.45vw"
+                  pt="2.59vh"
+                  pb="1.48vh"
+                  // border={"2px solid rgba(240, 240, 240, 1)"}
+                  borderRadius="1.66vw"
+                >
+                  <Box display={"flex"} justifyContent="space-between">
+                    <Text className="lyrics-heading-2" fontFamily={"Gilroy-Bold"} fontSize="1.45vw">
+                      Starting Price:
+                    </Text>
+                    <Text className="lyrics-heading-2" fontFamily={"Gilroy-Bold"} fontSize="1.45vw">
+                      ₹{userData.startingPrice}
+                    </Text>
+                  </Box>
+                  {user?.isMusician === "Musician" ?
+                    <Button
+                      mt="3.70vh"
+                      h="6.48vh"
+                      w="100%"
+                      borderRadius={"4.04vw"}
+                      bg="#F6540E"
+                      _hover={{ background: "#F6540E" }}
+                      onClick={() =>
+                        navigate("/talent-registration", {
+                          state: { data: user, prevPath: location.pathname },
+                        })
+                      }
+                    >
+                      <Sms
+                        className="genre-category-icons2"
+                        style={{
+                          width: "1.25vw",
+                          height: "1.25vw",
+                        }}
+                      />
+                      <Text
+                        className="lyrics-heading-2"
+                        ml=".36vw"
+                        color="white"
+                        fontFamily={"Gilroy-SemiBold"}
+                        fontSize=".833vw"
+                      >
+                        Edit Profile
+                      </Text>
+                    </Button>
+                    :
+                    <Button
+                      mt="3.70vh"
+                      h="6.48vh"
+                      w="100%"
+                      borderRadius={"1.04vw"}
+                      bg="#F6540E"
+                      _hover={{ background: "#F6540E" }}
+                      onClick={() =>
+                        navigate("/job-creator-registration", {
+                          state: { data: user, prevPath: location.pathname },
+                        })
+                      }
+                    >
+                      <Sms
+                        style={{
+                          width: "1.25vw",
+                          height: "1.25vw",
+                        }}
+                      />
+                      <Text
+                        ml=".36vw"
+                        color="white"
+                        fontFamily={"Gilroy-SemiBold"}
+                        fontSize=".833vw"
+                      >
+                        Edit Profile
+                      </Text>
+                    </Button>
+                  }
+
+                </Box>
+
+                <Box>
+                  <Box
+                    display={"block"}
+                    gridTemplateColumns="1fr 1fr"
+                    columnGap={".833vw"}
+                    rowGap="1.48vh"
+                    mt="2.22vh"
+                  >
+                    {/* card-1  */}
+                    {userData?.services?.map((item, index) => (
+                      <Box
+                        w="100%"
+                        h="6rem"
+                        bg="rgba(192, 226, 24, .1)"
+                        borderRadius={"1.66vw"}
+                        px="1.34vw"
+                        py={"2.22vh"}
+                        display="flex"
+                        flexDir={"column"}
+                        key={index}
+                        mb="5%"
+                      >
+                        <Box display={"flex"} gap=".511vw">
+                          <Category
+                            className="genre-category-icons2"
+                            style={{
+                              height: "1.14vw",
+                              width: "1.14vw",
+                            }}
+                          />
+                          <Text className="lyrics-heading-2" fontFamily={"Gilroy-SemiBold"} fontSize=".93vw">
+                            {item.service}
+                          </Text>
+                        </Box>
+                        <Box flexGrow={1}></Box>
+                        <Text className="lyrics-heading-2" fontFamily={"Gilroy-Bold"} fontSize="1.6rem">
+                          Starting Price: ₹{userData.startingPrice}
+                        </Text>
+                      </Box>
+                    ))}
+                  </Box>
+                </Box>
+              </Box>
+
+
               <Box w="100%" mt="2.96vh">
                 {/* heading */}
-                <Text fontFamily="Gilroy-Bold" fontSize={"1.45vw"}>
+                <Text className="lyrics-heading-1" fontFamily="Gilroy-Bold" fontSize={"1.45vw"}>
                   {userData.tag}
                 </Text>
 
                 {/* Tags */}
-                <Box display={"flex"} gap=".416vw">
+                <Box display={{md:"flex", sm:"block"}} gap=".416vw">
                   {userData?.genres?.map((g) => (
                     <>
                       <Box
@@ -298,13 +472,14 @@ const Profile = () => {
                         borderRadius={".833vw"}
                       >
                         <MusicIcon
+                          className="profile-rating-icons"
                           style={{
                             fill: "black",
                             height: "1.49vh",
                             width: ".722vw",
                           }}
                         />
-                        <Text fontFamily={"Gilroy-SemiBold"} fontSize=".729vw">
+                        <Text className="lyrics-heading-2" fontFamily={"Gilroy-SemiBold"} fontSize=".729vw">
                           {g.subGenere}
                         </Text>
                       </Box>
@@ -336,10 +511,10 @@ const Profile = () => {
 
                 {/* Terms of Services */}
                 <Box mt="3.70vh">
-                  <Text fontFamily={"Gilroy-Bold"} fontSize="1.45vw">
+                  <Text className="lyrics-heading-1" fontFamily={"Gilroy-Bold"} fontSize="1.45vw">
                     Terms of Services
                   </Text>
-                  <Text fontFamily={"Gilroy-Medium"} fontSize=".833vw">
+                  <Text className="lyrics-heading-2" fontFamily={"Gilroy-Medium"} fontSize=".833vw">
                     {userData.terms}
                   </Text>
                   {/* {user.terms?.map((t, index) => (
@@ -355,7 +530,7 @@ const Profile = () => {
 
                 {/* Gear Highlights */}
                 <Box mt="3.70vh">
-                  <Text fontFamily={"Gilroy-Bold"} fontSize="1.45vw">
+                  <Text className="lyrics-heading-1" fontFamily={"Gilroy-Bold"} fontSize="1.45vw">
                     Gear Highlights
                   </Text>
                   <Box
@@ -371,6 +546,7 @@ const Profile = () => {
                         <Box display={"flex"} alignItems="center" gap=".52vw">
                           {g.input1 === "Laptop" && (
                             <Monitor
+                              className="profile-rating-icons"
                               style={{
                                 height: "1.25vw",
                                 width: "1.25vw",
@@ -379,6 +555,7 @@ const Profile = () => {
                           )}
                           {g.input1 === "Microphone" && (
                             <Microphone
+                              className="profile-rating-icons"
                               style={{
                                 height: "1.25vw",
                                 width: "1.25vw",
@@ -387,6 +564,7 @@ const Profile = () => {
                           )}
                           {g.input1 === "Headphone" && (
                             <Headphone
+                              className="profile-rating-icons"
                               style={{
                                 height: "1.25vw",
                                 width: "1.25vw",
@@ -394,13 +572,13 @@ const Profile = () => {
                             />
                           )}
 
-                          <Text fontFamily={"Gilroy-Medium"} fontSize=".8333vw">
+                          <Text className="lyrics-heading-2" fontFamily={"Gilroy-Medium"} fontSize=".8333vw">
                             {g.input1}
                           </Text>
                         </Box>
 
                         {/* value */}
-                        <Text fontFamily={"Gilroy-SemiBold"} fontSize=".833vw">
+                        <Text className="lyrics-heading-2" fontFamily={"Gilroy-SemiBold"} fontSize=".833vw">
                           {g.input2}
                         </Text>
                       </>
@@ -409,18 +587,19 @@ const Profile = () => {
                     {/* icon and type */}
                     <Box display={"flex"} alignItems="center" gap=".52vw">
                       <Driver
+                        className="profile-rating-icons"
                         style={{
                           height: "1.25vw",
                           width: "1.25vw",
                         }}
                       />
-                      <Text fontFamily={"Gilroy-Medium"} fontSize=".8333vw">
+                      <Text className="lyrics-heading-2" fontFamily={"Gilroy-Medium"} fontSize=".8333vw">
                         Sound Card
                       </Text>
                     </Box>
 
                     {/* value */}
-                    <Text fontFamily={"Gilroy-SemiBold"} fontSize=".833vw">
+                    <Text className="lyrics-heading-2" fontFamily={"Gilroy-SemiBold"} fontSize=".833vw">
                       Focusrite Scarlett 2i4
                     </Text>
                   </Box>
@@ -428,7 +607,7 @@ const Profile = () => {
               </Box>
             </Box>
 
-            <Box w="35vw" h="10px">
+            <Box className="m-hide" w="35vw" h="10px">
               {/* video section */}
 
               {/* {userData?.socialMedia?.size === 0 ? (
@@ -479,65 +658,65 @@ const Profile = () => {
                   </Text>
                 </Box>
                 {user?.isMusician === "Musician" ?
-                 <Button
-                 mt="3.70vh"
-                 h="6.48vh"
-                 w="100%"
-                 borderRadius={"1.04vw"}
-                 bg="#F6540E"
-                 _hover={{ background: "#F6540E" }}
-                 onClick={() =>
-                   navigate("/talent-registration", {
-                     state: { data: user, prevPath: location.pathname },
-                   })
-                 }
-               >
-                 <Sms
-                   style={{
-                     width: "1.25vw",
-                     height: "1.25vw",
-                   }}
-                 />
-                 <Text
-                   ml=".36vw"
-                   color="white"
-                   fontFamily={"Gilroy-SemiBold"}
-                   fontSize=".833vw"
-                 >
-                   Edit Profile
-                 </Text>
-               </Button>
-               :
-               <Button
-               mt="3.70vh"
-               h="6.48vh"
-               w="100%"
-               borderRadius={"1.04vw"}
-               bg="#F6540E"
-               _hover={{ background: "#F6540E" }}
-               onClick={() =>
-                 navigate("/job-creator-registration", {
-                   state: { data: user, prevPath: location.pathname },
-                 })
-               }
-             >
-               <Sms
-                 style={{
-                   width: "1.25vw",
-                   height: "1.25vw",
-                 }}
-               />
-               <Text
-                 ml=".36vw"
-                 color="white"
-                 fontFamily={"Gilroy-SemiBold"}
-                 fontSize=".833vw"
-               >
-                 Edit Profile
-               </Text>
-             </Button>
-              }
-                 
+                  <Button
+                    mt="3.70vh"
+                    h="6.48vh"
+                    w="100%"
+                    borderRadius={"1.04vw"}
+                    bg="#F6540E"
+                    _hover={{ background: "#F6540E" }}
+                    onClick={() =>
+                      navigate("/talent-registration", {
+                        state: { data: user, prevPath: location.pathname },
+                      })
+                    }
+                  >
+                    <Sms
+                      style={{
+                        width: "1.25vw",
+                        height: "1.25vw",
+                      }}
+                    />
+                    <Text
+                      ml=".36vw"
+                      color="white"
+                      fontFamily={"Gilroy-SemiBold"}
+                      fontSize=".833vw"
+                    >
+                      Edit Profile
+                    </Text>
+                  </Button>
+                  :
+                  <Button
+                    mt="3.70vh"
+                    h="6.48vh"
+                    w="100%"
+                    borderRadius={"1.04vw"}
+                    bg="#F6540E"
+                    _hover={{ background: "#F6540E" }}
+                    onClick={() =>
+                      navigate("/job-creator-registration", {
+                        state: { data: user, prevPath: location.pathname },
+                      })
+                    }
+                  >
+                    <Sms
+                      style={{
+                        width: "1.25vw",
+                        height: "1.25vw",
+                      }}
+                    />
+                    <Text
+                      ml=".36vw"
+                      color="white"
+                      fontFamily={"Gilroy-SemiBold"}
+                      fontSize=".833vw"
+                    >
+                      Edit Profile
+                    </Text>
+                  </Button>
+                }
+
               </Box>
 
               <Box>
@@ -638,23 +817,25 @@ const Profile = () => {
               </Box>
             </Box>
           </Box>
+          {userData?.userData?.review ? 
           <Box mt="5.55vh">
-            <Text fontFamily="Gilroy-Bold" fontSize={"1.45vw"}>
-              {/* Reviews ({user.reviews?.length}) */}
-              Reviews (4)
-            </Text>
-            <Box
-              mt="1.01vh"
-              mb="7.40vh"
-              display={"flex"}
-              flexDir="column"
-              gap="1.48vh"
-            >
-              {d_data.map((data, index) => {
-                return <ReviewCard key={index} data={data} />;
-              })}
-            </Box>
+          <Text className="lyrics-heading-2" fontFamily="Gilroy-Bold" fontSize={"1.45vw"}>
+            {/* Reviews ({user.reviews?.length}) */}
+            Reviews (4)
+          </Text>
+          <Box
+            mt="1.01vh"
+            mb="7.40vh"
+            display={"flex"}
+            flexDir="column"
+            gap="1.48vh"
+          >
+            <ReviewCard  />;
           </Box>
+        </Box>
+        :
+        ""}
+          
         </Box>
         <Footer />
       </Box>

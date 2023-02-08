@@ -34,6 +34,7 @@ const PeopleInvolved = ({
 		<Box display={'flex'} gap='.833vw' mt='1.111vh' position={'relative'}>
 			<Box flexGrow={1}>
 				<Text
+				className="single-Lyrics-page-heading1"
 					fontFamily={'Gilroy-SemiBold'}
 					fontSize='.833vw'
 					display={currentIndex > 0 ? 'none' : ''}
@@ -41,6 +42,7 @@ const PeopleInvolved = ({
 					People Involved*
 				</Text>
 				<Input
+				className="single-Lyrics-page-heading1"
 					h='6.48vh'
 					type={'text'}
 					fontSize='1vw'
@@ -52,6 +54,7 @@ const PeopleInvolved = ({
 			</Box>
 			<Box flexGrow={1}>
 				<Text
+				className="single-Lyrics-page-heading1"
 					fontFamily={'Gilroy-SemiBold'}
 					fontSize='.833vw'
 					display={currentIndex > 0 ? 'none' : ''}
@@ -59,6 +62,7 @@ const PeopleInvolved = ({
 					Role*
 				</Text>
 				<Input
+				className="single-Lyrics-page-heading1"
 					h='6.48vh'
 					type={'text'}
 					fontSize='1vw'

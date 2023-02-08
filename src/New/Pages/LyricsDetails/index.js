@@ -72,7 +72,7 @@ const LyricsDetails = () => {
         <Box
           width="100%"
           mt="5.55vh"
-          display={{md:"grid",sm:"block"}}
+          display={{ md: "grid", sm: "block" }}
           gridTemplateColumns="1fr 1fr"
           columnGap={"1.87vw"}
         >
@@ -91,7 +91,7 @@ const LyricsDetails = () => {
             {/* heading section */}
             <Box
               mt="2.22vh"
-              display={{md:"flex", sm: "block"}}
+              display={{ md: "flex", sm: "block" }}
               justifyContent="space-between"
               alignItems={"center"}
             >
@@ -100,7 +100,7 @@ const LyricsDetails = () => {
                   {lyrics.songName}
                 </Text>
                 <Text
-                className="lyrics-heading-2"
+                  className="lyrics-heading-2"
                   fontFamily={"Gilroy-SemiBold"}
                   fontSize="1.04vw"
                   color="rgba(43, 43, 43, .5)"
@@ -127,7 +127,7 @@ const LyricsDetails = () => {
                   className="genre-category-icons"
                 >
                   <FacebookIcon
-                  className="genre-category-icons"
+                    className="genre-category-icons"
                     style={{
                       fill: "rgba(246, 84, 14, 1)",
                       width: ".55vw",
@@ -153,7 +153,7 @@ const LyricsDetails = () => {
                   }}
                 >
                   <InstaIcon
-                  className="genre-category-icons"
+                    className="genre-category-icons"
                     style={{
                       fill: "rgba(246, 84, 14, 1)",
                       width: ".91vw",
@@ -179,7 +179,7 @@ const LyricsDetails = () => {
                   }}
                 >
                   <SoundCloudIcon
-                  className="genre-category-icons"
+                    className="genre-category-icons"
                     style={{
                       fill: "rgba(246, 84, 14, 1)",
                       width: "1.04vw",
@@ -209,13 +209,14 @@ const LyricsDetails = () => {
                       gap=".41vw"
                     >
                       <GenreIcon
+                        className="genre-category-icons2"
                         style={{
                           height: ".93vw",
                           width: ".72vw",
                           fill: "rgba(8, 32, 50, 1)",
                         }}
                       />
-                      <Text fontFamily={"Gilroy-SemiBold"} fontSize=".72vw">
+                      <Text className="lyrics-heading-2" fontFamily={"Gilroy-SemiBold"} fontSize=".72vw">
                         {item.genre}
                       </Text>
                     </Box>
@@ -232,13 +233,14 @@ const LyricsDetails = () => {
                       gap=".41vw"
                     >
                       <GenreIcon
+                        className="genre-category-icons2"
                         style={{
                           height: ".93vw",
                           width: ".72vw",
                           fill: "rgba(8, 32, 50, 1)",
                         }}
                       />
-                      <Text fontFamily={"Gilroy-SemiBold"} fontSize=".72vw">
+                      <Text className="lyrics-heading-2" fontFamily={"Gilroy-SemiBold"} fontSize=".72vw">
                         {item.subgenre}
                       </Text>
                     </Box>
@@ -250,17 +252,17 @@ const LyricsDetails = () => {
             {/* Lyrics section */}
 
             <Box mt="3.70vh">
-              <Text fontFamily={"Gilroy-Bold"} fontSize="1.45vw" mt="1.11vh">
+              <Text className="lyrics-heading-1" fontFamily={"Gilroy-Bold"} fontSize="1.45vw" mt="1.11vh">
                 Lyrics
               </Text>
-              <Text fontFamily={"Gilroy-Medium"} fontSize=".833vw" mt="1.11vh">
+              <Text className="lyrics-heading-2" fontFamily={"Gilroy-Medium"} fontSize=".833vw" mt="1.11vh">
                 {lyrics.lyrics}
               </Text>
             </Box>
 
             {/* People Involved */}
             <Box mt="3.70vh">
-              <Text fontSize={"1.45vw"} fontFamily="Gilroy-Bold">
+              <Text className="lyrics-heading-1" fontSize={"1.45vw"} fontFamily="Gilroy-Bold">
                 People Involved
               </Text>
               <Box
@@ -272,13 +274,14 @@ const LyricsDetails = () => {
                 {people.map((person, index) => {
                   return (
                     <Box key={index}>
-                      <Text fontFamily={"Gilroy-Medium"} fontSize=".833vw">
+                      <Text className="lyrics-heading-2" fontFamily={"Gilroy-Medium"} fontSize=".833vw">
                         {person.role}
                       </Text>
                       <Text
                         fontFamily={"Gilroy-Bold"}
                         fontSize=".833vw"
                         textDecor={"underline"}
+                        className="lyrics-heading-2"
                       >
                         {person.peopleInvolved}
                       </Text>
@@ -290,11 +293,12 @@ const LyricsDetails = () => {
 
             {/* Share Music */}
             <Box mt="3.70vh">
-              <Text fontSize={"1.45vw"} fontFamily="Gilroy-Bold">
+              <Text className="lyrics-heading-1" fontSize={"1.45vw"} fontFamily="Gilroy-Bold">
                 Share Music
               </Text>
               <Box display={"flex"} gap=".833vw" mt="1.48vh">
                 <Box
+
                   w="11.45vw"
                   h="6.29vh"
                   border={"2px solid rgba(43, 43, 43, .1)"}
@@ -311,6 +315,7 @@ const LyricsDetails = () => {
                   }}
                 >
                   <FacebookIcon
+                    className="genre-category-icons"
                     style={{
                       fill: "rgba(246, 84, 14, 1)",
                       width: ".75vw",
@@ -335,6 +340,8 @@ const LyricsDetails = () => {
                   }}
                 >
                   <InstaIcon
+                    className="genre-category-icons"
+
                     style={{
                       fill: "rgba(246, 84, 14, 1)",
                       width: "1.27vw",
@@ -343,6 +350,7 @@ const LyricsDetails = () => {
                   />
                 </Box>
                 <Box
+
                   w="11.45vw"
                   h="6.29vh"
                   border={"2px solid rgba(43, 43, 43, .1)"}
@@ -359,6 +367,8 @@ const LyricsDetails = () => {
                   }}
                 >
                   <SoundCloudIcon
+                    className="genre-category-icons"
+
                     style={{
                       fill: "rgba(246, 84, 14, 1)",
                       width: "1.45vw",

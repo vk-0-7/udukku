@@ -16,6 +16,7 @@ const CreateAFreeAccount = () => {
 				h='48.88vh'
 			>
 				<Text
+					className='hero-font-class1'
 					fontSize={'3.37vw'}
 					w='60%'
 					fontFamily='Gilroy-Bold'
@@ -24,6 +25,7 @@ const CreateAFreeAccount = () => {
 					Create A Free Account and Get Started Today!
 				</Text>
 				<Button
+					className='w100 hero-font-class2 m-10'
 					bg='rgba(246, 84, 14, 1)'
 					color='#fff'
 					h='6.66vh'
@@ -35,6 +37,7 @@ const CreateAFreeAccount = () => {
 				>
 					Become a memeber
 				</Button>
+
 			</Box>
 		</Box>
 	);

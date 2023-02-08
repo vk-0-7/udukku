@@ -23,7 +23,7 @@ const MessagingPageDetails = ({
   getAttachments
 }) => {
   const navigate = useNavigate();
-  console.log(media)
+  console.log("media", media)
   console.log(chatroom)
   return (
     // whole rightmost messagedetails
@@ -108,33 +108,33 @@ const MessagingPageDetails = ({
           </Box>
         </Box>
         {chatroom?.proposalDetails ?
-        <Button
-        backgroundColor="#FEEEE7"
-        color="#F6540E"
-        pt="1.7rem"
-        pb="1.7rem"
-        size="lg"
-        borderRadius={"2rem"}
-        onClick={() => navigate(`/view-proposal/${chatroom._id}`)}
-      >
-        View Proposal
-      </Button>
-      :
-      <Button
-      backgroundColor="#FEEEE7"
-      color="#F6540E"
-      pt="1.7rem"
-      pb="1.7rem"
-      size="lg"
-      borderRadius={"2rem"}
-      onClick={() => navigate("/view-proposal")}
-      disabled
-    >
-      View Proposal
-    </Button>
-    
-      }
-        
+          <Button
+            backgroundColor="#FEEEE7"
+            color="#F6540E"
+            pt="1.7rem"
+            pb="1.7rem"
+            size="lg"
+            borderRadius={"2rem"}
+            onClick={() => navigate(`/view-proposal/${chatroom._id}`)}
+          >
+            View Proposal
+          </Button>
+          :
+          <Button
+            backgroundColor="#FEEEE7"
+            color="#F6540E"
+            pt="1.7rem"
+            pb="1.7rem"
+            size="lg"
+            borderRadius={"2rem"}
+            onClick={() => navigate("/view-proposal")}
+            disabled
+          >
+            View Proposal
+          </Button>
+
+        }
+
         {/* Media and content */}
         <Box
           display={"flex"}
@@ -153,13 +153,13 @@ const MessagingPageDetails = ({
             />
           </Box>
         </Box>
-
-        {media.map((index,item) => {
-          <Box key={index} display={"flex"} flexDir="row" gap="1rem">
-            <Image src={item.attachmentUrl} h="7rem" w="7rem" borderRadius={"1rem"}/>
+   
+        {media && media.map((index, item) => ( 
+          <Box key={item} display={"flex"} flexDir="row" gap="1rem">
+            <img src={index.attachmentUrl}  h="0.8rem" w="0.8rem" borderRadius={"1rem"} />
           </Box>
-        })}
-    
+        ))}
+
       </Box>
     </Box>
   );

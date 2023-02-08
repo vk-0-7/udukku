@@ -16,17 +16,31 @@ const ContactMessages = ({socket}) => {
   return (
     <Box display={"flex"} flexDir="column" overflow={"hidden"} w="100%">
       <NavBar />
-      <Box mt="10rem" pb="2rem" w="100%" pl="15rem" pr="15rem" pt="2rem">
+      <Box className="m-hide" mt="10rem" pb="2rem" w="100%" pl="15rem" pr="15rem" pt="2rem">
         <Box
           border="2px"
           borderColor={"#F0F0F0"}
-          h="70rem"
+          h="55rem"
           w="100%"
           borderRadius={"32px"}
           display={"flex"}
           flexDir="row"
         >
           <MessageList />
+          <IndividualMessageBox socket={socket} id={id}/>
+        </Box>
+      </Box>
+
+      <Box className="d-hide" mt="10rem" pb="2rem" w="100%"  pt="2rem">
+        <Box
+          border="2px"
+          borderColor={"#F0F0F0"}
+          h="55rem"
+          w="100%"
+          borderRadius={"32px"}
+          display={"flex"}
+          flexDir="row"
+        >
           <IndividualMessageBox socket={socket} id={id}/>
         </Box>
       </Box>

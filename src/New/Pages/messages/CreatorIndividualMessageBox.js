@@ -125,6 +125,7 @@ const CreatorIndividualMessageBox = ({ socket, id }) => {
       }).catch(err => console.log(err));
     }
   }, [job]);
+  console.log("media", media)
   console.log("responsed", response)
   console.log("messagesss", messages)
   useEffect(() => {
@@ -304,7 +305,7 @@ const CreatorIndividualMessageBox = ({ socket, id }) => {
   console.log("jobdd", job)
   return (
     // contains both i button box and message box
-    <Box display={"flex"} flexDir="row" w="65%">
+    <Box display={"flex"} flexDir="row" w="65%" className="w100">
       <Box
         display={"flex"}
         flexDirection={"column"}
@@ -598,7 +599,7 @@ const CreatorIndividualMessageBox = ({ socket, id }) => {
             }
           }) : ""}
         </Box>
-        <Box p="1rem" pos={"sticky"}>
+        <Box p="1rem" pos={"sticky"} top={"80vh"}>
           <TypeMessageBox sendAttachment={sendAttachment} sendMessage={sendMessage} message={message} setMessage={setMessage} />
           {attachments.map((item) => (
             <img src={item} height="50px" width="50px" style={{ borderRadius: "5px" }} />

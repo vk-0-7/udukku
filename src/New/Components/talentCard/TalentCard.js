@@ -106,7 +106,7 @@ const TalentCard = ({ data }) => {
               gap=".41vw"
               key={index}
             >
-              <GenreIcon style={Iconstyle} />
+              <GenreIcon className="genre-category-icons2" style={Iconstyle} />
               <Text
                 fontFamily={"Gilroy-SemiBold"}
                 fontSize={{ base: "1.4rem", lg: ".72vw" }}
@@ -136,7 +136,7 @@ const TalentCard = ({ data }) => {
               gap=".41vw"
               key={val._id}
             >
-              <CategoryIcon style={Iconstyle} />
+              <CategoryIcon className="genre-category-icons2" style={Iconstyle} />
               <Text
                 fontFamily={"Gilroy-SemiBold"}
                 fontSize={{ base: "1.2rem", lg: ".72vw" }}

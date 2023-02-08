@@ -18,13 +18,14 @@ const AboutUs = () => {
     document.title = "Udukku | About Us";
   });
   return (
-    <Box pt="8vh">
+    <Box pt={{md:"8vh", sm:'4vh'}}>
       <NavBar />
       <Box mt="100px" mb="50px">
-        <Text fontSize={"3.75vw"} textAlign="center" fontFamily={"Gilroy-Bold"}>
+        <Text className="hero-font-class1" fontSize={"3.75vw"} textAlign={{md:"center", sm:"none"}} fontFamily={"Gilroy-Bold"}>
           About Us
         </Text>
         <Text
+        className="about-us-width"
           textAlign={"center"}
           w="50vw"
           mx="auto"

@@ -12,9 +12,10 @@ const CreatorMessages = ({socket}) => {
   const {id} = useParams();
 
   return (
-    <Box display={"flex"} flexDir="column" overflow={"hidden"} w="100%">
+    <>
+     <Box display={{md:"flex",sm:"block"}} flexDir={{md:"column", sm:"none"}} overflow={"hidden"} w="100%">
       <NavBar/>
-      <Box mt="10rem" pb="2rem" w="100%" pl="15rem" pr="15rem" pt="2rem">
+      <Box className="m-hide" mt="10rem" pb="2rem" w="100%" pl="15rem" pr="15rem" pt="2rem">
         <Box
           border="2px"
           borderColor={"#F0F0F0"}
@@ -29,8 +30,26 @@ const CreatorMessages = ({socket}) => {
           <IndividualMessage/>
         </Box>
       </Box>
+
+      <Box className="d-hide" mt="10rem" pb="2rem" w="100vh"  pt="2rem">
+        <Box
+          border="2px"
+          borderColor={"transparent"}
+          h="70rem"
+          w="100%"
+          borderRadius={"32px"}
+          display={"flex"}
+          flexDir="row"
+        >
+          <CreatorMessageList />
+          {/* <CreatorIndividualMessageBox socket={socket} id={id}/> */}
+        </Box>
+      </Box>
       <Footer />
     </Box>
+    
+    </>
+   
   );
 };
 

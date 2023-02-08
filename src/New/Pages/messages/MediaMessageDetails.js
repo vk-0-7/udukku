@@ -6,7 +6,7 @@ import LinksMessageDetails from "./LinksMessageDetails";
 import MediaMessageDetailsBox from "./MediaMessageDetailsBox";
 const   MediaMessageDetail = ({ goToMedia, setGoToMedia,data, getAttachments }) => {
   const [mediaState, setMediaState] = useState("media");
-  console.log(data)
+  console.log("media",data)
   console.log(getAttachments)
   return (
     // media box
@@ -112,7 +112,7 @@ const   MediaMessageDetail = ({ goToMedia, setGoToMedia,data, getAttachments }) 
       ) : mediaState === "links" ? (
         <LinksMessageDetails />
       ) : (
-        <MediaMessageDetailsBox />
+        <MediaMessageDetailsBox data={data} />
       )}
     </Box>
   );

@@ -12,6 +12,7 @@ import { ReactComponent as ExportIcon } from "../../../Assets/Icons/export.svg";
 import JobSearchCard from "../../Components/jobSearchCard/JobSearchCard";
 import { AccessAuthContext } from "../../Context/AuthContext";
 import getAllUsers from "../../../Api/User/getAllUsers";
+import { useSelector } from "react-redux";
 
 // dummy
 const d_data = [
@@ -37,14 +38,16 @@ const Dashboard = () => {
   const navigate = useNavigate();
   const { userId } = AccessAuthContext();
   console.log(userId);
-  const [user, setUser] = useState({});
+  const { user } = useSelector((state) => ({ ...state }));
+
+  const [allUser, setAllUser] = useState({});
   useEffect(() => {
     if (localStorage.getItem("token")) {
       getAllUsers().then((res) => {
         console.log({ res });
         const filteredUser = res.user.filter((user) => user._id === userId);
         console.log({ filteredUser });
-        setUser(filteredUser[0]);
+        setAllUser(filteredUser[0]);
       });
     } else {
       navigate("/");
@@ -65,18 +68,19 @@ const Dashboard = () => {
             fontSize={{ base: "2.5rem", md: "4rem", lg: "2.29vw" }}
             fontFamily="Gilroy-Bold"
           >
-            Welcome back, {user.name}
+            Welcome back, {user?.name}
           </Text>
 
           <Box
             w="100%"
             h="fit-content"
             mt="3.70vh"
-            display={"grid"}
+            display={{ md: "grid", sm: "block" }}
             gridTemplateColumns={"1fr 1fr 1fr"}
             columnGap={".8333vw"}
           >
             <Box
+              className="dashboard-box"
               w="100%"
               h={{ lg: "16.29vh" }}
               border={"2px solid #f0f0f0"}
@@ -92,9 +96,10 @@ const Dashboard = () => {
                   fontFamily={"Gilroy-Bold"}
                   fontSize={{ base: "2rem", md: "3rem", lg: "2.29vw" }}
                 >
-                  {user.jobsCompleted}
+                  {user?.jobsCompleted}
                 </Text>
                 <Text
+                className="lyrics-heading-1"
                   fontFamily={"Gilroy-SemiBold"}
                   fontSize={{ base: "6px", md: "1.5rem", lg: "1.04vw" }}
                 >
@@ -111,6 +116,7 @@ const Dashboard = () => {
                 justifyContent="center"
               >
                 <TaskIcon
+                className="genre-category-icons"
                   style={{
                     height: "1.66vw",
                     width: "1.66vw",
@@ -119,6 +125,7 @@ const Dashboard = () => {
               </Box>
             </Box>
             <Box
+              className="dashboard-box"
               w="100%"
               h="16.29vh"
               border={"2px solid #f0f0f0"}
@@ -134,9 +141,10 @@ const Dashboard = () => {
                   fontFamily={"Gilroy-Bold"}
                   fontSize={{ base: "2rem", md: "3rem", lg: "2.29vw" }}
                 >
-                  {user.repeatedBuyer}
+                  {user?.repeatedBuyer}
                 </Text>
                 <Text
+                className="lyrics-heading-1"
                   fontFamily={"Gilroy-SemiBold"}
                   fontSize={{ base: "6px", md: "1.5rem", lg: "1.04vw" }}
                 >
@@ -153,6 +161,7 @@ const Dashboard = () => {
                 justifyContent="center"
               >
                 <PeopleIcon
+                className="genre-category-icons"
                   style={{
                     height: "1.66vw",
                     width: "1.66vw",
@@ -161,6 +170,7 @@ const Dashboard = () => {
               </Box>
             </Box>
             <Box
+            className="dashboard-box"
               w="100%"
               h="16.29vh"
               border={"2px solid #f0f0f0"}
@@ -176,9 +186,10 @@ const Dashboard = () => {
                   fontFamily={"Gilroy-Bold"}
                   fontSize={{ base: "2rem", md: "3rem", lg: "2.29vw" }}
                 >
-                  ₹{user.totalEarn}
+                  ₹{user?.totalEarn}
                 </Text>
                 <Text
+                className="lyrics-heading-1"
                   fontFamily={"Gilroy-SemiBold"}
                   fontSize={{ base: "6px", md: "1.5rem", lg: "1.04vw" }}
                 >
@@ -195,6 +206,7 @@ const Dashboard = () => {
                 justifyContent="center"
               >
                 <MoneyIcon
+                className="genre-category-icons"
                   style={{
                     fill: "rgba(246, 84, 14, 1)",
                     height: "1.66vw",
@@ -218,7 +230,7 @@ const Dashboard = () => {
             alignItems="center"
           >
             <Image
-              src={user.avatar}
+              src={user?.avatar}
               h="11.45vw"
               w="11.45vw"
               borderRadius={"1.66vw"}
@@ -238,7 +250,7 @@ const Dashboard = () => {
                 fontSize={{ base: "1rem", md: "1.5rem", lg: ".833vw" }}
                 w="47.9vw"
               >
-                {user.description}
+                {user?.description}
               </Text>
             </Box>
             <Box flexGrow={1}></Box>

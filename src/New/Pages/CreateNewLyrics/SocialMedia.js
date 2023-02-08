@@ -28,6 +28,7 @@ const SocialMedia = ({ showDelete, currentIndex, fullState, changeState }) => {
     <Box display={"flex"} gap=".833vw" mt="1.111vh" position={"relative"}>
       <Box flexGrow={1}>
         <Text
+        className="single-Lyrics-page-heading1"
           fontFamily={"Gilroy-SemiBold"}
           fontSize={{ base: "1.2rem", md: "1.5rem", lg: ".833vw" }}
           display={currentIndex > 0 ? "none" : ""}
@@ -35,6 +36,7 @@ const SocialMedia = ({ showDelete, currentIndex, fullState, changeState }) => {
           Social Media*
         </Text>
         <Select
+        className="single-Lyrics-page-heading1"
           h="6.48vh"
           type={"text"}
           fontSize="1vw"
@@ -55,6 +57,7 @@ const SocialMedia = ({ showDelete, currentIndex, fullState, changeState }) => {
       </Box>
       <Box flexGrow={1}>
         <Text
+        className="single-Lyrics-page-heading1"
           fontFamily={"Gilroy-SemiBold"}
           fontSize={{ base: "1.2rem", md: "1.5rem", lg: ".833vw" }}
           display={currentIndex > 0 ? "none" : ""}
@@ -62,6 +65,7 @@ const SocialMedia = ({ showDelete, currentIndex, fullState, changeState }) => {
           Social Media Link*
         </Text>
         <Input
+        className="single-Lyrics-page-heading1"
           h="6.48vh"
           type={"link"}
           fontSize="1vw"

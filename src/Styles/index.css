@@ -210,6 +210,10 @@ html {
 		padding-right: 12%;
 	}
 
+	.hero-image-radius {
+		border-radius: 30rem !important;
+	}
+
 	.hero-font-class1 {
 		font-size: 3rem !important;
 		text-align: center !important;
@@ -338,6 +342,11 @@ html {
 
 	.talent {
 		font-size: 3rem !important;
+	}
+
+	.talent-arrow-icons {
+		position: absolute !important;
+		bottom: 15.96vh !important;
 	}
 
 

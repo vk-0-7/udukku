@@ -268,7 +268,18 @@ const Jobs = () => {
               </Box>
             ) : (
               <>
-                {jobs?.map((data, index) => {
+                {jobs.filter((data) => {
+                if (search === "") {
+                  return data;
+                } else if (
+                  data.jobTitle
+                    ?.toLowerCase()
+                    .includes(search.toLowerCase())
+                ) {
+                  return data;
+                }
+              })
+              .map((data, index) => {
                   if (
                     category.length === 0 &&
                     deadline.length === 0 &&

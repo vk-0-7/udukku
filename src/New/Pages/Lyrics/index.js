@@ -19,23 +19,30 @@ import { useNavigate } from "react-router-dom";
 
 import getSongs from "../../../Api/Lyrics/getSongs";
 import { useState, useEffect } from "react";
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 const Lyrics = () => {
   const [d_data, setDData] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [page, setPage] = useState(1);
+  const [count, setCount] = useState(20);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   useEffect(() => {
     (async () => {
       setLoading(true);
       // console.log("UseEffect", page);
-      getSongs(page, 10).then((songs) => {
+      getSongs(page, count).then((songs) => {
         setLoading(false);
         setDData(songs.message);
       });
     })();
-  }, [page]);
+  }, [count]);
+
+  function handleChange(){
+    setCount(count + 20);
+    setLoading(true);
+  }
 
   return (
     <Box pt="8.5vh">
@@ -74,7 +81,7 @@ const Lyrics = () => {
               px="2.08vw"
             >
               <CategoryIcon
-              className="genre-category-icons"
+                className="genre-category-icons"
                 style={{
                   fill: "rgba(8, 32, 50, .5)",
                   width: "1.25vw",
@@ -107,7 +114,7 @@ const Lyrics = () => {
               px="2.08vw"
             >
               <GenreIcon
-              className="genre-category-icons"
+                className="genre-category-icons"
 
                 style={{
                   fill: "rgba(8, 32, 50, .5)",
@@ -122,7 +129,7 @@ const Lyrics = () => {
 
 
           <InputGroup
-              className="genre-category-width"
+            className="genre-category-width"
             w={{ md: "29.68vw", sm: "100%" }}
             _focus={{
               svg: { stroke: "rgba(246, 84, 14, 1) !important" },
@@ -164,7 +171,7 @@ const Lyrics = () => {
           </InputGroup>
 
           <Button
-              className="genre-category-width"
+            className="genre-category-width"
             w={{ md: "29.68vw", sm: "100%" }}
             h="6.48vh"
             bg="rgba(246, 84, 14, 1)"
@@ -274,7 +281,35 @@ const Lyrics = () => {
             </Box>
           )}
         </Box>
+        <Button
+          display={"block"}
+          className="genre-category-width"
+          mx={"auto"}
+          w={{ md: "15vw", sm: "100%" }}
+          h="6.48vh"
+          bg="rgba(246, 84, 14, 1)"
+          color="white"
+          borderRadius={"1.04vw"}
+          fontFamily="Gilroy-SemiBold"
+          fontSize={".833vw"}
+          leftIcon={
+            <KeyboardArrowDownIcon
+              style={{
+                fill: "#fff",
+                width: ".833vw",
+                height: ".833vw",
+              }}
+            />
+          }
+          _hover={{ background: "rgba(246, 84, 14, 1)" }}
+        onClick={handleChange}
+        >
+          veiw more
+        </Button>
+
       </Box>
+
+
       <Footer />
     </Box>
   );

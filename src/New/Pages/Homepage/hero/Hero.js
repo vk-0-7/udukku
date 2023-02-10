@@ -33,6 +33,7 @@ const Hero = () => {
       }}
     >
       <Box
+      className="hero-image-radius"
         display={"flex"}
         alignItems="center"
         justifyContent={{ base: "center", md: "center" }}

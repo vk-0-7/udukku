@@ -38,11 +38,10 @@ const Slide = () => {
     <Box
       flexShrink={0}
       w={{ base: "100vw", lg: "27.60vw" }}
-      h={"49vh"}
+      h={"100%"}
       borderRadius={"1.666vw"}
       overflow="hidden"
       position={"relative"}
-      className="hero"
       mx={{ base: "3.5rem" }}
       my={{ base: "3.5rem" }}
     >
@@ -66,6 +65,7 @@ const Slide = () => {
             return (
               <SplideSlide key={index}>
                 <Box
+                className="hero-image-radius"
                   w={{ base: "100vw", lg: "27.60vw" }}
                   
                 >

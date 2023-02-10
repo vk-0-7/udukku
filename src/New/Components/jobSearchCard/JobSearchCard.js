@@ -24,7 +24,6 @@ const JobSearchCard = ({ data }) => {
     date = day + "/" + month + "/" + year;
     return date;
   };
-  console.log({ data });
   return (
     <Box
       w="100%"

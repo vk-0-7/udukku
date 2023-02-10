@@ -287,12 +287,14 @@ const NavBar = () => {
                         w="30px"
                       ></Box>
                       <Box
+                      className={"m-hide"}
                         display={"flex"}
                         gap=".26vw"
                         justifyContent={"center"}
                         alignItems="center"
                       >
                         <Text
+                        className="lyrics-heading-2"
                           fontSize={{ base: "1.5rem", lg: ".8333vw" }}
                           fontFamily={"Gilroy-SemiBold"}
                           display={"flex"}

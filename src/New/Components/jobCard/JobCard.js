@@ -205,7 +205,7 @@ const JobCard = (props) => {
           className="move-to-right"
           onClick={() => navigate(`/job-detail-page/${props?.id}`)}
         >
-          <Text fontFamily={"Gilroy-SemiBold"} fontSize={{base:"1.5rem",lg:".833vw"}}>
+          <Text className="lyrics-heading-2" fontFamily={"Gilroy-SemiBold"} fontSize={{base:"1.5rem",lg:".833vw"}}>
             See Details 
           </Text>
 

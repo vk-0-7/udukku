@@ -213,6 +213,7 @@ const Talents = () => {
 
       {/* left icon */}
       <Box
+      className="genre-category-icons talent-arrow-icons"
         position={"absolute"}
         width="3.33vw"
         height={"3.33vw"}
@@ -226,11 +227,12 @@ const Talents = () => {
         alignItems="center"
         cursor={"pointer"}
       >
-        <ArrowLeft style={{ width: "1.04vw", height: "1.04vw" }} />
+        <ArrowLeft className="profile-rating-icons" style={{ width: "1.04vw", height: "1.04vw" }} />
       </Box>
 
       {/* right icon */}
       <Box
+      className="genre-category-icons talent-arrow-icons"
         position={"absolute"}
         width="3.33vw"
         height={"3.33vw"}
@@ -244,7 +246,7 @@ const Talents = () => {
         alignItems="center"
         cursor={"pointer"}
       >
-        <ArrowRight style={{ width: "1.04vw", height: "1.04vw" }} />
+        <ArrowRight className="profile-rating-icons" style={{ width: "1.04vw", height: "1.04vw" }} />
       </Box>
     </Box>
   );

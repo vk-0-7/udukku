@@ -42,14 +42,19 @@ const TalentRegistrationProfessionalInfo = ({ data }) => {
             color="rgba(246, 84, 14, 1)"
             fontSize={{ base: "1rem", md: "1.2rem", lg: ".833vw" }}
             onClick={() => {
-              data?.set_categories((prev) => {
-                prev.push({
+              if(data?.categories != undefined){
+                data?.set_categories(oldArr => [...oldArr, {
                   category: "",
                   subCategory: "",
                   serviceStargingPrice: "",
-                });
-                return [...prev];
-              });
+                }]);
+              }else{
+                data?.set_categories([{
+                  category: "",
+                  subCategory: "",
+                  serviceStargingPrice: "",
+                }]);
+              }
             }}
             cursor="pointer"
           >
@@ -74,20 +79,24 @@ const TalentRegistrationProfessionalInfo = ({ data }) => {
             color="rgba(246, 84, 14, 1)"
             fontSize={{ base: "1rem", md: "1.2rem", lg: ".833vw" }}
             onClick={() => {
-              data?.set_genre((prev) => {
-                prev.push({
+              if(data?.genre != undefined){
+                data?.set_genre(oldArr => [...oldArr, {
                   genre: "",
                   subGenre: "",
-                });
-                return [...prev];
-              });
+                }]);
+              }else{
+                data?.set_genre([{
+                  genre: "",
+                  subGenre: "",
+                }]);
+              }
             }}
             cursor="pointer"
           >
-            + Add another Category
+            + Add another Gear
           </Text>
         </Box>
-        <Box mt="2.22vh">
+        {/* <Box mt="2.22vh">
           {data?.gear?.map((_data, index) => {
             return (
               <Gear
@@ -105,19 +114,23 @@ const TalentRegistrationProfessionalInfo = ({ data }) => {
             color="rgba(246, 84, 14, 1)"
             fontSize={{ base: "1rem", md: "1.2rem", lg: ".833vw" }}
             onClick={() => {
-              data?.set_gear((prev) => {
-                prev.push({
-                  gear: "",
-                  gearHighlight: "",
-                });
-                return [...prev];
-              });
+              if(data?.genre != undefined){
+                data?.set_genre(oldArr => [...oldArr, {
+                  genre: "",
+                  subGenre: "",
+                }]);
+              }else{
+                data?.set_genre([{
+                  genre: "",
+                  subGenre: "",
+                }]);
+              }
             }}
             cursor="pointer"
           >
             + Add another Gear
           </Text>
-        </Box>
+        </Box> */}
         <Box mt="2.22vh">
           {data?.social_media?.map((_data, index) => (
             <SocialMedia
@@ -133,20 +146,24 @@ const TalentRegistrationProfessionalInfo = ({ data }) => {
             color="rgba(246, 84, 14, 1)"
             fontSize={{ base: "1rem", md: "1.2rem", lg: ".833vw" }}
             onClick={() => {
-              data?.set_social_media((prev) => {
-                prev.push({
+              if(data?.social_media != undefined){
+                data?.set_social_media(oldArr => [...oldArr, {
                   plat: "",
                   link: "",
-                });
-                return [...prev];
-              });
+                }]);
+              }else{
+                data?.set_social_media([{
+                  plat: "",
+                  link: "",
+                }]);
+              }
             }}
             cursor="pointer"
           >
             + Add another Social Media
           </Text>
         </Box>
-        <Box mt="2.22vh">
+        {/* <Box mt="2.22vh">
           {data?.work?.map((_data, index) => {
             return (
               <WorkSample
@@ -164,7 +181,7 @@ const TalentRegistrationProfessionalInfo = ({ data }) => {
             fontSize={{ base: "1rem", md: "1.2rem", lg: ".833vw" }}
             onClick={() => {
               data?.set_work((prev) => {
-                prev.push({
+                prev?.push({
                   workSample: "",
                   link: "",
                   role: "",
@@ -176,7 +193,7 @@ const TalentRegistrationProfessionalInfo = ({ data }) => {
           >
             + Add another Category
           </Text>
-        </Box>
+        </Box> */}
         <Box mt="2.22vh">
           <Text
             fontFamily={"Gilroy-SemiBold"}

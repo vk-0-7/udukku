@@ -198,10 +198,11 @@ const SignUpModal = ({ state, changeState }) => {
           justifyContent="center"
         >
           <Box
+          className="w100 "
             h="fit-content"
-            w={{ base: "90%", md: "80%", lg: "36.04vw" }}
+            w={{ base: "90%", md: "80%", lg: "36.04vw", }}
             bg="#fff"
-            borderRadius={"32px"}
+            borderRadius={{md:"32px",sm:"0px"}}
             py="3.70vh"
             px="3.125vw"
             position={"relative"}
@@ -237,10 +238,11 @@ const SignUpModal = ({ state, changeState }) => {
             </Text>
             {/* form */}
             <form>
-              <Box display="flex" flexDir={"column"} gap="2.222vh" pt="2.96vh">
+              <Box className="p-10 " display="flex" flexDir={"column"} gap="2.222vh" pt="2.96vh">
                 <Box>
                   <label htmlFor="nav-login-email">
                     <Text
+                    className="hero-font-class2"
                       fontSize={{ base: "2rem", lg: ".833vw" }}
                       fontFamily="Gilroy-SemiBold"
                       _after={{
@@ -253,6 +255,7 @@ const SignUpModal = ({ state, changeState }) => {
                     </Text>
                   </label>
                   <Input
+                  className="hero-font-class2"
                     value={name}
                     type="text"
                     id="nav-login-email"
@@ -271,6 +274,7 @@ const SignUpModal = ({ state, changeState }) => {
                 <Box>
                   <label htmlFor="nav-login-email">
                     <Text
+                    className="hero-font-class2"
                       fontSize={{ base: "2rem", lg: ".833vw" }}
                       fontFamily="Gilroy-SemiBold"
                       _after={{
@@ -284,6 +288,7 @@ const SignUpModal = ({ state, changeState }) => {
                   </label>
 
                   <Input
+                  className="hero-font-class2"
                     value={email}
                     type="email"
                     id="nav-login-email"
@@ -302,6 +307,7 @@ const SignUpModal = ({ state, changeState }) => {
                 <Box>
                   <label htmlFor="nav-login-pass">
                     <Text
+                    className="hero-font-class2"
                       fontSize={{ base: "2rem", lg: ".833vw" }}
                       fontFamily="Gilroy-SemiBold"
                       _after={{
@@ -315,6 +321,7 @@ const SignUpModal = ({ state, changeState }) => {
                   </label>
                   <InputGroup size="md" display={"flex"}>
                     <Input
+                    className="hero-font-class2"
                       pr="4.5rem"
                       type={show ? "text" : "password"}
                       placeholder="Enter password"
@@ -354,8 +361,8 @@ const SignUpModal = ({ state, changeState }) => {
                     </InputRightElement>
                   </InputGroup>
                   <Box pt={".92vh"} fontSize={{ base: "2rem", lg: ".833vw" }}>
-                    <Text fontWeight={600}>Password should contain:</Text>
-                    <UnorderedList>
+                    <Text className="hero-font-class2" fontWeight={600}>Password should contain:</Text>
+                    <UnorderedList className="hero-font-class2">
                       <ListItem
                         color={
                           password === ""
@@ -394,6 +401,7 @@ const SignUpModal = ({ state, changeState }) => {
                 </Box>
                 <Box>
                   <Button
+                  className="hero-font-class2"
                     w="100%"
                     bg="#F6540E"
                     color="#fff"
@@ -411,6 +419,7 @@ const SignUpModal = ({ state, changeState }) => {
               </Box>
             </form>
             <Box
+            className="m-10 "
               my="20px"
               position={"relative"}
               display="flex"
@@ -427,6 +436,7 @@ const SignUpModal = ({ state, changeState }) => {
               }}
             >
               <Text
+              className="hero-font-class2"
                 display={"inline-block"}
                 position="relative"
                 fontSize={{ base: "1.5rem", lg: ".833vw" }}
@@ -439,6 +449,7 @@ const SignUpModal = ({ state, changeState }) => {
               </Text>
             </Box>
             <Button
+        className="m-hide"
               display={"flex"}
               alignItems="center"
               justifyContent={"center"}
@@ -457,7 +468,31 @@ const SignUpModal = ({ state, changeState }) => {
                 );
               }}
             >
-              <Text>Sign up with Google</Text>
+              <Text className="hero-font-class2">Sign up with Google</Text>
+            </Button>
+
+            <Button
+        className="d-hide"
+            mx={"10vw"}
+              display={"flex"}
+              alignItems="center"
+              justifyContent={"center"}
+              gap="10px"
+              w="80%"
+              bg="#082032"
+              color="#fff"
+              borderRadius={"1.04vw"}
+              h={{ base: "6.48vh", "3xl": "5vh" }}
+              _hover={{ background: "#082032" }}
+              fontSize={{ base: "2rem", lg: ".833vw" }}
+              onClick={() => {
+                const a = document.getElementById("google_login_button");
+                console.log(
+                  a.childNodes[0].childNodes[0].childNodes[0].click()
+                );
+              }}
+            >
+              <Text className="hero-font-class2">Sign up with Google</Text>
             </Button>
             <Box
               display={"none"}
@@ -465,9 +500,9 @@ const SignUpModal = ({ state, changeState }) => {
               ref={gLoginButton}
             ></Box>
             <Box mt="1.85vh" fontSize={{ base: "2rem", lg: ".833vw" }}>
-              <Text textAlign={"center"}>
+              <Text className="hero-font-class2" textAlign={"center"}>
                 Already registered?{" "}
-                <Text as="span" textDecoration={"underline"} color="#F6540E">
+                <Text className="hero-font-class2" as="span" textDecoration={"underline"} color="#F6540E">
                   Sign in
                 </Text>{" "}
               </Text>

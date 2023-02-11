@@ -188,11 +188,11 @@ html {
 }
 
 .d-hide {
-	display: none;
+	display: none !important;
 }
 
 .m-hide {
-	display: block;
+	display: block !important;
 }
 
 @media only screen and (max-width: 600px) {
@@ -200,9 +200,32 @@ html {
 		width: 100% !important;
 	}
 
+	.h100 {
+		height: 100% !important;
+	}
+
+
 	.m-10 {
 		margin-left: 10% !important;
 		margin-right: 10% !important;
+	}
+
+	.p-10 {
+		padding-left: 10% !important;
+		padding-right: 10% !important;
+	}
+
+	.modal-or-margin {
+		margin-top: 10px !important;
+		margin-bottom: 10px !important;
+	}
+
+	.modal-font-1 {
+		font-size: 2.5rem !important;
+	}
+
+	.modal-font-2 {
+		font-size: 2rem !important;
 	}
 
 	.hero-box {
@@ -308,11 +331,11 @@ html {
 	}
 
 	.d-hide {
-		display: block;
+		display: block !important;
 	}
 
 	.m-hide {
-		display: none;
+		display: none !important;
 	}
 
 	.review-card {

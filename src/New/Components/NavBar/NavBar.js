@@ -9,6 +9,7 @@ import {
   MenuList,
   MenuItem,
   MenuDivider,
+  useDisclosure,
 } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
@@ -16,6 +17,7 @@ import logout from "../../../Api/Auth/logout";
 import logo from "../../../Assets/Images/Logo/logo.svg";
 import { AccessAuthContext } from "../../Context/AuthContext";
 import HowItWorks from "./HowItWorks";
+import PreSignIn from "./PreSignIn";
 import SignInModal from "./SignInModal";
 import SignUpModal from "./SignUpModal";
 import { ReactComponent as Man } from "../../../Assets/Icons/frame.svg";
@@ -28,9 +30,20 @@ import { ReactComponent as SwitchIcon } from "../../../Assets/Icons/repeat.svg";
 import { ReactComponent as HamIcon } from "../../../Assets/Icons/Group 519.svg";
 import PersonIcon from "@mui/icons-material/Person";
 import { useSelector } from "react-redux";
+import {
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+} from '@chakra-ui/react'
+
 const NavBar = () => {
   const [signInState, setSignInState] = useState(false);
   const [signUpState, setSignUpState] = useState(false);
+  const [preSignIn, setPreSignIn] = useState(false);
   const path = useLocation().pathname.split("/");
   const [positon, setPosition] = useState(0);
   const navigate = useNavigate();
@@ -38,7 +51,7 @@ const NavBar = () => {
   const { loginState, avatar, username, isMusician } = AccessAuthContext();
   const [hamMenu, setHamMenu] = useState(false);
   const { user } = useSelector((state) => ({ ...state }));
-
+  const { isOpen, onOpen, onClose } = useDisclosure()
 
   useEffect(() => {
     const getit = () => {
@@ -72,6 +85,7 @@ const NavBar = () => {
     <>
       <SignInModal state={signInState} changeState={setSignInState} />
       <SignUpModal state={signUpState} changeState={setSignUpState} />
+      <PreSignIn state={preSignIn} changeState={setPreSignIn} />
       <HowItWorks state={howItWorksState} changeState={setHowItWorksState} />
       <Box
         position={"fixed"}
@@ -287,14 +301,14 @@ const NavBar = () => {
                         w="30px"
                       ></Box>
                       <Box
-                      className={"m-hide"}
+                        className={"m-hide"}
                         display={"flex"}
                         gap=".26vw"
                         justifyContent={"center"}
                         alignItems="center"
                       >
                         <Text
-                        className="lyrics-heading-2"
+                          className="lyrics-heading-2"
                           fontSize={{ base: "1.5rem", lg: ".8333vw" }}
                           fontFamily={"Gilroy-SemiBold"}
                           display={"flex"}
@@ -332,7 +346,7 @@ const NavBar = () => {
                     </MenuItem>
                     {isMusician === "recruter" ? (
                       <MenuItem
-                      fontFamily={"Gilroy-SemiBold"}
+                        fontFamily={"Gilroy-SemiBold"}
                         fontSize={"1.4rem"}
                         onClick={() => navigate("/myjobs")}
                         icon={
@@ -356,7 +370,7 @@ const NavBar = () => {
                     />
                     {user?.isMusician === "Musician" ?
                       <MenuItem
-                      fontFamily={"Gilroy-SemiBold"}
+                        fontFamily={"Gilroy-SemiBold"}
                         fontSize={"1.4rem"}
                         onClick={() => {
                           navigate(
@@ -381,7 +395,7 @@ const NavBar = () => {
                       </MenuItem>
                       :
                       <MenuItem
-                      fontFamily={"Gilroy-SemiBold"}
+                        fontFamily={"Gilroy-SemiBold"}
                         fontSize={"1.4rem"}
                         onClick={() => {
                           navigate(
@@ -402,9 +416,9 @@ const NavBar = () => {
                         My Profile
                       </MenuItem>
                     }
-                   
+
                     <MenuItem
-                          fontFamily={"Gilroy-SemiBold"}
+                      fontFamily={"Gilroy-SemiBold"}
                       fontSize={"1.4rem"}
                       icon={
                         <LogOutIcon
@@ -439,37 +453,55 @@ const NavBar = () => {
             ) : (
               <>
                 <Text
+                  className="d-hide"
+                  border-borderBottom={"1px solid #fff "}
+                  mb={"7px"}
                   fontFamily={"Gilroy-SemiBold"}
                   cursor={"pointer"}
                   onClick={() => {
-                    setSignInState(true);
+                    setPreSignIn(true);
                   }}
                   fontSize={{ base: "1.5rem", lg: ".8333vw" }}
-                >
-                  Sign in
-                </Text>
-                <Button
-                  bg="transparent"
-                  border="1px solid #F6540E"
-                  borderRadius={"1.04vw"}
-                  _hover={{ background: "rgba(215,85,28)" }}
-                  onClick={() => {
-                    setSignUpState(true);
-                  }}
-                  fontFamily={"Gilroy-SemiBold"}
-                  fontSize={{ base: "1.5rem", lg: ".8333vw" }}
-                  w={{ lg: "13.59vw" }}
-                  h="6.66vh"
-                  id="navbar_become_member_btn"
-                >
-                  <Man />
-                  Become a memeber
-                </Button>
+                > Get Started</Text>
+                <Text
+                className="m-hide"
+                    fontFamily={"Gilroy-SemiBold"}
+                    cursor={"pointer"}
+                    onClick={() => {
+                      setSignInState(true);
+                    }}
+                    fontSize={{ base: "1.5rem", lg: ".8333vw" }}
+                  >
+                    Sign in
+                  </Text>
+                
+                <Box className="m-hide" >
+                  <Button
+                    bg="transparent"
+                    border="1px solid #F6540E"
+                    borderRadius={"1.04vw"}
+                    _hover={{ background: "rgba(215,85,28)" }}
+                    onClick={() => {
+                      setSignUpState(true);
+                    }}
+                    fontFamily={"Gilroy-SemiBold"}
+                    fontSize={{ base: "1.5rem", lg: ".8333vw" }}
+                    w={{ lg: "13.59vw" }}
+                    h="6.66vh"
+                    id="navbar_become_member_btn"
+                  >
+                    <Man />
+                    Become a memeber
+                  </Button>
+                </Box>
               </>
             )}
           </Box>
         </Box>
       </Box>
+
+      
+
     </>
   );
 };

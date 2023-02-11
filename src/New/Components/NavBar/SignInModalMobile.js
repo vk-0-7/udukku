@@ -29,7 +29,7 @@ import { useDispatch } from "react-redux";
 import GoogleLogin from "react-google-login";
 import { googleSignIn } from "../../../Api/Auth";
 
-const SignInModal = ({ state, changeState }) => {
+const SignInModalMobile = ({ state, changeState }) => {
   const [show, setShow] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const {
@@ -252,12 +252,10 @@ const SignInModal = ({ state, changeState }) => {
         >
           <Box
             className="p-10"
-            h="fit-content"
-            w={{ base: "90%", md: "70%", lg: "36.04vw" }}
+            h={"100vh"}
+            w="100vw"
             bg="#fff"
-            borderRadius={"32px"}
             py="3.70vh"
-            px="3.125vw"
             position={"relative"}
           >
             {/* close btn */}
@@ -276,16 +274,15 @@ const SignInModal = ({ state, changeState }) => {
             />
 
             <Text
-              className="hero-font-class2"
-              fontSize={{ base: "2.5rem", lg: "1.666vw" }}
+            mt={"10%"}
+              fontSize={"3rem"}
               fontFamily="Gilroy-Bold"
               textAlign="center"
             >
               Sign In
             </Text>
             <Text
-              className="hero-font-class2"
-              fontSize={{ base: "2rem", lg: ".833vw" }}
+              fontSize={"1.8rem"}
               fontFamily="Gilroy-Medium"
               textAlign="center"
             >
@@ -298,6 +295,7 @@ const SignInModal = ({ state, changeState }) => {
                 <Box>
                   <label htmlFor="nav-login-email">
                     <Text
+                    mt={"10%"}
                       className="hero-font-class2"
                       fontSize={{ base: "2rem", lg: ".833vw" }}
                       fontFamily="Gilroy-SemiBold"
@@ -432,7 +430,7 @@ const SignInModal = ({ state, changeState }) => {
                     bg="#F6540E"
                     fontSize={{ base: "2rem", lg: ".833vw" }}
                     color="#fff"
-                    borderRadius={"1.04vw"}
+                    borderRadius={"5.04vw"}
                     h={{ base: "6.48vh", "3xl": "5vh" }}
                     _hover={{ background: "#f6540e" }}
                     isDisabled={loginActive}
@@ -492,7 +490,7 @@ const SignInModal = ({ state, changeState }) => {
                   w="100%"
                   bg="#082032"
                   color="#fff"
-                  borderRadius={"1.04vw"}
+                  borderRadius={"5.04vw"}
                   h={{ base: "6.48vh", "3xl": "5vh" }}
                   _hover={{ background: "#082032" }}
                   fontSize={{ base: "2rem", lg: ".833vw" }}
@@ -538,4 +536,4 @@ const SignInModal = ({ state, changeState }) => {
   );
 };
 
-export default SignInModal;
+export default SignInModalMobile;

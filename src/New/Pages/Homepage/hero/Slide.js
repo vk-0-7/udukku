@@ -153,6 +153,7 @@ const Slide = () => {
                 }}
               >
                 <Image
+                
                   src={right}
                   alt="left"
                   w={{ base: "1.3rem", lg: ".5vw" }}

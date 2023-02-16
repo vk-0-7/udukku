@@ -93,10 +93,10 @@ const TalentRegistrationProfessionalInfo = ({ data }) => {
             }}
             cursor="pointer"
           >
-            + Add another Gear
+            + Add another Genre
           </Text>
         </Box>
-        {/* <Box mt="2.22vh">
+        <Box mt="2.22vh">
           {data?.gear?.map((_data, index) => {
             return (
               <Gear
@@ -114,15 +114,13 @@ const TalentRegistrationProfessionalInfo = ({ data }) => {
             color="rgba(246, 84, 14, 1)"
             fontSize={{ base: "1rem", md: "1.2rem", lg: ".833vw" }}
             onClick={() => {
-              if(data?.genre != undefined){
-                data?.set_genre(oldArr => [...oldArr, {
-                  genre: "",
-                  subGenre: "",
+              if(data?.gear != undefined){
+                data?.set_gear(oldArr => [...oldArr, {
+                  gear: "",
                 }]);
               }else{
-                data?.set_genre([{
-                  genre: "",
-                  subGenre: "",
+                data?.set_gear([{
+                  gear: "",
                 }]);
               }
             }}
@@ -130,7 +128,7 @@ const TalentRegistrationProfessionalInfo = ({ data }) => {
           >
             + Add another Gear
           </Text>
-        </Box> */}
+        </Box>
         <Box mt="2.22vh">
           {data?.social_media?.map((_data, index) => (
             <SocialMedia
@@ -201,7 +199,13 @@ const TalentRegistrationProfessionalInfo = ({ data }) => {
           >
             Terms of Service*
           </Text>
-          <Input h="6.48vh" />
+          <Input h="6.48vh"
+            borderRadius={"15px"}
+            value={data.term}
+            onChange={(e) => {
+              data.set_term(e.target.value);
+            }}
+            />
           <Text
             fontFamily={"Gilroy-SemiBold"}
             color="rgba(246, 84, 14, 1)"

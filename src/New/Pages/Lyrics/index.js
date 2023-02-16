@@ -304,7 +304,7 @@ const Lyrics = () => {
           _hover={{ background: "rgba(246, 84, 14, 1)" }}
         onClick={handleChange}
         >
-          veiw more
+          view more
         </Button>
 
       </Box>

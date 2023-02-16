@@ -48,11 +48,16 @@ const TalentRegistration = () => {
       console.log("info",res.data)
       set_fname(res.data.name);
       set_username(res.data.name);
-      set_wa_number(res.data);
+      set_wa_number(res.data.mobile);
       set_city(res.data.city);
       set_state(res.data.state);
       set_description(res.data.description);
       set_avatar(res.data.avatar);
+      set_genre(res.data.genres)
+      set_gear(res.data.gearHighLights)
+      set_categories(res.data.services)
+      set_social_media(res.data.socialMedia)
+      set_term(res.data.terms)
     });
     set_loading(false);
   }, []);
@@ -95,7 +100,7 @@ const TalentRegistration = () => {
     editPage === true ? location.state.data.socialMedia : []
   );
   const [work, set_work] = useState(
-    editPage === true ? location.state.data.socialMedia : []
+    editPage === true ? location.state.data.work : []
   );
   const [term, set_term] = useState(
     editPage === true ? location.state.data.terms : []
@@ -105,13 +110,16 @@ const TalentRegistration = () => {
   const handleEdit = async () => {
     try {
       const res = await updateUserApi(
+        id,
         fname,
         city,
         ustate,
         description,
+        categories,
         genre,
-        term,
-        gear
+        gear,
+        social_media,
+        term
       );
       toast({
         title: "success",

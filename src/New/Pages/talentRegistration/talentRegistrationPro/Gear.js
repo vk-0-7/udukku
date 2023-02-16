@@ -1,6 +1,6 @@
 import { Box, Input, Select, Text } from "@chakra-ui/react";
 import { ReactComponent as DeleteIcon } from "../../../../Assets/Icons/Delete.svg";
-
+import GearData from "../../../../Data/GearData";
 const Gear = ({ showDelete, changeState, currentIndex, fullState }) => {
   const handleDelete = () => {
     changeState((prev) => {
@@ -32,15 +32,16 @@ const Gear = ({ showDelete, changeState, currentIndex, fullState }) => {
           Gear*
         </Text>
         <Select
+            borderRadius={"15px"}
           placeholder="Select"
           value={fullState[currentIndex].gear}
           onChange={updating_gear}
           h="6.48vh"
         >
-          <option value={"option1"}>Option 1</option>
-          <option value={"option2"}>Option 2</option>
-          <option value={"option3"}>Option 3</option>
-          <option value={"option4"}>Option 4</option>
+          	{GearData.map((item)=> (
+					<option value={item}>{item}</option>
+					))}
+
         </Select>
       </Box>
       <Box flexGrow={1}>
@@ -51,6 +52,7 @@ const Gear = ({ showDelete, changeState, currentIndex, fullState }) => {
           Gear Highlight*
         </Text>
         <Input
+            borderRadius={"15px"}
           type="text"
           value={fullState[currentIndex].gearHighlight}
           onChange={updating_gear_highlight}

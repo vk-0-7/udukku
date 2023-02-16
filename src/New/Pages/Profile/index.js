@@ -99,6 +99,7 @@ const Profile = () => {
 
   console.log({ talents });
   console.log({ userData });
+  console.log({ user });
 
   return (
     <>
@@ -657,7 +658,7 @@ const Profile = () => {
                     ₹{userData.startingPrice}
                   </Text>
                 </Box>
-                {user?.isMusician === "Musician" ?
+                {user?.isMusician === "Musician" && userData?._id == userId ? 
                   <Button
                     mt="3.70vh"
                     h="6.48vh"
@@ -687,6 +688,36 @@ const Profile = () => {
                     </Text>
                   </Button>
                   :
+                  user?.isMusician === "Recruter" && userData?._id == userId?
+                  <Button
+                  mt="3.70vh"
+                  h="6.48vh"
+                  w="100%"
+                  borderRadius={"1.04vw"}
+                  bg="#F6540E"
+                  _hover={{ background: "#F6540E" }}
+                  onClick={() =>
+                    navigate("/job-creator-registration", {
+                      state: { data: user, prevPath: location.pathname },
+                    })
+                  }
+                >
+                  <Sms
+                    style={{
+                      width: "1.25vw",
+                      height: "1.25vw",
+                    }}
+                  />
+                  <Text
+                    ml=".36vw"
+                    color="white"
+                    fontFamily={"Gilroy-SemiBold"}
+                    fontSize=".833vw"
+                  >
+                    Edit Profile
+                  </Text>
+                </Button>
+                  :
                   <Button
                     mt="3.70vh"
                     h="6.48vh"
@@ -695,7 +726,7 @@ const Profile = () => {
                     bg="#F6540E"
                     _hover={{ background: "#F6540E" }}
                     onClick={() =>
-                      navigate("/job-creator-registration", {
+                      navigate("/messages", {
                         state: { data: user, prevPath: location.pathname },
                       })
                     }
@@ -712,7 +743,7 @@ const Profile = () => {
                       fontFamily={"Gilroy-SemiBold"}
                       fontSize=".833vw"
                     >
-                      Edit Profile
+                      Contact
                     </Text>
                   </Button>
                 }

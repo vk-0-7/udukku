@@ -301,7 +301,6 @@ const NavBar = () => {
                         w="30px"
                       ></Box>
                       <Box
-                        className={"m-hide"}
                         display={"flex"}
                         gap=".26vw"
                         justifyContent={"center"}

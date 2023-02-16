@@ -90,6 +90,7 @@ const TalentRegistrationPersonalInfo = ({ data }) => {
           </Text>
           <Input
             h="6.48vh"
+            borderRadius={"15px"}
             value={data.fname}
             onChange={(e) => {
               data.set_fname(e.target.value);
@@ -101,6 +102,7 @@ const TalentRegistrationPersonalInfo = ({ data }) => {
             Username*
           </Text>
           <Input
+            borderRadius={"15px"}
             h="6.48vh"
             value={data.username}
             onChange={(e) => {
@@ -127,6 +129,7 @@ const TalentRegistrationPersonalInfo = ({ data }) => {
             Whatsapp Number (Personal Only)*
           </Text>
           <Input
+            borderRadius={"15px"}
             h="6.48vh"
             type="number"
             value={data.wa_number}
@@ -141,6 +144,7 @@ const TalentRegistrationPersonalInfo = ({ data }) => {
               City*
             </Text>
             <Input
+            borderRadius={"15px"}
               h="6.48vh"
               type="text"
               value={data.city}
@@ -154,6 +158,7 @@ const TalentRegistrationPersonalInfo = ({ data }) => {
               State*
             </Text>
             <Input
+            borderRadius={"15px"}
               h="6.48vh"
               type="text"
               value={data.ustate}
@@ -168,6 +173,7 @@ const TalentRegistrationPersonalInfo = ({ data }) => {
             Description*
           </Text>
           <Textarea
+            borderRadius={"15px"}
             type="text"
             value={data.description}
             onChange={(e) => {

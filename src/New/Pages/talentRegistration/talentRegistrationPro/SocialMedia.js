@@ -33,6 +33,7 @@ const SocialMedia = ({ showDelete, changeState, currentIndex, fullState }) => {
           Social Media
         </Text>
         <Select
+            borderRadius={"15px"}
           placeholder="Select"
           value={fullState[currentIndex].plat}
           onChange={updating_social_media}
@@ -52,6 +53,7 @@ const SocialMedia = ({ showDelete, changeState, currentIndex, fullState }) => {
           Social Media Link
         </Text>
         <Input
+            borderRadius={"15px"}
           type={"text"}
           value={fullState[currentIndex].link}
           onChange={updating_link}

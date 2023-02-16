@@ -1,7 +1,14 @@
-import { Box, Input, Text } from '@chakra-ui/react';
+import { Box, Input, Select, Text } from '@chakra-ui/react';
+import { useState } from 'react';
 import { ReactComponent as DeleteIcon } from '../../../../Assets/Icons/Delete.svg';
+import {CategoryData} from '../../../../Data/CategoryData';
+
 
 const Category = ({ showDelete, currentIndex, fullState, changeState }) => {
+	const [subCategory, setSubCategory] = useState("");
+	const [category, setCategory] = useState("VOCALISTS");
+
+
 	const handleDelete = () => {
 		changeState((prev) => {
 			console.log('previous state was : ', prev);
@@ -12,6 +19,7 @@ const Category = ({ showDelete, currentIndex, fullState, changeState }) => {
 	};
 
 	const updating_categories = (e) => {
+		setCategory(e.target.value);
 		changeState((prev) => {
 			prev[currentIndex].category = e.target.value;
 			return [...prev];
@@ -33,34 +41,49 @@ const Category = ({ showDelete, currentIndex, fullState, changeState }) => {
 	return (
 		<Box display={'flex'} gap={'.833vw'} mt='1.111vh' position={'relative'} w="100%"  >
 			<Box>
-				<Text fontFamily={'Gilroy-SemiBold'} fontSize={{base:"1.2rem",md:"1.5rem",lg:'.833vw'}}>
+				<Text fontFamily={'Gilroy-SemiBold'} fontSize={{ base: "1.2rem", md: "1.5rem", lg: '.833vw' }}>
 					Category*
 				</Text>
-				<Input
+				<Select
+            borderRadius={"15px"}
 					type={'text'}
 					value={fullState[currentIndex].category}
 					onChange={updating_categories}
 					h="6.48vh"
 					w="100%"
-				/>
+				>
+					{Object.keys(CategoryData).map((item)=> (
+					<option value={item}>{item}</option>
+					))}
+
+				</Select>
+
 			</Box>
 			<Box>
-				<Text fontFamily={'Gilroy-SemiBold'} fontSize={{base:"1.2rem",md:"1.5rem",lg:'.833vw'}}>
+				<Text fontFamily={'Gilroy-SemiBold'} fontSize={{ base: "1.2rem", md: "1.5rem", lg: '.833vw' }}>
 					Subcategory*
 				</Text>
-				<Input
+
+				<Select
+            borderRadius={"15px"}
 					type={'text'}
 					value={fullState[currentIndex].subCategory}
 					onChange={updating_sub_categories}
 					h="6.48vh"
 					w="100%"
-				/>
+				>
+					{CategoryData[category].map((item)=>(
+					<option value={item}>{item}</option>
+					))}
+
+				</Select>
 			</Box>
 			<Box>
-				<Text fontFamily={'Gilroy-SemiBold'} fontSize={{base:"1.2rem",md:"1.5rem",lg:'.833vw'}}>
+				<Text fontFamily={'Gilroy-SemiBold'} fontSize={{ base: "1.2rem", md: "1.5rem", lg: '.833vw' }}>
 					Service Starting Price
 				</Text>
 				<Input
+            borderRadius={"15px"}
 					type={'number'}
 					value={fullState[currentIndex].serviceStargingPrice}
 					onChange={updating_staring_price}

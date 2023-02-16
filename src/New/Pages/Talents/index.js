@@ -146,7 +146,7 @@ const   Talents = () => {
     }
   }, []);
 
-  console.log({ allTalents });
+  console.log({ talents });
   // useEffect(() => {
   //   set_temp_list((prev) => {
   //     // let result = d_data.filter((data) => {
@@ -377,11 +377,11 @@ const   Talents = () => {
                     return t;
                   }
                 })
-                .filter((t) =>
-                  t.genres[0]?.genere
-                    .toLowerCase()
-                    .includes(genre.toLowerCase())
-                )
+                // .filter((t) =>
+                //   t.genres[0]?.genere
+                //     .toLowerCase()
+                //     .includes(genre.toLowerCase())
+                // )
                 .filter((t) =>
                   t.services[0]?.service
                     .toLowerCase()

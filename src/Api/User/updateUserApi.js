@@ -1,13 +1,15 @@
 var axios = require("axios");
 const updateUserApi = async (
+  id,
   name,
   city,
   state,
-
   description,
-  genres,
   services,
-  gearHighLights
+  genres,
+  gearHighLights,
+  socialMedia,
+  terms
 ) => {
   const token = localStorage.getItem("token");
   var data = {
@@ -15,13 +17,15 @@ const updateUserApi = async (
     city,
     state,
     description,
-    genres,
     services,
+    genres: genres,
     gearHighLights,
+    socialMedia,
+    terms
   };
   var config = {
     method: "patch",
-    url: `${process.env.REACT_APP_BASE_URL}/user/update-profile`,
+    url: `${process.env.REACT_APP_BASE_URL}/user/update-user-by-id/${id}`,
     headers: {
       Authorization: token,
     },

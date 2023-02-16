@@ -75,22 +75,22 @@ const RatingFilter = ({ Main, setMainStar }) => {
               </Radio>
               <Radio value="2" colorScheme="blackAlpha">
                 <Text fontFamily={"Gilroy-SemiBold"} fontSize={".833vw"}>
-                  2 Start
+                  2 Star
                 </Text>
               </Radio>
               <Radio value="3" colorScheme="blackAlpha">
                 <Text fontFamily={"Gilroy-SemiBold"} fontSize={".833vw"}>
-                  3 Start
+                  3 Star
                 </Text>
               </Radio>
               <Radio value="4" colorScheme="blackAlpha">
                 <Text fontFamily={"Gilroy-SemiBold"} fontSize={".833vw"}>
-                  4 Start
+                  4 Star
                 </Text>
               </Radio>
               <Radio value="5" colorScheme="blackAlpha">
                 <Text fontFamily={"Gilroy-SemiBold"} fontSize={".833vw"}>
-                  5 Start
+                  5 Star
                 </Text>
               </Radio>
             </Stack>

@@ -60,10 +60,10 @@ const d_data = [
   },
 ];
 
-const Profile = () => {
-  const { id } = useParams();
-  console.log("Here is Id", id);
+const Profile = (state) => {
+  // const { id } = useParams();
   const location = useLocation();
+  const id = location.state;
   const { userId } = AccessAuthContext();
   console.log({ userId });
   const navigate = useNavigate();
@@ -100,6 +100,7 @@ const Profile = () => {
   console.log({ talents });
   console.log({ userData });
   console.log({ user });
+  console.log('data', id);
 
   return (
     <>
@@ -458,7 +459,7 @@ const Profile = () => {
                 </Text>
 
                 {/* Tags */}
-                <Box display={{md:"flex", sm:"block"}} gap=".416vw">
+                <Box display={{ md: "flex", sm: "block" }} gap=".416vw">
                   {userData?.genres?.map((g) => (
                     <>
                       <Box
@@ -658,7 +659,7 @@ const Profile = () => {
                     ₹{userData.startingPrice}
                   </Text>
                 </Box>
-                {user?.isMusician === "Musician" && userData?._id == userId ? 
+                {user?.isMusician === "Musician" && userData?._id == userId ?
                   <Button
                     mt="3.70vh"
                     h="6.48vh"
@@ -688,64 +689,64 @@ const Profile = () => {
                     </Text>
                   </Button>
                   :
-                  user?.isMusician === "Recruter" && userData?._id == userId?
-                  <Button
-                  mt="3.70vh"
-                  h="6.48vh"
-                  w="100%"
-                  borderRadius={"1.04vw"}
-                  bg="#F6540E"
-                  _hover={{ background: "#F6540E" }}
-                  onClick={() =>
-                    navigate("/job-creator-registration", {
-                      state: { data: user, prevPath: location.pathname },
-                    })
-                  }
-                >
-                  <Sms
-                    style={{
-                      width: "1.25vw",
-                      height: "1.25vw",
-                    }}
-                  />
-                  <Text
-                    ml=".36vw"
-                    color="white"
-                    fontFamily={"Gilroy-SemiBold"}
-                    fontSize=".833vw"
-                  >
-                    Edit Profile
-                  </Text>
-                </Button>
-                  :
-                  <Button
-                    mt="3.70vh"
-                    h="6.48vh"
-                    w="100%"
-                    borderRadius={"1.04vw"}
-                    bg="#F6540E"
-                    _hover={{ background: "#F6540E" }}
-                    onClick={() =>
-                      navigate("/messages", {
-                        state: { data: user, prevPath: location.pathname },
-                      })
-                    }
-                  >
-                    <Sms
-                      style={{
-                        width: "1.25vw",
-                        height: "1.25vw",
-                      }}
-                    />
-                    <Text
-                      ml=".36vw"
-                      color="white"
-                      fontFamily={"Gilroy-SemiBold"}
-                      fontSize=".833vw"
+                  user?.isMusician === "Recruter" && userData?._id == userId ?
+                    <Button
+                      mt="3.70vh"
+                      h="6.48vh"
+                      w="100%"
+                      borderRadius={"1.04vw"}
+                      bg="#F6540E"
+                      _hover={{ background: "#F6540E" }}
+                      onClick={() =>
+                        navigate("/job-creator-registration", {
+                          state: { data: user, prevPath: location.pathname },
+                        })
+                      }
                     >
-                      Contact
-                    </Text>
-                  </Button>
+                      <Sms
+                        style={{
+                          width: "1.25vw",
+                          height: "1.25vw",
+                        }}
+                      />
+                      <Text
+                        ml=".36vw"
+                        color="white"
+                        fontFamily={"Gilroy-SemiBold"}
+                        fontSize=".833vw"
+                      >
+                        Edit Profile
+                      </Text>
+                    </Button>
+                    :
+                    <Button
+                      mt="3.70vh"
+                      h="6.48vh"
+                      w="100%"
+                      borderRadius={"1.04vw"}
+                      bg="#F6540E"
+                      _hover={{ background: "#F6540E" }}
+                      onClick={() =>
+                        navigate("/messages", {
+                          state: { data: user, prevPath: location.pathname },
+                        })
+                      }
+                    >
+                      <Sms
+                        style={{
+                          width: "1.25vw",
+                          height: "1.25vw",
+                        }}
+                      />
+                      <Text
+                        ml=".36vw"
+                        color="white"
+                        fontFamily={"Gilroy-SemiBold"}
+                        fontSize=".833vw"
+                      >
+                        Contact
+                      </Text>
+                    </Button>
                 }
 
               </Box>
@@ -848,25 +849,25 @@ const Profile = () => {
               </Box>
             </Box>
           </Box>
-          {userData?.userData?.review ? 
-          <Box mt="5.55vh">
-          <Text className="lyrics-heading-2" fontFamily="Gilroy-Bold" fontSize={"1.45vw"}>
-            {/* Reviews ({user.reviews?.length}) */}
-            Reviews (4)
-          </Text>
-          <Box
-            mt="1.01vh"
-            mb="7.40vh"
-            display={"flex"}
-            flexDir="column"
-            gap="1.48vh"
-          >
-            <ReviewCard  />;
-          </Box>
-        </Box>
-        :
-        ""}
-          
+          {userData?.userData?.review ?
+            <Box mt="5.55vh">
+              <Text className="lyrics-heading-2" fontFamily="Gilroy-Bold" fontSize={"1.45vw"}>
+                {/* Reviews ({user.reviews?.length}) */}
+                Reviews (4)
+              </Text>
+              <Box
+                mt="1.01vh"
+                mb="7.40vh"
+                display={"flex"}
+                flexDir="column"
+                gap="1.48vh"
+              >
+                <ReviewCard />;
+              </Box>
+            </Box>
+            :
+            ""}
+
         </Box>
         <Footer />
       </Box>

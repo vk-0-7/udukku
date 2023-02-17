@@ -376,7 +376,7 @@ const NavBar = () => {
                             `/${user?.name.substring(
                               0,
                               user?.name.indexOf(" ")
-                            )}/${localStorage.getItem("userId")}`
+                            )}`,{ state: user?.userId }
                           );
 
                         }}
@@ -398,7 +398,7 @@ const NavBar = () => {
                         fontSize={"1.4rem"}
                         onClick={() => {
                           navigate(
-                            `/${user?.name}/${localStorage.getItem("userId")}`
+                            `/${user?.name}`,{ state: user?.userId }
                           );
 
                         }}

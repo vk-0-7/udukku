@@ -15,7 +15,7 @@ const TalentCard = ({ data }) => {
     width: ".72vw",
     fill: "rgba(8, 32, 50, 1)",
   };
-  console.log(data);
+  console.log(data._id);
   return (
     <Box
       h={{ base: "", lg: "" }}
@@ -31,7 +31,7 @@ const TalentCard = ({ data }) => {
       overflow="hidden"
       onClick={() => {
         navigate(
-          `/${data.name.substring(0, data.name.indexOf(" "))}/${data._id}`
+          `/${data.name.substring(0, data.name.indexOf(" "))}`, { state: data?._id }
         );
       }}
     >

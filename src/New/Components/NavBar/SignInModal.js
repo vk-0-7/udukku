@@ -163,10 +163,28 @@ const SignInModal = ({ state, changeState }) => {
         set_show_registration_modal(true);
         onClose();
         sessionStorage.setItem("id", res.data.user._id);
-        console.log("setting the value here");
-        isMusician === "musician"
-          ? navigate("/dashboard")
-          : navigate("/client-dashboard");
+        console.log("setting the value here")
+        if ( 
+        isMusician === "musician" && res.data.user.isProfileCompleted === false
+        ) {
+          navigate("/talent-registration", { state: res.data.user._id })
+        }
+        else if (
+          isMusician === "musician" && res.data.user.isProfileCompleted === true
+        ) {
+          navigate("/dashboard")
+        }
+        else if (
+          isMusician === "recruter" && res.data.user.isProfileCompleted === false
+        ) {
+          navigate("/job-creator-registration", { state: res.data.user._id })
+        }
+        else if (
+          isMusician === "recruter" && res.data.user.isProfileCompleted === true
+        ) {
+          navigate("/client-dashboard")
+        }
+
       } else {
         set_show_registration_modal(false);
         setLoginState(true);
@@ -177,9 +195,26 @@ const SignInModal = ({ state, changeState }) => {
         setName(res.data.user.name);
         setUsername(res.data.user.userName);
         onClose();
-        isMusician === "musician"
-          ? navigate("/dashboard")
-          : navigate("/client-dashboard");
+        if ( 
+        isMusician === "musician" && res.data.user.isProfileCompleted === false
+        ) {
+          navigate("/talent-registration", { state: res.data.user._id })
+        }
+        else if (
+          isMusician === "musician" && res.data.user.isProfileCompleted === true
+        ) {
+          navigate("/dashboard")
+        }
+        else if (
+          isMusician === "recruter" && res.data.user.isProfileCompleted === false
+        ) {
+          navigate("/job-creator-registration", { state: res.data.user._id })
+        }
+        else if (
+          isMusician === "recruter" && res.data.user.isProfileCompleted === true
+        ) {
+          navigate("/client-dashboard")
+        }
       }
     } catch (error) {
       if (error.response.data.message === "This email does not exist.") {
@@ -209,6 +244,26 @@ const SignInModal = ({ state, changeState }) => {
             isProfileCompleted: res.data.user.isProfileCompleted,
           },
         });
+        if ( 
+          isMusician === "musician" && res.data.user.isProfileCompleted === false
+          ) {
+            navigate("/talent-registration", { state: res.data.user._id })
+          }
+          else if (
+            isMusician === "musician" && res.data.user.isProfileCompleted === true
+          ) {
+            navigate("/dashboard")
+          }
+          else if (
+            isMusician === "recruter" && res.data.user.isProfileCompleted === false
+          ) {
+            navigate("/job-creator-registration", { state: res.data.user._id })
+          }
+          else if (
+            isMusician === "recruter" && res.data.user.isProfileCompleted === true
+          ) {
+            navigate("/client-dashboard")
+          }
         setLoading(false);
         localStorage.setItem("token", res.data.refresh_token);
         setLoginState(true);
@@ -294,7 +349,7 @@ const SignInModal = ({ state, changeState }) => {
 
             {/* form */}
             <form>
-              <Box display="flex" flexDir={"column"} gap="2.222vh" pt={{md:"2.96vh",sm:"1.5vh"}}>
+              <Box display="flex" flexDir={"column"} gap="2.222vh" pt={{ md: "2.96vh", sm: "1.5vh" }}>
                 <Box>
                   <label htmlFor="nav-login-email">
                     <Text
@@ -445,7 +500,7 @@ const SignInModal = ({ state, changeState }) => {
               </Box>
             </form>
             <Box
-            className="modal-or-margin"
+              className="modal-or-margin"
               my="30px"
               position={"relative"}
               display="flex"

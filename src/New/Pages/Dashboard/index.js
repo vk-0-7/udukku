@@ -1,4 +1,4 @@
-import { Box, Image, Text } from "@chakra-ui/react";
+import { Box, Image, Text,Button } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Footer from "../../Components/Footer/Footer";
@@ -15,6 +15,38 @@ import getAllUsers from "../../../Api/User/getAllUsers";
 import { useSelector } from "react-redux";
 import { getUserInfoById } from "../../../Api/User/getUserById";
 
+
+import {
+  EmailShareButton,
+  FacebookShareButton,
+  HatenaShareButton,
+  InstapaperShareButton,
+  LineShareButton,
+  LinkedinShareButton,
+  LivejournalShareButton,
+  MailruShareButton,
+  OKShareButton,
+  PinterestShareButton,
+  PocketShareButton,
+  RedditShareButton,
+  TelegramShareButton,
+  TumblrShareButton,
+  TwitterShareButton,
+  ViberShareButton,
+  VKShareButton,
+  WhatsappShareButton,
+  WorkplaceShareButton
+} from "react-share";
+
+import {
+  FacebookShareCount,
+  HatenaShareCount,
+  OKShareCount,
+  PinterestShareCount,
+  RedditShareCount,
+  TumblrShareCount,
+  VKShareCount
+} from "react-share";
 // dummy
 const d_data = [
   {
@@ -38,12 +70,12 @@ const d_data = [
 const Dashboard = () => {
   const navigate = useNavigate();
   const { userId } = AccessAuthContext();
-  console.log(userId);
   const { user } = useSelector((state) => ({ ...state }));
   const [loading, setLoading] = useState(false);
   const [userData, setUserData] = useState({});
-
   const [allUser, setAllUser] = useState({});
+
+
   useEffect(() => {
     if (localStorage.getItem("token")) {
       getAllUsers().then((res) => {
@@ -57,18 +89,17 @@ const Dashboard = () => {
     }
   }, []);
 
-  const id = userId;
-console.log(id)
+  const id = user?.userId;
+  console.log("iid", id)
   useEffect(() => {
     setLoading(true);
     getUserInfoById(id).then((res) => {
-      console.log(res);
+      console.log("res", res);
       setUserData(res.data);
     });
     setLoading(false);
-  }, []);
+  }, [id]);
 
-  console.log({ user });
   return (
     <>
       <Box mt="7.40vh">
@@ -110,10 +141,10 @@ console.log(id)
                   fontFamily={"Gilroy-Bold"}
                   fontSize={{ base: "2rem", md: "3rem", lg: "2.29vw" }}
                 >
-                  {user?.jobsCompleted}
+                  {userData?.jobsCompleted}
                 </Text>
                 <Text
-                className="lyrics-heading-1"
+                  className="lyrics-heading-1"
                   fontFamily={"Gilroy-SemiBold"}
                   fontSize={{ base: "6px", md: "1.5rem", lg: "1.04vw" }}
                 >
@@ -130,7 +161,7 @@ console.log(id)
                 justifyContent="center"
               >
                 <TaskIcon
-                className="genre-category-icons"
+                  className="genre-category-icons"
                   style={{
                     height: "1.66vw",
                     width: "1.66vw",
@@ -155,10 +186,10 @@ console.log(id)
                   fontFamily={"Gilroy-Bold"}
                   fontSize={{ base: "2rem", md: "3rem", lg: "2.29vw" }}
                 >
-                  {user?.repeatedBuyer}
+                  {userData?.repeatedBuyer}
                 </Text>
                 <Text
-                className="lyrics-heading-1"
+                  className="lyrics-heading-1"
                   fontFamily={"Gilroy-SemiBold"}
                   fontSize={{ base: "6px", md: "1.5rem", lg: "1.04vw" }}
                 >
@@ -175,7 +206,7 @@ console.log(id)
                 justifyContent="center"
               >
                 <PeopleIcon
-                className="genre-category-icons"
+                  className="genre-category-icons"
                   style={{
                     height: "1.66vw",
                     width: "1.66vw",
@@ -184,7 +215,7 @@ console.log(id)
               </Box>
             </Box>
             <Box
-            className="dashboard-box"
+              className="dashboard-box"
               w="100%"
               h="16.29vh"
               border={"2px solid #f0f0f0"}
@@ -200,10 +231,10 @@ console.log(id)
                   fontFamily={"Gilroy-Bold"}
                   fontSize={{ base: "2rem", md: "3rem", lg: "2.29vw" }}
                 >
-                  ₹{user?.totalEarn}
+                  ₹{userData?.totalEarn}
                 </Text>
                 <Text
-                className="lyrics-heading-1"
+                  className="lyrics-heading-1"
                   fontFamily={"Gilroy-SemiBold"}
                   fontSize={{ base: "6px", md: "1.5rem", lg: "1.04vw" }}
                 >
@@ -220,7 +251,7 @@ console.log(id)
                 justifyContent="center"
               >
                 <MoneyIcon
-                className="genre-category-icons"
+                  className="genre-category-icons"
                   style={{
                     fill: "rgba(246, 84, 14, 1)",
                     height: "1.66vw",
@@ -244,13 +275,13 @@ console.log(id)
             alignItems="center"
           >
             <Image
-        
+
               src={user?.avatar}
               h="30vh"
               w="30vh"
               borderRadius={"10%"}
               objectFit="cover"
-              // objectPosition={"50% 50%"}
+            // objectPosition={"50% 50%"}
             />
             <Box ml="1.14vw">
               <Text
@@ -269,7 +300,9 @@ console.log(id)
               </Text>
             </Box>
             <Box flexGrow={1}></Box>
-            <Box
+            
+              <FacebookShareButton url="facebook.com" >
+              <Box
               display={"flex"}
               flexDir="column"
               alignItems={"center"}
@@ -284,6 +317,8 @@ console.log(id)
                 Share Profile
               </Text>
             </Box>
+            </FacebookShareButton>
+
           </Box>
 
           {/* jobs suggestion section */}

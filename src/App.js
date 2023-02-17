@@ -89,7 +89,7 @@ const App = () => {
           {/* *********************** NEW *************************** */}
           <Route path={"/"}>
             <Route index element={<HomePage />} />
-            <Route path={"/:username/:id"} element={<Profile />} />
+            <Route path={"/:username"} element={<Profile />} />
           </Route>
           <Route path="/jobs" element={<Jobs />} />
           <Route path="/talents" element={<Talents />} />

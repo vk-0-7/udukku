@@ -195,6 +195,14 @@ html {
 	display: block !important;
 }
 
+button.splide__arrow.splide__arrow--prev{
+visibility: hidden !important;
+}
+
+button.splide__arrow.splide__arrow--next{
+	visibility: hidden !important;
+	}
+
 @media only screen and (max-width: 600px) {
 	.w100 {
 		width: 100% !important;

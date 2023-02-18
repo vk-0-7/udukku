@@ -34,6 +34,7 @@ const Slide = () => {
     };
   }, []);
 
+
   return (
     <Box
       flexShrink={0}

@@ -2,7 +2,10 @@ import { ReactComponent as MusicIcon } from "../../../../Assets/Icons/VectorGen.
 import { ReactComponent as BriefCase } from "../../../../Assets/Icons/briefcase.svg";
 import { GrClose } from "react-icons/gr";
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { unstable_HistoryRouter, useNavigate } from "react-router-dom";
+import { updateUserRole } from "../../../../Api/Auth/updateUserType";
+import { useSelector } from "react-redux";
+
 const {
   Modal,
   useDisclosure,
@@ -17,6 +20,7 @@ const {
 const BecomeOurMember = ({ state }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const navigate = useNavigate();
+  const { user } = useSelector((state) => ({ ...state }));
 
   
   useEffect(() => {
@@ -24,6 +28,27 @@ const BecomeOurMember = ({ state }) => {
       onOpen();
     }
   }, []);
+
+  const componentClicked = (value) => {
+    console.log("value",value);
+    updateUserRole(value, user.token)
+      .then((res) => {
+        console.log(res);
+        // window.$("#staticBackdrop1").modal("hide");
+        // window.reload();
+        if (user.isProfileCompleted === true) {
+          navigate("/");
+        } else {
+          if (value === "Musician") {
+            navigate("/talent-registration");
+          } else {
+            navigate("/job-creator-registration");
+          }
+        }
+      })
+      .catch((err) => console.log(err));
+      onClose();
+  };
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} size={"full"}>
@@ -81,9 +106,9 @@ const BecomeOurMember = ({ state }) => {
                 }}
                 cursor={"pointer"}
                 onClick={() => {
-                  onClose();
+                  componentClicked("Musician");
                   // changeState(false);
-                  navigate("/talent-registration");
+                  // navigate("/talent-registration");
                 }}
               >
                 <Box
@@ -122,9 +147,9 @@ const BecomeOurMember = ({ state }) => {
                   svg: { fill: "white !important" },
                 }}
                 onClick={() => {
-                  onClose();
+                  componentClicked("Recruter");
                   // changeState(false);
-                  navigate("/job-creator-registration");
+                  // navigate("/job-creator-registration");
                 }}
               >
                 <Box

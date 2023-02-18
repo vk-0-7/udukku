@@ -36,7 +36,7 @@ const IndividualMessageBox = ({ socket, id }) => {
   const [getAttachments, setGetAttachments] = useState([]);
   const [media, setMedia] = useState([]);
   const [file, setFile] = useState("");
-  const [response, setResponse] = useState();
+  const [response, setResponse] = useState({});
   const [deliverables, setDeliverables] = useState([]);
   const [documentation, setDocumentation] = useState();
   const { isOpen: isProposalOpen, onOpen: onProposalOpen, onClose: onProposalClose } = useDisclosure()
@@ -382,7 +382,7 @@ const IndividualMessageBox = ({ socket, id }) => {
             alignItems={"center"}
             ml="auto"
           >
-            {response?.status === "exploring " ?
+            {response?.status === "exploring " && chatroom.jobAccepted !== "accepted" ?
                <>
                <Button
                  backgroundColor={"#F6540E"}
@@ -551,7 +551,26 @@ const IndividualMessageBox = ({ socket, id }) => {
               disabled
             >Job is Completed</Button>
             :
-            ""
+            <>
+            <Button
+              backgroundColor={"#F6540E"}
+              color={"White"}
+              pt={"1.75rem"}
+              pb={"1.75rem"}
+              borderRadius={"2rem"}
+              onClick={handleAcceptJob}
+            disabled={response?.status == "active"}
+            >Accept Job</Button>
+            <Button
+              backgroundColor={"#F6540E"}
+              color={"White"}
+              pt={"1.75rem"}
+              pb={"1.75rem"}
+              borderRadius={"2rem"}
+              onClick={handleDenyJob}
+            disabled={response?.status == "active"}
+            >Deny Job</Button>
+          </>
             }
 
 

@@ -23,6 +23,8 @@ import { useDispatch } from "react-redux";
 import googleLogin from "../../../Api/Auth/googleLogin";
 import jwt_decode from "jwt-decode";
 import BecomeOurMember from "../../Pages/Homepage/becomeOurMember/BecomeOurMember";
+import { Navigate, useNavigate } from "react-router-dom";
+import SignInModal from "./SignInModal";
 
 const SignUpModal = ({ state, changeState }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -37,6 +39,9 @@ const SignUpModal = ({ state, changeState }) => {
   const [show_registration_modal, set_show_registration_modal] = useState(null);
   const [loading, setLoading] = useState(false);
   const { setLoginState, setToken, setAvatar } = AccessAuthContext();
+  const [signInState, setSignInState] = useState(false);
+  const navigate = useNavigate();
+
   const toast = useToast();
   const exp = new RegExp("(?=.*[a-z])");
   const exp2 = new RegExp("(?=.*[A-Z])");
@@ -73,7 +78,7 @@ const SignUpModal = ({ state, changeState }) => {
       console.log("server se ye aaya : ", res);
       localStorage.setItem("token", res.data.refresh_token)
       localStorage.setItem("userId", res.data.user._id)
-      if (!res.data.user.isProfileCompleted) {
+      if (res.data.user.isMusician === ""){
         set_show_registration_modal(true);
       }
       dispatch({
@@ -94,6 +99,9 @@ const SignUpModal = ({ state, changeState }) => {
       setUserId(res.data.user._id);
       // setUsed('google');
       // setOpen(false);
+      if (res.data.user.isMusician === ""){
+        set_show_registration_modal(true);
+      }
       onClose();
 
       // setProfileurl(res.data.msg.avatar);
@@ -183,6 +191,8 @@ const SignUpModal = ({ state, changeState }) => {
 
   return (
     <>
+      <SignInModal state={signInState} changeState={setSignInState} />
+
       {show_registration_modal === true ? (
         <BecomeOurMember state={true} />
       ) : (
@@ -198,11 +208,11 @@ const SignUpModal = ({ state, changeState }) => {
           justifyContent="center"
         >
           <Box
-          className="w100 "
+            className="w100 "
             h="fit-content"
             w={{ base: "90%", md: "80%", lg: "36.04vw", }}
             bg="#fff"
-            borderRadius={{md:"32px",sm:"0px"}}
+            borderRadius={{ md: "32px", sm: "0px" }}
             py="3.70vh"
             px="3.125vw"
             position={"relative"}
@@ -242,7 +252,7 @@ const SignUpModal = ({ state, changeState }) => {
                 <Box>
                   <label htmlFor="nav-login-email">
                     <Text
-                    className="hero-font-class2"
+                      className="hero-font-class2"
                       fontSize={{ base: "2rem", lg: ".833vw" }}
                       fontFamily="Gilroy-SemiBold"
                       _after={{
@@ -255,7 +265,7 @@ const SignUpModal = ({ state, changeState }) => {
                     </Text>
                   </label>
                   <Input
-                  className="hero-font-class2"
+                    className="hero-font-class2"
                     value={name}
                     type="text"
                     id="nav-login-email"
@@ -274,7 +284,7 @@ const SignUpModal = ({ state, changeState }) => {
                 <Box>
                   <label htmlFor="nav-login-email">
                     <Text
-                    className="hero-font-class2"
+                      className="hero-font-class2"
                       fontSize={{ base: "2rem", lg: ".833vw" }}
                       fontFamily="Gilroy-SemiBold"
                       _after={{
@@ -288,7 +298,7 @@ const SignUpModal = ({ state, changeState }) => {
                   </label>
 
                   <Input
-                  className="hero-font-class2"
+                    className="hero-font-class2"
                     value={email}
                     type="email"
                     id="nav-login-email"
@@ -307,7 +317,7 @@ const SignUpModal = ({ state, changeState }) => {
                 <Box>
                   <label htmlFor="nav-login-pass">
                     <Text
-                    className="hero-font-class2"
+                      className="hero-font-class2"
                       fontSize={{ base: "2rem", lg: ".833vw" }}
                       fontFamily="Gilroy-SemiBold"
                       _after={{
@@ -321,7 +331,7 @@ const SignUpModal = ({ state, changeState }) => {
                   </label>
                   <InputGroup size="md" display={"flex"}>
                     <Input
-                    className="hero-font-class2"
+                      className="hero-font-class2"
                       pr="4.5rem"
                       type={show ? "text" : "password"}
                       placeholder="Enter password"
@@ -401,7 +411,7 @@ const SignUpModal = ({ state, changeState }) => {
                 </Box>
                 <Box>
                   <Button
-                  className="hero-font-class2"
+                    className="hero-font-class2"
                     w="100%"
                     bg="#F6540E"
                     color="#fff"
@@ -419,7 +429,7 @@ const SignUpModal = ({ state, changeState }) => {
               </Box>
             </form>
             <Box
-            className="m-10 "
+              className="m-10 "
               my="20px"
               position={"relative"}
               display="flex"
@@ -436,7 +446,7 @@ const SignUpModal = ({ state, changeState }) => {
               }}
             >
               <Text
-              className="hero-font-class2"
+                className="hero-font-class2"
                 display={"inline-block"}
                 position="relative"
                 fontSize={{ base: "1.5rem", lg: ".833vw" }}
@@ -449,7 +459,7 @@ const SignUpModal = ({ state, changeState }) => {
               </Text>
             </Box>
             <Button
-        className="m-hide"
+              className="m-hide"
               display={"flex"}
               alignItems="center"
               justifyContent={"center"}
@@ -472,8 +482,8 @@ const SignUpModal = ({ state, changeState }) => {
             </Button>
 
             <Button
-        className="d-hide"
-            mx={"10vw"}
+              className="d-hide"
+              mx={"10vw"}
               display={"flex"}
               alignItems="center"
               justifyContent={"center"}
@@ -502,7 +512,15 @@ const SignUpModal = ({ state, changeState }) => {
             <Box mt="1.85vh" fontSize={{ base: "2rem", lg: ".833vw" }}>
               <Text className="hero-font-class2" textAlign={"center"}>
                 Already registered?{" "}
-                <Text className="hero-font-class2" as="span" textDecoration={"underline"} color="#F6540E">
+                <Text
+                  fontFamily={"Gilroy-SemiBold"}
+                  cursor={"pointer"}
+                  onClick={() => {
+                    setSignInState(true);
+                    onClose();
+                  }}
+                  fontSize={{ base: "1.5rem", lg: ".8333vw" }}
+                  className="hero-font-class2" as="span" textDecoration={"underline"} color="#F6540E">
                   Sign in
                 </Text>{" "}
               </Text>

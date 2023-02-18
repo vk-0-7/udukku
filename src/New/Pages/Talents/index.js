@@ -382,11 +382,11 @@ const   Talents = () => {
                 //     .toLowerCase()
                 //     .includes(genre.toLowerCase())
                 // )
-                .filter((t) =>
-                  t.services[0]?.service
-                    .toLowerCase()
-                    .includes(categoryF.toLowerCase())
-                )
+                // .filter((t) =>
+                //   t.services[0]?.service
+                //     .toLowerCase()
+                //     .includes(categoryF.toLowerCase())
+                // )
                 .map((talent) => (
                   <TalentCard key={talent._id} data={talent} />
                   //<p>{talent._id}</p>

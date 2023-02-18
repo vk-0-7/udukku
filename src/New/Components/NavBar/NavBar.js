@@ -39,7 +39,7 @@ import {
   ModalBody,
   ModalCloseButton,
 } from '@chakra-ui/react'
-
+import ProfileNav from '../../../Assets/Icons/profile-nav.svg'
 const NavBar = () => {
   const [signInState, setSignInState] = useState(false);
   const [signUpState, setSignUpState] = useState(false);
@@ -376,20 +376,21 @@ const NavBar = () => {
                             `/${user?.name.substring(
                               0,
                               user?.name.indexOf(" ")
-                            )}/${localStorage.getItem("userId")}`
+                            )}`,{ state: user?.userId }
                           );
 
                         }}
-                        icon={
-                          <PersonIcon
-                            style={{
-                              fill: "#F6540E",
-                              width: "1.25vw",
-                              height: "1.25vw",
-                            }}
-                          />
-                        }
+                        // icon={
+                        //   <PersonIcon
+                        //     style={{
+                        //       fill: "#F6540E",
+                        //       width: "1.25vw",
+                        //       height: "1.25vw",
+                        //     }}
+                        //   />
+                        // }
                       >
+                        <Image src={ProfileNav} marginRight={"8%"} marginLeft={"2%"}/>
                         My Profile
                       </MenuItem>
                       :
@@ -398,7 +399,7 @@ const NavBar = () => {
                         fontSize={"1.4rem"}
                         onClick={() => {
                           navigate(
-                            `/${user?.name}/${localStorage.getItem("userId")}`
+                            `/${user?.name}`,{ state: user?.userId }
                           );
 
                         }}

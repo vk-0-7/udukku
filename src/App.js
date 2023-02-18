@@ -10,6 +10,7 @@ import TermsAndConditions from "./New/Pages/TermsAndConditions";
 import ResetPassword from "./New/Pages/resetPassword";
 import ActivateUser from "./New/Pages/ActivateUser";
 import TalentRegistration from "./New/Pages/talentRegistration/TalentRegistration";
+import EditProfile from "./New/Pages/talentRegistration/EditProfile";
 import JobCreatorRegistration from "./New/Pages/jobCreatorRegistration/JobCreatorRegistration";
 import Dashboard from "./New/Pages/Dashboard";
 import Profile from "./New/Pages/Profile";
@@ -89,7 +90,7 @@ const App = () => {
           {/* *********************** NEW *************************** */}
           <Route path={"/"}>
             <Route index element={<HomePage />} />
-            <Route path={"/:username/:id"} element={<Profile />} />
+            <Route path={"/:username"} element={<Profile />} />
           </Route>
           <Route path="/jobs" element={<Jobs />} />
           <Route path="/talents" element={<Talents />} />
@@ -107,7 +108,12 @@ const App = () => {
           <Route path="/user/reset/:id" element={<ResetPassword />} />
           <Route path="/user/activate/:id" element={<ActivateUser />} />
           <Route path="/talent-registration" element={<TalentRegistration />} />
+          <Route path="/edit-profile" element={<EditProfile />} />
           <Route
+            path="/creater-edit-profile"
+            element={<JobCreatorRegistration />}
+          />
+            <Route
             path="/job-creator-registration"
             element={<JobCreatorRegistration />}
           />

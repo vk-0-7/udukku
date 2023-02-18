@@ -82,7 +82,7 @@ const TalentCard = ({ data }) => {
         mt={{ base: "0rem", lg: "0rem" }}
         fontFamily={"Gilroy-Bold"}
         fontSize={{ base: "3rem", lg: "1.45vw" }}
-        // lineHeight={"3.5vh"}
+      // lineHeight={"3.5vh"}
       >
         {data.tag}
       </Box>
@@ -111,7 +111,9 @@ const TalentCard = ({ data }) => {
                 fontFamily={"Gilroy-SemiBold"}
                 fontSize={{ base: "1.4rem", lg: ".72vw" }}
               >
-                {val.genere}
+                {val.genere !== undefined ? val.genere : val.genre}
+                {/* {val.subGenere !== undefined ? val.subGenere : val.subGenre} */}
+
               </Text>
             </Box>
           ) : (
@@ -141,7 +143,8 @@ const TalentCard = ({ data }) => {
                 fontFamily={"Gilroy-SemiBold"}
                 fontSize={{ base: "1.2rem", lg: ".72vw" }}
               >
-                {val.service}
+                {val.service !== undefined ? val.service : val.category}
+                {/* {val.subService !== undefined ? val.subService : val.subCategory } */}
               </Text>
             </Box>
           ) : (
@@ -181,7 +184,7 @@ const TalentCard = ({ data }) => {
         <audio
           src={data.workSample}
           controls
-          style={{ height: "3.33vh", width: "100%", marginTop: "1.48vh", color:"#f6540e" }}
+          style={{ height: "3.33vh", width: "100%", marginTop: "1.48vh", color: "#f6540e" }}
         />
       )}
 

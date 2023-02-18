@@ -21,10 +21,13 @@ import {
   ModalBody,
   ModalCloseButton,
 } from '@chakra-ui/react'
+import { getUserInfoById } from "../../../Api/User/getUserById";
 const ClientDashboard = ({ state }) => {
   const { user } = useSelector((state) => ({ ...state }));
   const [talents, setTalents] = useState([]);
   const { isOpen, onOpen, onClose } = useDisclosure()
+  const navigate = useNavigate();
+  const [userData, setUserData] = useState({});
 
   useEffect(() => {
     //window.scrollTo(0, 0);
@@ -32,7 +35,17 @@ const ClientDashboard = ({ state }) => {
       setTalents(res.user);
     });
   }, []);
-  const navigate = useNavigate();
+
+
+  const id = user?.userId;
+
+  useEffect(() => {
+    getUserInfoById(id).then((res) => {
+      console.log("res", res);
+      setUserData(res.data);
+    });
+  }, [id]);
+
   return (
     <Box>
       <NavBar />
@@ -44,45 +57,45 @@ const ClientDashboard = ({ state }) => {
         flexDir={"column"}
         gap="2rem"
       >
-              <Button onClick={onOpen}>Open Modal</Button>
+        {/* <Button onClick={onOpen}>Open Modal</Button> */}
 
-<Modal isOpen={isOpen} onClose={onClose}>
-  <ModalOverlay />
-  <ModalContent>
-    <ModalHeader>Modal Title</ModalHeader>
-    <ModalCloseButton />
-    <ModalBody>
-    </ModalBody>
+        <Modal isOpen={isOpen} onClose={onClose}>
+          <ModalOverlay />
+          <ModalContent>
+            <ModalHeader>Modal Title</ModalHeader>
+            <ModalCloseButton />
+            <ModalBody>
+            </ModalBody>
 
-    <ModalFooter>
-      <Button colorScheme='blue' mr={3} onClick={onClose}>
-        Close
-      </Button>
-      <Button variant='ghost'>Secondary Action</Button>
-    </ModalFooter>
-  </ModalContent>
-</Modal>
+            <ModalFooter>
+              <Button colorScheme='blue' mr={3} onClick={onClose}>
+                Close
+              </Button>
+              <Button variant='ghost'>Secondary Action</Button>
+            </ModalFooter>
+          </ModalContent>
+        </Modal>
         <Box display={"flex"} flexDir="row" alignItems={"center"}>
-          <Text fontSize={{base:"2.5rem",md:"4rem",lg:"2.29vw"}} fontFamily="Gilroy-Bold">
-            {user?.name}
+          <Text fontSize={{ base: "2.5rem", md: "4rem", lg: "2.29vw" }} fontFamily="Gilroy-Bold">
+            {userData?.name}
           </Text>
-          
-          {user?.isMusician !== "Musician" ?
-          <Button
-          leftIcon={<PostIcon />}
-          py="2rem"
-          gap="7px"
-          borderRadius={"1.5rem"}
-          color="white"
-          backgroundColor={"#F6540E"}
-          ml="auto"
-          onClick={() => navigate("/post-a-job")}
-        >
-          Post a Job
-        </Button>
-        :
-        ""
-        }
+
+          {userData?.isMusician !== "Musician" ?
+            <Button
+              leftIcon={<PostIcon />}
+              py="2rem"
+              gap="7px"
+              borderRadius={"1.5rem"}
+              color="white"
+              backgroundColor={"#F6540E"}
+              ml="auto"
+              onClick={() => navigate("/post-a-job")}
+            >
+              Post a Job
+            </Button>
+            :
+            ""
+          }
         </Box>
         {/* <Box
           display={"flex"}
@@ -124,7 +137,7 @@ const ClientDashboard = ({ state }) => {
           >
             <Box>
               <Text fontFamily={"Gilroy-Bold"} fontSize="2.29vw">
-                15
+                {userData?.postedJobs}
               </Text>
               <Text fontFamily={"Gilroy-SemiBold"} fontSize="1.04vw">
                 Jobs Posted
@@ -196,7 +209,7 @@ const ClientDashboard = ({ state }) => {
           >
             <Box>
               <Text fontFamily={"Gilroy-Bold"} fontSize="2.29vw">
-                ₹28,000
+              {userData?.totalEarn}
               </Text>
               <Text fontFamily={"Gilroy-SemiBold"} fontSize="1.04vw">
                 Total Spent

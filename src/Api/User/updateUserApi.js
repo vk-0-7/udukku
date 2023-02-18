@@ -15,6 +15,7 @@ const updateUserApi = async (
 ) => {
   const token = localStorage.getItem("token");
   var data = {
+    isProfileCompleted:true,
     avatar,
     name,
     mobile,

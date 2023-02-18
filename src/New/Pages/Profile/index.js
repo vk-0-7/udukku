@@ -74,7 +74,7 @@ const Profile = (state) => {
   const [talents, setTalents] = useState([]);
   const [userData, setUserData] = useState({});
 
-  console.log("location",location)
+  console.log("location", location)
   useEffect(async () => {
     //window.scrollTo(0, 0);
     setLoading(true);
@@ -99,7 +99,7 @@ const Profile = (state) => {
   }, []);
 
   console.log(talents);
-  console.log("userData",userData);
+  console.log("userData", userData);
   console.log(user);
 
   return (
@@ -184,93 +184,107 @@ const Profile = (state) => {
                     </Box>
                   </Box>
 
-                  {userData?.socialMedia !== [] ?
-                    <Box
-                      display={"flex"}
-                      flexDir="row"
-                      justifyContent={{ md: "center", sm: "left" }}
-                      gap="1.11vh"
-                      ml="auto"
-                      mt="2%"
-                    >
-                      <Box
-                        className="genre-category-icons"
-                        h="2.70vw"
-                        w="2.70vw"
-                        border="2px solid rgba(43, 43, 43, .1)"
-                        display={"flex"}
-                        alignItems="center"
-                        justifyContent={"center"}
-                        borderRadius=".833vw"
-                        cursor="pointer"
-                        _hover={{
-                          background: "rgba(246, 84, 14, 1)",
-                          svg: {
-                            fill: "#fff !important",
-                          },
-                        }}
-                      >
-                        <FbIcon
-                          className="profile-rating-icons"
-                          style={{
-                            fill: "rgba(246, 84, 14, 1)",
-                            height: "1.85vh",
+                  <Box
+                    display={"flex"}
+                    flexDir="row"
+                    justifyContent={{ md: "center", sm: "left" }}
+                    gap="1.11vh"
+                    ml="auto"
+                    mt="2%"
+                  >
+                    {userData?.socialMedia?.map((item, index) => (
+                      item.plat === "facebook" ?
+                        <Box
+                          className="genre-category-icons"
+                          h="2.70vw"
+                          w="2.70vw"
+                          border="2px solid rgba(43, 43, 43, .1)"
+                          display={"flex"}
+                          alignItems="center"
+                          justifyContent={"center"}
+                          borderRadius=".833vw"
+                          cursor="pointer"
+                          _hover={{
+                            background: "rgba(246, 84, 14, 1)",
+                            svg: {
+                              fill: "#fff !important",
+                            },
                           }}
-                        />
-                      </Box>
-                      <Box
-                        className="genre-category-icons"
-                        h="2.70vw"
-                        w="2.70vw"
-                        border="2px solid rgba(43, 43, 43, .1)"
-                        display={"flex"}
-                        alignItems="center"
-                        justifyContent={"center"}
-                        borderRadius=".833vw"
-                        cursor="pointer"
-                        _hover={{
-                          background: "rgba(246, 84, 14, 1)",
-                          svg: {
-                            fill: "#fff !important",
-                          },
-                        }}
-                      >
-                        <InstaIcon
-                          className="profile-rating-icons"
-                          style={{
-                            fill: "rgba(246, 84, 14, 1)",
-                            width: "1.04vw",
+                        >
+                          <FbIcon
+                            className="profile-rating-icons"
+                            style={{
+                              fill: "rgba(246, 84, 14, 1)",
+                              height: "1.85vh",
+                            }}
+                          />
+                        </Box>
+                        : ""
+                    ))}
+
+                    {userData?.socialMedia?.map((item, index) => (
+                      item.plat === "instagram" ?
+                        <Box
+                          className="genre-category-icons"
+                          h="2.70vw"
+                          w="2.70vw"
+                          border="2px solid rgba(43, 43, 43, .1)"
+                          display={"flex"}
+                          alignItems="center"
+                          justifyContent={"center"}
+                          borderRadius=".833vw"
+                          cursor="pointer"
+                          _hover={{
+                            background: "rgba(246, 84, 14, 1)",
+                            svg: {
+                              fill: "#fff !important",
+                            },
                           }}
-                        />
-                      </Box>
-                      <Box
-                        className="genre-category-icons"
-                        h="2.70vw"
-                        w="2.70vw"
-                        border="2px solid rgba(43, 43, 43, .1)"
-                        display={"flex"}
-                        alignItems="center"
-                        justifyContent={"center"}
-                        borderRadius=".833vw"
-                        cursor="pointer"
-                        _hover={{
-                          background: "rgba(246, 84, 14, 1)",
-                          svg: {
-                            fill: "#fff !important",
-                          },
-                        }}
-                      >
-                        <SoundCouldIcon
-                          className="profile-rating-icons"
-                          style={{
-                            fill: "rgba(246, 84, 14, 1)",
-                            width: "1.04vw",
+                        >
+                          <InstaIcon
+                            className="profile-rating-icons"
+                            style={{
+                              fill: "rgba(246, 84, 14, 1)",
+                              width: "1.04vw",
+                            }}
+                          />
+                        </Box>
+                        : ""
+                    ))}
+
+                    {userData?.socialMedia?.map((item, index) => (
+                      item.plat === "soundcloud" ?
+                        <Box
+                          className="genre-category-icons"
+                          h="2.70vw"
+                          w="2.70vw"
+                          border="2px solid rgba(43, 43, 43, .1)"
+                          display={"flex"}
+                          alignItems="center"
+                          justifyContent={"center"}
+                          borderRadius=".833vw"
+                          cursor="pointer"
+                          _hover={{
+                            background: "rgba(246, 84, 14, 1)",
+                            svg: {
+                              fill: "#fff !important",
+                            },
                           }}
-                        />
-                      </Box>
-                    </Box>
-                    :
-                    ""}
+                        >
+                          <SoundCouldIcon
+                            className="profile-rating-icons"
+                            style={{
+                              fill: "rgba(246, 84, 14, 1)",
+                              width: "1.04vw",
+                            }}
+                          />
+                        </Box>
+                        : ""
+                    ))}
+
+
+
+                  </Box>
                 </Box>
               </Box>
 
@@ -323,7 +337,7 @@ const Profile = (state) => {
                       ₹{userData.startingPrice}
                     </Text>
                   </Box>
-                  
+
                   {user?.isMusician === "Musician" && user?.userId === userData._id ?
                     <Button
                       mt="3.70vh"
@@ -357,63 +371,63 @@ const Profile = (state) => {
                     </Button>
                     :
                     user?.isMusician === "Recruter" && user?.userId === userData._id ?
-                    <Button
-                      mt="3.70vh"
-                      h="6.48vh"
-                      w="100%"
-                      borderRadius={"1.04vw"}
-                      bg="#F6540E"
-                      _hover={{ background: "#F6540E" }}
-                      onClick={() =>
-                        navigate("/creator-edit-profile", {
-                          state: { data: user, prevPath: location.pathname },
-                        })
-                      }
-                    >
-                      <Sms
-                        style={{
-                          width: "1.25vw",
-                          height: "1.25vw",
-                        }}
-                      />
-                      <Text
-                        ml=".36vw"
-                        color="white"
-                        fontFamily={"Gilroy-SemiBold"}
-                        fontSize=".833vw"
+                      <Button
+                        mt="3.70vh"
+                        h="6.48vh"
+                        w="100%"
+                        borderRadius={"1.04vw"}
+                        bg="#F6540E"
+                        _hover={{ background: "#F6540E" }}
+                        onClick={() =>
+                          navigate("/creator-edit-profile", {
+                            state: { data: user, prevPath: location.pathname },
+                          })
+                        }
                       >
-                        Edit Profile
-                      </Text>
-                    </Button>
-                    :
-                    <Button
-                      mt="3.70vh"
-                      h="6.48vh"
-                      w="100%"
-                      borderRadius={"1.04vw"}
-                      bg="#F6540E"
-                      _hover={{ background: "#F6540E" }}
-                      onClick={() =>
-                        navigate("/messages", {
-                          state: { data: user, prevPath: location.pathname },
-                        })
-                      }
-                    >
-                      <Sms
-                        style={{
-                          width: "1.25vw",
-                          height: "1.25vw",
-                        }}
-                      />
-                      <Text
-                        ml=".36vw"
-                        color="white"
-                        fontFamily={"Gilroy-SemiBold"}
-                        fontSize=".833vw"
+                        <Sms
+                          style={{
+                            width: "1.25vw",
+                            height: "1.25vw",
+                          }}
+                        />
+                        <Text
+                          ml=".36vw"
+                          color="white"
+                          fontFamily={"Gilroy-SemiBold"}
+                          fontSize=".833vw"
+                        >
+                          Edit Profile
+                        </Text>
+                      </Button>
+                      :
+                      <Button
+                        mt="3.70vh"
+                        h="6.48vh"
+                        w="100%"
+                        borderRadius={"1.04vw"}
+                        bg="#F6540E"
+                        _hover={{ background: "#F6540E" }}
+                        onClick={() =>
+                          navigate("/messages", {
+                            state: { data: user, prevPath: location.pathname },
+                          })
+                        }
                       >
-                        Contact
-                      </Text>
-                    </Button>
+                        <Sms
+                          style={{
+                            width: "1.25vw",
+                            height: "1.25vw",
+                          }}
+                        />
+                        <Text
+                          ml=".36vw"
+                          color="white"
+                          fontFamily={"Gilroy-SemiBold"}
+                          fontSize=".833vw"
+                        >
+                          Contact
+                        </Text>
+                      </Button>
                   }
 
                 </Box>
@@ -449,12 +463,13 @@ const Profile = (state) => {
                             }}
                           />
                           <Text className="lyrics-heading-2" fontFamily={"Gilroy-SemiBold"} fontSize=".93vw">
-                            {item.service}
+                            {item.service !== undefined ? item.service : item.category}
+
                           </Text>
                         </Box>
                         <Box flexGrow={1}></Box>
                         <Text className="lyrics-heading-2" fontFamily={"Gilroy-Bold"} fontSize="1.6rem">
-                          Starting Price: ₹{userData.startingPrice}
+                          Starting Price: ₹{userData.startingPrice !== undefined ? userData.startingPrice : item.serviceStargingPrice}
                         </Text>
                       </Box>
                     ))}
@@ -493,7 +508,7 @@ const Profile = (state) => {
                           }}
                         />
                         <Text className="lyrics-heading-2" fontFamily={"Gilroy-SemiBold"} fontSize=".729vw">
-                          {g.subGenere}
+                          {g.genere !== undefined ? g.genere : g.genre}
                         </Text>
                       </Box>
                     </>
@@ -536,12 +551,19 @@ const Profile = (state) => {
 
                 {/* Terms of Services */}
                 <Box mt="3.70vh">
-                  <Text className="lyrics-heading-1" fontFamily={"Gilroy-Bold"} fontSize="1.45vw">
-                    Terms of Services
-                  </Text>
-                  <Text className="lyrics-heading-2" fontFamily={"Gilroy-Medium"} fontSize=".833vw">
-                    {userData.terms}
-                  </Text>
+                  {
+                    userData?.isMusician === "Musician" ?
+                      <>
+                        <Text className="lyrics-heading-1" fontFamily={"Gilroy-Bold"} fontSize="1.45vw">
+                          Terms of Services
+                        </Text>
+                        <Text className="lyrics-heading-2" fontFamily={"Gilroy-Medium"} fontSize=".833vw">
+                          {userData.terms}
+                        </Text></>
+
+                      : ""
+                  }
+
                   {/* {user.terms?.map((t, index) => (
                     <Text
                       fontFamily={"Gilroy-Medium"}
@@ -554,81 +576,68 @@ const Profile = (state) => {
                 </Box>
 
                 {/* Gear Highlights */}
-                <Box mt="3.70vh">
-                  <Text className="lyrics-heading-1" fontFamily={"Gilroy-Bold"} fontSize="1.45vw">
-                    Gear Highlights
-                  </Text>
-                  <Box
-                    width={"fit-content"}
-                    display={"grid"}
-                    gridTemplateColumns="1fr 1fr"
-                    rowGap={"2.40vh"}
-                    mt="2.40vh"
-                  >
-                    {/* icon */}
-                    {userData.gearHighLights?.map((g, index) => (
-                      <>
-                        <Box display={"flex"} alignItems="center" gap=".52vw">
-                          {g.input1 === "Laptop" && (
-                            <Monitor
-                              className="profile-rating-icons"
-                              style={{
-                                height: "1.25vw",
-                                width: "1.25vw",
-                              }}
-                            />
-                          )}
-                          {g.input1 === "Microphone" && (
-                            <Microphone
-                              className="profile-rating-icons"
-                              style={{
-                                height: "1.25vw",
-                                width: "1.25vw",
-                              }}
-                            />
-                          )}
-                          {g.input1 === "Headphone" && (
-                            <Headphone
-                              className="profile-rating-icons"
-                              style={{
-                                height: "1.25vw",
-                                width: "1.25vw",
-                              }}
-                            />
-                          )}
 
-                          <Text className="lyrics-heading-2" fontFamily={"Gilroy-Medium"} fontSize=".8333vw">
-                            {g.input1}
-                          </Text>
-                        </Box>
-
-                        {/* value */}
-                        <Text className="lyrics-heading-2" fontFamily={"Gilroy-SemiBold"} fontSize=".833vw">
-                          {g.input2}
-                        </Text>
-                      </>
-                    ))}
-
-                    {/* icon and type */}
-                    {/* <Box display={"flex"} alignItems="center" gap=".52vw">
-                      <Driver
-                        className="profile-rating-icons"
-                        style={{
-                          height: "1.25vw",
-                          width: "1.25vw",
-                        }}
-                      />
-                      <Text className="lyrics-heading-2" fontFamily={"Gilroy-Medium"} fontSize=".8333vw">
-                        Sound Card
+                {
+                  userData?.isMusician === "Musician" ?
+                    <Box mt="3.70vh">
+                      <Text className="lyrics-heading-1" fontFamily={"Gilroy-Bold"} fontSize="1.45vw">
+                        Gear Highlights
                       </Text>
-                    </Box> */}
+                      <Box
+                        width={"fit-content"}
+                        display={"grid"}
+                        gridTemplateColumns="1fr 1fr"
+                        rowGap={"2.40vh"}
+                        mt="2.40vh"
+                      >
+                        {/* icon */}
+                        {userData.gearHighLights?.map((g, index) => (
+                          <>
+                            <Box display={"flex"} alignItems="center" gap=".52vw">
+                              {g.input1 === "Laptop" && (
+                                <Monitor
+                                  className="profile-rating-icons"
+                                  style={{
+                                    height: "1.25vw",
+                                    width: "1.25vw",
+                                  }}
+                                />
+                              )}
+                              {g.input1 === "Microphone" && (
+                                <Microphone
+                                  className="profile-rating-icons"
+                                  style={{
+                                    height: "1.25vw",
+                                    width: "1.25vw",
+                                  }}
+                                />
+                              )}
+                              {g.input1 === "Headphone" && (
+                                <Headphone
+                                  className="profile-rating-icons"
+                                  style={{
+                                    height: "1.25vw",
+                                    width: "1.25vw",
+                                  }}
+                                />
+                              )}
 
-                    {/* value */}
-                    {/* <Text className="lyrics-heading-2" fontFamily={"Gilroy-SemiBold"} fontSize=".833vw">
-                      Focusrite Scarlett 2i4
-                    </Text> */}
-                  </Box>
-                </Box>
+                              <Text className="lyrics-heading-2" fontFamily={"Gilroy-Medium"} fontSize=".8333vw">
+                                {g.input1 !== undefined ? g.input1 : g.gear}
+                              </Text>
+                            </Box>
+
+                            {/* value */}
+                            <Text className="lyrics-heading-2" fontFamily={"Gilroy-SemiBold"} fontSize=".833vw">
+                              {g.input2}
+                            </Text>
+                          </>
+                        ))}
+                      </Box>
+                    </Box>
+                    : ""
+                }
+
               </Box>
             </Box>
 
@@ -803,71 +812,16 @@ const Profile = (state) => {
                           }}
                         />
                         <Text fontFamily={"Gilroy-SemiBold"} fontSize=".93vw">
-                          {item.service}
+                          {item.service !== undefined ? item.service : item.category}
                         </Text>
                       </Box>
                       <Box flexGrow={1}></Box>
                       <Text fontFamily={"Gilroy-Bold"} fontSize="1.6rem">
-                        Starting Price: ₹{userData.startingPrice}
+                        Starting Price: ₹{userData.startingPrice !== undefined ? userData.startingPrice : item.serviceStargingPrice}
                       </Text>
                     </Box>
                   ))}
 
-                  {/* card-2  */}
-                  {/* <Box
-                    w="100%"
-                    h="8rem"
-                    bg="rgba(192, 226, 24, .1)"
-                    borderRadius={"1.66vw"}
-                    px="1.34vw"
-                    py={"2.22vh"}
-                    display="flex"
-                    flexDir={"column"}
-                  >
-                    <Box display={"flex"} gap=".511vw">
-                      <Category
-                        style={{
-                          height: "1.14vw",
-                          width: "1.14vw",
-                        }}
-                      />
-                      <Text fontFamily={"Gilroy-SemiBold"} fontSize=".93vw">
-                        Full Instrument Productions
-                      </Text>
-                    </Box>
-                    <Box flexGrow={1}></Box>
-                    <Text fontFamily={"Gilroy-Bold"} fontSize="1.6rem">
-                      Starting Price: ₹250
-                    </Text>
-                  </Box> */}
-
-                  {/* card-3  */}
-                  {/* <Box
-                    w="100%"
-                    h="8rem"
-                    bg="rgba(192, 226, 24, .1)"
-                    borderRadius={"1.66vw"}
-                    px="1.34vw"
-                    py={"2.22vh"}
-                    display="flex"
-                    flexDir={"column"}
-                  >
-                    <Box display={"flex"} gap=".511vw">
-                      <Category
-                        style={{
-                          height: "1.14vw",
-                          width: "1.14vw",
-                        }}
-                      />
-                      <Text fontFamily={"Gilroy-SemiBold"} fontSize=".93vw">
-                        Female Vocalist or Singer
-                      </Text>
-                    </Box>
-                    <Box flexGrow={1}></Box>
-                    <Text fontFamily={"Gilroy-Bold"} fontSize="1.6rem">
-                      Starting Price: ₹500
-                    </Text>
-                  </Box> */}
                 </Box>
               </Box>
             </Box>

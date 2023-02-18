@@ -142,25 +142,33 @@ const JobCreatorRegistration = () => {
 
 	const handleEdit = async () => {
 		try {
-			const res = await updateUserApi(
-				id,
-				avatar,
-				fname,
-				wa_number,
-				city,
-				ustate,
-				description,
-			);
-			toast({
-				title: "success",
-				description: "Your Profile has been successfully updated",
-				position: "top",
-				status: "success",
-				duration: 5000,
-				isClosable: true,
-			});
-			navigate("/client-dashboard");
-		} catch (e) {
+			if (id == "" || avatar == "" || fname == "" || wa_number === "" || city ==="" || ustate ==="" || description === "") {
+				toast({
+					title: "Please fill all the fields",
+					status: "warning",
+					isClosable: true
+				})
+			} else {
+				const res = await updateUserApi(
+					id,
+					avatar,
+					fname,
+					wa_number,
+					city,
+					ustate,
+					description,
+				);
+				toast({
+					title: "success",
+					description: "Your Profile has been successfully updated",
+					position: "top",
+					status: "success",
+					duration: 5000,
+					isClosable: true,
+				});
+				navigate("/client-dashboard");
+			}
+		}  catch (e) {
 			console.log("updateerror", e);
 			toast({
 				title: "error",

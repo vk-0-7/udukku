@@ -1,7 +1,9 @@
 var axios = require("axios");
 const updateUserApi = async (
   id,
+  avatar,
   name,
+  mobile,
   city,
   state,
   description,
@@ -13,7 +15,9 @@ const updateUserApi = async (
 ) => {
   const token = localStorage.getItem("token");
   var data = {
+    avatar,
     name,
+    mobile,
     city,
     state,
     description,

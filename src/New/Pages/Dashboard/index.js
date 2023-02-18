@@ -1,4 +1,4 @@
-import { Box, Image, Text,Button } from "@chakra-ui/react";
+import { Box, Image, Text, Button, useDisclosure } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Footer from "../../Components/Footer/Footer";
@@ -14,7 +14,18 @@ import { AccessAuthContext } from "../../Context/AuthContext";
 import getAllUsers from "../../../Api/User/getAllUsers";
 import { useSelector } from "react-redux";
 import { getUserInfoById } from "../../../Api/User/getUserById";
-
+import FacebookIcon from '@mui/icons-material/Facebook';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import {
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+} from '@chakra-ui/react'
 
 import {
   EmailShareButton,
@@ -74,7 +85,7 @@ const Dashboard = () => {
   const [loading, setLoading] = useState(false);
   const [userData, setUserData] = useState({});
   const [allUser, setAllUser] = useState({});
-
+  const { isOpen, onOpen, onClose } = useDisclosure()
 
   useEffect(() => {
     if (localStorage.getItem("token")) {
@@ -103,6 +114,7 @@ const Dashboard = () => {
   return (
     <>
       <Box mt="7.40vh">
+
         <NavBar />
         <Box
           px={{ base: "7vw", lg: "13.54vw" }}
@@ -116,6 +128,37 @@ const Dashboard = () => {
             Welcome back, {user?.name}
           </Text>
 
+          <Modal size="6xl" isOpen={isOpen} onClose={onClose} >
+            <ModalOverlay />
+            <ModalContent>
+              <ModalHeader>Share Your Profile</ModalHeader>
+              <ModalCloseButton />
+              <ModalBody >
+              <Text
+                fontFamily={"Gilroy-Bold"}
+                fontSize={"1rem"}
+              >
+                {userData?.profileUrl}
+
+              </Text>
+              </ModalBody >
+          
+              <ModalFooter>
+               <FacebookShareButton url="facebook.com" >
+                <FacebookIcon sx={{color:"#F6540E",fontSize:"3rem"}}/>
+               </FacebookShareButton>
+
+               <FacebookShareButton url="whatsapp.com" >
+               <WhatsAppIcon sx={{color:"#F6540E",fontSize:"3rem"}}/>
+               </FacebookShareButton>
+
+               <LinkedinShareButton url="linkedin.com" >
+               <LinkedInIcon sx={{color:"#F6540E",fontSize:"3rem"}}/>
+               </LinkedinShareButton>
+                
+              </ModalFooter>
+            </ModalContent>
+          </Modal>
           <Box
             w="100%"
             h="fit-content"
@@ -300,13 +343,14 @@ const Dashboard = () => {
               </Text>
             </Box>
             <Box flexGrow={1}></Box>
-            
-              <FacebookShareButton url="facebook.com" >
-              <Box
+
+            {/* <FacebookShareButton url="facebook.com" > */}
+            <Box
               display={"flex"}
               flexDir="column"
               alignItems={"center"}
               cursor="pointer"
+              onClick={onOpen}
             >
               <ExportIcon style={{ width: "1.45vw", height: "1.45vw" }} />
               <Text
@@ -317,7 +361,7 @@ const Dashboard = () => {
                 Share Profile
               </Text>
             </Box>
-            </FacebookShareButton>
+            {/* </FacebookShareButton> */}
 
           </Box>
 

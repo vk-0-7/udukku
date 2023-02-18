@@ -95,12 +95,11 @@ const Profile = (state) => {
       setUserData(res.data);
     });
     setLoading(false);
-  }, []);
+  }, [id]);
 
-  console.log({ talents });
-  console.log({ userData });
-  console.log({ user });
-  console.log('data', id);
+  console.log(talents);
+  console.log(userData);
+  console.log(user);
 
   return (
     <>
@@ -125,30 +124,8 @@ const Profile = (state) => {
                     // objectPosition={"50% 50%"}
                     src={userData?.avatar}
                   />
-                  {userId === user?._id ? (
-                    <Button
-                      size="lg"
-                      backgroundColor={"#F6540E"}
-                      color="white"
-                      pt="2rem"
-                      pb="2rem"
-                      w="80%"
-                      borderRadius={"1rem"}
-                      position="absolute"
-                      bottom="3rem"
-                      left="4rem"
-                      onClick={() =>
-                        navigate("/talent-registration", {
-                          state: { data: user, prevPath: location.pathname },
-                        })
-                      }
-                    >
-                      Edit Profile
-                    </Button>
-                  ) : (
-                    <></>
-                  )}
                 </Box>
+
                 <Box display={{ md: "flex", sm: "block" }} flexDir="row">
                   <Box>
                     <Text className="lyrics-heading-1" fontFamily={"Gilroy-Bold"} fontSize="1.66vw">
@@ -206,90 +183,93 @@ const Profile = (state) => {
                     </Box>
                   </Box>
 
-                  <Box
-                    display={"flex"}
-                    flexDir="row"
-                    justifyContent={{ md: "center", sm: "left" }}
-                    gap="1.11vh"
-                    ml="auto"
-                    mt="2%"
-                  >
+                  {userData?.socialMedia !== [] ?
                     <Box
-                      className="genre-category-icons"
-                      h="2.70vw"
-                      w="2.70vw"
-                      border="2px solid rgba(43, 43, 43, .1)"
                       display={"flex"}
-                      alignItems="center"
-                      justifyContent={"center"}
-                      borderRadius=".833vw"
-                      cursor="pointer"
-                      _hover={{
-                        background: "rgba(246, 84, 14, 1)",
-                        svg: {
-                          fill: "#fff !important",
-                        },
-                      }}
+                      flexDir="row"
+                      justifyContent={{ md: "center", sm: "left" }}
+                      gap="1.11vh"
+                      ml="auto"
+                      mt="2%"
                     >
-                      <FbIcon
-                        className="profile-rating-icons"
-                        style={{
-                          fill: "rgba(246, 84, 14, 1)",
-                          height: "1.85vh",
+                      <Box
+                        className="genre-category-icons"
+                        h="2.70vw"
+                        w="2.70vw"
+                        border="2px solid rgba(43, 43, 43, .1)"
+                        display={"flex"}
+                        alignItems="center"
+                        justifyContent={"center"}
+                        borderRadius=".833vw"
+                        cursor="pointer"
+                        _hover={{
+                          background: "rgba(246, 84, 14, 1)",
+                          svg: {
+                            fill: "#fff !important",
+                          },
                         }}
-                      />
-                    </Box>
-                    <Box
-                      className="genre-category-icons"
-                      h="2.70vw"
-                      w="2.70vw"
-                      border="2px solid rgba(43, 43, 43, .1)"
-                      display={"flex"}
-                      alignItems="center"
-                      justifyContent={"center"}
-                      borderRadius=".833vw"
-                      cursor="pointer"
-                      _hover={{
-                        background: "rgba(246, 84, 14, 1)",
-                        svg: {
-                          fill: "#fff !important",
-                        },
-                      }}
-                    >
-                      <InstaIcon
-                        className="profile-rating-icons"
-                        style={{
-                          fill: "rgba(246, 84, 14, 1)",
-                          width: "1.04vw",
+                      >
+                        <FbIcon
+                          className="profile-rating-icons"
+                          style={{
+                            fill: "rgba(246, 84, 14, 1)",
+                            height: "1.85vh",
+                          }}
+                        />
+                      </Box>
+                      <Box
+                        className="genre-category-icons"
+                        h="2.70vw"
+                        w="2.70vw"
+                        border="2px solid rgba(43, 43, 43, .1)"
+                        display={"flex"}
+                        alignItems="center"
+                        justifyContent={"center"}
+                        borderRadius=".833vw"
+                        cursor="pointer"
+                        _hover={{
+                          background: "rgba(246, 84, 14, 1)",
+                          svg: {
+                            fill: "#fff !important",
+                          },
                         }}
-                      />
-                    </Box>
-                    <Box
-                      className="genre-category-icons"
-                      h="2.70vw"
-                      w="2.70vw"
-                      border="2px solid rgba(43, 43, 43, .1)"
-                      display={"flex"}
-                      alignItems="center"
-                      justifyContent={"center"}
-                      borderRadius=".833vw"
-                      cursor="pointer"
-                      _hover={{
-                        background: "rgba(246, 84, 14, 1)",
-                        svg: {
-                          fill: "#fff !important",
-                        },
-                      }}
-                    >
-                      <SoundCouldIcon
-                        className="profile-rating-icons"
-                        style={{
-                          fill: "rgba(246, 84, 14, 1)",
-                          width: "1.04vw",
+                      >
+                        <InstaIcon
+                          className="profile-rating-icons"
+                          style={{
+                            fill: "rgba(246, 84, 14, 1)",
+                            width: "1.04vw",
+                          }}
+                        />
+                      </Box>
+                      <Box
+                        className="genre-category-icons"
+                        h="2.70vw"
+                        w="2.70vw"
+                        border="2px solid rgba(43, 43, 43, .1)"
+                        display={"flex"}
+                        alignItems="center"
+                        justifyContent={"center"}
+                        borderRadius=".833vw"
+                        cursor="pointer"
+                        _hover={{
+                          background: "rgba(246, 84, 14, 1)",
+                          svg: {
+                            fill: "#fff !important",
+                          },
                         }}
-                      />
+                      >
+                        <SoundCouldIcon
+                          className="profile-rating-icons"
+                          style={{
+                            fill: "rgba(246, 84, 14, 1)",
+                            width: "1.04vw",
+                          }}
+                        />
+                      </Box>
                     </Box>
-                  </Box>
+                    :
+                    ""}
                 </Box>
               </Box>
 
@@ -332,7 +312,6 @@ const Profile = (state) => {
                   px="1.45vw"
                   pt="2.59vh"
                   pb="1.48vh"
-                  // border={"2px solid rgba(240, 240, 240, 1)"}
                   borderRadius="1.66vw"
                 >
                   <Box display={"flex"} justifyContent="space-between">
@@ -343,7 +322,8 @@ const Profile = (state) => {
                       ₹{userData.startingPrice}
                     </Text>
                   </Box>
-                  {user?.isMusician === "Musician" ?
+                  
+                  {user?.isMusician === "Musician" && user?.userId === userData._id ?
                     <Button
                       mt="3.70vh"
                       h="6.48vh"
@@ -352,7 +332,7 @@ const Profile = (state) => {
                       bg="#F6540E"
                       _hover={{ background: "#F6540E" }}
                       onClick={() =>
-                        navigate("/talent-registration", {
+                        navigate("/edit-profile", {
                           state: { data: user, prevPath: location.pathname },
                         })
                       }
@@ -375,6 +355,7 @@ const Profile = (state) => {
                       </Text>
                     </Button>
                     :
+                    user?.isMusician === "Recruter" && user?.userId === userData._id ?
                     <Button
                       mt="3.70vh"
                       h="6.48vh"
@@ -383,7 +364,7 @@ const Profile = (state) => {
                       bg="#F6540E"
                       _hover={{ background: "#F6540E" }}
                       onClick={() =>
-                        navigate("/job-creator-registration", {
+                        navigate("/creator-edit-profile", {
                           state: { data: user, prevPath: location.pathname },
                         })
                       }
@@ -401,6 +382,35 @@ const Profile = (state) => {
                         fontSize=".833vw"
                       >
                         Edit Profile
+                      </Text>
+                    </Button>
+                    :
+                    <Button
+                      mt="3.70vh"
+                      h="6.48vh"
+                      w="100%"
+                      borderRadius={"1.04vw"}
+                      bg="#F6540E"
+                      _hover={{ background: "#F6540E" }}
+                      onClick={() =>
+                        navigate("/messages", {
+                          state: { data: user, prevPath: location.pathname },
+                        })
+                      }
+                    >
+                      <Sms
+                        style={{
+                          width: "1.25vw",
+                          height: "1.25vw",
+                        }}
+                      />
+                      <Text
+                        ml=".36vw"
+                        color="white"
+                        fontFamily={"Gilroy-SemiBold"}
+                        fontSize=".833vw"
+                      >
+                        Contact
                       </Text>
                     </Button>
                   }
@@ -490,7 +500,19 @@ const Profile = (state) => {
                 </Box>
 
                 {/* audio player */}
-                <Box mt="3.70vh">
+
+                {userData.workSample && (
+                  <audio
+                    src={userData.workSample}
+                    controls
+                    style={{
+                      width: "100%",
+                      color: "orange",
+                      fill: "orange",
+                    }}
+                  />
+                )}
+                {/* <Box mt="3.70vh">
                   <audio
                     style={{
                       width: "100%",
@@ -500,7 +522,7 @@ const Profile = (state) => {
                     src={user?.workSample}
                     controls
                   />
-                </Box>
+                </Box> */}
 
                 {/* Description */}
                 <Text
@@ -587,7 +609,7 @@ const Profile = (state) => {
                     ))}
 
                     {/* icon and type */}
-                    <Box display={"flex"} alignItems="center" gap=".52vw">
+                    {/* <Box display={"flex"} alignItems="center" gap=".52vw">
                       <Driver
                         className="profile-rating-icons"
                         style={{
@@ -598,12 +620,12 @@ const Profile = (state) => {
                       <Text className="lyrics-heading-2" fontFamily={"Gilroy-Medium"} fontSize=".8333vw">
                         Sound Card
                       </Text>
-                    </Box>
+                    </Box> */}
 
                     {/* value */}
-                    <Text className="lyrics-heading-2" fontFamily={"Gilroy-SemiBold"} fontSize=".833vw">
+                    {/* <Text className="lyrics-heading-2" fontFamily={"Gilroy-SemiBold"} fontSize=".833vw">
                       Focusrite Scarlett 2i4
-                    </Text>
+                    </Text> */}
                   </Box>
                 </Box>
               </Box>
@@ -659,7 +681,7 @@ const Profile = (state) => {
                     ₹{userData.startingPrice}
                   </Text>
                 </Box>
-                {user?.isMusician === "Musician" && userData?._id == userId ?
+                {user?.isMusician === "Musician" && userData?._id == user.userId ?
                   <Button
                     mt="3.70vh"
                     h="6.48vh"
@@ -668,7 +690,7 @@ const Profile = (state) => {
                     bg="#F6540E"
                     _hover={{ background: "#F6540E" }}
                     onClick={() =>
-                      navigate("/talent-registration", {
+                      navigate("/edit-profile", {
                         state: { data: user, prevPath: location.pathname },
                       })
                     }
@@ -689,7 +711,7 @@ const Profile = (state) => {
                     </Text>
                   </Button>
                   :
-                  user?.isMusician === "Recruter" && userData?._id == userId ?
+                  user?.isMusician === "Recruter" && userData?._id === userId ?
                     <Button
                       mt="3.70vh"
                       h="6.48vh"
@@ -698,7 +720,7 @@ const Profile = (state) => {
                       bg="#F6540E"
                       _hover={{ background: "#F6540E" }}
                       onClick={() =>
-                        navigate("/job-creator-registration", {
+                        navigate("/creator-edit-profile", {
                           state: { data: user, prevPath: location.pathname },
                         })
                       }

@@ -25,7 +25,7 @@ import jwt_decode from "jwt-decode";
 import gLogo from "../../../Assets/Icons/Group.svg";
 import BecomeOurMember from "../../Pages/Homepage/becomeOurMember/BecomeOurMember";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import GoogleLogin from "react-google-login";
 import { googleSignIn } from "../../../Api/Auth";
 
@@ -48,8 +48,11 @@ const SignInModal = ({ state, changeState }) => {
   const [checkEmail, setCheckEmail] = useState(false);
   const [password, setPassword] = useState("");
   const [checkPassword, setCheckPassword] = useState(false);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [show_registration_modal, set_show_registration_modal] = useState(null);
+  const { user } = useSelector((state) => ({ ...state }));
 
   // loading
   const [loading, setLoading] = useState(false);
@@ -80,9 +83,7 @@ const SignInModal = ({ state, changeState }) => {
       });
     }
   }, []);
-  const navigate = useNavigate();
 
-  const dispatch = useDispatch();
   const handleCallbackResponse = async (response) => {
     console.log("google response is : ", response);
     var userObj = jwt_decode(response.credential);
@@ -110,6 +111,21 @@ const SignInModal = ({ state, changeState }) => {
       setLoginState(true);
       setToken(res.data.refresh_token);
       setUserId(res.data.user._id);
+      console.log("user", user)
+      set_show_registration_modal(true);
+      if (res.data.user.isMusician === "") {
+        set_show_registration_modal(true);
+      } else {
+        if (res.data.user.isProfileCompleted === false && res.data.user.isMusician === "Musician") {
+          navigate("edit-profile")
+        }
+        else if (res.data.user.isProfileCompleted === false && res.data.user.isMusician === "Recruter") {
+          navigate("/creator-edit-profile")
+        }
+        else {
+          navigate("/")
+        }
+      }
       // setUsed('google');
       // setOpen(false);
       onClose();
@@ -164,27 +180,6 @@ const SignInModal = ({ state, changeState }) => {
         onClose();
         sessionStorage.setItem("id", res.data.user._id);
         console.log("setting the value here")
-        if ( 
-        isMusician === "musician" && res.data.user.isProfileCompleted === false
-        ) {
-          navigate("/talent-registration", { state: res.data.user._id })
-        }
-        else if (
-          isMusician === "musician" && res.data.user.isProfileCompleted === true
-        ) {
-          navigate("/dashboard")
-        }
-        else if (
-          isMusician === "recruter" && res.data.user.isProfileCompleted === false
-        ) {
-          navigate("/job-creator-registration", { state: res.data.user._id })
-        }
-        else if (
-          isMusician === "recruter" && res.data.user.isProfileCompleted === true
-        ) {
-          navigate("/client-dashboard")
-        }
-
       } else {
         set_show_registration_modal(false);
         setLoginState(true);
@@ -195,26 +190,6 @@ const SignInModal = ({ state, changeState }) => {
         setName(res.data.user.name);
         setUsername(res.data.user.userName);
         onClose();
-        if ( 
-        isMusician === "musician" && res.data.user.isProfileCompleted === false
-        ) {
-          navigate("/talent-registration", { state: res.data.user._id })
-        }
-        else if (
-          isMusician === "musician" && res.data.user.isProfileCompleted === true
-        ) {
-          navigate("/dashboard")
-        }
-        else if (
-          isMusician === "recruter" && res.data.user.isProfileCompleted === false
-        ) {
-          navigate("/job-creator-registration", { state: res.data.user._id })
-        }
-        else if (
-          isMusician === "recruter" && res.data.user.isProfileCompleted === true
-        ) {
-          navigate("/client-dashboard")
-        }
       }
     } catch (error) {
       if (error.response.data.message === "This email does not exist.") {
@@ -244,40 +219,40 @@ const SignInModal = ({ state, changeState }) => {
             isProfileCompleted: res.data.user.isProfileCompleted,
           },
         });
-        if ( 
-          isMusician === "musician" && res.data.user.isProfileCompleted === false
-          ) {
-            navigate("/talent-registration", { state: res.data.user._id })
-          }
-          else if (
-            isMusician === "musician" && res.data.user.isProfileCompleted === true
-          ) {
-            navigate("/dashboard")
-          }
-          else if (
-            isMusician === "recruter" && res.data.user.isProfileCompleted === false
-          ) {
-            navigate("/job-creator-registration", { state: res.data.user._id })
-          }
-          else if (
-            isMusician === "recruter" && res.data.user.isProfileCompleted === true
-          ) {
-            navigate("/client-dashboard")
-          }
+
         setLoading(false);
         localStorage.setItem("token", res.data.refresh_token);
         setLoginState(true);
         setToken(res.data.refresh_token);
         setUserId(res.data.user._id);
-        // setUsed('google');
-        // setOpen(false);
-        onClose();
-        // if (res.data.user.isProfileCompleted) {
-        //   history.push("/user/dashboard");
-        // } else {
-        //   history.push("/user/complete-profile");
-        // }
-      })
+        if (res.data.user.isMusician === "") {
+          set_show_registration_modal(true);
+        }
+        else {
+          if (res.data.user.isProfileCompleted === false && res.data.user.isMusician === "Musician") {
+            navigate("edit-profile" , )
+          }
+          else if (res.data.user.isProfileCompleted === false && res.data.user.isMusician === "Recruter") {
+            navigate("/creator-edit-profile")
+          }
+          else {
+            navigate("/")
+          }}
+          // if (res.data.user.isProfileCompleted === false) {
+          //   console.log("user",user)
+          //   navigate(
+          //     `/talent-registration`,{ state: res.data}
+          //   );
+          // }
+          // setUsed('google');
+          // setOpen(false);
+          onClose();
+          // if (res.data.user.isProfileCompleted) {
+          //   history.push("/user/dashboard");
+          // } else {
+          //   history.push("/user/complete-profile");
+          // }
+        })
       .catch((err) => {
         console.log(err);
         setLoading(false);

@@ -11,7 +11,7 @@ import TalentRegistrationProfessionalInfo from "./TalentRegistrationProfessional
 import { useToast } from "@chakra-ui/react";
 import { getUserInfoById } from "../../../Api/User/getUserById";
 import { useSelector } from "react-redux";
-const TalentRegistration = () => {
+const EditProfile = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [loading, set_loading] = useState(false);
@@ -21,36 +21,47 @@ const TalentRegistration = () => {
 
 
   // for personal info
-  console.log("location",location);
+  // console.log("location",location);
   // console.log(
   //   "/" +
   //   location.state.data.name.substring(
   //     0,
-  //     location.state.data.name.indexOf(" ")
-  //   ) +
+  //     location.state.data.name.in
   //   "/"
   // );
 
-  const Id = location;
-  const [editPage, setEditPage] = useState(""
-    // location.state.prevPath ===
-    //   `/${location.state.data.name.substring(
-    //     0,
-    //     location.state.data.name.indexOf(" ")
-    //   )}`
-    //   ? true
-    //   : false
-  );
+  // const id = location.state.data.userId;
+  // console.log("idd",id)
+  // const [editPage, setEditPage] = useState(
+  //   location.state.prevPath ===
+  //     `/${location.state.data.name.substring(
+  //       0,
+  //       location.state.data.name.indexOf(" ")
+  //     )}`
+  //     ? true
+  //     : false
+  // );
 
-  const id = user?.userId;
-
+useEffect(() => {
+  if(
+  user?.isProfileCompleted === false 
+  ){
+     toast({
+      	title: 'Your profile is in completed',
+      	description: "Please fill all the details",
+      	status: 'success',
+      	isClosable: true,
+      	duration: 3000,
+      });
+  }
+},[user?.isProfileCompleted])
 
   // const [editPage, setEditPage] = useState(
   //  user?.isProfileCompleted === true
   //     ? true
   //     : false
   // );
-  console.log("edit page",editPage );
+  const id = user?.userId;
 
   useEffect(() => {
     set_loading(true);
@@ -72,48 +83,35 @@ const TalentRegistration = () => {
     set_loading(false);
   }, [id]);
 
-  const [fname, set_fname] = useState(
-    editPage === true ? location.state.data.name : ""
+  const [fname, set_fname] = useState(""
   );
-  const [username, set_username] = useState(
-    editPage === true ? location.state.data.userName : ""
+  const [username, set_username] = useState(""
   );
   const [check_username_availability, set_check_username_availability] =
     useState(false);
-  const [wa_number, set_wa_number] = useState(
-    editPage === true ? location.state.data.mobile : ""
+  const [wa_number, set_wa_number] = useState(""
   );
-  const [city, set_city] = useState(
-    editPage === true ? location.state.data.city : ""
+  const [city, set_city] = useState(""
   );
-  const [ustate, set_state] = useState(
-    editPage === true ? location.state.data.state : ""
+  const [ustate, set_state] = useState(""
   );
-  const [description, set_description] = useState(
-    editPage === true ? location.state.data.description : ""
+  const [description, set_description] = useState(""
   );
-  const [avatar, set_avatar] = useState(
-    editPage === true ? location.state.data.avatar : ""
+  const [avatar, set_avatar] = useState(""
   );
 
   // for professioinal info
-  const [categories, set_categories] = useState(
-    editPage === true ? location.state.data.services : []
+  const [categories, set_categories] = useState([]
   );
-  const [genre, set_genre] = useState(
-    editPage === true ? location.state.data.genres : []
+  const [genre, set_genre] = useState([]
   );
-  const [gear, set_gear] = useState(
-    editPage === true ? location.state.data.gearHighLights : []
+  const [gear, set_gear] = useState([]
   );
-  const [social_media, set_social_media] = useState(
-    editPage === true ? location.state.data.socialMedia : []
+  const [social_media, set_social_media] = useState([]
   );
-  const [work, set_work] = useState(
-    editPage === true ? location.state.data.work : []
+  const [work, set_work] = useState([]
   );
-  const [term, set_term] = useState(
-    editPage === true ? location.state.data.terms : []
+  const [term, set_term] = useState([]
   );
 
 
@@ -191,17 +189,12 @@ const TalentRegistration = () => {
 
   return (
     <Box pt="8.5vh" overflowX={"hidden"}>
-      {/* <NavBar/> */}
+      <NavBar/>
       <Box px={{ base: "7vw", lg: "13.54vw" }} pt="6.01vh" pb="100px">
-        {editPage == false ?
-          <Text display={"block"} fontSize={"2.29vw"} fontFamily={"Gilroy-Bold"}>
-            Talent Registration
-          </Text>
-          :
           <Text display={"block"} fontSize={"2.29vw"} fontFamily={"Gilroy-Bold"}>
             Edit Profile
           </Text>
-        }
+        
 
 
         {/* personal info */}
@@ -253,15 +246,15 @@ const TalentRegistration = () => {
           fontFamily={"Gilroy-SemiBold"}
           fontSize={{ base: "1.2rem", md: "1.5rem", lg: ".833vw" }}
           _hover={{ background: "rgba(246, 84, 14, 1)" }}
-          onClick={editPage === false ? handleSubmit : handleEdit}
+          onClick={handleEdit}
           isLoading={loading}
         >
-          {editPage === true ? "Update Profile" : "Create Profile"}
+          Update Profile
         </Button>
       </Box>
-      {/* <Footer /> */}
+      <Footer />
     </Box>
   );
 };
 
-export default TalentRegistration;
+export default EditProfile;

@@ -1,4 +1,4 @@
-import { Box, Button, Text, Link } from "@chakra-ui/react";
+import { Box, Button, Text, Link, useDisclosure } from "@chakra-ui/react";
 import Footer from "../../Components/Footer/Footer";
 import NavBar from "../../Components/NavBar/NavBar";
 import { ReactComponent as PostIcon } from "../../../Assets/Icons/Post.svg";
@@ -12,10 +12,20 @@ import getAllUsers from "../../../Api/User/getAllUsers";
 import TalentCard from "../../Components/talentCard/TalentCard";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-
+import {
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+} from '@chakra-ui/react'
 const ClientDashboard = ({ state }) => {
   const { user } = useSelector((state) => ({ ...state }));
   const [talents, setTalents] = useState([]);
+  const { isOpen, onOpen, onClose } = useDisclosure()
+
   useEffect(() => {
     //window.scrollTo(0, 0);
     getAllUsers().then((res) => {
@@ -34,6 +44,24 @@ const ClientDashboard = ({ state }) => {
         flexDir={"column"}
         gap="2rem"
       >
+              <Button onClick={onOpen}>Open Modal</Button>
+
+<Modal isOpen={isOpen} onClose={onClose}>
+  <ModalOverlay />
+  <ModalContent>
+    <ModalHeader>Modal Title</ModalHeader>
+    <ModalCloseButton />
+    <ModalBody>
+    </ModalBody>
+
+    <ModalFooter>
+      <Button colorScheme='blue' mr={3} onClick={onClose}>
+        Close
+      </Button>
+      <Button variant='ghost'>Secondary Action</Button>
+    </ModalFooter>
+  </ModalContent>
+</Modal>
         <Box display={"flex"} flexDir="row" alignItems={"center"}>
           <Text fontSize={{base:"2.5rem",md:"4rem",lg:"2.29vw"}} fontFamily="Gilroy-Bold">
             {user?.name}

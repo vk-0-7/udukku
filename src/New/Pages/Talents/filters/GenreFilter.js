@@ -30,6 +30,7 @@ import { useEffect, useState } from "react";
 import getAllUsers from "../../../../Api/User/getAllUsers";
 //Icon
 import { ReactComponent as GenreIcon } from "../../../../Assets/Icons/VectorGen.svg";
+import MusicNoteIcon from '@mui/icons-material/MusicNote';
 import {GenreData} from "../../../../Data/GenreData";
 const genres = [
   "National",
@@ -132,7 +133,7 @@ const GenreFilter = ({ Main, setMainGenre, talents }) => {
           bg={Main === "" ? "white" : "rgba(8, 32, 50, 1)"}
           color={Main === "" ? "black" : "white"}
         >
-          <GenreIcon
+          <MusicNoteIcon
           className="genre-category-icons2"
             style={{
               fill: Main === "" ? "rgba(8, 32, 50, .5)" : "white",

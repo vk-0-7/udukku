@@ -10,7 +10,7 @@ import NavBar from '../../Components/NavBar/NavBar';
 import checkForUserName from '../../Utility/checkForUserName';
 import TalentRegistrationPersonalInfo from '../talentRegistration/TalentRegistrationPersonalInfo';
 
-const JobCreatorRegistration = () => {
+const CreatorEditProfile = () => {
 	const navigate = useNavigate();
 	const [loading, set_loading] = useState(false);
 	const location = useLocation();
@@ -165,7 +165,7 @@ const JobCreatorRegistration = () => {
 
 	return (
 		<Box pt='8.5vh'>
-			<NavBar />
+			{/* <NavBar /> */}
 			<Box px={{ base: '7vw', lg: '13.54vw' }} pt='6.01vh' pb='100px'>
 				<Text
 					display={'block'}
@@ -217,4 +217,4 @@ const JobCreatorRegistration = () => {
 	);
 };
 
-export default JobCreatorRegistration;
+export default CreatorEditProfile;

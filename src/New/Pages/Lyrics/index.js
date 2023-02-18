@@ -10,6 +10,7 @@ import {
 import Footer from "../../Components/Footer/Footer";
 import NavBar from "../../Components/NavBar/NavBar";
 import { ColorRing } from "react-loader-spinner";
+import MusicNoteIcon from '@mui/icons-material/MusicNote';
 // icon
 import { ReactComponent as CategoryIcon } from "../../../Assets/Icons/element-4.svg";
 import { ReactComponent as GenreIcon } from "../../../Assets/Icons/VectorGen.svg";
@@ -92,10 +93,10 @@ const Lyrics = () => {
             </Box>
 
             <Box
-              className="genre-category-width"
               fontFamily={"Gilroy-SemiBold"}
               fontSize=".833vw"
-              w="fit-content"
+              className="genre-category-width"
+              width={{ md: "fit-content", sm: "50%" }}
               h="6.48vh"
               border="1.5px solid #F0F0F0"
               display={"flex"}
@@ -113,9 +114,8 @@ const Lyrics = () => {
               }}
               px="2.08vw"
             >
-              <GenreIcon
+              <MusicNoteIcon
                 className="genre-category-icons"
-
                 style={{
                   fill: "rgba(8, 32, 50, .5)",
                   width: "1.25vw",

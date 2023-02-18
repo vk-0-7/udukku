@@ -31,6 +31,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import io from "socket.io-client";
 import { currentUser } from "./Api/Auth/activateUser";
+import CreatorEditProfile from "./New/Pages/jobCreatorRegistration/CreatorEditProfile";
 
 const App = () => {
   const { user } = useSelector((state) => ({ ...state }));
@@ -110,8 +111,8 @@ const App = () => {
           <Route path="/talent-registration" element={<TalentRegistration />} />
           <Route path="/edit-profile" element={<EditProfile />} />
           <Route
-            path="/creater-edit-profile"
-            element={<JobCreatorRegistration />}
+            path="/creator-edit-profile"
+            element={<CreatorEditProfile />}
           />
             <Route
             path="/job-creator-registration"

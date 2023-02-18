@@ -14,21 +14,34 @@ const JobCreatorRegistration = () => {
 	const navigate = useNavigate();
 	const [loading, set_loading] = useState(false);
 	const location = useLocation();
+	const { user } = useSelector((state) => ({ ...state }));
 
-	const [editPage, setEditPage] = useState(
-		location.state.prevPath ===
-			`/${location.state.data.name}/${location.state.data.userId}`
-			? true
-			: false
-	);
-	const id = location.state.data?.userId;
-	console.log(id)
-	console.log(location)
+	// const [editPage, setEditPage] = useState(
+	// 	location.state.prevPath ===
+	// 		`/${location.state.data.name}/${location.state.data.userId}`
+	// 		? true
+	// 		: false
+	// );
+	// const id = location.state.data?.userId;
+	// console.log(id)
+	// console.log(location)
 
 	// const { user } = useSelector((state) => ({ ...state }));
 	// const id = user?.userId
-	console.log(editPage)
+	// console.log(editPage)
 
+	const Id = location;
+	const [editPage, setEditPage] = useState(""
+		// location.state.prevPath ===
+		//   `/${location.state.data.name.substring(
+		//     0,
+		//     location.state.data.name.indexOf(" ")
+		//   )}`
+		//   ? true
+		//   : false
+	);
+
+	const id = user?.userId;
 
 	// for personal info
 	const [fname, set_fname] = useState(
@@ -85,16 +98,14 @@ const JobCreatorRegistration = () => {
 					console.log("info", res.data)
 					set_fname(res.data.name);
 					set_username(res.data.name);
-					set_wa_number(res.data);
+					set_wa_number(res.data.mobile);
 					set_city(res.data.city);
 					set_state(res.data.state);
 					set_description(res.data.description);
 					set_avatar(res.data.avatar);
 				})
 			)
-
 		}
-
 		set_loading(false);
 	}, [id]);
 
@@ -132,13 +143,13 @@ const JobCreatorRegistration = () => {
 	const handleEdit = async () => {
 		try {
 			const res = await updateUserApi(
+				id,
+				avatar,
 				fname,
+				wa_number,
 				city,
 				ustate,
 				description,
-				genre,
-				term,
-				gear
 			);
 			toast({
 				title: "success",
@@ -148,7 +159,7 @@ const JobCreatorRegistration = () => {
 				duration: 5000,
 				isClosable: true,
 			});
-			navigate("/dashboard");
+			navigate("/client-dashboard");
 		} catch (e) {
 			console.log("updateerror", e);
 			toast({
@@ -165,7 +176,7 @@ const JobCreatorRegistration = () => {
 
 	return (
 		<Box pt='8.5vh'>
-			<NavBar />
+			{/* <NavBar /> */}
 			<Box px={{ base: '7vw', lg: '13.54vw' }} pt='6.01vh' pb='100px'>
 				<Text
 					display={'block'}
@@ -212,7 +223,7 @@ const JobCreatorRegistration = () => {
 					{editPage === true ? "Update Profile" : "Create Profile"}
 				</Button>
 			</Box>
-			<Footer />
+			{/* <Footer /> */}
 		</Box>
 	);
 };

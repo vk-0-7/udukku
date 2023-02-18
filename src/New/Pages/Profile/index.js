@@ -74,6 +74,7 @@ const Profile = (state) => {
   const [talents, setTalents] = useState([]);
   const [userData, setUserData] = useState({});
 
+  console.log("location",location)
   useEffect(async () => {
     //window.scrollTo(0, 0);
     setLoading(true);
@@ -95,10 +96,10 @@ const Profile = (state) => {
       setUserData(res.data);
     });
     setLoading(false);
-  }, [id]);
+  }, []);
 
   console.log(talents);
-  console.log(userData);
+  console.log("userData",userData);
   console.log(user);
 
   return (

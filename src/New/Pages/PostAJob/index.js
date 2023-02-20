@@ -7,17 +7,19 @@ import { ReactComponent as LinkIcon } from "../../../Assets/Icons/link-2.svg";
 import SuccessModal from "../../Components/SuccessModal";
 import { useEffect, useState } from "react";
 import createJob from "../../../Api/Jobs/createJob";
+import { CategoryData } from '../../../Data/CategoryData';
+import GenreData from "../../../Data/GenreData";
 
 const PostAJob = () => {
   const [modal_state, set_modal_state] = useState(false);
   const [job_title, set_job_title] = useState("");
   const [job_description, set_job_description] = useState("");
   const [category, set_category] = useState({
-    service: "",
+    service: "VOCALISTS",
     subservice: "",
   });
   const [genres, set_genres] = useState({
-    genere: "",
+    genere: "National/Indian",
     subgenere: "",
   });
   const [ref_link, set_ref_link] = useState("");
@@ -108,19 +110,20 @@ const PostAJob = () => {
               <Box>
                 <Text>Category*</Text>
                 <Select
-                  h="6.48vh"
-                  borderRadius={"1.04vw"}
-                  defaultValue=""
-                  placeholder="Select"
+                  borderRadius={"15px"}
+                  type={'text'}
                   value={category.service}
                   onChange={(e) => {
                     set_category({ ...category, service: e.target.value });
                     //console.log(e.target.value);
                   }}
+                  h="6.48vh"
+                  w="100%"
                 >
-                  <option value={"Vocalists"}>Vocalists</option>
-                  <option value={"Musicians"}>Musicians</option>
-                  <option value={"Composers"}>Composers</option>
+                  {Object.keys(CategoryData).map((item) => (
+                    <option value={item}>{item}</option>
+                  ))}
+
                 </Select>
               </Box>
               <Box>
@@ -136,9 +139,9 @@ const PostAJob = () => {
                     //console.log(e.target.value);
                   }}
                 >
-                  <option value={"Indian"}>Indian</option>
-                  <option value={"Singer"}>Singer</option>
-                  <option value={"Female Vocalists"}>Female Vocalists</option>
+                  {CategoryData[category.service].map((item) => (
+                    <option value={item}>{item}</option>
+                  ))}
                 </Select>
               </Box>
             </Box>
@@ -163,9 +166,9 @@ const PostAJob = () => {
                     set_genres({ ...genres, genere: e.target.value });
                   }}
                 >
-                  <option value={"Jazz"}>Jazz</option>
-                  <option value={"Rock"}>Rock</option>
-                  <option value={"Country"}>Country</option>
+                	{Object.keys(GenreData).map((item) => (
+						<option value={item}>{item}</option>
+					))}
                 </Select>
               </Box>
               <Box>
@@ -180,9 +183,9 @@ const PostAJob = () => {
                     set_genres({ ...genres, subgenere: e.target.value });
                   }}
                 >
-                  <option value={"Funk"}>Funk</option>
-                  <option value={"Hiphop"}>Hiphop</option>
-                  <option value={"Soul"}>Soul</option>
+                  	{GenreData[genres.genere].map((item) => (
+						<option value={item}>{item}</option>
+					))}
                 </Select>
               </Box>
             </Box>
@@ -223,74 +226,74 @@ const PostAJob = () => {
                 <option default value={"None"}>
                   Select
                 </option>
-                <option value={"Fixed"}>Fixed  
+                <option value={"Fixed"}>Fixed
                 </option>
                 <option value={"Negotiable"}>Negotiable</option>
               </Select>
             </Box>
 
-            { budgetRange === "Negotiable" ? 
-             <Box
-             fontFamily={"Gilroy-SemiBold"}
-             fontSize=".833vw"
-             display={"grid"}
-             gridTemplateColumns="1fr .46vw 1fr"
-             columnGap={".833vw"}
-           >
-             <Box>
-               <Text>Start Range*</Text>
-               <Input
-                 h="6.48vh"
-                 borderRadius={"1.04vw"}
-                 type="number"
-                 placeholder="Min (₹)"
-                 value={budget[0]}
-                 onChange={(e) => {
-                   set_budget([e.target.value, budget[1]]);
-                 }}
-               />
-             </Box>
-             <Box position={"relative"}>
-               <Text
-                 pos="absolute"
-                 bottom="3.24vh"
-                 transform={"translateY(50%)"}
-               >
-                 -
-               </Text>
-             </Box>
-             <Box>
-               <Text>End Range*</Text>
-               <Input
-                 h="6.48vh"
-                 borderRadius={"1.04vw"}
-                 type="number"
-                 placeholder="Max (₹)"
-                 value={budget[1]}
-                 onChange={(e) => set_budget([budget[0], e.target.value])}
-               />
-             </Box>
-           </Box>
-           : 
-           budgetRange ==="Fixed" ?
-           <Box
-           fontFamily={"Gilroy-SemiBold"}
-           fontSize=".833vw"
-           display={"grid"}
-         >
-           <Box>
-               <Text>Price</Text>
-               <Input
-                 h="6.48vh"
-                 borderRadius={"1.04vw"}
-                 type="number"
-                 placeholder="Price (₹)"
-                 value={budget[0]}
-                 onChange={(e) => setFixedPrice(e.target.value)}
-               />
-             </Box>
-             </Box>
-             :""
+            {budgetRange === "Negotiable" ?
+              <Box
+                fontFamily={"Gilroy-SemiBold"}
+                fontSize=".833vw"
+                display={"grid"}
+                gridTemplateColumns="1fr .46vw 1fr"
+                columnGap={".833vw"}
+              >
+                <Box>
+                  <Text>Start Range*</Text>
+                  <Input
+                    h="6.48vh"
+                    borderRadius={"1.04vw"}
+                    type="number"
+                    placeholder="Min (₹)"
+                    value={budget[0]}
+                    onChange={(e) => {
+                      set_budget([e.target.value, budget[1]]);
+                    }}
+                  />
+                </Box>
+                <Box position={"relative"}>
+                  <Text
+                    pos="absolute"
+                    bottom="3.24vh"
+                    transform={"translateY(50%)"}
+                  >
+                    -
+                  </Text>
+                </Box>
+                <Box>
+                  <Text>End Range*</Text>
+                  <Input
+                    h="6.48vh"
+                    borderRadius={"1.04vw"}
+                    type="number"
+                    placeholder="Max (₹)"
+                    value={budget[1]}
+                    onChange={(e) => set_budget([budget[0], e.target.value])}
+                  />
+                </Box>
+              </Box>
+              :
+              budgetRange === "Fixed" ?
+                <Box
+                  fontFamily={"Gilroy-SemiBold"}
+                  fontSize=".833vw"
+                  display={"grid"}
+                >
+                  <Box>
+                    <Text>Price</Text>
+                    <Input
+                      h="6.48vh"
+                      borderRadius={"1.04vw"}
+                      type="number"
+                      placeholder="Price (₹)"
+                      value={budget[0]}
+                      onChange={(e) => setFixedPrice(e.target.value)}
+                    />
+                  </Box>
+                </Box>
+                : ""
             }
 
             <Box fontFamily={"Gilroy-SemiBold"} fontSize=".833vw" w="100%">

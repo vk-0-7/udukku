@@ -158,6 +158,7 @@ const JobCreatorRegistration = () => {
 					ustate,
 					description,
 				);
+				navigate("/client-dashboard");
 				toast({
 					title: "success",
 					description: "Your Profile has been successfully updated",
@@ -166,7 +167,6 @@ const JobCreatorRegistration = () => {
 					duration: 5000,
 					isClosable: true,
 				});
-				navigate("/client-dashboard");
 			}
 		}  catch (e) {
 			console.log("updateerror", e);

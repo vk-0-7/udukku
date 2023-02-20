@@ -68,7 +68,7 @@ const JobDetailPage = () => {
   }, []);
 
   const currentJob = jobs.filter((job) => job._id === id);
-  console.log({ currentJob });
+  console.log("job",currentJob);
   return (
     <Box mt="7.40vh">
       <NavBar />
@@ -89,7 +89,10 @@ const JobDetailPage = () => {
                 >
                   {currentJob[0]?.jobTitle}
                 </Text>
-                <Text
+
+                {
+                  currentJob[0]?.liveShow === true ?
+                  <Text
                   w="3.85vw"
                   h="4.07vh"
                   bg="#f60e0e"
@@ -103,6 +106,9 @@ const JobDetailPage = () => {
                 >
                   Live
                 </Text>
+                :""
+                }
+              
               </Box>
 
               {/* Time */}
@@ -111,7 +117,7 @@ const JobDetailPage = () => {
                 fontFamily={"Gilroy-SemiBold"}
                 fontSize=".729vw"
               >
-                4 hours ago
+               {currentJob[0]?.updatedAt}
               </Text>
 
               {/* Tags - 1 */}
@@ -140,6 +146,9 @@ const JobDetailPage = () => {
                     {currentJob[0]?.deadLine}
                   </Text>
                 </Box>
+
+                {currentJob[0]?.referenceLinks ?
+                
                 <Box display={"flex"} alignItems="center" gap=".52vw">
                   <AttachCircle
                     style={{
@@ -149,9 +158,12 @@ const JobDetailPage = () => {
                     }}
                   />
                   <Text fontFamily={"Gilroy-Medium"} fontSize=".833vw">
-                    2 references
+                  {currentJob[0]?.referenceLinks }
                   </Text>
                 </Box>
+                :""
+                 }
+
               </Box>
 
               {/* Tags - 2 */}
@@ -232,17 +244,20 @@ const JobDetailPage = () => {
               </Box>
 
               {/* audio player */}
+              {currentJob[0]?.workSample ?
               <Box mt="3.70vh">
-                <audio
-                  style={{
-                    width: "100%",
-                    color: "orange",
-                    fill: "orange",
-                  }}
-                  src={d_audio}
-                  controls
-                />
-              </Box>
+              <audio
+                style={{
+                  width: "100%",
+                  color: "orange",
+                  fill: "orange",
+                }}
+                src={d_audio}
+                controls
+              />
+            </Box>
+            :""
+              }
 
               {/* link section */}
               <Box
@@ -251,21 +266,23 @@ const JobDetailPage = () => {
                 alignItems={"center"}
                 gap=".41vw"
               >
-                <LinkIcon
-                  style={{
-                    width: "1.25vw",
-                    height: "1.25vw",
-                  }}
-                />
-                <Text
-                  as="a"
-                  textDecor={"underline"}
-                  fontFamily="Gilroy-Medium"
-                  fontSize={".833vw"}
-                  href= {currentJob[0]?.referenceLinks}
-                >
-                 {currentJob[0]?.referenceLinks}
-                </Text>
+            
+            {currentJob[0]?.referenceLinks ?
+                
+                <Box display={"flex"} alignItems="center" gap=".52vw">
+                  <AttachCircle
+                    style={{
+                      width: "1.04vw",
+                      height: "1.04vw",
+                      opacity: 0.5,
+                    }}
+                  />
+                  <Text fontFamily={"Gilroy-Medium"} fontSize=".833vw">
+                  {currentJob[0]?.referenceLinks }
+                  </Text>
+                </Box>
+                :""
+                 }
               </Box>
 
               {/* Description */}
@@ -300,13 +317,13 @@ const JobDetailPage = () => {
                   <Box
                     w="5.20vw"
                     h="5.20vw"
-                    bgImage={"https://source.unsplash.com/random?face?women"}
+                    bgImage={currentJob[0]?.jonPostedBy?.avatar}
                     bgSize="cover"
                     borderRadius={"full"}
                   ></Box>
                   <Box h="fit-content">
                     <Text fontFamily={"Gilroy-Bold"} fontSize="1.04vw">
-                      CFT LABS
+                    {currentJob[0]?.jonPostedBy?.name ? currentJob[0]?.jonPostedBy?.name:""}
                     </Text>
                     <Text
                       fontFamily={"Gilroy-Medium"}
@@ -356,8 +373,16 @@ const JobDetailPage = () => {
                   fontSize=".833vw"
                   textAlign={"end"}
                 >
-                  <Text>6 jobs posted</Text>
+                  {
+                    currentJob[0]?.jonPostedBy?.postedJobs ?
+                    <>
+                     <Text>{currentJob[0]?.jonPostedBy?.postedJobs}</Text>
                   <Text mt=".74vh">₹2k+ total spent</Text>
+                    </>
+                    :""
+
+                  }
+                 
                 </Box>
               </Box>
               <Button
@@ -417,22 +442,24 @@ const JobDetailPage = () => {
         </Box>
 
         {/* Review Section */}
-        <Box mt="5.55vh">
-          <Text fontFamily="Gilroy-Bold" fontSize={"1.45vw"}>
-            Reviews (3)
-          </Text>
-          <Box
-            mt="1.01vh"
-            mb="7.40vh"
-            display={"flex"}
-            flexDir="column"
-            gap="1.48vh"
-          >
-            {d_data.map((data, index) => {
-              return <ReviewCard key={index} data={data} />;
-            })}
-          </Box>
-        </Box>
+        {currentJob[0]?.review ? 
+         <Box mt="5.55vh">
+         <Text fontFamily="Gilroy-Bold" fontSize={"1.45vw"}>
+           Reviews (3)
+         </Text>
+         <Box
+           mt="1.01vh"
+           mb="7.40vh"
+           display={"flex"}
+           flexDir="column"
+           gap="1.48vh"
+         >
+           {d_data.map((data, index) => {
+             return <ReviewCard key={index} data={data} />;
+           })}
+         </Box>
+       </Box>
+       :""}
       </Box>
       <Footer />
     </Box>

@@ -924,6 +924,7 @@ const IndividualMessageBox = ({ socket, id }) => {
           data={job}
           media={media}
           getAttachments={getAttachments}
+          chatroom={chatroom}
         />
       ) : (
         <MediaMessageDetail getAttachments={getAttachments} data={media} goToMedia={goToMedia} setGoToMedia={setGoToMedia} />

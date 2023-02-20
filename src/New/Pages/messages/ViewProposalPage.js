@@ -75,7 +75,7 @@ const ViewProposal = ({ state }) => {
             fontSize="1.3rem"
             opacity={"0.5"}
           >
-            4 Hours ago
+           {job?.jobTitle}
           </Text>
           <Box display={"flex"} flexDir="row" gap="1.5rem">
             <Box display={"flex"} flexDir="row" gap="5px" alignItems={"center"}>
@@ -99,28 +99,32 @@ const ViewProposal = ({ state }) => {
                 :
                 <Text fontFamily={"Gilroy-Medium"} fontSize="1.2rem">
                   {job?.referenceLinks}
-
                 </Text>
               }
-
             </Box>
           </Box>
           <Box display={"flex"} flexDir="row" gap="7px" flexWrap={"wrap"}>
-            <Box
+            {job?.genres ?
+            job?.genres.map((item,index)=> (
+              <Box
               display={"flex"}
               flexDir="row"
               gap="5px"
               p="1rem"
               borderRadius={"1.5rem"}
               backgroundColor="#F9FCE8"
+              key={index}
             >
               <CategoryIcon style={{ height: "1.3rem", width: "1.3rem" }} />
               
               <Text fontFamily={"Gilroy-SemiBold"} fontSize="1rem">
-                Female Vocalist or Singer
+                {item.genere}
               </Text>
             </Box>
-            <Box
+            ))
+          :""}
+           
+            {/* <Box
               display={"flex"}
               flexDir="row"
               gap="5px"
@@ -184,33 +188,38 @@ const ViewProposal = ({ state }) => {
               <Text fontFamily={"Gilroy-SemiBold"} fontSize="1rem">
                 Regional
               </Text>
-            </Box>
+            </Box> */}
           </Box>
-          <Box display={"flex"} flexDir="row" gap="5px" alignItems={"center"}>
-            <MusicIcon style={{ height: "2.7rem", width: "2.7rem" }} />
-            <MusicRecIcon
-              style={{
-                height: "2.7rem",
-                backgroundColor: "gray",
-                opacity: "100%",
-              }}
-            />
-            <Text fontFamily={"Gilroy-SemiBold"} fontSize="1rem">
-              0:00 / 0:34
-            </Text>
-          </Box>
-          <Box display={"flex"} alignItems="center" flexDir="row" gap="1rem">
+
+          {job?.workSample ?
+           <Box display={"flex"} flexDir="row" gap="5px" alignItems={"center"}>
+           <MusicIcon style={{ height: "2.7rem", width: "2.7rem" }} />
+           <MusicRecIcon
+             style={{
+               height: "2.7rem",
+               backgroundColor: "gray",
+               opacity: "100%",
+             }}
+           />
+           <Text fontFamily={"Gilroy-SemiBold"} fontSize="1rem">
+             0:00 / 0:34
+           </Text>
+         </Box>:""
+          }
+         
+          {/* <Box display={"flex"} alignItems="center" flexDir="row" gap="1rem">
             <LinkIcon style={{ height: "1.3rem", width: "1.3rem" }} />
             <Link fontSize={"1rem"}>
               https://udukku.com/job/6294aa03c69c6f68fd86dca4
             </Link>
-          </Box>
+          </Box> */}
           <Text fontFamily={"Gilroy-Medium"} fontSize="1rem">
-            We require a Producer to envision the screens and user journey for a
+            {job?.description}
+            {/* We require a Producer to envision the screens and user journey for a
             small mobile app. We need to designs to be vector images. We
-            estimate about 5 - 7 screens for the app.
+            estimate about 5 - 7 screens for the app. */}
           </Text>
-          <Text fontFamily={"Gilroy-Medium"} fontSize="1rem">
+          {/* <Text fontFamily={"Gilroy-Medium"} fontSize="1rem">
             We will compensate you on per screen basis. We are happy to pay
             higher prices for high quality and beautiful designs.
           </Text>
@@ -220,7 +229,7 @@ const ViewProposal = ({ state }) => {
           </Text>
           <Text fontFamily={"Gilroy-Medium"} fontSize="1rem">
             Best Of Luck!
-          </Text>
+          </Text> */}
           <Text fontFamily={"Gilroy-Bold"} fontSize="2rem">
           ₹ {job?.budget[0] == job?.budget[1] ? job?.budget[0]  : `${job?.budget[0]} - ${job?.budget[1]}`}
           </Text>
@@ -228,19 +237,18 @@ const ViewProposal = ({ state }) => {
             Terms of Services
           </Text>
           <Text fontFamily={"Gilroy-Medium"} fontSize="1rem">
-            1. 20 revisions 2. Would need complete information before providing
-            first scratch
+          {chatroom?.documentation}
           </Text>
           <Text fontFamily={"Gilroy-Bold"} fontSize="2rem">
             Deliverables
           </Text>
           <UnorderedList fontFamily={"Gilroy-Medium"} fontSize="1rem">
-            <ListItem>Lorem ipsum dolor sit amet</ListItem>
-            <ListItem>Consectetur adipiscing elit</ListItem>
+            <Text>{chatroom?.ddeliverables}</Text>
+            {/* <ListItem>Consectetur adipiscing elit</ListItem>
             <ListItem>Integer molestie lorem at massa</ListItem>
-            <ListItem>Facilisis in pretium nisl aliquet</ListItem>
+            <ListItem>Facilisis in pretium nisl aliquet</ListItem> */}
           </UnorderedList>
-          <Button
+          {/* <Button
             backgroundColor="#F6540E"
             color="white"
             pt="2rem"
@@ -249,7 +257,7 @@ const ViewProposal = ({ state }) => {
             borderRadius={"1.5rem"}
           >
             Mark Job as Completed
-          </Button>
+          </Button> */}
         </Box>
         <Box w="45%" p="4rem">
           <Box
@@ -278,7 +286,9 @@ const ViewProposal = ({ state }) => {
                 >
                   {job?.jobPostedBy?.state}
                 </Text>
-                <Box display={"fkex"} flexDir="row" gap="2px">
+
+                {job?.jobPostedBy?.rating ?
+                  <Box display={"fkex"} flexDir="row" gap="2px">
                   <RatingIcon />
                   <RatingIcon />
                   <RatingIcon />
@@ -293,6 +303,9 @@ const ViewProposal = ({ state }) => {
                     5.0
                   </Text>
                 </Box>
+                :""
+                }
+              
               </Box>
               <Box ml="auto">
                 <Text
@@ -301,7 +314,7 @@ const ViewProposal = ({ state }) => {
                   alignSelf={"center"}
                   pl="2px"
                 >
-                  6 Jobs Posted
+                 {job?.jobPostedBy?.postedJobs}
                 </Text>
                 <Text
                   fontFamily={"Gilroy-Bold"}
@@ -309,7 +322,7 @@ const ViewProposal = ({ state }) => {
                   alignSelf={"center"}
                   pl="2px"
                 >
-                  ₹2k+ total spent
+                  ₹{job?.jobPostedBy?.totalEarn}
                 </Text>
               </Box>
             </Box>
@@ -329,14 +342,12 @@ const ViewProposal = ({ state }) => {
               variant="outline"
               onClick={() => {
                 navigate(
-                  `/${job?.jobPostedBy.name.substring(
-                    0,
-                  )}/${job?.jobPostedBy?._id}`
+                  `/${job?.jobPostedBy?._id}`
                 );
 
               }}
             >
-              Button
+              View Profile
             </Button>
           </Box>
         </Box>

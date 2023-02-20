@@ -127,8 +127,8 @@ const MessagingPageDetails = ({
             pb="1.7rem"
             size="lg"
             borderRadius={"2rem"}
-            onClick={() => navigate("/view-proposal")}
-            disabled
+            onClick={() => navigate(`/view-proposal/${chatroom._id}`)}
+            // disabled
           >
             View Proposal
           </Button>

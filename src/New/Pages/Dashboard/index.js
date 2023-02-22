@@ -58,6 +58,7 @@ import {
   TumblrShareCount,
   VKShareCount
 } from "react-share";
+import getJobs from "../../../Api/Jobs/getJobsApi";
 // dummy
 const d_data = [
   {
@@ -86,6 +87,25 @@ const Dashboard = () => {
   const [userData, setUserData] = useState({});
   const [allUser, setAllUser] = useState({});
   const { isOpen, onOpen, onClose } = useDisclosure()
+  const [jobs, setJobs] = useState([]);
+
+
+
+  const getData = async () => {
+    try {
+      const res = await getJobs();
+      setLoading(false);
+      setJobs(res.data);
+    } catch (error) {
+      console.log("Get Jobs Api Error : ", error);
+    }
+  };
+
+  console.log("job",jobs);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    getData();
+  }, []);
 
   useEffect(() => {
     if (localStorage.getItem("token")) {
@@ -374,7 +394,7 @@ const Dashboard = () => {
               Jobs You May Like
             </Text>
             <Box mt="2.22vh">
-              {d_data.map((data, index) => {
+              {jobs.map((data, index) => {
                 return <JobSearchCard data={data} key={index} />;
               })}
             </Box>

@@ -525,6 +525,7 @@ const Profile = (state) => {
                       width: "100%",
                       color: "orange",
                       fill: "orange",
+                      marginTop: "5%",
                     }}
                   />
                 )}

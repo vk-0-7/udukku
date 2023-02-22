@@ -22,12 +22,14 @@ import {
   ModalCloseButton,
 } from '@chakra-ui/react'
 import { getUserInfoById } from "../../../Api/User/getUserById";
+import getJobs from "../../../Api/Jobs/getJobsApi";
 const ClientDashboard = ({ state }) => {
   const { user } = useSelector((state) => ({ ...state }));
   const [talents, setTalents] = useState([]);
   const { isOpen, onOpen, onClose } = useDisclosure()
   const navigate = useNavigate();
   const [userData, setUserData] = useState({});
+  const [jobs, setJobs] = useState([]);
 
   useEffect(() => {
     //window.scrollTo(0, 0);
@@ -36,6 +38,20 @@ const ClientDashboard = ({ state }) => {
     });
   }, []);
 
+  const getData = async () => {
+    try {
+      const res = await getJobs();
+      setJobs(res.data);
+    } catch (error) {
+      console.log("Get Jobs Api Error : ", error);
+    }
+  };
+
+  console.log("job",jobs);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    getData();
+  }, []);
 
   const id = user?.userId;
 

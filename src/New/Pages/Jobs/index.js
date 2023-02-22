@@ -53,7 +53,7 @@ const Jobs = () => {
     }
   };
 
-  console.log(jobs);
+  console.log("job",jobs);
   useEffect(() => {
     window.scrollTo(0, 0);
     getData();

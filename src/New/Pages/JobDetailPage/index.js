@@ -50,6 +50,8 @@ const d_data = [
   },
 ];
 
+
+
 const JobDetailPage = () => {
   const { id } = useParams();
   const [jobs, setJobs] = useState([]);
@@ -420,6 +422,7 @@ const JobDetailPage = () => {
                 borderRadius={"1.04vw"}
                 bg="white"
                 border="2px solid #F6540E  "
+				onClick={()=>navigate(`/messages`)}
               >
                 <Sms
                   style={{

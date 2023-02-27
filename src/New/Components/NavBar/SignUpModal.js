@@ -236,6 +236,9 @@ const SignUpModal = ({ state, changeState }) => {
 							cursor="pointer"
 							onClick={() => {
 								changeState(false);
+								setName("");
+								setEmail("");
+								setPassword("");
 								onClose();
 							}}
 						/>

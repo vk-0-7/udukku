@@ -65,7 +65,7 @@ body,
 html {
 	overscroll-behavior: none;
 	box-sizing: border-box !important;
-	font-size: 62.5%;
+	font-size: 12px;
 }
 
 #home_hero_be_discovered_btn svg {
@@ -195,13 +195,13 @@ html {
 	display: block !important;
 }
 
-button.splide__arrow.splide__arrow--prev{
-visibility: hidden !important;
+button.splide__arrow.splide__arrow--prev {
+	visibility: hidden !important;
 }
 
-button.splide__arrow.splide__arrow--next{
+button.splide__arrow.splide__arrow--next {
 	visibility: hidden !important;
-	}
+}
 
 @media only screen and (max-width: 600px) {
 	.w100 {
@@ -211,7 +211,6 @@ button.splide__arrow.splide__arrow--next{
 	.h100 {
 		height: 100% !important;
 	}
-
 
 	.m-10 {
 		margin-left: 10% !important;
@@ -281,7 +280,6 @@ button.splide__arrow.splide__arrow--next{
 		margin-bottom: 1%;
 		margin-left: 2%;
 		font-size: 1rem !important;
-
 	}
 
 	.genre-category-icons {
@@ -362,8 +360,8 @@ button.splide__arrow.splide__arrow--next{
 
 	.dashboard-box {
 		height: 8vh !important;
-		margin-top: 5px !important; 
-		margin-bottom: 5px !important; 
+		margin-top: 5px !important;
+		margin-bottom: 5px !important;
 	}
 
 	.chatbox-messages-width {
@@ -379,6 +377,4 @@ button.splide__arrow.splide__arrow--next{
 		position: absolute !important;
 		bottom: 15.96vh !important;
 	}
-
-
 }

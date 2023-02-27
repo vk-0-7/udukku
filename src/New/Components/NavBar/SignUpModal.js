@@ -40,6 +40,7 @@ const SignUpModal = ({ state, changeState }) => {
 	const [loading, setLoading] = useState(false);
 	const { setLoginState, setToken, setAvatar } = AccessAuthContext();
 	const [signInState, setSignInState] = useState(false);
+	const [showCheckMail, setShowCheckMail] = useState(false);
 	const navigate = useNavigate();
 
 	const toast = useToast();
@@ -134,7 +135,8 @@ const SignUpModal = ({ state, changeState }) => {
 					duration: 5000,
 					isClosable: true,
 				});
-				onClose();
+				// onClose();
+				setShowCheckMail(true);
 			})
 			.catch((error) => {
 				setLoading(false);
@@ -248,306 +250,330 @@ const SignUpModal = ({ state, changeState }) => {
 							fontWeight={600}
 							textAlign="center"
 						>
-							Become our member
+							{showCheckMail ? "Thank You" : "Become our member"}
 						</Text>
-						<Text
-							fontSize={{ base: "2rem", lg: ".833vw" }}
-							fontFamily="Gilroy-Medium"
-							textAlign="center"
-						>
-							Join India's First Music Marketplace
-						</Text>
-						{/* form */}
-						<form>
-							<Box
-								className="p-10 "
-								display="flex"
-								flexDir={"column"}
-								gap="2.222vh"
-								pt="2.96vh"
-							>
-								<Box>
-									<label htmlFor="nav-login-email">
-										<Text
-											className="hero-font-class2"
-											fontSize={{ base: "2rem", lg: ".833vw" }}
-											fontFamily="Gilroy-SemiBold"
-											_after={{
-												content: "'*'",
-												position: "relative",
-												left: "2px",
-											}}
-										>
-											Full Name
-										</Text>
-									</label>
-									<Input
-										className="hero-font-class2"
-										value={name}
-										type="text"
-										id="nav-login-email"
-										fontSize={{ base: "1.7rem", lg: ".93vw" }}
-										h={{ base: "6.48vh", "3xl": "5vh" }}
-										borderRadius={"15px"}
-										placeholder="your name"
-										onChange={(e) => {
-											setName(e.target.value);
-										}}
-										_focus={{
-											border: " 2px solid #F6540E",
-										}}
-									/>
-								</Box>
-								<Box>
-									<label htmlFor="nav-login-email">
-										<Text
-											className="hero-font-class2"
-											fontSize={{ base: "2rem", lg: ".833vw" }}
-											fontFamily="Gilroy-SemiBold"
-											_after={{
-												content: "'*'",
-												position: "relative",
-												left: "2px",
-											}}
-										>
-											Email address
-										</Text>
-									</label>
-
-									<Input
-										className="hero-font-class2"
-										value={email}
-										type="email"
-										id="nav-login-email"
-										fontSize={{ base: "1.7rem", lg: ".93vw" }}
-										h={{ base: "6.48vh", "3xl": "5vh" }}
-										borderRadius={"15px"}
-										placeholder="your-email@gmail.com"
-										onChange={(e) => {
-											setEmail(e.target.value);
-										}}
-										_focus={{
-											border: " 2px solid #F6540E",
-										}}
-									/>
-								</Box>
-								<Box>
-									<label htmlFor="nav-login-pass">
-										<Text
-											className="hero-font-class2"
-											fontSize={{ base: "2rem", lg: ".833vw" }}
-											fontFamily="Gilroy-SemiBold"
-											_after={{
-												content: "'*'",
-												position: "relative",
-												left: "2px",
-											}}
-										>
-											Password
-										</Text>
-									</label>
-									<InputGroup size="md" display={"flex"}>
-										<Input
-											className="hero-font-class2"
-											pr="4.5rem"
-											type={show ? "text" : "password"}
-											placeholder="Enter password"
-											borderRadius={"15px"}
-											h={{ base: "6.48vh", "3xl": "5vh" }}
-											fontSize={{ base: "1.7rem", lg: ".93vw" }}
-											onChange={(e) => {
-												setPassword(e.target.value);
-											}}
-											_focus={{
-												border: " 2px solid #F6540E",
-											}}
-										/>
-										<InputRightElement width="4.5rem" h="100%">
-											<Button
-												size="sm"
-												onClick={handleClick}
-												bg="transparent"
-												_hover={{
-													background: "transparent",
-												}}
-											>
-												{show ? (
-													<Icon
-														as={AiFillEye}
-														fontSize="1.5rem"
-														fill="#F6540E"
-													/>
-												) : (
-													<Icon
-														as={AiFillEyeInvisible}
-														fontSize="1.5rem"
-														fill="rgba(0,0,0,.3)"
-													/>
-												)}
-											</Button>
-										</InputRightElement>
-									</InputGroup>
-									<Box pt={".92vh"} fontSize={{ base: "2rem", lg: ".833vw" }}>
-										<Text className="hero-font-class2" fontWeight={600}>
-											Password should contain:
-										</Text>
-										<UnorderedList className="hero-font-class2">
-											<ListItem
-												color={
-													password === ""
-														? "black"
-														: checkPasswordLength
-														? "red"
-														: "green"
-												}
-											>
-												contains at least 8 characters
-											</ListItem>
-											<ListItem
-												color={
-													password === ""
-														? "black"
-														: checkPasswordCase
-														? "red"
-														: "green"
-												}
-											>
-												contains both lower (a-z) and upper case letters (A-Z)
-											</ListItem>
-											<ListItem
-												color={
-													password === ""
-														? "black"
-														: checkPasswordNumber
-														? "red"
-														: "green"
-												}
-											>
-												contains at least one number (0-9) or a symbol
-											</ListItem>
-										</UnorderedList>
-									</Box>
-								</Box>
-								<Box>
-									<Button
-										className="hero-font-class2"
-										w="100%"
-										bg="#F6540E"
-										color="#fff"
-										borderRadius={"1.04vw"}
-										fontSize={{ base: "2rem", lg: ".833vw" }}
-										h={{ base: "6.48vh", "3xl": "5vh" }}
-										_hover={{ background: "#f6540e" }}
-										isDisabled={disable}
-										onClick={handleUserSignup}
-										isLoading={loading}
-									>
-										Sign up
-									</Button>
-								</Box>
-							</Box>
-						</form>
-						<Box
-							className="m-10 "
-							my="20px"
-							position={"relative"}
-							display="flex"
-							justifyContent={"center"}
-							_after={{
-								content: "''",
-								display: "inline-block",
-								position: "absolute",
-								width: "100%",
-								height: "1px",
-								background: "rgba(0,0,0,.3)",
-								bottom: "49%",
-								zIndex: "1",
-							}}
-						>
+						{!showCheckMail && (
 							<Text
-								className="hero-font-class2"
-								display={"inline-block"}
-								position="relative"
-								fontSize={{ base: "1.5rem", lg: ".833vw" }}
+								fontSize={{ base: "2rem", lg: ".833vw" }}
+								fontFamily="Gilroy-Medium"
 								textAlign="center"
-								bg="#fff"
-								px="10px"
-								zIndex={3}
 							>
-								or
+								Join India's First Music Marketplace
 							</Text>
-						</Box>
-						<Button
-							className="m-hide"
-							display={"flex"}
-							alignItems="center"
-							justifyContent={"center"}
-							gap="10px"
-							w="100%"
-							bg="#082032"
-							color="#fff"
-							borderRadius={"1.04vw"}
-							h={{ base: "6.48vh", "3xl": "5vh" }}
-							_hover={{ background: "#082032" }}
-							fontSize={{ base: "2rem", lg: ".833vw" }}
-							onClick={() => {
-								const a = document.getElementById("google_login_button");
-								console.log(
-									a.childNodes[0].childNodes[0].childNodes[0].click()
-								);
-							}}
-						>
-							<Text className="hero-font-class2">Sign up with Google</Text>
-						</Button>
+						)}
+						{/* form */}
+						{!showCheckMail && (
+							<>
+								<form>
+									<Box
+										className="p-10 "
+										display="flex"
+										flexDir={"column"}
+										gap="2.222vh"
+										pt="2.96vh"
+									>
+										<Box>
+											<label htmlFor="nav-login-email">
+												<Text
+													className="hero-font-class2"
+													fontSize={{ base: "2rem", lg: ".833vw" }}
+													fontFamily="Gilroy-SemiBold"
+													_after={{
+														content: "'*'",
+														position: "relative",
+														left: "2px",
+													}}
+												>
+													Full Name
+												</Text>
+											</label>
+											<Input
+												className="hero-font-class2"
+												value={name}
+												type="text"
+												id="nav-login-email"
+												fontSize={{ base: "1.7rem", lg: ".93vw" }}
+												h={{ base: "6.48vh", "3xl": "5vh" }}
+												borderRadius={"15px"}
+												placeholder="your name"
+												onChange={(e) => {
+													setName(e.target.value);
+												}}
+												_focus={{
+													border: " 2px solid #F6540E",
+												}}
+											/>
+										</Box>
+										<Box>
+											<label htmlFor="nav-login-email">
+												<Text
+													className="hero-font-class2"
+													fontSize={{ base: "2rem", lg: ".833vw" }}
+													fontFamily="Gilroy-SemiBold"
+													_after={{
+														content: "'*'",
+														position: "relative",
+														left: "2px",
+													}}
+												>
+													Email address
+												</Text>
+											</label>
 
-						<Button
-							className="d-hide"
-							mx={"10vw"}
-							display={"flex"}
-							alignItems="center"
-							justifyContent={"center"}
-							gap="10px"
-							w="80%"
-							bg="#082032"
-							color="#fff"
-							borderRadius={"1.04vw"}
-							h={{ base: "6.48vh", "3xl": "5vh" }}
-							_hover={{ background: "#082032" }}
-							fontSize={{ base: "2rem", lg: ".833vw" }}
-							onClick={() => {
-								const a = document.getElementById("google_login_button");
-								console.log(
-									a.childNodes[0].childNodes[0].childNodes[0].click()
-								);
-							}}
-						>
-							<Text className="hero-font-class2">Sign up with Google</Text>
-						</Button>
-						<Box
-							display={"none"}
-							id="google_login_button"
-							ref={gLoginButton}
-						></Box>
-						<Box mt="1.85vh" fontSize={{ base: "2rem", lg: ".833vw" }}>
-							<Text className="hero-font-class2" textAlign={"center"}>
-								Already registered?{" "}
-								<Text
-									fontFamily={"Gilroy-SemiBold"}
-									cursor={"pointer"}
-									onClick={() => {
-										setSignInState(true);
-										onClose();
+											<Input
+												className="hero-font-class2"
+												value={email}
+												type="email"
+												id="nav-login-email"
+												fontSize={{ base: "1.7rem", lg: ".93vw" }}
+												h={{ base: "6.48vh", "3xl": "5vh" }}
+												borderRadius={"15px"}
+												placeholder="your-email@gmail.com"
+												onChange={(e) => {
+													setEmail(e.target.value);
+												}}
+												_focus={{
+													border: " 2px solid #F6540E",
+												}}
+											/>
+										</Box>
+										<Box>
+											<label htmlFor="nav-login-pass">
+												<Text
+													className="hero-font-class2"
+													fontSize={{ base: "2rem", lg: ".833vw" }}
+													fontFamily="Gilroy-SemiBold"
+													_after={{
+														content: "'*'",
+														position: "relative",
+														left: "2px",
+													}}
+												>
+													Password
+												</Text>
+											</label>
+											<InputGroup size="md" display={"flex"}>
+												<Input
+													className="hero-font-class2"
+													pr="4.5rem"
+													type={show ? "text" : "password"}
+													placeholder="Enter password"
+													borderRadius={"15px"}
+													h={{ base: "6.48vh", "3xl": "5vh" }}
+													fontSize={{ base: "1.7rem", lg: ".93vw" }}
+													onChange={(e) => {
+														setPassword(e.target.value);
+													}}
+													_focus={{
+														border: " 2px solid #F6540E",
+													}}
+												/>
+												<InputRightElement width="4.5rem" h="100%">
+													<Button
+														size="sm"
+														onClick={handleClick}
+														bg="transparent"
+														_hover={{
+															background: "transparent",
+														}}
+													>
+														{show ? (
+															<Icon
+																as={AiFillEye}
+																fontSize="1.5rem"
+																fill="#F6540E"
+															/>
+														) : (
+															<Icon
+																as={AiFillEyeInvisible}
+																fontSize="1.5rem"
+																fill="rgba(0,0,0,.3)"
+															/>
+														)}
+													</Button>
+												</InputRightElement>
+											</InputGroup>
+											<Box
+												pt={".92vh"}
+												fontSize={{ base: "2rem", lg: ".833vw" }}
+											>
+												<Text className="hero-font-class2" fontWeight={600}>
+													Password should contain:
+												</Text>
+												<UnorderedList className="hero-font-class2">
+													<ListItem
+														color={
+															password === ""
+																? "black"
+																: checkPasswordLength
+																? "red"
+																: "green"
+														}
+													>
+														contains at least 8 characters
+													</ListItem>
+													<ListItem
+														color={
+															password === ""
+																? "black"
+																: checkPasswordCase
+																? "red"
+																: "green"
+														}
+													>
+														contains both lower (a-z) and upper case letters
+														(A-Z)
+													</ListItem>
+													<ListItem
+														color={
+															password === ""
+																? "black"
+																: checkPasswordNumber
+																? "red"
+																: "green"
+														}
+													>
+														contains at least one number (0-9) or a symbol
+													</ListItem>
+												</UnorderedList>
+											</Box>
+										</Box>
+										<Box>
+											<Button
+												className="hero-font-class2"
+												w="100%"
+												bg="#F6540E"
+												color="#fff"
+												borderRadius={"1.04vw"}
+												fontSize={{ base: "2rem", lg: ".833vw" }}
+												h={{ base: "6.48vh", "3xl": "5vh" }}
+												_hover={{ background: "#f6540e" }}
+												isDisabled={disable}
+												onClick={handleUserSignup}
+												isLoading={loading}
+											>
+												Sign up
+											</Button>
+										</Box>
+									</Box>
+								</form>
+								<Box
+									className="m-10 "
+									my="20px"
+									position={"relative"}
+									display="flex"
+									justifyContent={"center"}
+									_after={{
+										content: "''",
+										display: "inline-block",
+										position: "absolute",
+										width: "100%",
+										height: "1px",
+										background: "rgba(0,0,0,.3)",
+										bottom: "49%",
+										zIndex: "1",
 									}}
-									fontSize={{ base: "1.5rem", lg: ".8333vw" }}
-									className="hero-font-class2"
-									as="span"
-									textDecoration={"underline"}
-									color="#F6540E"
 								>
-									Sign in
-								</Text>{" "}
-							</Text>
-						</Box>
+									<Text
+										className="hero-font-class2"
+										display={"inline-block"}
+										position="relative"
+										fontSize={{ base: "1.5rem", lg: ".833vw" }}
+										textAlign="center"
+										bg="#fff"
+										px="10px"
+										zIndex={3}
+									>
+										or
+									</Text>
+								</Box>
+								<Button
+									className="m-hide"
+									display={"flex"}
+									alignItems="center"
+									justifyContent={"center"}
+									gap="10px"
+									w="100%"
+									bg="#082032"
+									color="#fff"
+									borderRadius={"1.04vw"}
+									h={{ base: "6.48vh", "3xl": "5vh" }}
+									_hover={{ background: "#082032" }}
+									fontSize={{ base: "2rem", lg: ".833vw" }}
+									onClick={() => {
+										const a = document.getElementById("google_login_button");
+										console.log(
+											a.childNodes[0].childNodes[0].childNodes[0].click()
+										);
+									}}
+								>
+									<Text className="hero-font-class2">Sign up with Google</Text>
+								</Button>
+
+								<Button
+									className="d-hide"
+									mx={"10vw"}
+									display={"flex"}
+									alignItems="center"
+									justifyContent={"center"}
+									gap="10px"
+									w="80%"
+									bg="#082032"
+									color="#fff"
+									borderRadius={"1.04vw"}
+									h={{ base: "6.48vh", "3xl": "5vh" }}
+									_hover={{ background: "#082032" }}
+									fontSize={{ base: "2rem", lg: ".833vw" }}
+									onClick={() => {
+										const a = document.getElementById("google_login_button");
+										console.log(
+											a.childNodes[0].childNodes[0].childNodes[0].click()
+										);
+									}}
+								>
+									<Text className="hero-font-class2">Sign up with Google</Text>
+								</Button>
+								<Box
+									display={"none"}
+									id="google_login_button"
+									ref={gLoginButton}
+								></Box>
+								<Box mt="1.85vh" fontSize={{ base: "2rem", lg: ".833vw" }}>
+									<Text className="hero-font-class2" textAlign={"center"}>
+										Already registered?{" "}
+										<Text
+											fontFamily={"Gilroy-SemiBold"}
+											cursor={"pointer"}
+											onClick={() => {
+												setSignInState(true);
+												onClose();
+											}}
+											fontSize={{ base: "1.5rem", lg: ".8333vw" }}
+											className="hero-font-class2"
+											as="span"
+											textDecoration={"underline"}
+											color="#F6540E"
+										>
+											Sign in
+										</Text>{" "}
+									</Text>
+								</Box>
+							</>
+						)}
+
+						{showCheckMail && (
+							<>
+								<Text
+									fontSize={{ base: "3rem", lg: "1.2rem" }}
+									fontFamily="Gilroy-Medium"
+									textAlign="center"
+									color={"green.400"}
+								>
+									Thankyou for signing up with Udukku, Please check your email
+									for the activation link.
+								</Text>
+							</>
+						)}
 					</Box>
 				</ModalContent>
 			</Modal>

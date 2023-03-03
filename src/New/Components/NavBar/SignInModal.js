@@ -28,10 +28,13 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import GoogleLogin from "react-google-login";
 import { googleSignIn } from "../../../Api/Auth";
+import { currentUser } from "../../../Api/Auth/activateUser";
 
 const SignInModal = ({ state, changeState }) => {
 	const [show, setShow] = useState(false);
 	const { isOpen, onOpen, onClose } = useDisclosure();
+	const [token, setUserToken] = useState();
+
 	const {
 		setLoginState,
 		setToken,
@@ -50,9 +53,11 @@ const SignInModal = ({ state, changeState }) => {
 	const [checkPassword, setCheckPassword] = useState(false);
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
-
 	const [show_registration_modal, set_show_registration_modal] = useState(null);
 	const { user } = useSelector((state) => ({ ...state }));
+	const [userId, setUsersId] = useState("");
+
+	console.log("user value we get is : ", user);
 
 	// loading
 	const [loading, setLoading] = useState(false);
@@ -175,91 +180,94 @@ const SignInModal = ({ state, changeState }) => {
 	const handleLoginRequest = async () => {
 		setLoading(true);
 
-		try {
-			const res = await signin({ email, password });
-			setLoading(false);
-			console.log("login res : ", res);
-			if (res.data.user.isProfileCompleted === false) {
-				set_show_registration_modal(true);
+		signin({ email, password })
+			.then((res) => {
+				setUserToken(res.data.refresh_token);
 				onClose();
-				sessionStorage.setItem("id", res.data.user._id);
-				console.log("setting the value here");
-			} else {
-				set_show_registration_modal(false);
-				setLoginState(true);
-				setToken(res.data.refresh_token);
-				setAvatar(res.data.user.avatar);
-				setUserEmail(res.data.user.email);
-				setUserId(res.data.user._id);
-				setName(res.data.user.name);
-				setUsername(res.data.user.userName);
-				onClose();
-			}
-		} catch (error) {
-			if (error.response.data.message === "This email does not exist.") {
-				setCheckPassword(true);
-				setCheckEmail(true);
-			} else {
-				setCheckPassword(true);
-			}
-			setLoading(false);
-		}
+				console.log("login data is ", res.data.user._id);
+				setUsersId(res.data.user._id);
+				/*
+					Call for the sign-in
+					If user already have the type don't show to select the type.
+					If user don't have the type only then select the type.
+				*/
+
+				if (!res.data.user.isProfileCompleted) {
+					// profile is not completed
+					if (res.data.user.isMusician === "") {
+						setLoading(false);
+						// means type is not selected
+						set_show_registration_modal(true);
+					} else {
+						// means type is selected
+						if (res.data.user.isMusician === "Musician") {
+							// means user is the musician
+							setLoading(false);
+							navigate("/talent-registration", {
+								state: { token: res.data.refresh_token, id: res.data.user._id },
+							});
+						} else {
+							// means uesr is the job creator
+							setLoading(false);
+							navigate("/job-creator-registration", {
+								state: { token: res.data.refresh_token, id: res.data.user._id },
+							});
+						}
+					}
+				} else {
+					// here we store the data
+					localStorage.setItem("token", res.data.refresh_token);
+					window.location.reload();
+				}
+			})
+			.catch((error) => {
+				if (error.response.data.message === "This email does not exist.") {
+					setCheckPassword(true);
+					setCheckEmail(true);
+				} else {
+					setCheckPassword(true);
+				}
+				setLoading(false);
+			});
 	};
 
 	const handleGoogleSignUp = (data) => {
-		console.log(data);
 		setLoading(true);
+
 		googleSignIn(data.tokenId)
 			.then((res) => {
-				console.log(res);
-				dispatch({
-					type: "LOGGED_IN_USER",
-					payload: {
-						userId: res.data.user._id,
-						name: res.data.user.name,
-						email: res.data.user.email,
-						token: res.data.refresh_token,
-						isMusician: res.data.user.isMusician,
-						isProfileCompleted: res.data.user.isProfileCompleted,
-					},
-				});
+				setUserToken(res.data.refresh_token);
+				setUsersId(res.data.user._id);
 
-				setLoading(false);
-				localStorage.setItem("token", res.data.refresh_token);
-				setLoginState(true);
-				setToken(res.data.refresh_token);
-				setUserId(res.data.user._id);
-				if (res.data.user.isMusician === "") {
-					set_show_registration_modal(true);
-				} else {
-					if (
-						res.data.user.isProfileCompleted === false &&
-						res.data.user.isMusician === "Musician"
-					) {
-						navigate("edit-profile");
-					} else if (
-						res.data.user.isProfileCompleted === false &&
-						res.data.user.isMusician === "Recruter"
-					) {
-						navigate("/creator-edit-profile");
-					} else {
-						navigate("/");
-					}
-				}
-				// if (res.data.user.isProfileCompleted === false) {
-				//   console.log("user",user)
-				//   navigate(
-				//     `/talent-registration`,{ state: res.data}
-				//   );
-				// }
-				// setUsed('google');
-				// setOpen(false);
 				onClose();
-				// if (res.data.user.isProfileCompleted) {
-				//   history.push("/user/dashboard");
-				// } else {
-				//   history.push("/user/complete-profile");
-				// }
+
+				if (!res.data.user.isProfileCompleted) {
+					// profile is not completed
+
+					if (res.data.user.isMusician === "") {
+						setLoading(false);
+						// means type is not selected
+						set_show_registration_modal(true);
+					} else {
+						// means type is selected
+						if (res.data.user.isMusician === "Musician") {
+							// means user is the musician
+							setLoading(false);
+							navigate("/talent-registration", {
+								state: { token: res.data.refresh_token, id: res.data.user._id },
+							});
+						} else {
+							// means uesr is the job creator
+							setLoading(false);
+							navigate("/job-creator-registration", {
+								state: { token: res.data.refresh_token, id: res.data.user._id },
+							});
+						}
+					}
+				} else {
+					localStorage.setItem("token", res.data.refresh_token);
+					window.location.reload();
+				}
 			})
 			.catch((err) => {
 				console.log(err);
@@ -269,8 +277,8 @@ const SignInModal = ({ state, changeState }) => {
 
 	return (
 		<>
-			{show_registration_modal === true ? (
-				<BecomeOurMember state={true} />
+			{show_registration_modal ? (
+				<BecomeOurMember token={token} id={userId} />
 			) : (
 				<></>
 			)}
@@ -279,7 +287,7 @@ const SignInModal = ({ state, changeState }) => {
 				changeState={setForgotPasswordModalState}
 			/>
 
-			<Modal className="m-hide" size="full" isOpen={isOpen}>
+			<Modal className="m-hide" size="full" isOpen={isOpen} onClose={onClose}>
 				<ModalOverlay />
 				<ModalContent
 					bg="transparent"
@@ -548,27 +556,6 @@ const SignInModal = ({ state, changeState }) => {
 							)}
 						/>
 
-						{/* <Button
-              display={"flex"}
-              alignItems="center"
-              justifyContent={"center"}
-              gap="10px"
-              w="100%"
-              bg="#082032"
-              color="#fff"
-              borderRadius={"1.04vw"}
-              h={{ base: "6.48vh", "3xl": "5vh" }}
-              _hover={{ background: "#082032" }}
-              fontSize={{ base: "2rem", lg: ".833vw" }}
-              onClick={() => {
-                const a = document.getElementById("google_login_button");
-                console.log(
-                  a.childNodes[0].childNodes[0].childNodes[0].click()
-                );
-              }}
-            >
-              <Image src={gLogo} h="2rem" /> <Text>Sign in with Google</Text>
-            </Button> */}
 						<Box
 							display={"none"}
 							id="google_login_button"

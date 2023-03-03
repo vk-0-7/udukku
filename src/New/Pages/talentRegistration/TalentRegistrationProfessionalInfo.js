@@ -181,37 +181,6 @@ const TalentRegistrationProfessionalInfo = ({ data }) => {
 						+ Add another Social Media
 					</Text>
 				</Box>
-				{/* <Box mt="2.22vh">
-          {data?.work?.map((_data, index) => {
-            return (
-              <WorkSample
-                key={index}
-                currentIndex={index}
-                fullState={data.work}
-                changeState={data.set_work}
-                showDelete={data.work.length > 1 ? true : false}
-              />
-            );
-          })}
-          <Text
-            fontFamily={"Gilroy-SemiBold"}
-            color="rgba(246, 84, 14, 1)"
-            fontSize={{ base: "1rem", md: "1.2rem", lg: ".833vw" }}
-            onClick={() => {
-              data?.set_work((prev) => {
-                prev?.push({
-                  workSample: "",
-                  link: "",
-                  role: "",
-                });
-                return [...prev];
-              });
-            }}
-            cursor="pointer"
-          >
-            + Add another Category
-          </Text>
-        </Box> */}
 				<Box mt="2.22vh">
 					<Text
 						fontFamily={"Gilroy-SemiBold"}

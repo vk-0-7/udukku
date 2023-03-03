@@ -14,35 +14,33 @@ const {
 	ModalContent,
 	Box,
 	Text,
-	Icon,
 } = require("@chakra-ui/react");
 
-const BecomeOurMember = ({ state }) => {
-	console.log("state is : ", state);
+const BecomeOurMember = ({ token, id }) => {
 	const { isOpen, onOpen, onClose } = useDisclosure();
 	const navigate = useNavigate();
 	const { user } = useSelector((state) => ({ ...state }));
 
+	console.log("in member modal : ", token, id);
+
 	useEffect(() => {
-		if (state) {
-			onOpen();
-		}
+		onOpen();
 	}, []);
 
 	const componentClicked = (value) => {
-		console.log("value", value);
-		updateUserRole(value, user.token)
+		updateUserRole(value, token)
 			.then((res) => {
-				console.log(res);
-				// window.$("#staticBackdrop1").modal("hide");
-				// window.reload();
-				if (user.isProfileCompleted === true) {
-					navigate("/");
-				} else {
+				console.log(res.data.message);
+
+				if (res.data.message === "Update Success!") {
 					if (value === "Musician") {
-						navigate("/talent-registration");
+						navigate("/talent-registration", {
+							state: { token: token, id: id },
+						});
 					} else {
-						navigate("/job-creator-registration");
+						navigate("/job-creator-registration", {
+							state: { token: token, id: id },
+						});
 					}
 				}
 			})
@@ -101,8 +99,6 @@ const BecomeOurMember = ({ state }) => {
 								cursor={"pointer"}
 								onClick={() => {
 									componentClicked("Musician");
-									// changeState(false);
-									// navigate("/talent-registration");
 								}}
 							>
 								<Box
@@ -148,8 +144,6 @@ const BecomeOurMember = ({ state }) => {
 								}}
 								onClick={() => {
 									componentClicked("Recruter");
-									// changeState(false);
-									// navigate("/job-creator-registration");
 								}}
 							>
 								<Box

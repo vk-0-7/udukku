@@ -11,51 +11,52 @@ import TalentRegistrationProfessionalInfo from "./TalentRegistrationProfessional
 import { useToast } from "@chakra-ui/react";
 import { getUserInfoById } from "../../../Api/User/getUserById";
 import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { currentUser } from "../../../Api/Auth/activateUser";
+
 const TalentRegistration = () => {
-	const navigate = useNavigate();
-	const location = useLocation();
 	const [loading, set_loading] = useState(false);
 	const [userData, setUserData] = useState("");
-	const toast = useToast();
+	const [editPage, setEditPage] = useState("");
+	const [fname, set_fname] = useState("");
+	const [username, set_username] = useState("");
+	const [check_username_availability, set_check_username_availability] =
+		useState(false);
+	const [wa_number, set_wa_number] = useState("");
+	const [city, set_city] = useState("");
+	const [ustate, set_state] = useState("");
+	const [description, set_description] = useState("");
+	const [avatar, set_avatar] = useState("");
+	const [genre, set_genre] = useState([]);
+	const [gear, set_gear] = useState([]);
+	const [social_media, set_social_media] = useState([]);
+	const [work, set_work] = useState([]);
+	const [term, set_term] = useState([]);
+	const [categories, set_categories] = useState([
+		{
+			category: "",
+			subCategory: "",
+			serviceStargingPrice: "",
+		},
+	]);
+
 	const { user } = useSelector((state) => ({ ...state }));
 
-	// for personal info
-	console.log("location", location);
-	// console.log(
-	//   "/" +
-	//   location.state.data.name.substring(
-	//     0,
-	//     location.state.data.name.indexOf(" ")
-	//   ) +
-	//   "/"
-	// );
+	const navigate = useNavigate();
+	const location = useLocation();
+	const toast = useToast();
 
-	const Id = location;
-	const [editPage, setEditPage] = useState(
-		""
-		// location.state.prevPath ===
-		//   `/${location.state.data.name.substring(
-		//     0,
-		//     location.state.data.name.indexOf(" ")
-		//   )}`
-		//   ? true
-		//   : false
-	);
+	const dispatch = useDispatch();
 
 	const id = user?.userId;
 
-	// const [editPage, setEditPage] = useState(
-	//  user?.isProfileCompleted === true
-	//     ? true
-	//     : false
-	// );
-	console.log("edit page", editPage);
-
 	useEffect(() => {
-		console.log("value of id is : ", id);
-		if (id) {
+		console.log("location data is ", location.state.token);
+		console.log("id is : ", id);
+
+		if (id || location.state.id) {
 			set_loading(true);
-			getUserInfoById(id).then((res) => {
+			getUserInfoById(id ? id : location.state.id).then((res) => {
 				console.log("info", res.data);
 				set_fname(res.data.name);
 				set_username(res.data.name);
@@ -110,58 +111,6 @@ const TalentRegistration = () => {
 		}
 	}, [id]);
 
-	const [fname, set_fname] = useState(
-		editPage === true ? location.state.data.name : ""
-	);
-	const [username, set_username] = useState(
-		editPage === true ? location.state.data.userName : ""
-	);
-	const [check_username_availability, set_check_username_availability] =
-		useState(false);
-	const [wa_number, set_wa_number] = useState(
-		editPage === true ? location.state.data.mobile : ""
-	);
-	const [city, set_city] = useState(
-		editPage === true ? location.state.data.city : ""
-	);
-	const [ustate, set_state] = useState(
-		editPage === true ? location.state.data.state : ""
-	);
-	const [description, set_description] = useState(
-		editPage === true ? location.state?.data.description : ""
-	);
-	const [avatar, set_avatar] = useState(
-		editPage === true ? location.state?.data.avatar : ""
-	);
-
-	// for professioinal info
-	const [categories, set_categories] = useState(
-		editPage === true
-			? location.state?.data.services
-			: [
-					{
-						category: "",
-						subCategory: "",
-						serviceStargingPrice: "",
-					},
-			  ]
-	);
-	const [genre, set_genre] = useState(
-		editPage === true ? location.state.data.genres : []
-	);
-	const [gear, set_gear] = useState(
-		editPage === true ? location.state.data.gearHighLights : []
-	);
-	const [social_media, set_social_media] = useState(
-		editPage === true ? location.state.data.socialMedia : []
-	);
-	const [work, set_work] = useState(
-		editPage === true ? location.state.data.work : []
-	);
-	const [term, set_term] = useState(
-		editPage === true ? location.state.data.terms : []
-	);
-
 	const handleEdit = async () => {
 		try {
 			const res = await updateUserApi(
@@ -199,38 +148,111 @@ const TalentRegistration = () => {
 			});
 		}
 	};
+
+	const checkForRemainingFields = () => {
+		for (let i = 0; i < categories.length; i++) {
+			console.log(categories[i]);
+			if (categories[i].category === "") {
+				return false;
+			}
+
+			if (categories[i].subCategory === "") {
+				return false;
+			}
+
+			if (categories[i].serviceStargingPrice === "") {
+				return false;
+			}
+		}
+
+		return true;
+	};
+
 	// functions to handle submissions
 	const handleSubmit = async () => {
 		// check for the username if it exists or not
-		const res = await checkForUserName(username);
 		set_loading(true);
-		if (res === "notAvailable") {
-			set_check_username_availability(true);
-		} else {
-			set_check_username_availability(false);
 
-			// now update the data
-			try {
-				const res = await registerTalentApi({
-					fname,
-					username,
-					wa_number,
-					city,
-					ustate,
-					description,
-					categories,
-					genre,
-					gear,
-					social_media,
-					work,
-					term,
-					avatar,
-				});
-				navigate("/", { state: { status: "success" } });
-				set_loading(false);
-			} catch (error) {
-				set_loading(false);
+		// let's check if all the fields are filled
+
+		// genre, subgenre
+		// gear, gear-highlight
+		// social media, social media link
+		// terms of services
+		// check mark
+
+		if (
+			!!fname &&
+			!!username &&
+			!!wa_number &&
+			!!city &&
+			!!ustate &&
+			!!description &&
+			checkForRemainingFields()
+		) {
+			const res = await checkForUserName(username);
+
+			if (res === "notAvailable") {
+				set_check_username_availability(true);
+			} else {
+				set_check_username_availability(false);
+
+				// now update the data
+				try {
+					const res = await registerTalentApi({
+						fname,
+						username,
+						wa_number,
+						city,
+						ustate,
+						description,
+						categories,
+						genre,
+						gear,
+						social_media,
+						work,
+						term,
+						avatar,
+						id: location.state.id,
+					});
+					localStorage.setItem("token", location.state.token);
+
+					currentUser(location.state.token)
+						.then((res) => {
+							dispatch({
+								type: "LOGGED_IN_USER",
+								payload: {
+									userId: res.data._id,
+									name: res.data.name,
+									email: res.data.email,
+									token: location.state.token,
+									isMusician: res.data.isMusician,
+									isProfileCompleted: res.data.isProfileCompleted,
+									qr: res.data.profileUrl,
+									avatar: res.data.avatar,
+								},
+							});
+							set_loading(false);
+							navigate("/", { state: { status: "success" } });
+						})
+						.catch((err) => {
+							console.log(err);
+							set_loading(false);
+						});
+				} catch (error) {
+					set_loading(false);
+				}
 			}
+		} else {
+			set_loading(false);
+			toast({
+				title: "Error",
+				description: "please all the fields",
+				status: "error",
+				isClosable: "true",
+				duration: 3000,
+				position: "top",
+			});
 		}
 	};
 
@@ -238,23 +260,9 @@ const TalentRegistration = () => {
 		<Box pt="8.5vh" overflowX={"hidden"}>
 			{/* <NavBar/> */}
 			<Box px={{ base: "7vw", lg: "13.54vw" }} pt="6.01vh" pb="100px">
-				{editPage == false ? (
-					<Text
-						display={"block"}
-						fontSize={"2.29vw"}
-						fontFamily={"Gilroy-Bold"}
-					>
-						Talent Registration
-					</Text>
-				) : (
-					<Text
-						display={"block"}
-						fontSize={"2.29vw"}
-						fontFamily={"Gilroy-Bold"}
-					>
-						Edit Profile
-					</Text>
-				)}
+				<Text display={"block"} fontSize={"2.29vw"} fontFamily={"Gilroy-Bold"}>
+					Talent Registration
+				</Text>
 
 				{/* personal info */}
 				<TalentRegistrationPersonalInfo
@@ -305,7 +313,7 @@ const TalentRegistration = () => {
 					fontFamily={"Gilroy-SemiBold"}
 					fontSize={{ base: "1.2rem", md: "1.5rem", lg: ".833vw" }}
 					_hover={{ background: "rgba(246, 84, 14, 1)" }}
-					onClick={editPage === false ? handleSubmit : handleEdit}
+					onClick={handleSubmit}
 					isLoading={loading}
 				>
 					{editPage === true ? "Update Profile" : "Create Profile"}

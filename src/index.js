@@ -30,40 +30,40 @@ import { ChakraProvider } from "@chakra-ui/react";
 import { AuthContextProvider } from "./New/Context/AuthContext";
 import { extendTheme } from "@chakra-ui/react";
 import { CategoryProvider } from "./New/Context/CategoryContext";
-import {createStore} from 'redux'
-import {composeWithDevTools} from 'redux-devtools-extension'
-import { Provider } from 'react-redux';
-import rootReducer from './Reducers'
+import { createStore } from "redux";
+import { composeWithDevTools } from "redux-devtools-extension";
+import { Provider } from "react-redux";
+import rootReducer from "./Reducers";
 
 const breakpoints = {
-  sm: "30em",
-  md: "48em",
-  lg: "62em",
-  xl: "80em",
-  "2xl": "96em",
-  "3xl": "121em",
+	sm: "30em",
+	md: "48em",
+	lg: "62em",
+	xl: "80em",
+	"2xl": "96em",
+	"3xl": "121em",
 };
 
 const theme = extendTheme({ breakpoints });
 
-const store = createStore(rootReducer,composeWithDevTools()); 
+const store = createStore(rootReducer, composeWithDevTools());
 // fonts
 
 ReactDOM.render(
-  <Provider store={store}>
-  <AuthContextProvider>
-    <>
-      <ChakraProvider theme={theme}>
-        <CategoryProvider>
-          <BrowserRouter>
-            <App />
-          </BrowserRouter>
-        </CategoryProvider>
-      </ChakraProvider>
-    </>
-  </AuthContextProvider>
-  </Provider>,
-  document.getElementById("root")
+	<Provider store={store}>
+		<AuthContextProvider>
+			<>
+				<ChakraProvider theme={theme}>
+					<CategoryProvider>
+						<BrowserRouter>
+							<App />
+						</BrowserRouter>
+					</CategoryProvider>
+				</ChakraProvider>
+			</>
+		</AuthContextProvider>
+	</Provider>,
+	document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function

@@ -7,7 +7,6 @@ import SocialMedia from "./talentRegistrationPro/SocialMedia";
 import WorkSample from "./talentRegistrationPro/WorkSample";
 
 const TalentRegistrationProfessionalInfo = ({ data }) => {
-	console.log("dataaaaa is :", data);
 	return (
 		<Box mt="5.555vh" w={{ base: "100%", lg: "36.04vw" }}>
 			<Text
@@ -188,14 +187,17 @@ const TalentRegistrationProfessionalInfo = ({ data }) => {
 					>
 						Terms of Service*
 					</Text>
-					<Input
-						h="6.48vh"
-						borderRadius={"15px"}
-						value={data.term}
-						onChange={(e) => {
-							data.set_term(e.target.value);
-						}}
-					/>
+					{data?.term?.map((_data, index) => (
+						<Input
+							h="6.48vh"
+							borderRadius={"15px"}
+							value={data.term}
+							onChange={(e) => {
+								data.set_term(e.target.value);
+							}}
+						/>
+					))}
+
 					<Text
 						fontFamily={"Gilroy-SemiBold"}
 						color="rgba(246, 84, 14, 1)"
@@ -205,7 +207,10 @@ const TalentRegistrationProfessionalInfo = ({ data }) => {
 					</Text>
 				</Box>
 				<Box mt="2.22vh">
-					<Checkbox>
+					<Checkbox
+						value={data.accept}
+						onChange={(e) => data.set_accept(e.target.checked)}
+					>
 						<Box
 							fontFamily={"Gilroy-SemiBold"}
 							fontSize={{ base: "1.2rem", md: "1.5rem", lg: ".833vw" }}

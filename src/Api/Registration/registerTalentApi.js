@@ -1,5 +1,4 @@
 import axios from "axios";
-import { AccessAuthContext } from "../../New/Context/AuthContext";
 import uploadToCloud from "../../New/Utility/uploadToCloud";
 
 const registerTalentApi = async (data) => {

@@ -68,26 +68,28 @@ const Profile = (state) => {
 	console.log({ userId });
 	const navigate = useNavigate();
 
-	const { user } = useSelector((state) => ({ ...state }));
 	const [loading, setLoading] = useState(false);
 	const [allTalents, setAllTalents] = useState([]);
 	const [talents, setTalents] = useState([]);
 	const [userData, setUserData] = useState({});
+	const { user } = useSelector((state) => ({ ...state }));
 
 	console.log("location", location);
-	useEffect(async () => {
-		//window.scrollTo(0, 0);
-		setLoading(true);
-		try {
-			const res = await getAllUsers();
-			setLoading(false);
-			setTalents(res.user);
-		} catch (err) {
-			const res2 = await getAllTalents();
-			setLoading(false);
-			setAllTalents(res2.data.talents);
-		}
-	}, []);
+	// useEffect(async () => {
+	// 	//window.scrollTo(0, 0);
+	// 	setLoading(true);
+	// 	try {
+	// 		const res = await getAllUsers();
+	// 		setLoading(false);
+	// 		setTalents(res.user);
+	// 	} catch (err) {
+	// 		const res2 = await getAllTalents();
+	// 		setLoading(false);
+	// 		setAllTalents(res2.data.talents);
+	// 	}
+	// }, []);
+
+	console.log("user value is :", user);
 
 	useEffect(() => {
 		setLoading(true);
@@ -124,8 +126,111 @@ const Profile = (state) => {
 							<Box display={"flex"} flexDir="column" gap="1.04vw">
 								<Box
 									position={"relative"}
-									bgImage={`${userData?.avatar}`}
-								></Box>
+									width="100%"
+									style={{ aspectRatio: "1/1" }}
+									bgImage={`url('${user?.avatar}')`}
+									borderRadius="20px"
+									backgroundPosition={"center"}
+									backgroundSize="cover"
+									padding="15px"
+									display={"flex"}
+									flexDir="column"
+									alignItems={"flex-end"}
+									justifyContent="flex-end"
+								>
+									{user?.isMusician === "Musician" &&
+									user?.userId === userData._id ? (
+										<Button
+											mt="3.70vh"
+											h="6.48vh"
+											w="100%"
+											borderRadius={"10px"}
+											bg="#F6540E"
+											_hover={{ background: "#F6540E" }}
+											onClick={() =>
+												navigate("/edit-profile", {
+													state: { data: user, prevPath: location.pathname },
+												})
+											}
+										>
+											<Sms
+												className="genre-category-icons2"
+												style={{
+													width: "1.25vw",
+													height: "1.25vw",
+												}}
+											/>
+											<Text
+												className="lyrics-heading-2"
+												ml=".36vw"
+												color="white"
+												fontFamily={"Gilroy-SemiBold"}
+												fontSize=".833vw"
+											>
+												Edit Profile
+											</Text>
+										</Button>
+									) : user?.isMusician === "Recruter" &&
+									  user?.userId === userData._id ? (
+										<Button
+											mt="3.70vh"
+											h="6.48vh"
+											w="100%"
+											borderRadius={"1.04vw"}
+											bg="#F6540E"
+											_hover={{ background: "#F6540E" }}
+											onClick={() =>
+												navigate("/creator-edit-profile", {
+													state: { data: user, prevPath: location.pathname },
+												})
+											}
+										>
+											<Sms
+												style={{
+													width: "1.25vw",
+													height: "1.25vw",
+												}}
+											/>
+											<Text
+												ml=".36vw"
+												color="white"
+												fontFamily={"Gilroy-SemiBold"}
+												fontSize=".833vw"
+											>
+												Edit Profile
+											</Text>
+										</Button>
+									) : (
+										<Button
+											mt="3.70vh"
+											h="6.48vh"
+											w="100%"
+											borderRadius={"1.04vw"}
+											bg="#F6540E"
+											_hover={{ background: "#F6540E" }}
+											onClick={() =>
+												navigate("/messages", {
+													state: { data: user, prevPath: location.pathname },
+												})
+											}
+										>
+											<Sms
+												style={{
+													width: "1.25vw",
+													height: "1.25vw",
+												}}
+											/>
+											<Text
+												ml=".36vw"
+												color="white"
+												fontFamily={"Gilroy-SemiBold"}
+												fontSize=".833vw"
+											>
+												Contact
+											</Text>
+										</Button>
+									)}
+								</Box>
 
 								<Box display={{ md: "flex", sm: "block" }} flexDir="row">
 									<Box>
@@ -318,104 +423,10 @@ const Profile = (state) => {
 											fontFamily={"Gilroy-Bold"}
 											fontSize="1.45vw"
 										>
-											₹{userData.startingPrice}
+											₹ {user?.startingPrice}
 										</Text>
 									</Box>
-
-									{user?.isMusician === "Musician" &&
-									user?.userId === userData._id ? (
-										<Button
-											mt="3.70vh"
-											h="6.48vh"
-											w="100%"
-											borderRadius={"4.04vw"}
-											bg="#F6540E"
-											_hover={{ background: "#F6540E" }}
-											onClick={() =>
-												navigate("/edit-profile", {
-													state: { data: user, prevPath: location.pathname },
-												})
-											}
-										>
-											<Sms
-												className="genre-category-icons2"
-												style={{
-													width: "1.25vw",
-													height: "1.25vw",
-												}}
-											/>
-											<Text
-												className="lyrics-heading-2"
-												ml=".36vw"
-												color="white"
-												fontFamily={"Gilroy-SemiBold"}
-												fontSize=".833vw"
-											>
-												Edit Profile
-											</Text>
-										</Button>
-									) : user?.isMusician === "Recruter" &&
-									  user?.userId === userData._id ? (
-										<Button
-											mt="3.70vh"
-											h="6.48vh"
-											w="100%"
-											borderRadius={"1.04vw"}
-											bg="#F6540E"
-											_hover={{ background: "#F6540E" }}
-											onClick={() =>
-												navigate("/creator-edit-profile", {
-													state: { data: user, prevPath: location.pathname },
-												})
-											}
-										>
-											<Sms
-												style={{
-													width: "1.25vw",
-													height: "1.25vw",
-												}}
-											/>
-											<Text
-												ml=".36vw"
-												color="white"
-												fontFamily={"Gilroy-SemiBold"}
-												fontSize=".833vw"
-											>
-												Edit Profile
-											</Text>
-										</Button>
-									) : (
-										<Button
-											mt="3.70vh"
-											h="6.48vh"
-											w="100%"
-											borderRadius={"1.04vw"}
-											bg="#F6540E"
-											_hover={{ background: "#F6540E" }}
-											onClick={() =>
-												navigate("/messages", {
-													state: { data: user, prevPath: location.pathname },
-												})
-											}
-										>
-											<Sms
-												style={{
-													width: "1.25vw",
-													height: "1.25vw",
-												}}
-											/>
-											<Text
-												ml=".36vw"
-												color="white"
-												fontFamily={"Gilroy-SemiBold"}
-												fontSize=".833vw"
-											>
-												Contact
-											</Text>
-										</Button>
-									)}
 								</Box>
-
 								<Box>
 									<Box
 										display={"block"}
@@ -425,7 +436,7 @@ const Profile = (state) => {
 										mt="2.22vh"
 									>
 										{/* card-1  */}
-										{userData?.services?.map((item, index) => (
+										{user?.services.map((item, index) => (
 											<Box
 												w="100%"
 												h="6rem"
@@ -462,10 +473,7 @@ const Profile = (state) => {
 													fontFamily={"Gilroy-Bold"}
 													fontSize="1.6rem"
 												>
-													Starting Price: ₹
-													{userData.startingPrice !== undefined
-														? userData.startingPrice
-														: item.serviceStargingPrice}
+													Starting Price: ₹{item.serviceStargingPrice}
 												</Text>
 											</Box>
 										))}
@@ -575,16 +583,6 @@ const Profile = (state) => {
 									) : (
 										""
 									)}
-
-									{/* {user.terms?.map((t, index) => (
-                    <Text
-                      fontFamily={"Gilroy-Medium"}
-                      fontSize=".833vw"
-                      key={index}
-                    >
-                      {index + 1}. {t}
-                    </Text>
-                  ))} */}
 								</Box>
 
 								{/* Gear Highlights */}
@@ -680,99 +678,9 @@ const Profile = (state) => {
 										Starting Price:
 									</Text>
 									<Text fontFamily={"Gilroy-Bold"} fontSize="1.45vw">
-										₹{userData.startingPrice}
+										₹{user?.startingPrice}
 									</Text>
 								</Box>
-								{user?.isMusician === "Musician" &&
-								userData?._id == user.userId ? (
-									<Button
-										mt="3.70vh"
-										h="6.48vh"
-										w="100%"
-										borderRadius={"1.04vw"}
-										bg="#F6540E"
-										_hover={{ background: "#F6540E" }}
-										onClick={() =>
-											navigate("/edit-profile", {
-												state: { data: user, prevPath: location.pathname },
-											})
-										}
-									>
-										<Sms
-											style={{
-												width: "1.25vw",
-												height: "1.25vw",
-											}}
-										/>
-										<Text
-											ml=".36vw"
-											color="white"
-											fontFamily={"Gilroy-SemiBold"}
-											fontSize=".833vw"
-										>
-											Edit Profile
-										</Text>
-									</Button>
-								) : user?.isMusician === "Recruter" &&
-								  userData?._id === userId ? (
-									<Button
-										mt="3.70vh"
-										h="6.48vh"
-										w="100%"
-										borderRadius={"1.04vw"}
-										bg="#F6540E"
-										_hover={{ background: "#F6540E" }}
-										onClick={() =>
-											navigate("/creator-edit-profile", {
-												state: { data: user, prevPath: location.pathname },
-											})
-										}
-									>
-										<Sms
-											style={{
-												width: "1.25vw",
-												height: "1.25vw",
-											}}
-										/>
-										<Text
-											ml=".36vw"
-											color="white"
-											fontFamily={"Gilroy-SemiBold"}
-											fontSize=".833vw"
-										>
-											Edit Profile
-										</Text>
-									</Button>
-								) : (
-									<Button
-										mt="3.70vh"
-										h="6.48vh"
-										w="100%"
-										borderRadius={"1.04vw"}
-										bg="#F6540E"
-										_hover={{ background: "#F6540E" }}
-										onClick={() =>
-											navigate("/messages", {
-												state: { data: user, prevPath: location.pathname },
-											})
-										}
-									>
-										<Sms
-											style={{
-												width: "1.25vw",
-												height: "1.25vw",
-											}}
-										/>
-										<Text
-											ml=".36vw"
-											color="white"
-											fontFamily={"Gilroy-SemiBold"}
-											fontSize=".833vw"
-										>
-											Contact
-										</Text>
-									</Button>
-								)}
 							</Box>
 
 							<Box>
@@ -784,7 +692,7 @@ const Profile = (state) => {
 									mt="2.22vh"
 								>
 									{/* card-1  */}
-									{userData?.services?.map((item, index) => (
+									{user?.services?.map((item, index) => (
 										<Box
 											w="100%"
 											h="8rem"
@@ -811,10 +719,7 @@ const Profile = (state) => {
 											</Box>
 											<Box flexGrow={1}></Box>
 											<Text fontFamily={"Gilroy-Bold"} fontSize="1.6rem">
-												Starting Price: ₹
-												{userData.startingPrice !== undefined
-													? userData.startingPrice
-													: item.serviceStargingPrice}
+												Starting Price: ₹{item.serviceStargingPrice}
 											</Text>
 										</Box>
 									))}

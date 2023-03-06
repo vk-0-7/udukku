@@ -287,7 +287,8 @@ const NavBar = () => {
 											cursor="pointer"
 										>
 											<Box
-												bgImage={avatar}
+												bgImage={user?.avatar}
+												bgPosition="center"
 												bgSize="cover"
 												borderRadius={"full"}
 												h="30px"
@@ -365,13 +366,9 @@ const NavBar = () => {
 												fontFamily={"Gilroy-SemiBold"}
 												fontSize={"1.4rem"}
 												onClick={() => {
-													navigate(
-														`/${user?.name.substring(
-															0,
-															user?.name.indexOf(" ")
-														)}`,
-														{ state: user?.userId }
-													);
+													navigate(`/${user?.name.split(" ")[0]}`, {
+														state: user?.userId,
+													});
 												}}
 											>
 												<Image

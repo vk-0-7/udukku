@@ -5,8 +5,10 @@ import Gear from "./talentRegistrationPro/Gear";
 import Genre from "./talentRegistrationPro/Genre";
 import SocialMedia from "./talentRegistrationPro/SocialMedia";
 import WorkSample from "./talentRegistrationPro/WorkSample";
+import TermsAndServices from "./talentRegistrationPro/TermsAndServices";
 
 const TalentRegistrationProfessionalInfo = ({ data }) => {
+	console.log("value of data is : ", data);
 	return (
 		<Box mt="5.555vh" w={{ base: "100%", lg: "36.04vw" }}>
 			<Text
@@ -181,20 +183,13 @@ const TalentRegistrationProfessionalInfo = ({ data }) => {
 					</Text>
 				</Box>
 				<Box mt="2.22vh">
-					<Text
-						fontFamily={"Gilroy-SemiBold"}
-						fontSize={{ base: "1.2rem", md: "1.5rem", lg: ".833vw" }}
-					>
-						Terms of Service*
-					</Text>
 					{data?.term?.map((_data, index) => (
-						<Input
-							h="6.48vh"
-							borderRadius={"15px"}
-							value={data.term}
-							onChange={(e) => {
-								data.set_term(e.target.value);
-							}}
+						<TermsAndServices
+							key={index}
+							currentIndex={index}
+							fullState={data.term}
+							changeState={data.set_term}
+							showDelete={data.term.length > 1 ? true : false}
 						/>
 					))}
 
@@ -202,6 +197,14 @@ const TalentRegistrationProfessionalInfo = ({ data }) => {
 						fontFamily={"Gilroy-SemiBold"}
 						color="rgba(246, 84, 14, 1)"
 						fontSize={{ base: "1rem", md: "1.2rem", lg: ".833vw" }}
+						cursor={"pointer"}
+						onClick={() => {
+							if (data?.term.length !== 0) {
+								data?.set_term((oldArr) => [...oldArr, ""]);
+							} else {
+								data?.set_term([""]);
+							}
+						}}
 					>
 						+ Add another Terms of Service
 					</Text>

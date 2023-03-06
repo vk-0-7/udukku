@@ -32,7 +32,7 @@ const TalentRegistration = () => {
 	const [gear, set_gear] = useState([]);
 	const [social_media, set_social_media] = useState([]);
 	const [work, set_work] = useState([]);
-	const [term, set_term] = useState([]);
+	const [term, set_term] = useState([" "]);
 	const [categories, set_categories] = useState([]);
 	const [accept, set_accept] = useState(false);
 
@@ -99,7 +99,7 @@ const TalentRegistration = () => {
 							  ]
 							: res.data.socialMedia
 					);
-					set_term(res.data.terms);
+					set_term(res.data.terms.length === 0 ? [""] : res.data.terms);
 					setInitialLoad(false);
 					set_loading(false);
 				})
@@ -110,44 +110,6 @@ const TalentRegistration = () => {
 				});
 		}
 	}, [id]);
-
-	const handleEdit = async () => {
-		try {
-			const res = await updateUserApi(
-				id,
-				avatar,
-				fname,
-				wa_number,
-				city,
-				ustate,
-				description,
-				categories,
-				genre,
-				gear,
-				social_media,
-				term
-			);
-			toast({
-				title: "success",
-				description: "Your Profile has been successfully updated",
-				position: "top",
-				status: "success",
-				duration: 5000,
-				isClosable: true,
-			});
-			navigate("/dashboard");
-		} catch (e) {
-			console.log("updateerror", e);
-			toast({
-				title: "error",
-				description: "Could not update you profile. Try again later.",
-				position: "top",
-				status: "error",
-				duration: 5000,
-				isClosable: true,
-			});
-		}
-	};
 
 	const checkFields = () => {
 		if (fname === "") return false;
@@ -185,9 +147,12 @@ const TalentRegistration = () => {
 		}
 
 		// check terms and services
-		// for (let i = 0; i < term.length; i++) {
-		// 	if (term[i] === "") return false;
-		// }
+		for (let i = 0; i < term.length; i++) {
+			if (term[i] === "") {
+				console.log("returning false from term");
+				return false;
+			}
+		}
 
 		// check agree tick
 		if (!accept) return false;
@@ -241,10 +206,27 @@ const TalentRegistration = () => {
 										isProfileCompleted: res.data.isProfileCompleted,
 										qr: res.data.profileUrl,
 										avatar: res.data.avatar,
+										role: res.data.role,
+										genres: res.data.genres,
+										services: res.data.services,
+										gearHighLights: res.data.gearHighLights,
+										review: res.data.review,
+										terms: res.data.terms,
+										postedJobs: res.data.postedJobs,
+										startingPrice: res.data.startingPrice,
+										jobsCompleted: res.data.jobsCompleted,
+										totalEarn: res.data.totalEarn,
+										repeatedBuyer: res.data.repeatedBuyer,
+										socialMedia: res.data.socialMedia,
+										city: res.data.city,
+										description: res.data.description,
+										mobile: res.data.mobile,
+										userName: res.data.userName,
 									},
 								});
 								set_loading(false);
-								navigate("/", { state: { status: "success" } });
+								sessionStorage.setItem("profileStatus", "success");
+								navigate("/");
 							})
 							.catch((error) => {
 								alert("errrorrrrrr");

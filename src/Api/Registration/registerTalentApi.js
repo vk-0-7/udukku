@@ -5,6 +5,8 @@ const registerTalentApi = async (data) => {
 	try {
 		const res = await uploadToCloud(data.avatar);
 
+		console.log("value to update is : ", data);
+
 		return axios.patch(
 			process.env.REACT_APP_BASE_URL + `/user/update-user-by-id/${data.id}`,
 			{
@@ -15,7 +17,7 @@ const registerTalentApi = async (data) => {
 				state: data.state,
 				description: data.description,
 				genres: data.genre,
-				terms: data.terms,
+				terms: data.term,
 				socialMedia: data.social_media,
 				services: data.categories,
 				gearHighLights: data.gear,

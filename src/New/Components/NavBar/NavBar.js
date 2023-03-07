@@ -86,8 +86,8 @@ const NavBar = () => {
 				h={{ base: hamMenu ? "100vh" : "fit-content", lg: "fit-content" }}
 				w="100vw"
 				px={{ base: "7vw", lg: "13.54vw" }}
-				pt={path.length >= 2 ? "20px" : positon > 5 ? "20px" : "20px"}
-				pb={path.length >= 2 ? "20px" : positon > 5 ? "20px" : "0px"}
+				pt={path.length >= 2 ? "15px" : positon > 5 ? "15px" : "15px"}
+				pb={path.length >= 2 ? "15px" : positon > 5 ? "15px" : "0px"}
 				display={"flex"}
 				flexDir={{ base: hamMenu ? "column" : "row", lg: "row" }}
 				alignItems={{ base: hamMenu ? "center" : "flex-start", lg: "center" }}
@@ -117,7 +117,11 @@ const NavBar = () => {
 					cursor={{ base: "pointer", lg: "none" }}
 					alignSelf={"flex-start"}
 				>
-					<HamIcon onClick={() => setHamMenu(!hamMenu)} />
+					<HamIcon
+						width={"2rem"}
+						height="2rem"
+						onClick={() => setHamMenu(!hamMenu)}
+					/>
 				</Box>
 				<Box flexGrow={{ base: hamMenu ? "" : "1", lg: "1" }}>
 					{user?.token && user?.isMusician === "Recruter" ? (
@@ -180,7 +184,7 @@ const NavBar = () => {
 					>
 						<Text
 							fontFamily={"Gilroy-SemiBold"}
-							fontSize={{ base: "4rem", lg: ".8333vw" }}
+							fontSize={{ base: "4rem", lg: "1.1vw" }}
 							onClick={() => {
 								navigate("/lyrics");
 								setHamMenu(!hamMenu);
@@ -195,7 +199,7 @@ const NavBar = () => {
 						</Text>
 						<Text
 							fontFamily={"Gilroy-SemiBold"}
-							fontSize={{ base: "4rem", lg: ".8333vw" }}
+							fontSize={{ base: "4rem", lg: "1.1vw" }}
 							_hover={{
 								color: "#F6540E",
 							}}
@@ -210,7 +214,7 @@ const NavBar = () => {
 						</Text>
 						<Text
 							fontFamily={"Gilroy-SemiBold"}
-							fontSize={{ base: "4rem", lg: ".8333vw" }}
+							fontSize={{ base: "4rem", lg: "1.1vw" }}
 							color={path[1] === "jobs" ? "#F6540E" : "#fff"}
 							_hover={{
 								color: "#F6540E",
@@ -225,7 +229,7 @@ const NavBar = () => {
 						</Text>
 						<Text
 							fontFamily={"Gilroy-SemiBold"}
-							fontSize={{ base: "4rem", lg: ".8333vw" }}
+							fontSize={{ base: "4rem", lg: "1.1vw" }}
 							cursor={"pointer"}
 							onClick={() => {
 								setHowItWorksState(true);
@@ -302,7 +306,7 @@ const NavBar = () => {
 											>
 												<Text
 													className="lyrics-heading-2"
-													fontSize={{ base: "1.5rem", lg: ".8333vw" }}
+													fontSize={{ base: "4rem", lg: "1.1vw" }}
 													fontFamily={"Gilroy-SemiBold"}
 													display={"flex"}
 													verticalAlign={"middle"}
@@ -311,7 +315,7 @@ const NavBar = () => {
 												</Text>
 												<Icon
 													as={BsChevronDown}
-													fontSize={{ base: "1.5rem", lg: ".8333vw" }}
+													fontSize={{ base: "4rem", lg: "1.1vw" }}
 												/>
 											</Box>
 										</Box>

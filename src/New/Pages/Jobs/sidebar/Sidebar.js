@@ -1,5 +1,5 @@
-import { Box, Button, Checkbox, Input, Text } from '@chakra-ui/react';
-import { useEffect, useState } from 'react';
+import { Box, Button, Checkbox, Input, Text } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
 
 const Sidebar = ({
 	setCategory,
@@ -11,8 +11,8 @@ const Sidebar = ({
 	setGenre,
 }) => {
 	const [budgetInvalid, setBudgetInvalid] = useState(false);
-	const [bs, setBs] = useState('');
-	const [be, setBe] = useState('');
+	const [bs, setBs] = useState("");
+	const [be, setBe] = useState("");
 
 	const handleCategory = (e) => {
 		setCategory((prev) => {
@@ -55,16 +55,16 @@ const Sidebar = ({
 			return [...prev];
 		});
 	};
-    const handlePerformance=()=>{
+	const handlePerformance = () => {
 		// write code
-	}
+	};
 	const handleBudget = () => {
 		setBudgetStart(bs);
 		setBudgetEnd(be);
 	};
 
 	useEffect(() => {
-		if (bs === '' || be === '') {
+		if (bs === "" || be === "") {
 			setBudgetInvalid(true);
 		} else {
 			setBudgetInvalid(false);
@@ -73,188 +73,180 @@ const Sidebar = ({
 
 	return (
 		<>
-			<Box w={{ base: '25vw' }} h='100%'  pl="8vw">
-				<Text fontFamily={'Gilroy-Bold'} fontSize={'1.25vw'}>
+			<Box w={{ base: "25vw" }} h="100%">
+				<Text fontFamily={"Gilroy-Bold"} fontSize={"1.25vw"}>
 					Category
 				</Text>
 				<Box
-					pl='10px'
-					display={'flex'}
-					flexDir='column'
-					mt='10px'
-					gap='5px'
-					fontFamily={'Gilroy-SemiBold'}
+					pl="10px"
+					display={"flex"}
+					flexDir="column"
+					mt="10px"
+					gap="5px"
+					fontFamily={"Gilroy-SemiBold"}
 					onChange={handleCategory}
 				>
-					<Checkbox value='VOCALISTS' size={'lg'}>
-						<Text fontSize={'.833vw'}>Vocalists</Text>
+					<Checkbox value="VOCALISTS" size={"lg"}>
+						<Text fontSize={".833vw"}>Vocalists</Text>
 					</Checkbox>
-					<Checkbox value='Music Producers & Engineers' size={'lg'}>
-						<Text fontSize={'.833vw'}>
-							Music Producers & Engineers
-						</Text>
+					<Checkbox value="Music Producers & Engineers" size={"lg"}>
+						<Text fontSize={".833vw"}>Music Producers & Engineers</Text>
 					</Checkbox>
-					<Checkbox value='Mixing Engineers' size={'lg'}>
-						<Text fontSize={'.833vw'}>Mixing Engineers</Text>
+					<Checkbox value="Mixing Engineers" size={"lg"}>
+						<Text fontSize={".833vw"}>Mixing Engineers</Text>
 					</Checkbox>
-					<Checkbox value='DJs' size={'lg'}>
-						<Text fontSize={'.833vw'}>DJs</Text>
+					<Checkbox value="DJs" size={"lg"}>
+						<Text fontSize={".833vw"}>DJs</Text>
 					</Checkbox>
-					<Checkbox value='Song writers & Composers' size={'lg'}>
-						<Text fontSize={'.833vw'}>
-							Song writers & Composers
-						</Text>
+					<Checkbox value="Song writers & Composers" size={"lg"}>
+						<Text fontSize={".833vw"}>Song writers & Composers</Text>
 					</Checkbox>
-					<Checkbox value='Instruments' size={'lg'}>
-						<Text fontSize={'.833vw'}>Instruments</Text>
+					<Checkbox value="Instruments" size={"lg"}>
+						<Text fontSize={".833vw"}>Instruments</Text>
 					</Checkbox>
 				</Box>
-				<Text fontFamily={'Gilroy-Bold'} fontSize={'1.25vw'} mt='30px'>
+				<Text fontFamily={"Gilroy-Bold"} fontSize={"1.25vw"} mt="30px">
 					Budget
 				</Text>
-				<Box display={'flex'} gap='10px' px='10px' mt='10px'>
+				<Box display={"flex"} gap="10px" pl={"0px"} pr="20px" mt="10px">
 					<Input
-						type='number'
+						type="number"
 						value={bs}
 						placeholder={"100"}
-						fontSize='.92vw'
+						fontSize=".92vw"
 						borderRadius={"10px"}
-						h={{ base: '6.48vh', '3xl': '4vh' }}
+						h={{ base: "6.48vh", "3xl": "4vh" }}
 						onChange={(e) => {
 							setBs(e.target.value);
 						}}
 					/>
 					<Input
-						type='number'
+						type="number"
 						value={be}
 						placeholder={"100000"}
-						fontSize='.92vw'
+						fontSize=".92vw"
 						borderRadius={"10px"}
-						h={{ base: '6.48vh', '3xl': '4vh' }}
+						h={{ base: "6.48vh", "3xl": "4vh" }}
 						onChange={(e) => {
 							setBe(e.target.value);
 						}}
 					/>
 				</Box>
 				<Box
-					display={'flex'}
-					flexDir='column'
-					justifyContent='center'
-					mt='10px'
+					display={"flex"}
+					flexDir="column"
+					justifyContent="center"
+					mt="10px"
 				>
 					<Button
-						bg='#F6540E'
-						color='#fff'
-						w='90%'
-						borderRadius={'1.04vw'}
-						h={{ base: '6.48vh', '3xl': '4vh' }}
-						fontSize='.833vw'
-						_hover={{ background: '#F6540E' }}
+						bg="#F6540E"
+						color="#fff"
+						w="90%"
+						borderRadius={"1.04vw"}
+						h={{ base: "6.48vh", "3xl": "4vh" }}
+						fontSize=".833vw"
+						_hover={{ background: "#F6540E" }}
 						isDisabled={budgetInvalid}
 						onClick={handleBudget}
 					>
 						Apply
 					</Button>
 					<Text
-						display={
-							budgetStart === '' && budgetEnd === ''
-								? 'none'
-								: 'block'
-						}
-						w='90%'
-						textAlign={'center'}
-						textDecor='underline'
-						mt='5px'
-						fontSize={'.8333vw'}
-						cursor={'pointer'}
+						display={budgetStart === "" && budgetEnd === "" ? "none" : "block"}
+						w="90%"
+						textAlign={"center"}
+						textDecor="underline"
+						mt="5px"
+						fontSize={".8333vw"}
+						cursor={"pointer"}
 						onClick={() => {
-							setBs('');
-							setBe('');
-							setBudgetStart('');
-							setBudgetEnd('');
+							setBs("");
+							setBe("");
+							setBudgetStart("");
+							setBudgetEnd("");
 						}}
 					>
 						Clear
 					</Text>
 				</Box>
-				<Text fontFamily={'Gilroy-Bold'} fontSize={'1.25vw'} mt='30px'>
+				<Text fontFamily={"Gilroy-Bold"} fontSize={"1.25vw"} mt="30px">
 					Deadline
 				</Text>
 				<Box
-					pl='10px'
-					display={'flex'}
-					flexDir='column'
-					mt='10px'
-					gap='5px'
-					fontFamily={'Gilroy-SemiBold'}
-					fontSize='16px'
+					pl="10px"
+					display={"flex"}
+					flexDir="column"
+					mt="10px"
+					gap="5px"
+					fontFamily={"Gilroy-SemiBold"}
+					fontSize="16px"
 					onChange={handleDeadLine}
 				>
-					<Checkbox value='0-7 Days' size={'lg'}>
-						<Text fontSize={'.833vw'}>0-7 Days</Text>
+					<Checkbox value="0-7 Days" size={"lg"}>
+						<Text fontSize={".833vw"}>0-7 Days</Text>
 					</Checkbox>
-					<Checkbox value='8-14 days' size={'lg'}>
-						{' '}
-						<Text fontSize={'.833vw'}>8-14 Days</Text>
+					<Checkbox value="8-14 days" size={"lg"}>
+						{" "}
+						<Text fontSize={".833vw"}>8-14 Days</Text>
 					</Checkbox>
-					<Checkbox value='15-21 Days' size={'lg'}>
-						<Text fontSize={'.833vw'}>15-21 Days</Text>
+					<Checkbox value="15-21 Days" size={"lg"}>
+						<Text fontSize={".833vw"}>15-21 Days</Text>
 					</Checkbox>
-					<Checkbox value='22-30 Days' size={'lg'}>
-						<Text fontSize={'.833vw'}>22-30 Days</Text>
+					<Checkbox value="22-30 Days" size={"lg"}>
+						<Text fontSize={".833vw"}>22-30 Days</Text>
 					</Checkbox>
-					<Checkbox value='31-40 Days' size={'lg'}>
-						<Text fontSize={'.833vw'}>31-40 Days</Text>
+					<Checkbox value="31-40 Days" size={"lg"}>
+						<Text fontSize={".833vw"}>31-40 Days</Text>
 					</Checkbox>
-					<Checkbox value='41-60 Days' size={'lg'}>
-						<Text fontSize={'.833vw'}>41-60 Days</Text>
+					<Checkbox value="41-60 Days" size={"lg"}>
+						<Text fontSize={".833vw"}>41-60 Days</Text>
 					</Checkbox>
-					<Checkbox value='more than 60 Days' size={'lg'}>
-						<Text fontSize={'.833vw'}>more than 60 Days</Text>
+					<Checkbox value="more than 60 Days" size={"lg"}>
+						<Text fontSize={".833vw"}>more than 60 Days</Text>
 					</Checkbox>
 				</Box>
-				<Text fontFamily={'Gilroy-Bold'} fontSize={'1.25vw'} mt='30px'>
+				<Text fontFamily={"Gilroy-Bold"} fontSize={"1.25vw"} mt="30px">
 					Genre
 				</Text>
 				<Box
-					pl='10px'
-					display={'flex'}
-					flexDir='column'
-					mt='10px'
-					gap='5px'
-					fontFamily={'Gilroy-SemiBold'}
-					fontSize='16px'
+					pl="10px"
+					display={"flex"}
+					flexDir="column"
+					mt="10px"
+					gap="5px"
+					fontFamily={"Gilroy-SemiBold"}
+					fontSize="16px"
 					onChange={handleGenre}
 				>
-					<Checkbox value='National or Indian' size={'lg'}>
-						<Text fontSize={'.833vw'}>National/Indian</Text>
+					<Checkbox value="National or Indian" size={"lg"}>
+						<Text fontSize={".833vw"}>National/Indian</Text>
 					</Checkbox>
-					<Checkbox value='Regional' size={'lg'}>
-						<Text fontSize={'.833vw'}>Regional</Text>
+					<Checkbox value="Regional" size={"lg"}>
+						<Text fontSize={".833vw"}>Regional</Text>
 					</Checkbox>
-					<Checkbox value='International' size={'lg'}>
-						<Text fontSize={'.833vw'}>International</Text>
+					<Checkbox value="International" size={"lg"}>
+						<Text fontSize={".833vw"}>International</Text>
 					</Checkbox>
 				</Box>
 
-				<Text fontFamily={'Gilroy-Bold'} fontSize={'1.25vw'} mt='30px'>
+				<Text fontFamily={"Gilroy-Bold"} fontSize={"1.25vw"} mt="30px">
 					Performance Type
 				</Text>
 				<Box
-					pl='10px'
-					display={'flex'}
-					flexDir='column'
-					mt='10px'
-					gap='5px'
-					fontFamily={'Gilroy-SemiBold'}
-					fontSize='16px'
+					pl="10px"
+					display={"flex"}
+					flexDir="column"
+					mt="10px"
+					gap="5px"
+					fontFamily={"Gilroy-SemiBold"}
+					fontSize="16px"
 					onChange={handlePerformance}
 				>
-					<Checkbox value='Production' size={'lg'}>
-						<Text fontSize={'.833vw'}>Production</Text>
+					<Checkbox value="Production" size={"lg"}>
+						<Text fontSize={".833vw"}>Production</Text>
 					</Checkbox>
-					<Checkbox value='LiveShow' size={'lg'}>
-						<Text fontSize={'.833vw'}>Live Show</Text>
+					<Checkbox value="LiveShow" size={"lg"}>
+						<Text fontSize={".833vw"}>Live Show</Text>
 					</Checkbox>
 				</Box>
 			</Box>

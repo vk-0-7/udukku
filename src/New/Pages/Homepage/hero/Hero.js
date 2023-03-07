@@ -7,112 +7,123 @@ import Slide from "./Slide";
 import { useNavigate } from "react-router-dom";
 
 const Hero = () => {
-  const navigate = useNavigate();
-  return (
-    <Box
-      // h={{ base: "100vh", md: "100vh", lg: "73.70vh", xl: "73.70vh" }}
-      w="100vw"
-      overflow={"hidden"}
-      bg="#082032"
-      display={"flex"}
-      alignItems="center"
-      px={{ base: "2rem", lg: "12.54vw" }}
-      gap={"100px"}
-      pt={{
-        base: "7rem", // 0-48em
-        md: "5rem", // 48em-80em,
-        xl: "4rem", // 80em+
-      }}
-      mt="7rem"
-      pb="7.40vh"
-      flexDir={{
-        base: "column", // 0-48em
-        md: "column",
-        lg: "row", // 48em-80em,
-        xl: "row", // 80em+
-      }}
-    >
-      <Box
-      className="hero-image-radius"
-        display={"flex"}
-        alignItems="center"
-        justifyContent={{ base: "center", md: "center" }}
-        flexDir={{
-          base: "column", // 0-48em
-          md: "column",
-          lg: "row", // 48em-80em,
-          xl: "row", // 80em+
-        }}
-        gap={{ base: "5rem" }}
-        px={{base:"2rem"}}
-      >
-        {/* text section on left */}
-        <Box className="hero-box" display={"flex"} flexDir="column" gap={{base:"2rem",xl:"30px"}}  justifyContent={{base:"center"}} >
-          <Text
-            as="h1"
-            fontSize={{base:"6rem", lg:"3.75vw", sm:"3rem"}}
-            color="#fff"
-            lineHeight={{ base: "1.2em" }}
-            fontFamily={"Gilroy-Bold"}
-            w="100%"
-            className="hero-font-class1"
-          >
-            Join India's leading Music Marketplace
-          </Text>
-          <Text
-            as="p"
-            color="#fff"
-            fontSize={{base:"3rem",lg:"1.041vw"}}
-            fontFamily={"Gilroy-Medium"}
-            className="hero-font-class2"
-          >
-            Get discovered for your music skills and explore India’s unique
-            musical talents at Udukku
-          </Text>
-          <Box className="hero-buttons" display={"flex"} gap={{base:"3rem",lg:"50px"}} mt={{base:"1rem",lg:"40px"}}>
-            <Button
-              boxSizing="border-box"
-              bg="#f6540e"
-              borderRadius={{base:"2.7rem",lg:"1.04vw"}}
-              color="#fff"
-              _hover={{ background: "rgba(177,70,20)" }}
-              w={{base:"",lg:"11.14vw"}}
-              h={{base:"7vh",lg:"6.48vh"}}
-              fontFamily={"Gilroy-SemiBold"}
-              fontSize={{base:"1.5rem",lg:".833vw"}}
-              letterSpacing={"1px"}
-              id="home_hero_discover_talent_btn"
-              onClick={() => {
-                navigate("/talents");
-              }}
-            >
-              <People /> Discover Talents
-            </Button>
-            <Button
-              boxSizing="border-box"
-              border="1px solid #f6540e"
-              bg="transparent"
-              borderRadius={{base:"2.7rem",lg:"1.04vw"}}
-              color="#fff"
-              _hover={{ background: "rgba(215,85,28)" }}
-              w={{base:"",lg:"11.14vw"}}
-              h={{base:"7vh",lg:"6.48vh"}}
-              fontFamily={"Gilroy-SemiBold"}
-              fontSize={{base:"1.5rem",lg:".833vw"}}
-              letterSpacing={"1px"}
-              id="home_hero_be_discovered_btn"
-              onClick={() => {
-                navigate("/jobs");
-              }}
-            >
-              <Man />
-              Be Discovered
-            </Button>
-          </Box>
-        </Box>
-        <Slide />
-        {/* image slider section on right  */}
-        {/* <Box w='27.60vw' h='51.85vh' flexShrink={0}>
+	const navigate = useNavigate();
+	return (
+		<Box
+			// h={{ base: "100vh", md: "100vh", lg: "73.70vh", xl: "73.70vh" }}
+			w="100vw"
+			overflow={"hidden"}
+			bg="#082032"
+			display={"flex"}
+			alignItems="center"
+			px={{ base: "2rem", lg: "12.54vw" }}
+			gap={"100px"}
+			pt={{
+				base: "7rem", // 0-48em
+				md: "5rem", // 48em-80em,
+				xl: "4rem", // 80em+
+			}}
+			mt="5rem"
+			pb="7.40vh"
+			flexDir={{
+				base: "column", // 0-48em
+				md: "column",
+				lg: "row", // 48em-80em,
+				xl: "row", // 80em+
+			}}
+		>
+			<Box
+				className="hero-image-radius"
+				display={"flex"}
+				alignItems="center"
+				justifyContent={{ base: "center", md: "center" }}
+				flexDir={{
+					base: "column", // 0-48em
+					md: "column",
+					lg: "row", // 48em-80em,
+					xl: "row", // 80em+
+				}}
+				gap={{ base: "5rem" }}
+				px={{ base: "2rem" }}
+			>
+				{/* text section on left */}
+				<Box
+					className="hero-box"
+					display={"flex"}
+					flexDir="column"
+					gap={{ base: "2rem", xl: "30px" }}
+					justifyContent={{ base: "center" }}
+				>
+					<Text
+						as="h1"
+						fontSize={{ base: "6rem", lg: "3.75vw", sm: "3rem" }}
+						color="#fff"
+						lineHeight={{ base: "1.2em" }}
+						fontFamily={"Gilroy-Bold"}
+						w="100%"
+						className="hero-font-class1"
+					>
+						Join India's leading Music Marketplace
+					</Text>
+					<Text
+						as="p"
+						color="#fff"
+						fontSize={{ base: "3rem", lg: "1.041vw" }}
+						fontFamily={"Gilroy-Medium"}
+						className="hero-font-class2"
+					>
+						Get discovered for your music skills and explore India’s unique
+						musical talents at Udukku
+					</Text>
+					<Box
+						className="hero-buttons"
+						display={"flex"}
+						gap={{ base: "3rem", lg: "50px" }}
+						mt={{ base: "1rem", lg: "40px" }}
+					>
+						<Button
+							boxSizing="border-box"
+							bg="#f6540e"
+							borderRadius={{ base: "1.4rem", lg: "1.04vw" }}
+							color="#fff"
+							_hover={{ background: "rgba(177,70,20)" }}
+							w={{ base: "", lg: "11.14vw" }}
+							h={{ base: "7vh", lg: "6.48vh" }}
+							fontFamily={"Gilroy-SemiBold"}
+							fontSize={{ base: "1.5rem", lg: ".833vw" }}
+							letterSpacing={"1px"}
+							id="home_hero_discover_talent_btn"
+							onClick={() => {
+								navigate("/talents");
+							}}
+						>
+							<People /> Discover Talents
+						</Button>
+						<Button
+							boxSizing="border-box"
+							border="1px solid #f6540e"
+							bg="transparent"
+							borderRadius={{ base: "1.4rem", lg: "1.04vw" }}
+							color="#fff"
+							_hover={{ background: "rgba(215,85,28)" }}
+							w={{ base: "", lg: "11.14vw" }}
+							h={{ base: "7vh", lg: "6.48vh" }}
+							fontFamily={"Gilroy-SemiBold"}
+							fontSize={{ base: "1.5rem", lg: ".833vw" }}
+							letterSpacing={"1px"}
+							id="home_hero_be_discovered_btn"
+							onClick={() => {
+								navigate("/jobs");
+							}}
+						>
+							<Man />
+							Be Discovered
+						</Button>
+					</Box>
+				</Box>
+				<Slide />
+				{/* image slider section on right  */}
+				{/* <Box w='27.60vw' h='51.85vh' flexShrink={0}>
 					<Box
 						className='hero-image'
 						w='100%'
@@ -196,9 +207,9 @@ const Hero = () => {
 						</Box>
 					</Box>
 				</Box> */}
-      </Box>
-    </Box>
-  );
+			</Box>
+		</Box>
+	);
 };
 
 export default Hero;

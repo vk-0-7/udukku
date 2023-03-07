@@ -13,6 +13,7 @@ import {
 	UnorderedList,
 	useDisclosure,
 	useToast,
+	Image,
 } from "@chakra-ui/react";
 import { GrClose } from "react-icons/gr";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
@@ -25,6 +26,9 @@ import jwt_decode from "jwt-decode";
 import BecomeOurMember from "../../Pages/Homepage/becomeOurMember/BecomeOurMember";
 import { Navigate, useNavigate } from "react-router-dom";
 import SignInModal from "./SignInModal";
+import GoogleLogin from "react-google-login";
+import { googleSignIn } from "../../../Api/Auth";
+import gLogo from "../../../Assets/Icons/Group.svg";
 
 const SignUpModal = ({ state, changeState }) => {
 	const { isOpen, onOpen, onClose } = useDisclosure();
@@ -42,6 +46,8 @@ const SignUpModal = ({ state, changeState }) => {
 	const [signInState, setSignInState] = useState(false);
 	const [showCheckMail, setShowCheckMail] = useState(false);
 	const navigate = useNavigate();
+	const [userId, setUsersId] = useState("");
+	const [token, setUserToken] = useState();
 
 	const toast = useToast();
 	const exp = new RegExp("(?=.*[a-z])");
@@ -50,6 +56,7 @@ const SignUpModal = ({ state, changeState }) => {
 	const exp4 = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
 	const { setUserId } = AccessAuthContext();
 	const dispatch = useDispatch();
+
 	const gLoginButton = useCallback((node) => {
 		if (node !== null) {
 			/* global google */
@@ -96,10 +103,25 @@ const SignUpModal = ({ state, changeState }) => {
 			setLoginState(true);
 			setToken(res.data.refresh_token);
 			setUserId(res.data.user._id);
-			// setUsed('google');
-			// setOpen(false);
+			console.log("user");
+			set_show_registration_modal(true);
+
 			if (res.data.user.isMusician === "") {
 				set_show_registration_modal(true);
+			} else {
+				if (
+					res.data.user.isProfileCompleted === false &&
+					res.data.user.isMusician === "Musician"
+				) {
+					navigate("edit-profile");
+				} else if (
+					res.data.user.isProfileCompleted === false &&
+					res.data.user.isMusician === "Recruter"
+				) {
+					navigate("/creator-edit-profile");
+				} else {
+					navigate("/");
+				}
 			}
 			onClose();
 
@@ -113,6 +135,50 @@ const SignUpModal = ({ state, changeState }) => {
 			// 	duration: 3000,
 			// });
 		}
+	};
+
+	const handleGoogleSignUp = (data) => {
+		setLoading(true);
+
+		googleSignIn(data.tokenId)
+			.then((res) => {
+				setUserToken(res.data.refresh_token);
+				setUsersId(res.data.user._id);
+
+				onClose();
+
+				if (!res.data.user.isProfileCompleted) {
+					// profile is not completed
+
+					if (res.data.user.isMusician === "") {
+						setLoading(false);
+						// means type is not selected
+						set_show_registration_modal(true);
+					} else {
+						// means type is selected
+						if (res.data.user.isMusician === "Musician") {
+							// means user is the musician
+							setLoading(false);
+							navigate("/talent-registration", {
+								state: { token: res.data.refresh_token, id: res.data.user._id },
+							});
+						} else {
+							// means uesr is the job creator
+							setLoading(false);
+							navigate("/job-creator-registration", {
+								state: { token: res.data.refresh_token, id: res.data.user._id },
+							});
+						}
+					}
+				} else {
+					localStorage.setItem("token", res.data.refresh_token);
+					window.location.reload();
+				}
+			})
+			.catch((err) => {
+				console.log(err);
+				setLoading(false);
+			});
 	};
 
 	const handleClick = () => {
@@ -203,8 +269,8 @@ const SignUpModal = ({ state, changeState }) => {
 		<>
 			<SignInModal state={signInState} changeState={setSignInState} />
 
-			{show_registration_modal === true ? (
-				<BecomeOurMember state={true} />
+			{show_registration_modal ? (
+				<BecomeOurMember token={token} id={userId} />
 			) : (
 				<></>
 			)}
@@ -487,57 +553,47 @@ const SignUpModal = ({ state, changeState }) => {
 										or
 									</Text>
 								</Box>
-								<Button
-									className="m-hide"
-									display={"flex"}
-									alignItems="center"
-									justifyContent={"center"}
-									gap="10px"
-									w="100%"
-									bg="#082032"
-									color="#fff"
-									borderRadius={"1.04vw"}
-									h={{ base: "6.48vh", "3xl": "5vh" }}
-									_hover={{ background: "#082032" }}
-									fontSize={{ base: "2rem", lg: ".833vw" }}
-									onClick={() => {
-										const a = document.getElementById("google_login_button");
-										console.log(
-											a.childNodes[0].childNodes[0].childNodes[0].click()
-										);
-									}}
-								>
-									<Text className="hero-font-class2">Sign up with Google</Text>
-								</Button>
 
-								<Button
-									className="d-hide"
-									mx={"10vw"}
-									display={"flex"}
-									alignItems="center"
-									justifyContent={"center"}
-									gap="10px"
-									w="80%"
-									bg="#082032"
-									color="#fff"
-									borderRadius={"1.04vw"}
-									h={{ base: "6.48vh", "3xl": "5vh" }}
-									_hover={{ background: "#082032" }}
-									fontSize={{ base: "2rem", lg: ".833vw" }}
-									onClick={() => {
-										const a = document.getElementById("google_login_button");
-										console.log(
-											a.childNodes[0].childNodes[0].childNodes[0].click()
-										);
-									}}
-								>
-									<Text className="hero-font-class2">Sign up with Google</Text>
-								</Button>
+								<GoogleLogin
+									className="hero-font-class2"
+									clientId="268210576018-mlvmmnn1ll18rjatc0k2r5ldgvsmkjjr.apps.googleusercontent.com"
+									buttonText=""
+									onSuccess={handleGoogleSignUp}
+									onFailure={handleGoogleSignUp}
+									cookiePolicy={"single_host_origin"}
+									render={(renderProps) => (
+										<Button
+											onClick={renderProps.onClick}
+											display={"flex"}
+											alignItems="center"
+											justifyContent={"center"}
+											gap="10px"
+											w="100%"
+											bg="#082032"
+											color="#fff"
+											borderRadius={"1.04vw"}
+											h={{ base: "6.48vh", "3xl": "5vh" }}
+											_hover={{ background: "#082032" }}
+											fontSize={{ base: "2rem", lg: ".833vw" }}
+											className="w-100"
+										>
+											<Image src={gLogo} h="2rem" />
+											<span
+												className="hero-font-class2"
+												style={{ color: "#fff" }}
+											>
+												Sign in with Google
+											</span>
+										</Button>
+									)}
+								/>
+
 								<Box
 									display={"none"}
 									id="google_login_button"
 									ref={gLoginButton}
 								></Box>
+
 								<Box mt="1.85vh" fontSize={{ base: "2rem", lg: ".833vw" }}>
 									<Text className="hero-font-class2" textAlign={"center"}>
 										Already registered?{" "}

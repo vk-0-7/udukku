@@ -51,9 +51,9 @@ const Talents = () => {
 				<Box>
 					<Button
 						position="relative"
-						w={{ base: "17rem", lg: "12.55vw" }}
-						h={{ base: "5rem", lg: "6.66vh" }}
-						fontSize={{ base: "1.5rem", lg: ".833vw" }}
+						w={{ base: "15rem", lg: "12.55vw" }}
+						h={{ base: "4.7rem", lg: "6.66vh" }}
+						fontSize={{ base: "1.3rem", lg: ".833vw" }}
 						fontFamily={"Gilroy-SemiBold"}
 						fontWeight="normal"
 						borderRadius={{ base: "2rem", lg: "1.04vw" }}

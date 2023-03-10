@@ -68,15 +68,15 @@ const ExploreTheMarketplace = () => {
             position="relative"
             fontFamily={"Gilroy-SemiBold"}
             fontWeight="normal"
-            fontSize={{base:"1.5rem",lg:".833vw"}}
+            fontSize={{base:"1.3rem",lg:".833vw"}}
             borderRadius={{base:"2rem",lg:"1.04vw"}}
-            w={{base:"20rem",lg:"12.55vw"}}
-            h={{base:"5rem",lg:"6.66vh"}}
+            w={{base:"15rem",lg:"12.55vw"}}
+            h={{base:"4.7rem",lg:"6.66vh"}}
             onClick={() => {
               navigate("/jobs");
             }}
           >
-            Find your next project <Icon as={AiOutlineRight} ml="5px" />
+            Find your next project <Icon as={AiOutlineRight} ml="5px"  fontSize={{base:"9px" ,lg:'11px'}}/>
           </Button>
         </Box>
       </Box>

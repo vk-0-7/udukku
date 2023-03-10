@@ -97,7 +97,7 @@ const Hero = () => {
 								navigate("/talents");
 							}}
 						>
-							<People /> Discover Talents
+						<People /> Discover Talents
 						</Button>
 						<Button
 							boxSizing="border-box"

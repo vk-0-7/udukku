@@ -140,7 +140,7 @@ const Slide = () => {
 								<Image
 									src={left}
 									alt="left"
-									w={{ base: "1.3rem", lg: ".5vw" }}
+									w={{ base: "1rem", lg: ".5vw" }}
 								/>
 							</Box>
 							<Box
@@ -159,7 +159,7 @@ const Slide = () => {
 								<Image
 									src={right}
 									alt="left"
-									w={{ base: "1.3rem", lg: ".5vw" }}
+									w={{ base: "1rem", lg: ".5vw" }}
 								/>
 							</Box>
 						</Box>

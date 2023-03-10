@@ -54,7 +54,7 @@ const Footer = () => {
 						</Box>
 						<Box pt={{ base: "2rem", lg: "0rem" }}>
 							<Box
-								display={"flex"}
+								display={"flex"} 
 								alignItems="flex-start"
 								gap=".26vw"
 								mt=".925vh"

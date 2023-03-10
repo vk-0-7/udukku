@@ -14,21 +14,22 @@ const JobCard = (props) => {
   const navigate = useNavigate();
   console.log("props", props)
   return (
-    <Box
-      w={{ base: "35rem", lg: "23.75vw" }}
+    <Box 
+      w={{ base: "85vw", lg: "23.75vw" }}
       // h="52.77vh"
       bg="#fff"
       border="1.5px solid #f0f0f0"
-      borderRadius={"28px"}
+      borderRadius={"28px"} 
       py="2.59vh"
-      px="1.458vw"
+      px="3.558vw"
+      
       flexShrink={0}
       display="flex"
       flexDir={"column"}
     >
       {/* heading */}
       <Text
-        fontSize={{ base: "3rem", lg: "1.45vw" }}
+        fontSize={{ base: "2.5rem", lg: "1.45vw" }}
         fontFamily={"Gilroy-Bold"}
       >
         {props.title}
@@ -54,7 +55,7 @@ const JobCard = (props) => {
             </Box>
           );
         })} */}
-        <Box
+        <Box 
           bg="rgba(192, 226, 24,.1)"
           display={"inline-flex"}
           justifyContent="center"
@@ -194,11 +195,11 @@ const JobCard = (props) => {
 
       <Box display={"flex"} justifyContent="center">
         <Button
-          w="22.5vw"
+          w="100%"
           bg="rgba(246, 84, 14, 1)"
           color="#fff"
           h={{base:"4rem",lg:"6.48vh"}}
-          borderRadius={"1.25vw"}
+          borderRadius={"12px"}
           display="flex"
           alignItems={"center"}
           transition=".5s"

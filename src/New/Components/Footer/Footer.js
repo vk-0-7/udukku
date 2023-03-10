@@ -19,7 +19,7 @@ const Footer = () => {
 
 	return (
 		<>
-			<Box
+			<Box 
 				h={{ base: "fit-content" }}
 				w="100vw"
 				overflow={"hidden"}
@@ -36,17 +36,17 @@ const Footer = () => {
 					<Box>
 						<Image src={logo} h="35px" />
 					</Box>
-					<Box
+					<Box 
 						display={{ base: "flex", lg: "block" }}
 						alignItems={{ base: "center" }}
 						gap={{ base: "2.5rem", lg: "0" }}
 					>
-						<Box w={{ base: "50%", lg: "100%" }}>
+						<Box w={{ base: "100%", lg: "100%" }} >
 							<Text
 								mt="3.70vh"
 								mb="1.388vh"
 								fontFamily={"Gilroy-Medium"}
-								fontSize={{ base: "1.7rem", lg: ".833vw" }}
+								fontSize={{ base: "1.3rem", lg: ".833vw" }}
 							>
 								A one-of-its-kind destination for musicians to harness their
 								love of music and connect with each other.
@@ -61,12 +61,12 @@ const Footer = () => {
 							>
 								<Icon
 									as={HiLocationMarker}
-									fontSize={{ base: "1.7rem", lg: ".833vw" }}
+									fontSize={{ base: "1.3rem", lg: ".833vw" }}
 								/>
 								<Box position="relative" bottom="5px">
 									<Text
 										fontFamily={"Gilroy-Medium"}
-										fontSize={{ base: "1.7rem", lg: ".833vw" }}
+										fontSize={{ base: "1.3rem", lg: ".833vw" }}
 									>
 										M-23 Income Tax Colony, Tonk Road, Durgapura, Jaipur -
 										302018
@@ -76,11 +76,11 @@ const Footer = () => {
 							<Box display={"flex"} alignItems="center" gap=".26vw" mt=".925vh">
 								<Icon
 									as={MdEmail}
-									fontSize={{ base: "1.7rem", lg: ".833vw" }}
+									fontSize={{ base: "1.3rem", lg: ".833vw" }}
 								/>
 								<Text
 									fontFamily={"Gilroy-Medium"}
-									fontSize={{ base: "1.7rem", lg: ".833vw" }}
+									fontSize={{ base: "1.3rem", lg: ".833vw" }}
 								>
 									info@udukku.com
 								</Text>
@@ -90,7 +90,7 @@ const Footer = () => {
 							<Text
 								fontFamily={"Gilroy-Medium"}
 								mt=".925vh"
-								fontSize={{ base: "1.7rem", lg: ".833vw" }}
+								fontSize={{ base: "1.3rem", lg: ".833vw" }}
 							>
 								©udukku 2022
 							</Text>
@@ -100,7 +100,7 @@ const Footer = () => {
 				<Box display={"flex"} justifyContent="space-around">
 					<Box>
 						<Text
-							fontSize={{ base: "2.4rem", lg: "1.45vw" }}
+							fontSize={{ base: "2rem", lg: "1.45vw" }}
 							fontFamily={"Gilroy-Bold"}
 						>
 							Categories
@@ -113,45 +113,45 @@ const Footer = () => {
 						>
 							<Text
 								fontFamily={"Gilroy-Medium"}
-								fontSize={{ base: "1.7rem", lg: ".833vw" }}
+								fontSize={{ base: "1.3rem", lg: ".833vw" }}
 							>
 								Vocalists
 							</Text>
 							<Text
 								fontFamily={"Gilroy-Medium"}
-								fontSize={{ base: "1.7rem", lg: ".833vw" }}
+								fontSize={{ base: "1.3rem", lg: ".833vw" }}
 							>
 								Music Producer & Engineers
 							</Text>
 							<Text
 								fontFamily={"Gilroy-Medium"}
-								fontSize={{ base: "1.7rem", lg: ".833vw" }}
+								fontSize={{ base: "1.3rem", lg: ".833vw" }}
 							>
 								Indian Instruments
 							</Text>
 							<Text
 								fontFamily={"Gilroy-Medium"}
-								fontSize={{ base: "1.7rem", lg: ".833vw" }}
+								fontSize={{ base: "1.3rem", lg: ".833vw" }}
 							>
 								International Instruments
 							</Text>
 							<Text
 								fontFamily={"Gilroy-Medium"}
-								fontSize={{ base: "1.7rem", lg: ".833vw" }}
+								fontSize={{ base: "1.3rem", lg: ".833vw" }}
 							>
 								Songwriters & Composers
 							</Text>
 							<Text
 								fontFamily={"Gilroy-Medium"}
-								fontSize={{ base: "1.7rem", lg: ".833vw" }}
+								fontSize={{ base: "1.3rem", lg: ".833vw" }}
 							>
 								DJs
 							</Text>
 						</Box>
 					</Box>
-					<Box>
+					<Box >
 						<Text
-							fontSize={{ base: "2.4rem", lg: "1.45vw" }}
+							fontSize={{ base: "2.0rem", lg: "1.45vw" }}
 							fontFamily={"Gilroy-Bold"}
 						>
 							Support
@@ -170,7 +170,7 @@ const Footer = () => {
               </Text> */}
 							<Text
 								fontFamily={"Gilroy-Medium"}
-								fontSize={{ base: "1.7rem", lg: ".833vw" }}
+								fontSize={{ base: "1.3rem", lg: ".833vw" }}
 								cursor={"pointer"}
 								onClick={() => {
 									navigate("/privacy-policy");
@@ -181,7 +181,7 @@ const Footer = () => {
 
 							<Text
 								fontFamily={"Gilroy-Medium"}
-								fontSize={{ base: "1.7rem", lg: ".833vw" }}
+								fontSize={{ base: "1.3rem", lg: ".833vw" }}
 								cursor={"pointer"}
 								onClick={() => {
 									navigate("/cancellation-and-refund");
@@ -191,7 +191,7 @@ const Footer = () => {
 							</Text>
 							<Text
 								fontFamily={"Gilroy-Medium"}
-								fontSize={{ base: "1.7rem", lg: ".833vw" }}
+								fontSize={{ base: "1.3rem", lg: ".833vw" }}
 								cursor={"pointer"}
 								onClick={() => {
 									navigate("/terms-and-conditions");
@@ -201,7 +201,7 @@ const Footer = () => {
 							</Text>
 							<Text
 								fontFamily={"Gilroy-Medium"}
-								fontSize={{ base: "1.7rem", lg: ".833vw" }}
+								fontSize={{ base: "1.3rem", lg: ".833vw" }}
 								cursor={"pointer"}
 								onClick={() => {
 									navigate("/about-us");
@@ -211,7 +211,7 @@ const Footer = () => {
 							</Text>
 							<Text
 								fontFamily={"Gilroy-Medium"}
-								fontSize={{ base: "1.7rem", lg: ".833vw" }}
+								fontSize={{ base: "1.3rem", lg: ".833vw" }}
 								cursor={"pointer"}
 								onClick={() => {
 									navigate("/contact-us");
@@ -222,17 +222,17 @@ const Footer = () => {
 						</Box>
 					</Box>
 				</Box>
-				<Box>
-					<Text
-						fontSize={{ base: "2.4rem", lg: "1.45vw" }}
+				<Box  display={"flex"} flexDirection={"column"} justifyContent={"center"} >
+					<Text   textAlign={"center"}
+						fontSize={{ base: "2.3rem", lg: "1.45vw" }}
 						fontFamily={"Gilroy-Bold"}
 						mb="10px"
 					>
 						Subscribe to hear news
 					</Text>
-					<InputGroup
-						w={{ base: "90%", lg: "21.51vw" }}
-						h={{ base: "6.41vh", lg: "5.5vh" }}
+					<InputGroup  
+						w={{ base: "100%", lg: "21.51vw" }}
+						h={{ base: "6.0vh", lg: "5.5vh" }}
 						size={"lg"}
 					>
 						<Input
@@ -240,8 +240,8 @@ const Footer = () => {
 							h="100%"
 							pr="50px"
 							type="email"
-							placeholder="Email address"
-							borderRadius={{ base: "1.5rem", lg: "1.45vw" }}
+							placeholder="email address"
+							borderRadius={{ base: "1.2rem", lg: "1.45vw" }}
 							fontSize={{ base: "1rem", lg: ".92vw" }}
 							color="#000"
 						/>
@@ -254,10 +254,10 @@ const Footer = () => {
 					</InputGroup>
 					<Button
 						mt="2%"
-						h={{ base: "5vh", lg: "5vh" }}
+						h={{ base: "6vh", lg: "5vh" }}
 						w="100%"
 						bg="rgba(246, 84, 14, 1)"
-						borderRadius={"1.25vw"}
+						borderRadius={"1.2rem"}
 						_hover={{
 							background: "#0E87F6",
 						}}
@@ -265,7 +265,7 @@ const Footer = () => {
 					>
 						Send
 					</Button>
-					<Box display={"flex"} mt="2.77vh" gap="1.56vw">
+					<Box display={"flex"} mt="2.77vh" gap={{base:"2.8vw",lg:"1.66vw"}}  justifyContent={"center"}>
 						<Box
 							as="a"
 							href="https://www.facebook.com/udukkumusic/"

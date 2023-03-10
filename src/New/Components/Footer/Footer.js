@@ -9,13 +9,7 @@ import {
 	Text,
 } from "@chakra-ui/react";
 import logo from "../../../Assets/Images/Logo/logo.svg";
-import {
-	FaFacebookF,
-	FaInstagram,
-	FaLinkedinIn,
-	FaTwitter,
-	FaYoutube,
-} from "react-icons/fa";
+import { FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa";
 import { HiLocationMarker } from "react-icons/hi";
 import { MdEmail } from "react-icons/md";
 import { useNavigate } from "react-router-dom";

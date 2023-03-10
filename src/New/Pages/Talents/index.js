@@ -443,6 +443,9 @@ const   Talents = () => {
               />
             </Box>
           )}
+
+           
+          
         </Box>
       </Box>
       <Footer />
